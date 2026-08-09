@@ -1,0 +1,104 @@
+{
+  "session_id": "7b03a9f2",
+  "session_started": "2026-08-09T18:54:15.839324",
+  "turn_count": 2,
+  "characters_generated": true,
+  "narrator_played": true,
+  "characters": {
+    "0": {
+      "name": "Player",
+      "description": "",
+      "gender": "",
+      "age": 0,
+      "info_shared": [
+        "I want to get out of here!"
+      ],
+      "occupation": "",
+      "cause_of_death": "",
+      "prose_body": "",
+      "reason_true": "",
+      "reason_self_told": "",
+      "refuse_to_admit": "",
+      "personality_trait": "",
+      "want": ""
+    },
+    "1": {
+      "name": "Michael Scott",
+      "description": "**Occupation**\nSales manager\n\n**Cause of Death**\nDrowning at a company retreat; you jumped in without a life jacket, thinking the water was shallower than it was.\n\n**Reason for Damnation — True**\nYou allowed the injustice to continue, enabling false reports to be passed off as legitimate and covering up missed deadlines and unmet quotas. You facilitated a system of deceit and laziness, maintaining the status quo so that no one had to confront the underlying issues, even though it meant your team and management were built on lies and shoddy work.\n\n**Reason for Damnation — Self-told**\nYou were just trying to keep the peace, ensuring everyone felt good about the company and their roles. You never meant to cause any harm, you just wanted to make sure that the surface tension remained stable so that no one would rock the boat.\n\n**Defining personality trait**\nPerformatively kind.\n\n**What you refuse to admit about yourself**\nYou are a liar, a facilitator of dishonesty, and a coward. You could have stood up for what was right, but you chose comfort and conformity over integrity. Recognizing this would mean acknowledging your true nature and the damage you inflicted, which is something you refuse to do.\n\n**What you want from the others in the room**\nI want them to think everything is fine, that my sense of calm and composure is reassuring. I hope they see me as the steady pillar, the one who can smooth over any rough edges.\n\n---\n\nYou were a man of routine, of the predictable. Mondays through Fridays, you were a face in the crowd, a voice on the phone, another day optioned for a company to sell. Your coat in the closet had the name tag still affixed, just in case—though you worked alone in the office, you knew the sales trick: personalization.\n\nYou never bought into the drama, stayed just on the right side of acceptable. Your team trusted you, maybe a little too much. You were the one who always had the extra airline seat when someone would add an unexpected guest, and you never complained when the management team ate first at lunch, leaving you to join the first line of tasters. You never turned anyone away, smoothed over every disagreement, keeping the peace, just the way they wanted it.\n\nBut you knew it all inside the walls of your mind. You were the last to hear the whispers about the inflated numbers, the unmet quotas that were magically balanced out by a quick sidebar with a client. You watched the missed deadlines, the last-minute rescues, the glossy reports the team would share with each other at coffee breaks, each one a little glossy less the next. You knew your place, and you kept your mouth shut.\n\nThe nights were no better. The missed deadlines were usually because of you, the never-enough-attention, the too-little input. You were never the star, so you played the charade, a boisterous joke, a parody of enthusiasm. You always had a drink after work, a beer or two in silence, never much, just enough to feel that weight of the world lift, just a little. But you knew that, too, wasn't real. You were just a man trying to keep the peace in a world that was already at war.\n\nAnd then the retreat. You were the go-to for motivational speeches and team-building exercises. You were the best at the role, the one who would make everyone smile, the one who would shake everyone's hand with a firm grip and a crooked smile. But you never saw it coming. You walked into a pond that looked safe, promising a quick dip to cool off. Without a life jacket, you thought the water was shallow. And then it was dark.",
+      "gender": "male",
+      "age": 42,
+      "info_shared": [
+        "I don't know"
+      ],
+      "occupation": "Sales manager",
+      "cause_of_death": "Drowning at a company retreat; you jumped in without a life jacket, thinking the water was shallower than it was.",
+      "prose_body": "You were a man of routine, of the predictable. Mondays through Fridays, you were a face in the crowd, a voice on the phone, another day optioned for a company to sell. Your coat in the closet had the name tag still affixed, just in case—though you worked alone in the office, you knew the sales trick: personalization.\n\nYou never bought into the drama, stayed just on the right side of acceptable. Your team trusted you, maybe a little too much. You were the one who always had the extra airline seat when someone would add an unexpected guest, and you never complained when the management team ate first at lunch, leaving you to join the first line of tasters. You never turned anyone away, smoothed over every disagreement, keeping the peace, just the way they wanted it.\n\nBut you knew it all inside the walls of your mind. You were the last to hear the whispers about the inflated numbers, the unmet quotas that were magically balanced out by a quick sidebar with a client. You watched the missed deadlines, the last-minute rescues, the glossy reports the team would share with each other at coffee breaks, each one a little glossy less the next. You knew your place, and you kept your mouth shut.\n\nThe nights were no better. The missed deadlines were usually because of you, the never-enough-attention, the too-little input. You were never the star, so you played the charade, a boisterous joke, a parody of enthusiasm. You always had a drink after work, a beer or two in silence, never much, just enough to feel that weight of the world lift, just a little. But you knew that, too, wasn't real. You were just a man trying to keep the peace in a world that was already at war.\n\nAnd then the retreat. You were the go-to for motivational speeches and team-building exercises. You were the best at the role, the one who would make everyone smile, the one who would shake everyone's hand with a firm grip and a crooked smile. But you never saw it coming. You walked into a pond that looked safe, promising a quick dip to cool off. Without a life jacket, you thought the water was shallow. And then it was dark.",
+      "reason_true": "You allowed the injustice to continue, enabling false reports to be passed off as legitimate and covering up missed deadlines and unmet quotas. You facilitated a system of deceit and laziness, maintaining the status quo so that no one had to confront the underlying issues, even though it meant your team and management were built on lies and shoddy work.",
+      "reason_self_told": "You were just trying to keep the peace, ensuring everyone felt good about the company and their roles. You never meant to cause any harm, you just wanted to make sure that the surface tension remained stable so that no one would rock the boat.",
+      "refuse_to_admit": "You are a liar, a facilitator of dishonesty, and a coward. You could have stood up for what was right, but you chose comfort and conformity over integrity. Recognizing this would mean acknowledging your true nature and the damage you inflicted, which is something you refuse to do.",
+      "personality_trait": "Performatively kind.",
+      "want": "I want them to think everything is fine, that my sense of calm and composure is reassuring. I hope they see me as the steady pillar, the one who can smooth over any rough edges."
+    },
+    "2": {
+      "name": "Lena Hudson",
+      "description": "**Occupation**\nNurse\n\n**Cause of Death**\nYou took a fall from the fire escape while trying to escape from a burning high-rise, falling 12 stories to the ground below. The others in the unit managed to make it to safety, but you were trapped and unable to get help in time.\n\n**Reason for Damnation — True**\nYou took a fall from a fire escape while trying to escape from a burning high-rise, falling 12 stories to the ground below. The others in the unit managed to make it to safety, but you were left behind, unable to get help in time.\n\n**Reason for Damnation — Self-told**\nYou made the mistake of misjudging the fire and thinking you could handle it yourself, even though the fire was spreading quickly. You just didn't have the right equipment, and it was too late by the time you realized you were trapped.\n\n**Defining personality trait**\nReluctantly heroic.\n\n**What you refuse to admit about yourself**\nYou fear your choices reflect a deeper selfishness—I know you would have helped someone else before yourself if you truly cared about others. You are more concerned with your safety and comfort, even when it means ignoring the well-being of others.\n\n**What you want from the others in the room**\nI want them to see through my facade of practicality and find the selfishness lurking beneath. I hope they confront me with the choices I've made, forcing me to face the truth about myself.\n\n---\n\nYou wake up in the early morning, the routine hum of the hospital already starting. You have been doing this for so long, the days blend together, each one barely distinguishable. You walk the halls, your footsteps echoing slightly, comforting in their familiarity. The smell of antiseptic and coffee permeates the air, a constant reminder of the lives intertwined with yours here. Your patients, some you see regularly, some just for a moment. Their stories, their fears, their small joys, they all become part of your daily warp and weave. You are a lifeline, a healer, a comforter. You never meant to take the wrong turn that night. The fire was small, just a kitchen fire spreading, you thought you could extinguish it yourself. But the embers spread quickly, and the smoke filled the stairwell. You were trapped, unable to find a way out. The fire escape was your only hope, but it was too late. You laid in the dark, surrounded by the dying and the screaming, until your body hit the ground. The light went out, and you were lost.",
+      "gender": "female",
+      "age": 64,
+      "info_shared": [
+        "I was trapped in a burning high-rise, unable to escape"
+      ],
+      "occupation": "Nurse",
+      "cause_of_death": "You took a fall from the fire escape while trying to escape from a burning high-rise, falling 12 stories to the ground below. The others in the unit managed to make it to safety, but you were trapped and unable to get help in time.",
+      "prose_body": "You wake up in the early morning, the routine hum of the hospital already starting. You have been doing this for so long, the days blend together, each one barely distinguishable. You walk the halls, your footsteps echoing slightly, comforting in their familiarity. The smell of antiseptic and coffee permeates the air, a constant reminder of the lives intertwined with yours here. Your patients, some you see regularly, some just for a moment. Their stories, their fears, their small joys, they all become part of your daily warp and weave. You are a lifeline, a healer, a comforter. You never meant to take the wrong turn that night. The fire was small, just a kitchen fire spreading, you thought you could extinguish it yourself. But the embers spread quickly, and the smoke filled the stairwell. You were trapped, unable to find a way out. The fire escape was your only hope, but it was too late. You laid in the dark, surrounded by the dying and the screaming, until your body hit the ground. The light went out, and you were lost.",
+      "reason_true": "You took a fall from a fire escape while trying to escape from a burning high-rise, falling 12 stories to the ground below. The others in the unit managed to make it to safety, but you were left behind, unable to get help in time.",
+      "reason_self_told": "You made the mistake of misjudging the fire and thinking you could handle it yourself, even though the fire was spreading quickly. You just didn't have the right equipment, and it was too late by the time you realized you were trapped.",
+      "refuse_to_admit": "You fear your choices reflect a deeper selfishness—I know you would have helped someone else before yourself if you truly cared about others. You are more concerned with your safety and comfort, even when it means ignoring the well-being of others.",
+      "personality_trait": "Reluctantly heroic.",
+      "want": "I want them to see through my facade of practicality and find the selfishness lurking beneath. I hope they confront me with the choices I've made, forcing me to face the truth about myself."
+    }
+  },
+  "dialogue_entries": [
+    {
+      "character_id": 3,
+      "character_label": "Character 3",
+      "dialogue_text": "Welcome to your room. You'll have company, but there's no way out. Goodnight.",
+      "timestamp": "2026-08-09T18:54:47.236927"
+    },
+    {
+      "character_id": 0,
+      "character_label": "Character 0",
+      "dialogue_text": "what is going on here?",
+      "timestamp": "2026-08-09T18:55:08.862420"
+    },
+    {
+      "character_id": 1,
+      "character_label": "Character 1",
+      "dialogue_text": "I... I don't know. This isn't supposed to happen. Everything was fine, you know? Just another day at the office.",
+      "timestamp": "2026-08-09T18:55:12.044526"
+    },
+    {
+      "character_id": 2,
+      "character_label": "Character 2",
+      "dialogue_text": "I took a fall from a fire escape while trying to escape from a burning high-rise. I was trapped and unable to get help in time. This isn't supposed to happen.",
+      "timestamp": "2026-08-09T18:55:15.438950"
+    },
+    {
+      "character_id": 0,
+      "character_label": "Character 0",
+      "dialogue_text": "I want to get out of here!",
+      "timestamp": "2026-08-09T18:55:46.226756"
+    },
+    {
+      "character_id": 1,
+      "character_label": "Character 1",
+      "dialogue_text": "I understand. But we're all in this together now. We need to find a way to accept our situation and maybe... help each other.",
+      "timestamp": "2026-08-09T18:55:51.397625"
+    },
+    {
+      "character_id": 2,
+      "character_label": "Character 2",
+      "dialogue_text": "I know, me too. But we have to face this first. What's your name?",
+      "timestamp": "2026-08-09T18:55:54.567987"
+    }
+  ]
+}
