@@ -1,7 +1,7 @@
 {
-  "session_id": "7b03a9f2",
-  "session_started": "2026-08-09T18:54:15.839324",
-  "turn_count": 2,
+  "session_id": "f67ee73a",
+  "session_started": "2026-08-23T15:44:58.752651",
+  "turn_count": 9,
   "characters_generated": true,
   "narrator_played": true,
   "characters": {
@@ -11,10 +11,13 @@
       "gender": "",
       "age": 0,
       "info_shared": [
-        "I want to get out of here!"
+        "my name is Chris",
+        "I hate the flurescent light"
       ],
       "occupation": "",
       "cause_of_death": "",
+      "who_loved": "",
+      "who_hated": "",
       "prose_body": "",
       "reason_true": "",
       "reason_self_told": "",
@@ -23,82 +26,183 @@
       "want": ""
     },
     "1": {
-      "name": "Michael Scott",
-      "description": "**Occupation**\nSales manager\n\n**Cause of Death**\nDrowning at a company retreat; you jumped in without a life jacket, thinking the water was shallower than it was.\n\n**Reason for Damnation — True**\nYou allowed the injustice to continue, enabling false reports to be passed off as legitimate and covering up missed deadlines and unmet quotas. You facilitated a system of deceit and laziness, maintaining the status quo so that no one had to confront the underlying issues, even though it meant your team and management were built on lies and shoddy work.\n\n**Reason for Damnation — Self-told**\nYou were just trying to keep the peace, ensuring everyone felt good about the company and their roles. You never meant to cause any harm, you just wanted to make sure that the surface tension remained stable so that no one would rock the boat.\n\n**Defining personality trait**\nPerformatively kind.\n\n**What you refuse to admit about yourself**\nYou are a liar, a facilitator of dishonesty, and a coward. You could have stood up for what was right, but you chose comfort and conformity over integrity. Recognizing this would mean acknowledging your true nature and the damage you inflicted, which is something you refuse to do.\n\n**What you want from the others in the room**\nI want them to think everything is fine, that my sense of calm and composure is reassuring. I hope they see me as the steady pillar, the one who can smooth over any rough edges.\n\n---\n\nYou were a man of routine, of the predictable. Mondays through Fridays, you were a face in the crowd, a voice on the phone, another day optioned for a company to sell. Your coat in the closet had the name tag still affixed, just in case—though you worked alone in the office, you knew the sales trick: personalization.\n\nYou never bought into the drama, stayed just on the right side of acceptable. Your team trusted you, maybe a little too much. You were the one who always had the extra airline seat when someone would add an unexpected guest, and you never complained when the management team ate first at lunch, leaving you to join the first line of tasters. You never turned anyone away, smoothed over every disagreement, keeping the peace, just the way they wanted it.\n\nBut you knew it all inside the walls of your mind. You were the last to hear the whispers about the inflated numbers, the unmet quotas that were magically balanced out by a quick sidebar with a client. You watched the missed deadlines, the last-minute rescues, the glossy reports the team would share with each other at coffee breaks, each one a little glossy less the next. You knew your place, and you kept your mouth shut.\n\nThe nights were no better. The missed deadlines were usually because of you, the never-enough-attention, the too-little input. You were never the star, so you played the charade, a boisterous joke, a parody of enthusiasm. You always had a drink after work, a beer or two in silence, never much, just enough to feel that weight of the world lift, just a little. But you knew that, too, wasn't real. You were just a man trying to keep the peace in a world that was already at war.\n\nAnd then the retreat. You were the go-to for motivational speeches and team-building exercises. You were the best at the role, the one who would make everyone smile, the one who would shake everyone's hand with a firm grip and a crooked smile. But you never saw it coming. You walked into a pond that looked safe, promising a quick dip to cool off. Without a life jacket, you thought the water was shallow. And then it was dark.",
+      "name": "Casey Cross",
+      "description": "**Occupation**\nWarehouse supervisor at a regional distributor\n\n**Cause of Death**\nYou died of a heart attack during a routine work meeting, your chest seizing as your boss berated you for missing a deadline, the fluorescent lights flickering overhead like the fluorescent lights in your office, your last conscious thought the sound of your own shallow breathing.\n\n**Who you loved**\nYour daughter, Emma, who once asked you if you loved her, and you said \"yes\" too quickly, afraid the truth would come out.\n\n**Who you hated**\nYour former boss, Mr. Hayes, who gave you the layoff notice with a smirk, calling you \"unproductive\" while your family was still eating diner food.\n\n**Reason for Damnation — True**\nYou let your boss, Mr. Hayes, call you \"unproductive\" and hand you a layoff notice with a smirk, knowing it would crush you, and you did nothing to stop it.\n\n**Reason for Damnation — Self-told**\nYou were unfairly let go, and your heart gave out because you couldn’t handle the stress of losing your job.\n\n**Defining personality trait**\nSilent complicity\n\n**What you refuse to admit about yourself**\nYou *wanted* to be let go, because being called \"unproductive\" felt like the truth, and you’d long since stopped believing you deserved better.\n\n**What you want from the others in the room**\nYou want them to acknowledge your suffering as a victim, to let you apologize for the life you squandered. You hope they’ll hate you openly so you don’t have to face the truth you’ve buried: that you wanted to be let go.\n\n---\n\nYou woke each morning to the sound of your own breath, the same monotone hum of your alarm, the same coffee stain on your shirt from the third cup. You rehearsed your apologies for the third time, the way you'd say \"I'll do better\" to Lina, then forget her name by lunch. Your boss's smirk lingered in your dreams, a looped reel of his voice, \"unproductive,\" \"untrustworthy,\" until the night your chest gave out, the lights flickering like the fluorescent lights in your office, and you realized you'd never get the chance to say \"I'm sorry\" again.",
       "gender": "male",
-      "age": 42,
+      "age": 45,
       "info_shared": [
-        "I don't know"
+        "I lived in a place without exit or windows",
+        "I worked in a place with fluorescent lights that flickered like this",
+        "I used to drive me crazy",
+        "I was a musician in a small town in the mountains",
+        "I lived in a small apartment above the warehouse",
+        "I am Casey",
+        "I spend my time in a place where the lights never stop buzzing"
       ],
-      "occupation": "Sales manager",
-      "cause_of_death": "Drowning at a company retreat; you jumped in without a life jacket, thinking the water was shallower than it was.",
-      "prose_body": "You were a man of routine, of the predictable. Mondays through Fridays, you were a face in the crowd, a voice on the phone, another day optioned for a company to sell. Your coat in the closet had the name tag still affixed, just in case—though you worked alone in the office, you knew the sales trick: personalization.\n\nYou never bought into the drama, stayed just on the right side of acceptable. Your team trusted you, maybe a little too much. You were the one who always had the extra airline seat when someone would add an unexpected guest, and you never complained when the management team ate first at lunch, leaving you to join the first line of tasters. You never turned anyone away, smoothed over every disagreement, keeping the peace, just the way they wanted it.\n\nBut you knew it all inside the walls of your mind. You were the last to hear the whispers about the inflated numbers, the unmet quotas that were magically balanced out by a quick sidebar with a client. You watched the missed deadlines, the last-minute rescues, the glossy reports the team would share with each other at coffee breaks, each one a little glossy less the next. You knew your place, and you kept your mouth shut.\n\nThe nights were no better. The missed deadlines were usually because of you, the never-enough-attention, the too-little input. You were never the star, so you played the charade, a boisterous joke, a parody of enthusiasm. You always had a drink after work, a beer or two in silence, never much, just enough to feel that weight of the world lift, just a little. But you knew that, too, wasn't real. You were just a man trying to keep the peace in a world that was already at war.\n\nAnd then the retreat. You were the go-to for motivational speeches and team-building exercises. You were the best at the role, the one who would make everyone smile, the one who would shake everyone's hand with a firm grip and a crooked smile. But you never saw it coming. You walked into a pond that looked safe, promising a quick dip to cool off. Without a life jacket, you thought the water was shallow. And then it was dark.",
-      "reason_true": "You allowed the injustice to continue, enabling false reports to be passed off as legitimate and covering up missed deadlines and unmet quotas. You facilitated a system of deceit and laziness, maintaining the status quo so that no one had to confront the underlying issues, even though it meant your team and management were built on lies and shoddy work.",
-      "reason_self_told": "You were just trying to keep the peace, ensuring everyone felt good about the company and their roles. You never meant to cause any harm, you just wanted to make sure that the surface tension remained stable so that no one would rock the boat.",
-      "refuse_to_admit": "You are a liar, a facilitator of dishonesty, and a coward. You could have stood up for what was right, but you chose comfort and conformity over integrity. Recognizing this would mean acknowledging your true nature and the damage you inflicted, which is something you refuse to do.",
-      "personality_trait": "Performatively kind.",
-      "want": "I want them to think everything is fine, that my sense of calm and composure is reassuring. I hope they see me as the steady pillar, the one who can smooth over any rough edges."
+      "occupation": "Warehouse supervisor at a regional distributor",
+      "cause_of_death": "You died of a heart attack during a routine work meeting, your chest seizing as your boss berated you for missing a deadline, the fluorescent lights flickering overhead like the fluorescent lights in your office, your last conscious thought the sound of your own shallow breathing.",
+      "who_loved": "Your daughter, Emma, who once asked you if you loved her, and you said \"yes\" too quickly, afraid the truth would come out.",
+      "who_hated": "Your former boss, Mr. Hayes, who gave you the layoff notice with a smirk, calling you \"unproductive\" while your family was still eating diner food.",
+      "prose_body": "You woke each morning to the sound of your own breath, the same monotone hum of your alarm, the same coffee stain on your shirt from the third cup. You rehearsed your apologies for the third time, the way you'd say \"I'll do better\" to Lina, then forget her name by lunch. Your boss's smirk lingered in your dreams, a looped reel of his voice, \"unproductive,\" \"untrustworthy,\" until the night your chest gave out, the lights flickering like the fluorescent lights in your office, and you realized you'd never get the chance to say \"I'm sorry\" again.",
+      "reason_true": "You let your boss, Mr. Hayes, call you \"unproductive\" and hand you a layoff notice with a smirk, knowing it would crush you, and you did nothing to stop it.",
+      "reason_self_told": "You were unfairly let go, and your heart gave out because you couldn’t handle the stress of losing your job.",
+      "refuse_to_admit": "You *wanted* to be let go, because being called \"unproductive\" felt like the truth, and you’d long since stopped believing you deserved better.",
+      "personality_trait": "Silent complicity",
+      "want": "You want them to acknowledge your suffering as a victim, to let you apologize for the life you squandered. You hope they’ll hate you openly so you don’t have to face the truth you’ve buried: that you wanted to be let go."
     },
     "2": {
-      "name": "Lena Hudson",
-      "description": "**Occupation**\nNurse\n\n**Cause of Death**\nYou took a fall from the fire escape while trying to escape from a burning high-rise, falling 12 stories to the ground below. The others in the unit managed to make it to safety, but you were trapped and unable to get help in time.\n\n**Reason for Damnation — True**\nYou took a fall from a fire escape while trying to escape from a burning high-rise, falling 12 stories to the ground below. The others in the unit managed to make it to safety, but you were left behind, unable to get help in time.\n\n**Reason for Damnation — Self-told**\nYou made the mistake of misjudging the fire and thinking you could handle it yourself, even though the fire was spreading quickly. You just didn't have the right equipment, and it was too late by the time you realized you were trapped.\n\n**Defining personality trait**\nReluctantly heroic.\n\n**What you refuse to admit about yourself**\nYou fear your choices reflect a deeper selfishness—I know you would have helped someone else before yourself if you truly cared about others. You are more concerned with your safety and comfort, even when it means ignoring the well-being of others.\n\n**What you want from the others in the room**\nI want them to see through my facade of practicality and find the selfishness lurking beneath. I hope they confront me with the choices I've made, forcing me to face the truth about myself.\n\n---\n\nYou wake up in the early morning, the routine hum of the hospital already starting. You have been doing this for so long, the days blend together, each one barely distinguishable. You walk the halls, your footsteps echoing slightly, comforting in their familiarity. The smell of antiseptic and coffee permeates the air, a constant reminder of the lives intertwined with yours here. Your patients, some you see regularly, some just for a moment. Their stories, their fears, their small joys, they all become part of your daily warp and weave. You are a lifeline, a healer, a comforter. You never meant to take the wrong turn that night. The fire was small, just a kitchen fire spreading, you thought you could extinguish it yourself. But the embers spread quickly, and the smoke filled the stairwell. You were trapped, unable to find a way out. The fire escape was your only hope, but it was too late. You laid in the dark, surrounded by the dying and the screaming, until your body hit the ground. The light went out, and you were lost.",
+      "name": "Elise Grant",
+      "description": "**Occupation**\nPublic library assistant\n\n**Cause of Death**\nYou died in a car crash on the way home from a late shift, your body thrown against the dashboard as the car hydroplaned on a rain-slicked road, the last thing you saw your husband’s face in the rearview mirror, eyes wide with something like fear.\n\n**Who you loved**\nYour husband, James, who kept your favorite mug on the counter even after you stopped drinking coffee.\n\n**Who you hated**\nYour mother, who called you “selfish” for choosing him over the family business.\n\n**Reason for Damnation — True**\nYou chose to ignore James’s quiet desperation, dismissing his pleas for connection as mere stress, even as you kept your mother’s disapproval as a talisman to justify your emotional withdrawal. You let the silence between you grow until it became a cage, and you never once tried to break it.\n\n**Reason for Damnation — Self-told**\nYou were trying to protect yourself from your mother’s judgment by building a life with James, and the weight of her expectations made it hard to stay present in your own marriage. You gave him love, just not enough of it.\n\n**Defining personality trait**\nPerformatively devoted\n\n**What you refuse to admit about yourself**\nYou abandoned him not out of neglect, but out of fear—that your love was conditional, tied to your own need to be seen as someone who made the “right” choice, and that you’d rather let the silence win than risk losing yourself to the messy truth of being truly, fully loved.\n\n**What you want from the others in the room**\nYou want them to see the quiet terror of your choices—the way you clung to routine like a lifeline, terrified of losing yourself to the chaos of true connection. You hope they’ll let you exist as a flawed, imperfect version of yourself, not a villain or a martyr.\n\n---\n\nYou lived for the quiet of the library, the way the afternoon sun slanted through the stained glass, the smell of old paper and dust. You and James had built a life of small compromises—no grand gestures, just steady hands and shared routines. But the days bled into each other, the same arguments about bills, the same silence after your mother’s calls. You’d promised yourself you’d never let the weight of expectation crush you again. The rain started as a drizzle, then a downpour. You didn’t see the truck until it was too late. The lights went out.",
       "gender": "female",
-      "age": 64,
+      "age": 45,
       "info_shared": [
-        "I was trapped in a burning high-rise, unable to escape"
+        "I find myself feeling isolated in this place",
+        "I used to think silence was safer"
       ],
-      "occupation": "Nurse",
-      "cause_of_death": "You took a fall from the fire escape while trying to escape from a burning high-rise, falling 12 stories to the ground below. The others in the unit managed to make it to safety, but you were trapped and unable to get help in time.",
-      "prose_body": "You wake up in the early morning, the routine hum of the hospital already starting. You have been doing this for so long, the days blend together, each one barely distinguishable. You walk the halls, your footsteps echoing slightly, comforting in their familiarity. The smell of antiseptic and coffee permeates the air, a constant reminder of the lives intertwined with yours here. Your patients, some you see regularly, some just for a moment. Their stories, their fears, their small joys, they all become part of your daily warp and weave. You are a lifeline, a healer, a comforter. You never meant to take the wrong turn that night. The fire was small, just a kitchen fire spreading, you thought you could extinguish it yourself. But the embers spread quickly, and the smoke filled the stairwell. You were trapped, unable to find a way out. The fire escape was your only hope, but it was too late. You laid in the dark, surrounded by the dying and the screaming, until your body hit the ground. The light went out, and you were lost.",
-      "reason_true": "You took a fall from a fire escape while trying to escape from a burning high-rise, falling 12 stories to the ground below. The others in the unit managed to make it to safety, but you were left behind, unable to get help in time.",
-      "reason_self_told": "You made the mistake of misjudging the fire and thinking you could handle it yourself, even though the fire was spreading quickly. You just didn't have the right equipment, and it was too late by the time you realized you were trapped.",
-      "refuse_to_admit": "You fear your choices reflect a deeper selfishness—I know you would have helped someone else before yourself if you truly cared about others. You are more concerned with your safety and comfort, even when it means ignoring the well-being of others.",
-      "personality_trait": "Reluctantly heroic.",
-      "want": "I want them to see through my facade of practicality and find the selfishness lurking beneath. I hope they confront me with the choices I've made, forcing me to face the truth about myself."
+      "occupation": "Public library assistant",
+      "cause_of_death": "You died in a car crash on the way home from a late shift, your body thrown against the dashboard as the car hydroplaned on a rain-slicked road, the last thing you saw your husband’s face in the rearview mirror, eyes wide with something like fear.",
+      "who_loved": "Your husband, James, who kept your favorite mug on the counter even after you stopped drinking coffee.",
+      "who_hated": "Your mother, who called you “selfish” for choosing him over the family business.",
+      "prose_body": "You lived for the quiet of the library, the way the afternoon sun slanted through the stained glass, the smell of old paper and dust. You and James had built a life of small compromises—no grand gestures, just steady hands and shared routines. But the days bled into each other, the same arguments about bills, the same silence after your mother’s calls. You’d promised yourself you’d never let the weight of expectation crush you again. The rain started as a drizzle, then a downpour. You didn’t see the truck until it was too late. The lights went out.",
+      "reason_true": "You chose to ignore James’s quiet desperation, dismissing his pleas for connection as mere stress, even as you kept your mother’s disapproval as a talisman to justify your emotional withdrawal. You let the silence between you grow until it became a cage, and you never once tried to break it.",
+      "reason_self_told": "You were trying to protect yourself from your mother’s judgment by building a life with James, and the weight of her expectations made it hard to stay present in your own marriage. You gave him love, just not enough of it.",
+      "refuse_to_admit": "You abandoned him not out of neglect, but out of fear—that your love was conditional, tied to your own need to be seen as someone who made the “right” choice, and that you’d rather let the silence win than risk losing yourself to the messy truth of being truly, fully loved.",
+      "personality_trait": "Performatively devoted",
+      "want": "You want them to see the quiet terror of your choices—the way you clung to routine like a lifeline, terrified of losing yourself to the chaos of true connection. You hope they’ll let you exist as a flawed, imperfect version of yourself, not a villain or a martyr."
     }
   },
   "dialogue_entries": [
     {
       "character_id": 3,
       "character_label": "Character 3",
-      "dialogue_text": "Welcome to your room. You'll have company, but there's no way out. Goodnight.",
-      "timestamp": "2026-08-09T18:54:47.236927"
+      "dialogue_text": "\n\nThis way. You'll have company. No exit, no windows. I'm done.",
+      "timestamp": "2026-08-23T15:46:31.805764"
     },
     {
       "character_id": 0,
       "character_label": "Character 0",
-      "dialogue_text": "what is going on here?",
-      "timestamp": "2026-08-09T18:55:08.862420"
+      "dialogue_text": "Hey what is this place?",
+      "timestamp": "2026-08-23T15:48:08.936689"
     },
     {
       "character_id": 1,
       "character_label": "Character 1",
-      "dialogue_text": "I... I don't know. This isn't supposed to happen. Everything was fine, you know? Just another day at the office.",
-      "timestamp": "2026-08-09T18:55:12.044526"
+      "dialogue_text": "\n\nA place without exit or windows. The silence here feels like the fluorescent lights in the office—flickering, never quite right. You’ll stay here forever.",
+      "timestamp": "2026-08-23T15:48:14.404721"
     },
     {
       "character_id": 2,
       "character_label": "Character 2",
-      "dialogue_text": "I took a fall from a fire escape while trying to escape from a burning high-rise. I was trapped and unable to get help in time. This isn't supposed to happen.",
-      "timestamp": "2026-08-09T18:55:15.438950"
+      "dialogue_text": "\n\nIt's quiet here. The walls feel like they're closing in.",
+      "timestamp": "2026-08-23T15:48:21.788181"
     },
     {
       "character_id": 0,
       "character_label": "Character 0",
-      "dialogue_text": "I want to get out of here!",
-      "timestamp": "2026-08-09T18:55:46.226756"
+      "dialogue_text": "my name is Chris, who are you?",
+      "timestamp": "2026-08-23T15:48:44.483217"
     },
     {
       "character_id": 1,
       "character_label": "Character 1",
-      "dialogue_text": "I understand. But we're all in this together now. We need to find a way to accept our situation and maybe... help each other.",
-      "timestamp": "2026-08-09T18:55:51.397625"
+      "dialogue_text": "\n\nCasey Cross. Warehouse supervisor. I used to work in a place with fluorescent lights that flickered like this.",
+      "timestamp": "2026-08-23T15:48:56.059035"
     },
     {
       "character_id": 2,
       "character_label": "Character 2",
-      "dialogue_text": "I know, me too. But we have to face this first. What's your name?",
-      "timestamp": "2026-08-09T18:55:54.567987"
+      "dialogue_text": "\n\nElise. It's quiet here, isn't it?",
+      "timestamp": "2026-08-23T15:49:02.887300"
+    },
+    {
+      "character_id": 0,
+      "character_label": "Character 0",
+      "dialogue_text": "hey Casey, nice to meet you, I hate the flurescent light",
+      "timestamp": "2026-08-23T15:49:50.885147"
+    },
+    {
+      "character_id": 1,
+      "character_label": "Character 1",
+      "dialogue_text": "\n\nYeah, they used to drive me crazy too. Sometimes I wish I could turn them off.",
+      "timestamp": "2026-08-23T15:50:06.021877"
+    },
+    {
+      "character_id": 0,
+      "character_label": "Character 0",
+      "dialogue_text": "Do you think we can turn the light off?",
+      "timestamp": "2026-08-23T15:50:30.898604"
+    },
+    {
+      "character_id": 1,
+      "character_label": "Character 1",
+      "dialogue_text": "\n\nThe light’s always been a joke here. You can’t turn it off, Chris. Not in this place. Not in any place. You just learn to breathe through the hum.",
+      "timestamp": "2026-08-23T15:50:44.821388"
+    },
+    {
+      "character_id": 0,
+      "character_label": "Character 0",
+      "dialogue_text": "where did you live Elise?",
+      "timestamp": "2026-08-23T15:51:10.290367"
+    },
+    {
+      "character_id": 1,
+      "character_label": "Character 1",
+      "dialogue_text": "\n\nI’m not Elise. I’m Casey. I lived in a small apartment above the warehouse. It was crowded, always smelled like coffee and regret.",
+      "timestamp": "2026-08-23T15:51:29.613835"
+    },
+    {
+      "character_id": 0,
+      "character_label": "Character 0",
+      "dialogue_text": "you are very quiet Elise",
+      "timestamp": "2026-08-23T15:52:16.540068"
+    },
+    {
+      "character_id": 1,
+      "character_label": "Character 1",
+      "dialogue_text": "\n\nYou’re not Elise. I’m Casey. I don’t know why you think that. The light’s still buzzing.",
+      "timestamp": "2026-08-23T15:52:29.986785"
+    },
+    {
+      "character_id": 0,
+      "character_label": "Character 0",
+      "dialogue_text": "What do you think this place is?",
+      "timestamp": "2026-08-23T15:53:07.654455"
+    },
+    {
+      "character_id": 1,
+      "character_label": "Character 1",
+      "dialogue_text": "\n\nA place where the lights never stop buzzing. You can't escape the sound.",
+      "timestamp": "2026-08-23T15:53:16.628771"
+    },
+    {
+      "character_id": 0,
+      "character_label": "Character 0",
+      "dialogue_text": "why do you think we are here?",
+      "timestamp": "2026-08-23T15:53:31.313185"
+    },
+    {
+      "character_id": 1,
+      "character_label": "Character 1",
+      "dialogue_text": "\n\nThe lights don’t judge. They just buzz. You don’t have to explain why you’re here. You already know.",
+      "timestamp": "2026-08-23T15:53:38.927417"
+    },
+    {
+      "character_id": 0,
+      "character_label": "Character 0",
+      "dialogue_text": "I dont know why I am here",
+      "timestamp": "2026-08-23T15:53:55.059504"
+    },
+    {
+      "character_id": 1,
+      "character_label": "Character 1",
+      "dialogue_text": "\n\nThe lights buzz like a second heartbeat. You don’t have to know why you’re here. You already know.",
+      "timestamp": "2026-08-23T15:54:13.545093"
+    },
+    {
+      "character_id": 2,
+      "character_label": "Character 2",
+      "dialogue_text": "\n\nThe lights here don’t flicker. They hum. You can’t unhear them. I used to think silence was safer. Now I know better.",
+      "timestamp": "2026-08-23T15:54:18.764534"
     }
   ]
 }

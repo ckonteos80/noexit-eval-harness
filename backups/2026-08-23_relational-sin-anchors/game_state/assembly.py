@@ -225,12 +225,10 @@ def assemble_bio(
 # DIALOGUE
 # ──────────────────────────────────────────────────────────────────────────────
 
-def assemble_dialogue_system_prompt(name: str, character_description: str) -> str:
-    """Substitutes {NAME} and {CHARACTER_DESCRIPTION} into the dialogue template."""
+def assemble_dialogue_system_prompt(character_description: str) -> str:
+    """Substitutes {CHARACTER_DESCRIPTION} into the dialogue template."""
     p = _reload_prompts()
-    return (p.dialogueSystemPromptTemplate
-            .replace("{NAME}", name)
-            .replace("{CHARACTER_DESCRIPTION}", character_description))
+    return p.dialogueSystemPromptTemplate.replace("{CHARACTER_DESCRIPTION}", character_description)
 
 
 def assemble_dialogue_user_message(

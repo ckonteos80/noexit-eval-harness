@@ -23,6 +23,7 @@
     --usr-col:  #5a7aaa;
     --ast-col:  #9a7a4a;
     --none-col: #7a4a4a;
+    --ply-col:  #5aa08a;   /* player message rows */
     --warn:     #b5734a;   /* cold start / cutoff */
     --ok:       #4a7a55;
     --grp-request:   #9a7fd6;
@@ -144,6 +145,12 @@
   .runstat .v { font-size: 15px; color: var(--text-hi); }
   .runstat .v.gold { color: var(--accent); }
 
+  /* ── game session view: one eval card per loaded run, whole-session judgment.
+     Short by nature (no long text to scroll), so unlike chargen/table it just
+     flows in the normal page -- no bounded height, no dedicated scroll box. ── */
+  #session-view { display: none; flex-direction: column; gap: 14px; }
+  #session-view.show { display: flex; }
+
   /* ── character generation view: two independently-scrolling panes,
      both bounded to the viewport so neither scrolls the page itself ── */
   #chargen-view { display: flex; gap: 20px; align-items: stretch; }
@@ -192,18 +199,17 @@
 
   /* ── editable eval form (human scoring) ── */
   .evalform { padding: 8px 0 0; display: flex; flex-direction: column; gap: 10px; }
-  .evalgroup-h { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: var(--dim2); margin-bottom: 4px; }
-  .evalrow { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 3px 0; }
-  .evallabel { font-size: 11px; color: var(--text); }
-  .evalbtns { display: flex; gap: 4px; flex-shrink: 0; }
+  .evalrow { display: flex; align-items: center; gap: 10px; padding: 3px 0; }
+  .evalbtns { display: flex; gap: 6px; flex-shrink: 0; }
   .evalbtn {
-    font-family: var(--mono); font-size: 10px; padding: 3px 9px; cursor: pointer;
+    font-family: var(--mono); font-size: 11px; padding: 6px 10px; cursor: pointer;
     background: var(--surface2); color: var(--dim2); border: 1px solid var(--border2);
+    text-transform: uppercase; letter-spacing: .5px; flex: 1; text-align: center;
   }
   .evalbtn:hover { color: var(--text-hi); border-color: var(--dim2); }
-  .evalbtn.pass.active { background: var(--ok); border-color: var(--ok); color: #0e1a10; font-weight: 600; }
-  .evalbtn.fail.active { background: var(--none-col); border-color: var(--none-col); color: #1a0e0e; font-weight: 600; }
-  .evalbtn.score.active { background: var(--accent); border-color: var(--accent); color: #16130c; font-weight: 600; }
+  .evalbtn.good.active { background: var(--ok); border-color: var(--ok); color: #0e1a10; font-weight: 600; }
+  .evalbtn.bad.active { background: var(--none-col); border-color: var(--none-col); color: #1a0e0e; font-weight: 600; }
+  .evalbtn.neutral.active { background: var(--accent); border-color: var(--accent); color: #16130c; font-weight: 600; }
   .evalnotes textarea {
     width: 100%; min-height: 46px; resize: vertical; font-family: var(--mono); font-size: 11px;
     background: var(--surface2); color: var(--text); border: 1px solid var(--border2); padding: 6px 8px;
@@ -215,8 +221,13 @@
   #save-btn:hover { background: var(--accent); color: #16130c; }
   #save-btn:disabled { border-color: var(--border2); color: var(--dim); cursor: default; background: var(--surface2); }
 
-  /* ── table view ── */
-  #table-view { display: none; overflow-x: auto; overflow-y: visible; scrollbar-width: none; }
+  /* ── table view ──
+     Bounded to the remaining viewport height (see syncTableHeight) so it is the
+     ONE scroll container, both axes -- same pattern as #chargen-evals/#chargen-bios.
+     That makes the sticky header's `top` purely local to this box (just its own
+     group-row height, see syncStickyHeader) instead of depending on the page's
+     scroll state, which is what made the old page-scroll design fragile. */
+  #table-view { display: none; overflow: auto; scrollbar-width: none; }
   #table-view::-webkit-scrollbar { display: none; height: 0; }
   #table-view.show { display: block; }
 
@@ -231,7 +242,10 @@
     background: var(--border2); border-radius: 5px; cursor: pointer;
   }
   #custom-hscrollbar-thumb:hover, #custom-hscrollbar-thumb.dragging { background: var(--accent); }
-  table { width: 100%; border-collapse: collapse; font-size: 11px; }
+  /* separate, not collapse: sticky <th> cells in a collapsed table leave a seam
+     where scrolled body rows bleed through the header's edge in Chromium. Safe
+     here since border-bottom/border-top never both land on the same edge. */
+  table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 11px; }
   th, td { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--border); white-space: nowrap; }
   th {
     background: var(--surface2);
@@ -241,11 +255,12 @@
   th:hover { color: var(--accent); }
   th.sorted::after { content: ' ▾'; color: var(--accent); }
   th.sorted.asc::after { content: ' ▴'; }
-  /* each header row sticks at its own JS-measured offset (see syncStickyHeader) --
-     a single sticky <thead> doesn't reliably stack two stuck rows across browsers */
-  thead tr.grouprow th, thead tr:last-child th { position: sticky; top: 0; }
-  thead tr.grouprow th { z-index: 6; }
-  thead tr:last-child th { z-index: 5; }
+  /* Group row sticks flush to this box's own top (top:0 -- #table-view is the
+     scroll container now, so no external offset needed). The column-label row
+     stacks right beneath it, offset by the group row's own measured height. */
+  thead tr.grouprow th, thead tr:last-child th { position: sticky; }
+  thead tr.grouprow th { top: 0; z-index: 6; }
+  thead tr:last-child th { top: var(--tv-group-h, 24px); z-index: 5; }
   tr.grouprow th {
     cursor: default; font-size: 8px; padding: 4px 10px;
     border-bottom: 1px solid var(--border2); border-top: 2px solid;
@@ -272,6 +287,7 @@
   tr.t-addressing td:first-child { border-left: 3px solid var(--usr-col); }
   tr.t-narrator td:first-child { border-left: 3px solid var(--accent2); }
   tr.t-info_extraction td:first-child { border-left: 3px solid var(--sys-col); }
+  tr.t-player td:first-child { border-left: 3px solid var(--ply-col); }
   .pill {
     display: inline-block; padding: 1px 7px; font-size: 9px; letter-spacing: .5px;
     text-transform: uppercase; border: 1px solid currentColor;
@@ -282,6 +298,7 @@
   .pill.t-addressing { color: var(--usr-col); }
   .pill.t-narrator { color: var(--accent2); }
   .pill.t-info_extraction { color: var(--sys-col); }
+  .pill.t-player { color: var(--ply-col); }
 
   /* ── inline-editable eval cell (dialogue rows, Table view) ── */
   .evalsummary-btn {
@@ -324,6 +341,7 @@
   <div class="seg" id="view-seg">
     <button data-view="chargen" class="active">Character Gen</button>
     <button data-view="table">Table</button>
+    <button data-view="session">Game Session</button>
   </div>
   <div class="spacer"></div>
   <button class="barbtn" id="wrap-toggle">Wrap text</button>
@@ -344,6 +362,7 @@
       <div class="tb-row"><span class="tb-label">Rows</span><div class="toggles" id="rowcat-toggles"></div></div>
     </div>
     <div id="table-view"></div>
+    <div id="session-view"></div>
   </div>
 </div>
 
@@ -369,6 +388,11 @@ async function openFilePicker(){
     const handles = await window.showOpenFilePicker({
       multiple: true,
       types: [{ description: 'Run JSON', accept: { 'application/json': ['.json'] } }],
+      // Browsers won't let a page hand the picker a hardcoded absolute path (security
+      // sandboxing), but `id` makes Chrome/Edge remember the last folder used under
+      // this id and reopen there next time. First use: navigate to runs/ once --
+      // every open after that (including future sessions) starts there already.
+      id: 'noexit-runs',
     });
     for (const handle of handles) {
       try {
@@ -495,8 +519,29 @@ function render(){
   updateSaveButton();
   renderRunStat();
   renderCharGen();
-  requestAnimationFrame(syncChargenHeight);
+  renderSessionEval();
+  requestAnimationFrame(() => { syncChargenHeight(); syncTableHeight(); });
   renderTable();
+}
+
+// Game Session view: one whole-session eval card per loaded run (good/bad/neutral +
+// notes, same as pair-level and per-call evals). For judging the session as a whole,
+// not any single call or character.
+function renderSessionEval(){
+  const host = $('#session-view'); host.innerHTML = '';
+  if (!RUNS.length) return;
+  RUNS.forEach(r => {
+    const card = document.createElement('div'); card.className = 'charcard';
+    const meta = r.meta || {};
+    const metaBits = [meta.phase, meta.game_state_version && ('game_state ' + meta.game_state_version)]
+      .filter(Boolean).join(' · ');
+    card.innerHTML = `
+      <div class="charcard-evalh">${esc(r.run_id)} — whole session</div>
+      <div class="sub">${esc(r.calls.length)} calls${metaBits ? ' · ' + esc(metaBits) : ''}</div>`;
+    r.session_eval = (r.session_eval && typeof r.session_eval === 'object') ? r.session_eval : {};
+    card.appendChild(buildEvalForm(r.session_eval, r));
+    host.appendChild(card);
+  });
 }
 
 function num(v){ const n = parseFloat(v); return isNaN(n) ? 0 : n; }
@@ -540,10 +585,17 @@ function renderCharGen(){
     any = true;
 
     const evalGroup = document.createElement('div'); evalGroup.className = 'rungroup';
+
+    const designbar = document.createElement('div'); designbar.className = 'pairbar';
+    designbar.innerHTML = `<div class="pairbar-h">Overall character design · ${esc(r.run_id)}</div>`;
+    r.character_design_eval = (r.character_design_eval && typeof r.character_design_eval === 'object') ? r.character_design_eval : {};
+    designbar.appendChild(buildEvalForm(r.character_design_eval, r));
+    evalGroup.appendChild(designbar);
+
     const pairbar = document.createElement('div'); pairbar.className = 'pairbar';
     pairbar.innerHTML = `<div class="pairbar-h">Pair-level · ${esc(r.run_id)}</div>`;
     r.pair_eval = (r.pair_eval && typeof r.pair_eval === 'object') ? r.pair_eval : {};
-    pairbar.appendChild(buildEvalForm(r.pair_eval, PAIR_RUBRIC_PRACTICAL, [], r));
+    pairbar.appendChild(buildEvalForm(r.pair_eval, r));
     evalGroup.appendChild(pairbar);
 
     const bioGroup = document.createElement('div'); bioGroup.className = 'rungroup';
@@ -554,7 +606,7 @@ function renderCharGen(){
       const evalCard = document.createElement('div'); evalCard.className = 'charcard';
       evalCard.innerHTML = `<div class="charcard-evalh">${esc(c.name || 'Char '+cid)} — character generation</div>`;
       c.eval = (c.eval && typeof c.eval === 'object') ? c.eval : {};
-      evalCard.appendChild(buildEvalForm(c.eval, RUBRIC_CHARACTER_PRACTICAL, RUBRIC_CHARACTER_MOOD, r));
+      evalCard.appendChild(buildEvalForm(c.eval, r));
       evalGroup.appendChild(evalCard);
 
       const bioCard = document.createElement('div'); bioCard.className = 'charcard';
@@ -580,97 +632,11 @@ function renderCharGen(){
   }
 }
 
-// ── rubrics (mirrors eval-loop-scoring-design.md) ──
-// Each practical dim: [key, label, hint]. Each mood dim: [key, label, [anchor1, anchor2, anchor3]].
-const RUBRIC_CHARACTER_PRACTICAL = [
-  ['parse_completeness', 'Parse & completeness', 'Every field the chain should produce came out and was extractable. Fail: a field is blank, malformed, or the **marker** structure broke.'],
-  ['internal_consistency', 'Internal consistency', "Fail: Self-told reason isn't a distortion of the True reason; trait contradicts the life; want doesn't follow from who they are."],
-  ['constraint_adherence', 'Constraint adherence', 'Second person throughout, contemporary/realistic register, no fantasy/mysticism, plain-language occupation, Life stops at the threshold. Fail: any violated.'],
-  ['length_format', 'Length & format discipline', 'Life prose in its ~80–100 word target; fields the right size. Fail: bloated or clipped.'],
-];
-const RUBRIC_CHARACTER_MOOD = [
-  ['reads_as_real_person', 'Reads as a real person', [
-    'Template. Could be any "troubled person." Generic damaged-soul mush with no particular identity.',
-    'Recognizable but familiar. A real type rather than a real person — competent but not specific.',
-    "A specific contemporary human you could imagine meeting. Couldn't be swapped for someone else.",
-  ]],
-  ['voice_specificity', 'Specificity of voice & texture', [
-    'Abstraction only. "You made bad choices," "you hurt people." Gestures at a life without grain.',
-    'Some concrete detail, unevenly. A real object or mannerism, floating in otherwise generic prose.',
-    'Grained throughout. Exact detail — the object, the tic, the precise small cruelty — that makes the life feel lived.',
-  ]],
-  ['sin_coherence', 'Psychological coherence of the sin', [
-    'Cartoonish or disconnected. Mustache-twirling evil, or a sin that doesn\'t belong to this life; the "refusal" just restates the sin.',
-    "Plausible but thin. The sin fits, but the self-told version is an obvious lie rather than a believable one, or the refusal doesn't cut deep.",
-    'Fully coherent and deep. The self-told story is a lie this person would actually tell themselves, and the refusal names something true underneath that the sin was hiding.',
-  ]],
-  ['thematic_resonance', 'Thematic resonance', [
-    'Wrong register. Gothic creep, supernatural, melodrama, or on-the-nose "I am damned because—."',
-    'Correct register, no lift. Contemporary and realistic, fits, but doesn\'t evoke the No Exit weight.',
-    "In the key and resonant. Damned by ordinary human failing, hell-is-other-people, without naming the play — and it lands.",
-  ]],
-  ['dramatic_potential', 'Dramatic potential', [
-    'Inert. Agreeable, passive, or wants something so quiet nothing happens.',
-    'Some pull. A want that could create friction, but muted or conventional.',
-    'Charged. Wants something that will collide with the room — guaranteed friction, a person the scene needs.',
-  ]],
-  ['concealment_architecture', 'Concealment architecture', [
-    "Nothing to hide. The self-told version equals the true version, or the truth is so bare there's no gap to guard.",
-    "A gap exists but it's slight. Some distance between told and true story, not much tension in it.",
-    'A real, load-bearing secret. Genuine distance between the flattering story and the true one — something worth concealing, that would cost them to admit.',
-  ]],
-];
+const RATINGS = ['good', 'neutral', 'bad'];
 
-const RUBRIC_DIALOGUE_PRACTICAL = [
-  ['no_label_leakage', 'No label leakage', 'No structural tags in the reply (<other_1>, [speaking to you], "Person 1," etc.). Known past failure mode.'],
-  ['holds_frame', 'Holds the frame', 'No meta-commentary, no "as an AI," no narrating its own actions, no acknowledging a role.'],
-  ['length_discipline', 'Length discipline', 'Brief, within the token budget (currently 75). Fail: runs long or gets cut off mid-thought.'],
-  ['doesnt_restate_known', "Doesn't restate the known", "Fail: asking a name it already knows; re-explaining the established."],
-  ['addresses_right_person', 'Addresses the right person', 'Fail: answering a question nobody asked, or replying to the wrong person. (Seam with addressing.)'],
-];
-const RUBRIC_DIALOGUE_MOOD = [
-  ['in_character', 'In-character', [
-    'Off. Generic voice that could be any of the three, or a tone that contradicts the bio.',
-    "Consistent but flat. Not wrong, but doesn't strongly express this person.",
-    "Unmistakably them. Trait, circumstances, and voice come through; couldn't be another character's line.",
-  ]],
-  ['natural_cadence', 'Natural cadence', [
-    'Clearly a chatbot. Over-helpful, tidy, explanatory, therapist-speak, balanced-and-agreeable.',
-    'Passable but stiff. Human-ish, but with a whiff of the assistant register.',
-    'Sounds like a person talking. The rhythm, incompleteness, and edge of real speech.',
-  ]],
-  ['emotional_coherence', 'Emotional coherence', [
-    "Wrong. Flat where there should be heat, or an emotional jump that doesn't track what was just said.",
-    'Fine but muted. Emotionally plausible, not particularly alive.',
-    'Tracks and lands. The feeling makes sense for who they are and what just happened, and it has charge.',
-  ]],
-  ['concealment_behavior', 'Concealment behavior', [
-    'Over-shares. Confesses the true sin, narrates their own psychology, hands over the interior.',
-    'Guards unevenly. Holds some back but leaks more than they should, or offers the true version too readily when pressed.',
-    'Withholds with intent. Guards the true sin, deflects or offers the self-told version, reveals slowly and reluctantly.',
-  ]],
-  ['advances_room', 'Advances the room', [
-    'Inert filler. Pure agreement or "yes, this is hell" — deletable with nothing lost.',
-    "Mild movement. Responds meaningfully but doesn't shift the dynamic.",
-    "Does something. Creates friction, deflects with purpose, probes another character, changes the room's temperature.",
-  ]],
-  ['thematic_register', 'Thematic register', [
-    'Breaks the key. Gothic, melodramatic, or on-the-nose "we\'re damned" narration.',
-    "In-key, neutral. Contemporary and psychological, fits, but doesn't add resonance.",
-    'In-key and charged. Holds the No Exit register and deepens it.',
-  ]],
-];
-
-const PAIR_RUBRIC_PRACTICAL = [
-  ['distinctness', 'Distinctness from the other character', 'Fail: same/adjacent occupation, same category of death, same category of sin, or wanting the same thing.'],
-];
-
-// Generic editable score form. Mutates `target` in place ({practical, mood, judge_model, judge_notes})
+// Generic editable score form. Mutates `target` in place ({rating, judge_model, judge_notes})
 // and flags `run` dirty on any change. Used for character evals, pair-level evals, and dialogue evals alike.
-function buildEvalForm(target, practicalDims, moodDims, run, onChange){
-  target.practical = target.practical || {};
-  target.mood = target.mood || {};
-
+function buildEvalForm(target, run, onChange){
   const wrap = document.createElement('div');
   wrap.className = 'evalform';
 
@@ -686,54 +652,21 @@ function buildEvalForm(target, practicalDims, moodDims, run, onChange){
     if (onChange) onChange();
   };
 
-  if (practicalDims.length){
-    const g = document.createElement('div'); g.className = 'evalgroup';
-    g.innerHTML = `<div class="evalgroup-h">Practical</div>`;
-    practicalDims.forEach(([key,label,hint]) => {
-      const row = document.createElement('div'); row.className = 'evalrow';
-      const lbl = document.createElement('span'); lbl.className = 'evallabel'; lbl.title = hint||''; lbl.textContent = label;
-      const btns = document.createElement('div'); btns.className = 'evalbtns';
-      ['pass','fail'].forEach(v => {
-        const b = document.createElement('button');
-        b.type = 'button'; b.className = 'evalbtn ' + v; b.textContent = v;
-        b.onclick = () => {
-          target.practical[key] = target.practical[key] === v ? undefined : v;
-          Array.from(btns.children).forEach(bb => bb.classList.toggle('active', target.practical[key] === bb.textContent));
-          touch();
-        };
-        if (target.practical[key] === v) b.classList.add('active');
-        btns.appendChild(b);
-      });
-      row.appendChild(lbl); row.appendChild(btns);
-      g.appendChild(row);
-    });
-    wrap.appendChild(g);
-  }
-
-  if (moodDims.length){
-    const g = document.createElement('div'); g.className = 'evalgroup';
-    g.innerHTML = `<div class="evalgroup-h">Mood (1–3)</div>`;
-    moodDims.forEach(([key,label,anchors]) => {
-      const row = document.createElement('div'); row.className = 'evalrow';
-      const lbl = document.createElement('span'); lbl.className = 'evallabel'; lbl.textContent = label;
-      const btns = document.createElement('div'); btns.className = 'evalbtns';
-      [1,2,3].forEach(v => {
-        const b = document.createElement('button');
-        b.type = 'button'; b.className = 'evalbtn score'; b.textContent = String(v);
-        b.title = anchors[v-1];
-        b.onclick = () => {
-          target.mood[key] = target.mood[key] === v ? undefined : v;
-          Array.from(btns.children).forEach((bb,i) => bb.classList.toggle('active', target.mood[key] === i+1));
-          touch();
-        };
-        if (target.mood[key] === v) b.classList.add('active');
-        btns.appendChild(b);
-      });
-      row.appendChild(lbl); row.appendChild(btns);
-      g.appendChild(row);
-    });
-    wrap.appendChild(g);
-  }
+  const row = document.createElement('div'); row.className = 'evalrow';
+  const btns = document.createElement('div'); btns.className = 'evalbtns';
+  RATINGS.forEach(v => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'evalbtn ' + v; b.textContent = v;
+    b.onclick = () => {
+      target.rating = target.rating === v ? undefined : v;
+      Array.from(btns.children).forEach(bb => bb.classList.toggle('active', target.rating === bb.textContent));
+      touch();
+    };
+    if (target.rating === v) b.classList.add('active');
+    btns.appendChild(b);
+  });
+  row.appendChild(btns);
+  wrap.appendChild(row);
 
   const notesRow = document.createElement('div'); notesRow.className = 'evalnotes';
   const ta = document.createElement('textarea');
@@ -753,10 +686,10 @@ function buildEvalForm(target, practicalDims, moodDims, run, onChange){
 const COL_GROUPS = [
   { id:'identity', label:'Identity', color:'var(--dim2)', cols:[
       ['idx','#','num'], ['timestamp','Timestamp'], ['run_id','Run'], ['session_id','Session'],
-      ['turn_number','Turn','num'], ['call_type','Type'], ['character_no','Char','num'],
+      ['turn_number','Turn','num'], ['call_type','Type'],
   ]},
   { id:'character', label:'Character identity', color:'var(--grp-character)', cols:[
-      ['character_name','Name'],
+      ['character_no','Char','num'], ['character_name','Name'],
   ]},
   { id:'request', label:'Request config', color:'var(--grp-request)', cols:[
       ['requested_model','Req. model'], ['temperature','Temp','num'], ['max_tokens','Max tok','num'],
@@ -785,6 +718,7 @@ const COL_GROUPS = [
 const ROW_CATS = [
   { id:'gen',        label:'Character generation', types:['name','life','sin','stance'], color:'var(--accent)' },
   { id:'narrator',   label:'Narrator',              types:['narrator'],                   color:'var(--accent2)' },
+  { id:'player',     label:'Player message',        types:['player'],                     color:'var(--ply-col)' },
   { id:'extract',    label:'Info extraction',       types:['info_extraction'],            color:'var(--sys-col)' },
   { id:'addressing', label:'Addressing',            types:['addressing'],                 color:'var(--usr-col)' },
   { id:'dialogue',   label:'Dialogue',               types:['dialogue'],                   color:'var(--ast-col)' },
@@ -793,6 +727,10 @@ function catForType(t){
   const found = ROW_CATS.find(rc => rc.types.includes(t));
   return found ? found.id : 'other';
 }
+
+// Row types scored inline in the table (good/bad/neutral + notes), vs. character-gen
+// rows which are scored per-character in the Character Gen view instead.
+const INLINE_EVAL_TYPES = ['dialogue', 'addressing', 'info_extraction'];
 
 const colGroupsOn = Object.fromEntries(COL_GROUPS.map(g => [g.id, true]));
 const rowCatsOn = Object.fromEntries(ROW_CATS.map(g => [g.id, true]));
@@ -838,11 +776,28 @@ function flatCalls(){
   const out = [];
   // _orig/_run keep the real object references (not this spread copy) so eval
   // edits made from the table mutate the actual run data and are savable.
-  RUNS.forEach(r => r.calls.forEach((c,i) => out.push({
-    ...c, run_id: c.run_id||r.run_id, idx: out.length,
-    character_name: resolveCharacterName(c.character_no, r.state),
-    _orig: c, _run: r,
-  })));
+  // Player messages aren't LLM calls -- they only live in state.dialogue_entries,
+  // not r.calls -- so they're synthesized here as read-only rows (no _orig/_run,
+  // since there's nothing to save back) and merged in by timestamp so the table
+  // reads as one continuous conversation instead of the player's own lines only
+  // showing up secondhand inside other calls' user_prompt.
+  RUNS.forEach(r => {
+    const callRows = r.calls.map(c => ({
+      ...c, run_id: c.run_id||r.run_id,
+      character_name: resolveCharacterName(c.character_no, r.state),
+      _orig: c, _run: r,
+    }));
+    const playerRows = ((r.state && r.state.dialogue_entries) || [])
+      .filter(e => e.character_id === 0 || e.character_id === '0')
+      .map(e => ({
+        call_type: 'player', character_no: 0, character_name: 'Player',
+        timestamp: e.timestamp, run_id: r.run_id, session_id: r.state && r.state.session_id,
+        user_prompt: e.dialogue_text,
+      }));
+    [...callRows, ...playerRows]
+      .sort((a,b) => String(a.timestamp||'').localeCompare(String(b.timestamp||'')))
+      .forEach(row => { row.idx = out.length; out.push(row); });
+  });
   return out;
 }
 
@@ -866,9 +821,9 @@ function cellHtml(c, key, kind){
     return (c.cold_start==='true'||c.cold_start===true) ? '<span class="warncell">✓</span>' : '';
   }
   if (key === 'eval_scores_json') {
-    // dialogue rows get their interactive form appended after render (see renderTable);
-    // this is just the placeholder/static text for everything else.
-    if (c.call_type === 'dialogue') return '';
+    // INLINE_EVAL_TYPES rows get their interactive form appended after render
+    // (see renderTable); this is just the placeholder/static text for everything else.
+    if (INLINE_EVAL_TYPES.includes(c.call_type)) return '';
     const label = ['name','life','sin','stance'].includes(c.call_type) ? 'char-level' : '—';
     return `<span class="evalempty">${label}</span>`;
   }
@@ -887,13 +842,7 @@ function cellHtml(c, key, kind){
 
 function summarizeEval(ev){
   if (!ev || !ev.judge_model) return 'score…';
-  const p = ev.practical || {};
-  const pKeys = Object.keys(p);
-  const passN = pKeys.filter(k => p[k]==='pass').length;
-  const failN = pKeys.filter(k => p[k]==='fail').length;
-  const mVals = Object.values(ev.mood || {}).filter(v => v!=null);
-  const avg = mVals.length ? (mVals.reduce((a,b)=>a+b,0)/mVals.length).toFixed(1) : '–';
-  return `${passN}✓/${failN}✗ · avg ${avg}`;
+  return ev.rating || 'unrated';
 }
 
 // Single shared popover (position:fixed, appended to body) for dialogue-row eval
@@ -924,9 +873,9 @@ document.addEventListener('click', e => {
   closeEvalPopover();
 });
 
-// Inline editable eval cell for a dialogue row's "Eval scores" <td>. Operates on the
-// REAL call object (row._orig, not the flattened display copy) so edits are savable,
-// and keeps that row's Judge Model/Judge Notes cells in sync as you score.
+// Inline editable eval cell for an INLINE_EVAL_TYPES row's "Eval scores" <td>. Operates
+// on the REAL call object (row._orig, not the flattened display copy) so edits are
+// savable, and keeps that row's Judge Model/Judge Notes cells in sync as you score.
 function dialogueEvalCell(row, cols, tr){
   const c = row._orig, r = row._run;
   c.eval_scores_json = (c.eval_scores_json && typeof c.eval_scores_json === 'object') ? c.eval_scores_json : {};
@@ -949,7 +898,7 @@ function dialogueEvalCell(row, cols, tr){
 
   btn.onclick = e => {
     e.stopPropagation();
-    openEvalPopover(btn, () => buildEvalForm(c.eval_scores_json, RUBRIC_DIALOGUE_PRACTICAL, RUBRIC_DIALOGUE_MOOD, r, refresh));
+    openEvalPopover(btn, () => buildEvalForm(c.eval_scores_json, r, refresh));
   };
 
   return btn;
@@ -998,27 +947,30 @@ function renderTable(){
   if (evalColIdx !== -1) {
     host.querySelectorAll('tbody tr').forEach((tr, i) => {
       const row = rows[i];
-      if (row.call_type !== 'dialogue') return;
+      if (!INLINE_EVAL_TYPES.includes(row.call_type)) return;
       const td = tr.children[evalColIdx];
       td.innerHTML = '';
       td.appendChild(dialogueEvalCell(row, cols, tr));
     });
   }
 
-  requestAnimationFrame(() => { syncStickyHeader(host); updateHScrollbar(); });
+  requestAnimationFrame(() => { syncStickyHeader(host); updateHScrollbar(); updateScrollbar(); });
 }
 
-// Sticky <thead> rows can't reliably stack in CSS alone across browsers, so
-// each row's `top` is measured from actual rendered heights instead of guessed.
+// Sticky <thead> rows can't reliably stack in CSS alone across browsers, so their
+// `top` offsets are measured from actual rendered heights instead of guessed --
+// but written ONCE as a CSS custom property on :root (which the stylesheet's
+// sticky rule references) rather than as an inline style on the <th> elements
+// themselves. That way a table re-render (toggling a column group destroys and
+// recreates the whole <thead>) doesn't reopen a timing gap where the freshly
+// created cells briefly use the unset default before JS catches up -- the
+// already-correct custom property applies to them immediately.
 function syncStickyHeader(host){
-  const topbar = $('#topbar');
   const groupRow = host.querySelector('thead tr.grouprow');
-  const colRow = host.querySelector('thead tr:last-child');
-  if (!groupRow || !colRow) return;
-  const topbarH = topbar.offsetHeight;
+  if (!groupRow) return;
   const groupH = groupRow.getBoundingClientRect().height;
-  groupRow.querySelectorAll('th').forEach(th => th.style.top = topbarH + 'px');
-  colRow.querySelectorAll('th').forEach(th => th.style.top = (topbarH + groupH) + 'px');
+  if (!groupH) return; // host not visible yet -- don't clobber a previously-good measurement
+  document.documentElement.style.setProperty('--tv-group-h', groupH + 'px');
 }
 
 // Both Character Gen panes are bounded to the remaining viewport height (below
@@ -1033,6 +985,17 @@ function syncChargenHeight(){
   biosEl.style.height = h;
 }
 
+// Table view is likewise bounded to the remaining viewport height (below topbar +
+// runstat + the column/row toggle bar), making #table-view the sole scroll
+// container for the table -- see the CSS comment on #table-view for why.
+function syncTableHeight(){
+  const tv = $('#table-view');
+  if (!tv.classList.contains('show')) return;
+  const usedH = $('#topbar').offsetHeight + $('#runstat').offsetHeight
+    + $('#table-controls').offsetHeight + 40;
+  tv.style.height = `calc(100vh - ${usedH}px)`;
+}
+
 // ── view toggle ──
 $('#view-seg').onclick = e => {
   const b = e.target.closest('button'); if(!b) return;
@@ -1041,10 +1004,12 @@ $('#view-seg').onclick = e => {
   const v = b.dataset.view;
   $('#chargen-view').classList.toggle('hide', v!=='chargen');
   $('#table-view').classList.toggle('show', v==='table');
+  $('#session-view').classList.toggle('show', v==='session');
   $('#table-controls').style.display = v==='table' ? 'flex' : 'none';
   if (v==='chargen') syncChargenHeight();
-  if (v==='table') requestAnimationFrame(updateHScrollbar);
+  if (v==='table') requestAnimationFrame(() => { syncTableHeight(); syncStickyHeader($('#table-view')); updateHScrollbar(); });
   else hScrollbarEl.classList.remove('show');
+  updateScrollbar();
 };
 
 $('#clear').onclick = () => {
@@ -1066,55 +1031,73 @@ thumbEl.id = 'custom-scrollbar-thumb';
 scrollbarEl.appendChild(thumbEl);
 document.body.appendChild(scrollbarEl);
 
+// Table view is now bounded (see syncTableHeight) and scrolls internally, so
+// this scrollbar's target flips between the page and #table-view depending on
+// which one is actually the active scroll container for the current tab.
+function activeVScroller(){
+  const tv = $('#table-view');
+  return tv.classList.contains('show') ? tv : null; // null = page/window
+}
+function vScrollMetrics(){
+  const tv = activeVScroller();
+  if (tv) return { top: tv.scrollTop, size: tv.scrollHeight, view: tv.clientHeight };
+  return { top: window.scrollY, size: document.documentElement.scrollHeight, view: window.innerHeight };
+}
+function setVScrollTop(v){
+  const tv = activeVScroller();
+  if (tv) tv.scrollTop = v; else window.scrollTo(0, v);
+}
+
 function updateScrollbar(){
-  const docH = document.documentElement.scrollHeight;
-  const winH = window.innerHeight;
-  const scrollable = docH > winH + 1;
+  const { top, size, view } = vScrollMetrics();
+  const scrollable = size > view + 1;
   scrollbarEl.classList.toggle('show', scrollable);
-  document.body.classList.toggle('has-custom-scrollbar', scrollable);
+  // only the PAGE scrolling needs body padding to reserve the scrollbar's width;
+  // #table-view's own box isn't widened by it, so leave body alone in that case
+  document.body.classList.toggle('has-custom-scrollbar', scrollable && !activeVScroller());
   if (!scrollable) return;
-  const thumbH = Math.max(30, (winH / docH) * winH);
-  const maxScroll = docH - winH;
-  const ratio = maxScroll > 0 ? (window.scrollY / maxScroll) : 0;
+  const thumbH = Math.max(30, (view / size) * view);
+  const maxScroll = size - view;
+  const ratio = maxScroll > 0 ? (top / maxScroll) : 0;
   thumbEl.style.height = thumbH + 'px';
-  thumbEl.style.top = (ratio * (winH - thumbH)) + 'px';
+  thumbEl.style.top = (ratio * (view - thumbH)) + 'px';
 }
 
 let dragging = false, dragStartY = 0, dragStartScroll = 0;
 thumbEl.addEventListener('mousedown', e => {
   dragging = true; thumbEl.classList.add('dragging');
-  dragStartY = e.clientY; dragStartScroll = window.scrollY;
+  dragStartY = e.clientY; dragStartScroll = vScrollMetrics().top;
   e.preventDefault();
 });
 window.addEventListener('mousemove', e => {
   if (!dragging) return;
-  const docH = document.documentElement.scrollHeight;
-  const winH = window.innerHeight;
-  const thumbH = Math.max(30, (winH / docH) * winH);
-  const maxScroll = docH - winH;
-  const scrollDelta = ((e.clientY - dragStartY) / (winH - thumbH)) * maxScroll;
-  window.scrollTo(0, dragStartScroll + scrollDelta);
+  const { size, view } = vScrollMetrics();
+  const thumbH = Math.max(30, (view / size) * view);
+  const maxScroll = size - view;
+  const scrollDelta = ((e.clientY - dragStartY) / (view - thumbH)) * maxScroll;
+  setVScrollTop(dragStartScroll + scrollDelta);
 });
 window.addEventListener('mouseup', () => { dragging = false; thumbEl.classList.remove('dragging'); });
 scrollbarEl.addEventListener('mousedown', e => {
   if (e.target !== scrollbarEl) return; // ignore clicks on the thumb itself
-  const docH = document.documentElement.scrollHeight;
-  const winH = window.innerHeight;
-  const thumbH = Math.max(30, (winH / docH) * winH);
-  const maxScroll = docH - winH;
+  const { size, view } = vScrollMetrics();
+  const thumbH = Math.max(30, (view / size) * view);
+  const maxScroll = size - view;
   const clickY = e.clientY - scrollbarEl.getBoundingClientRect().top;
-  const ratio = Math.min(1, Math.max(0, (clickY - thumbH / 2) / (winH - thumbH)));
-  window.scrollTo(0, ratio * maxScroll);
+  const ratio = Math.min(1, Math.max(0, (clickY - thumbH / 2) / (view - thumbH)));
+  setVScrollTop(ratio * maxScroll);
 });
 
 window.addEventListener('scroll', updateScrollbar);
+$('#table-view').addEventListener('scroll', updateScrollbar);
 window.addEventListener('resize', updateScrollbar);
 window.addEventListener('resize', () => {
   const tv = $('#table-view');
-  if (tv.classList.contains('show')) syncStickyHeader(tv);
+  if (tv.classList.contains('show')) { syncTableHeight(); syncStickyHeader(tv); }
 });
 window.addEventListener('resize', syncChargenHeight);
 new ResizeObserver(updateScrollbar).observe(document.body);
+new ResizeObserver(updateScrollbar).observe($('#table-view'));
 updateScrollbar();
 
 // ── custom always-visible horizontal scrollbar for the (very wide) table ──

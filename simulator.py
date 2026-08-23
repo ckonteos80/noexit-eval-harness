@@ -152,6 +152,8 @@ def save_state_snapshot(state: game.GameState):
                 "info_shared": char.info_shared,
                 "occupation": char.occupation,
                 "cause_of_death": char.cause_of_death,
+                "who_loved": char.who_loved,
+                "who_hated": char.who_hated,
                 "prose_body": char.prose_body,
                 "reason_true": char.reason_true,
                 "reason_self_told": char.reason_self_told,
@@ -214,6 +216,8 @@ def generate_character(state: game.GameState, char_no: int) -> dict:
     if char_no == 2:
         life_kwargs["other_occupation"] = other_char.occupation
         life_kwargs["other_cause_of_death"] = other_char.cause_of_death
+        life_kwargs["other_who_loved"] = other_char.who_loved
+        life_kwargs["other_who_hated"] = other_char.who_hated
 
     sys_p, user_p = assembly.assemble_life_prompts(**life_kwargs)
     life_response, life_parsed = _call_with_parse_retry(
@@ -223,13 +227,16 @@ def generate_character(state: game.GameState, char_no: int) -> dict:
     )
     occupation = life_parsed.get("occupation") or "[generation failed]"
     cause_of_death = life_parsed.get("cause_of_death") or "[generation failed]"
+    who_loved = life_parsed.get("who_loved") or "[generation failed]"
+    who_hated = life_parsed.get("who_hated") or "[generation failed]"
     prose_body = life_parsed.get("prose_body") or "[generation failed]"
     summary.update(occupation=occupation, cause_of_death=cause_of_death)
 
     # ── Step 3: Sin ──
     sin_kwargs = dict(
         name=name, age=age, gender=gender,
-        occupation=occupation, cause_of_death=cause_of_death, prose_body=prose_body,
+        occupation=occupation, cause_of_death=cause_of_death,
+        who_loved=who_loved, who_hated=who_hated, prose_body=prose_body,
     )
     if char_no == 2:
         sin_kwargs["other_reason_true"] = other_char.reason_true
@@ -269,6 +276,8 @@ def generate_character(state: game.GameState, char_no: int) -> dict:
     bio = assembly.assemble_bio(
         occupation=occupation,
         cause_of_death=cause_of_death,
+        who_loved=who_loved,
+        who_hated=who_hated,
         reason_true=reason_true,
         reason_self_told=reason_self_told,
         personality_trait=personality_trait,
@@ -284,6 +293,8 @@ def generate_character(state: game.GameState, char_no: int) -> dict:
         age=age,
         occupation=occupation,
         cause_of_death=cause_of_death,
+        who_loved=who_loved,
+        who_hated=who_hated,
         prose_body=prose_body,
         reason_true=reason_true,
         reason_self_told=reason_self_told,
@@ -478,7 +489,7 @@ def _run_character_reply(state: game.GameState, char_id: int, player_message: st
         player_message=player_message,
     )
 
-    sys_p = assembly.assemble_dialogue_system_prompt(char.description)
+    sys_p = assembly.assemble_dialogue_system_prompt(char.name, char.description)
 
     res = providers.call_proxy(
         sys_p, user_msg,

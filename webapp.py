@@ -1,0 +1,149 @@
+"""
+Local web UI for playing a NoExit session interactively in the browser.
+
+Wraps simulator.py's session functions behind a small JSON API and serves
+webapp.html as the frontend. Single-user, local only -- state lives in one
+module-level GameState, matching session_state.json's existing single-session
+assumption (same as run_session.py's CLI loop, just driven from a browser
+instead of stdin).
+
+Usage:
+    python webapp.py
+"""
+
+import json
+import webbrowser
+from datetime import datetime, timezone
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
+
+import simulator
+import store
+from save_version import list_versions
+
+HOST = "127.0.0.1"
+PORT = 8765
+WEBAPP_HTML = Path(__file__).parent / "webapp.html"
+
+state = None  # current game.GameState, or None if no session is active
+
+
+def char_payload(char):
+    if char is None or not char.description:
+        return None
+    return {
+        "name": char.name, "age": char.age, "gender": char.gender,
+        "occupation": char.occupation, "description": char.description,
+    }
+
+
+def session_payload():
+    if state is None:
+        return {"active": False}
+    return {
+        "active": True,
+        "session_id": state.session_id,
+        "narrator_played": state.narrator_played,
+        "characters": {
+            str(cid): char_payload(c) for cid, c in state.characters.items() if cid != 0
+        },
+        "dialogue": [
+            {"character_id": e.character_id, "text": e.dialogue_text}
+            for e in state.dialogue_entries
+        ],
+    }
+
+
+class Handler(BaseHTTPRequestHandler):
+    def _send_json(self, obj, status=200):
+        body = json.dumps(obj).encode("utf-8")
+        self.send_response(status)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+
+    def _read_json(self):
+        length = int(self.headers.get("Content-Length", 0))
+        if not length:
+            return {}
+        return json.loads(self.rfile.read(length))
+
+    def log_message(self, fmt, *args):
+        pass  # quiet -- avoid noisy stdout for a local dev tool
+
+    def do_GET(self):
+        if self.path in ("/", "/index.html"):
+            body = WEBAPP_HTML.read_text(encoding="utf-8").encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+        elif self.path == "/api/state":
+            self._send_json(session_payload())
+        else:
+            self.send_error(404)
+
+    def do_POST(self):
+        global state
+        try:
+            if self.path == "/api/new":
+                state = simulator.new_session()
+                simulator.generate_character(state, 1)
+                simulator.generate_character(state, 2)
+                narrator_line = simulator.run_narrator(state)
+                self._send_json({**session_payload(), "narrator_line": narrator_line})
+
+            elif self.path == "/api/turn":
+                if state is None:
+                    return self._send_json({"error": "No active session."}, 400)
+                message = (self._read_json().get("message") or "").strip()
+                if not message:
+                    return self._send_json({"error": "Empty message."}, 400)
+                result = simulator.run_player_turn(state, message)
+                for r in result["replies"]:
+                    char = state.characters.get(r["char_no"])
+                    r["character_name"] = char.name if char else None
+                self._send_json(result)
+
+            elif self.path == "/api/save":
+                if state is None:
+                    return self._send_json({"error": "No active session."}, 400)
+                phase = self._read_json().get("phase") or "manual"
+                all_records = json.load(open(simulator.TRANSCRIPT_JSON, encoding="utf-8"))
+                records = [r for r in all_records if r.get("session_id") == state.session_id]
+                snapshot = json.load(open(simulator.STATE_JSON, encoding="utf-8"))
+                versions = list_versions()
+                game_state_version = versions[-1].name if versions else None
+                st = store.ExperimentStore(root=".")
+                run_id = datetime.now(timezone.utc).strftime("%Y-%m-%d_") + state.session_id
+                run_path = st.write_run(run_id, records, snapshot, meta={
+                    "phase": phase, "game_state_version": game_state_version,
+                })
+                state = None
+                self._send_json({"run_id": run_id, "calls": len(records), "path": str(run_path)})
+
+            elif self.path == "/api/abandon":
+                state = None
+                self._send_json({"ok": True})
+
+            else:
+                self.send_error(404)
+        except Exception as e:
+            self._send_json({"error": str(e)}, 500)
+
+
+def main():
+    server = ThreadingHTTPServer((HOST, PORT), Handler)
+    url = f"http://{HOST}:{PORT}/"
+    print(f"NoExit web UI running at {url}  (Ctrl+C to stop)")
+    webbrowser.open(url)
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        pass
+
+
+if __name__ == "__main__":
+    main()

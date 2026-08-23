@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NoExit — Play</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap');
+
+  :root {
+    --bg:       #0c0c0d;
+    --surface:  #141416;
+    --surface2: #1a1a1d;
+    --border:   #272729;
+    --border2:  #333336;
+    --accent:   #c9a86c;
+    --accent2:  #6c7fcd;
+    --dim:      #4a4a55;
+    --dim2:     #6a6a75;
+    --text:     #ccccd0;
+    --text-hi:  #eeeae4;
+    --usr-col:  #5a7aaa;
+    --ast-col:  #9a7a4a;
+    --none-col: #7a4a4a;
+    --ok:       #4a7a55;
+    --mono: 'IBM Plex Mono', monospace;
+    --serif: 'Crimson Pro', Georgia, serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg); color: var(--text); font-family: var(--mono);
+    font-size: 13px; line-height: 1.6; height: 100vh; overflow: hidden;
+  }
+
+  /* ── start screen ── */
+  #start-screen {
+    position: fixed; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 18px;
+  }
+  #start-screen.hidden { display: none; }
+  #start-screen h1 {
+    font-family: var(--serif); font-weight: 300; font-size: 30px;
+    color: var(--text-hi); letter-spacing: .5px;
+  }
+  #start-screen p { color: var(--dim2); max-width: 420px; text-align: center; }
+  .primary-btn {
+    font-family: var(--mono); font-size: 13px; letter-spacing: .5px;
+    background: var(--accent); color: #16130c; border: none;
+    padding: 10px 22px; cursor: pointer; font-weight: 600;
+  }
+  .primary-btn:hover { opacity: .85; }
+  .primary-btn:disabled { background: var(--border2); color: var(--dim); cursor: default; }
+  .ghost-btn {
+    font-family: var(--mono); font-size: 11px; background: var(--surface2);
+    color: var(--dim2); border: 1px solid var(--border2); padding: 6px 12px; cursor: pointer;
+  }
+  .ghost-btn:hover { color: var(--accent); border-color: var(--accent); }
+  #start-error { color: var(--none-col); max-width: 460px; text-align: center; font-size: 12px; }
+
+  /* ── main app ── */
+  #app { display: none; height: 100vh; flex-direction: column; }
+  #app.show { display: flex; }
+
+  #topbar {
+    background: var(--surface); border-bottom: 1px solid var(--border2);
+    padding: 10px 18px; display: flex; align-items: center; gap: 14px;
+  }
+  #topbar .brand { font-family: var(--serif); font-size: 17px; font-weight: 300; color: var(--accent); }
+  #topbar .sid { color: var(--dim2); font-size: 11px; }
+  .spacer { flex: 1; }
+
+  #main { flex: 1; display: flex; min-height: 0; }
+
+  /* ── character sidebar ── */
+  #chars { width: 280px; flex-shrink: 0; border-right: 1px solid var(--border); overflow-y: auto; padding: 14px; }
+  .charcard {
+    background: var(--surface); border: 1px solid var(--border);
+    border-top: 2px solid var(--accent); padding: 12px 14px; margin-bottom: 14px;
+  }
+  .charcard h3 { font-family: var(--serif); font-weight: 400; font-size: 16px; color: var(--text-hi); }
+  .charcard .sub { color: var(--dim2); font-size: 10px; letter-spacing: .5px; margin: 3px 0 8px; }
+  .charcard .bio {
+    font-family: var(--serif); font-size: 13px; line-height: 1.6; color: var(--text);
+    white-space: pre-wrap; max-height: 90px; overflow: hidden; position: relative;
+  }
+  .charcard .bio.expanded { max-height: none; }
+  .charcard .fade {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 30px;
+    background: linear-gradient(transparent, var(--surface));
+  }
+  .charcard .bio.expanded .fade { display: none; }
+  .charcard .more { color: var(--accent2); cursor: pointer; font-size: 10px; margin-top: 6px; display: inline-block; }
+  .char-placeholder { color: var(--dim); font-style: italic; font-size: 12px; }
+
+  /* ── transcript ── */
+  #transcript-wrap { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+  #transcript { flex: 1; overflow-y: auto; padding: 18px 22px; display: flex; flex-direction: column; gap: 10px; }
+  .msg { max-width: 640px; }
+  .msg .who { font-size: 10px; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 2px; }
+  .msg .text { font-family: var(--serif); font-size: 15px; line-height: 1.55; white-space: pre-wrap; }
+  .msg.player { align-self: flex-end; text-align: right; }
+  .msg.player .who { color: var(--usr-col); }
+  .msg.char1 .who { color: var(--accent); }
+  .msg.char2 .who { color: var(--ast-col); }
+  .msg.narrator .who { color: var(--accent2); }
+  .msg.narrator .text { font-style: italic; color: var(--dim2); }
+  .msg.system .text { color: var(--dim2); font-size: 12px; font-style: italic; }
+
+  #typing { padding: 0 22px 10px; color: var(--dim2); font-size: 12px; font-style: italic; display: none; }
+  #typing.show { display: block; }
+
+  /* ── composer ── */
+  #composer { display: flex; gap: 10px; padding: 14px 22px; border-top: 1px solid var(--border); background: var(--surface); }
+  #msg-input {
+    flex: 1; font-family: var(--mono); font-size: 13px; background: var(--surface2);
+    color: var(--text); border: 1px solid var(--border2); padding: 10px 12px;
+  }
+  #msg-input:focus { outline: none; border-color: var(--accent); }
+  #msg-input:disabled { color: var(--dim); }
+
+  #endbar { display: flex; gap: 8px; }
+</style>
+</head>
+<body>
+
+<div id="start-screen">
+  <h1>No Exit</h1>
+  <p>Generate two characters, hear the narrator show you in, then talk to them. Ending the session saves it to <code>runs/</code> for review in run_viewer.html.</p>
+  <button class="primary-btn" id="new-session-btn">Start New Session</button>
+  <div id="start-error"></div>
+</div>
+
+<div id="app">
+  <div id="topbar">
+    <div class="brand">NoExit</div>
+    <div class="sid" id="session-label"></div>
+    <div class="spacer"></div>
+    <div id="endbar">
+      <button class="ghost-btn" id="abandon-btn">Abandon</button>
+      <button class="ghost-btn" id="save-btn">Save &amp; End</button>
+    </div>
+  </div>
+  <div id="main">
+    <div id="chars"></div>
+    <div id="transcript-wrap">
+      <div id="transcript"></div>
+      <div id="typing">...</div>
+      <div id="composer">
+        <input id="msg-input" type="text" placeholder="Say something to the room..." autocomplete="off">
+        <button class="primary-btn" id="send-btn">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+
+let charNames = {};
+
+async function api(path, body) {
+  const res = await fetch(path, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body || {}),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+  return data;
+}
+
+function esc(s) { return String(s == null ? '' : s).replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
+
+function addMsg(cls, who, text) {
+  const t = $('#transcript');
+  const div = document.createElement('div');
+  div.className = 'msg ' + cls;
+  div.innerHTML = `<div class="who">${esc(who)}</div><div class="text">${esc(text)}</div>`;
+  t.appendChild(div);
+  t.scrollTop = t.scrollHeight;
+}
+
+function renderChars(characters) {
+  const host = $('#chars'); host.innerHTML = '';
+  charNames = {};
+  [1, 2].forEach(cid => {
+    const c = characters[String(cid)];
+    if (!c) {
+      const ph = document.createElement('div'); ph.className = 'char-placeholder';
+      ph.textContent = `Character ${cid} — generating...`;
+      host.appendChild(ph);
+      return;
+    }
+    charNames[cid] = c.name;
+    const card = document.createElement('div'); card.className = 'charcard';
+    card.innerHTML = `
+      <h3>${esc(c.name || '(unnamed)')}</h3>
+      <div class="sub">${esc(c.age||'?')}, ${esc(c.gender||'?')} · ${esc(c.occupation||'')}</div>
+      <div class="bio">${esc(c.description)}<div class="fade"></div></div>
+      <span class="more">expand ▾</span>`;
+    const bio = card.querySelector('.bio');
+    card.querySelector('.more').onclick = () => {
+      bio.classList.toggle('expanded');
+      card.querySelector('.more').textContent = bio.classList.contains('expanded') ? 'collapse ▴' : 'expand ▾';
+    };
+    host.appendChild(card);
+  });
+}
+
+function classForCharNo(no) {
+  if (no === 0) return 'player';
+  if (no === 1) return 'char1';
+  if (no === 2) return 'char2';
+  if (no === 3) return 'narrator';
+  return 'system';
+}
+
+function setBusy(busy) {
+  $('#msg-input').disabled = busy;
+  $('#send-btn').disabled = busy;
+  $('#typing').classList.toggle('show', busy);
+}
+
+async function startSession() {
+  const btn = $('#new-session-btn');
+  btn.disabled = true; btn.textContent = 'Generating characters...';
+  $('#start-error').textContent = '';
+  try {
+    const data = await api('/api/new');
+    $('#start-screen').classList.add('hidden');
+    $('#app').classList.add('show');
+    $('#session-label').textContent = data.session_id;
+    $('#transcript').innerHTML = '';
+    renderChars(data.characters);
+    addMsg('narrator', 'Narrator', data.narrator_line);
+    $('#msg-input').focus();
+  } catch (err) {
+    $('#start-error').textContent = 'Failed to start session: ' + err.message;
+  } finally {
+    btn.disabled = false; btn.textContent = 'Start New Session';
+  }
+}
+
+async function sendTurn() {
+  const input = $('#msg-input');
+  const message = input.value.trim();
+  if (!message) return;
+  input.value = '';
+  addMsg('player', 'You', message);
+  setBusy(true);
+  try {
+    const result = await api('/api/turn', { message });
+    result.replies.forEach(r => {
+      addMsg(classForCharNo(r.char_no), r.character_name || ('Char ' + r.char_no), r.text);
+    });
+  } catch (err) {
+    addMsg('system', 'Error', err.message);
+  } finally {
+    setBusy(false);
+    input.focus();
+  }
+}
+
+async function endSession(save) {
+  if (!confirm(save ? 'Save this session and end it?' : 'Abandon this session without saving?')) return;
+  try {
+    if (save) {
+      const res = await api('/api/save');
+      alert(`Saved run '${res.run_id}' (${res.calls} calls).\nOpen run_viewer.html to review it.`);
+    } else {
+      await api('/api/abandon');
+    }
+  } catch (err) {
+    alert('Error: ' + err.message);
+  }
+  $('#app').classList.remove('show');
+  $('#start-screen').classList.remove('hidden');
+  $('#start-error').textContent = '';
+}
+
+$('#new-session-btn').onclick = startSession;
+$('#send-btn').onclick = sendTurn;
+$('#msg-input').addEventListener('keydown', e => { if (e.key === 'Enter') sendTurn(); });
+$('#save-btn').onclick = () => endSession(true);
+$('#abandon-btn').onclick = () => endSession(false);
+
+// If a session is already active server-side (e.g. page was reloaded mid-session),
+// pick it back up instead of forcing a fresh start.
+(async () => {
+  try {
+    const data = await fetch('/api/state').then(r => r.json());
+    if (data.active) {
+      $('#start-screen').classList.add('hidden');
+      $('#app').classList.add('show');
+      $('#session-label').textContent = data.session_id;
+      renderChars(data.characters);
+      data.dialogue.forEach(e => {
+        const cls = classForCharNo(e.character_id);
+        const who = e.character_id === 0 ? 'You'
+          : e.character_id === 3 ? 'Narrator'
+          : (charNames[e.character_id] || ('Char ' + e.character_id));
+        addMsg(cls, who, e.text);
+      });
+    }
+  } catch (err) { /* server not reachable yet on first paint -- ignore */ }
+})();
+</script>
+</body>
+</html>
