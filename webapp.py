@@ -95,6 +95,20 @@ class Handler(BaseHTTPRequestHandler):
                 narrator_line = simulator.run_narrator(state)
                 self._send_json({**session_payload(), "narrator_line": narrator_line})
 
+            elif self.path == "/api/chars_only":
+                state = simulator.new_session()
+                simulator.generate_character(state, 1)
+                simulator.generate_character(state, 2)
+                self._send_json(session_payload())
+
+            elif self.path == "/api/run_narrator":
+                if state is None:
+                    return self._send_json({"error": "No active session."}, 400)
+                if state.narrator_played:
+                    return self._send_json({"error": "Narrator already played."}, 400)
+                narrator_line = simulator.run_narrator(state)
+                self._send_json({"narrator_line": narrator_line})
+
             elif self.path == "/api/turn":
                 if state is None:
                     return self._send_json({"error": "No active session."}, 400)

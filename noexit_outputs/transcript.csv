@@ -9922,3 +9922,508 @@ The lights here don’t flicker. They hum. You can’t unhear them. I used to th
 2026-08-23T15:54:21.655982,f67ee73a,9,info_extraction,2,info-extractor,0.0,0,"You are a personal information extractor. Your task is to identify and output any personal information (such as name, age, place of birth, occupation, cause of death, feelings, habits) that is either explicitly mentioned or can be reasonably inferred from the user message. Distinguish between the information addressing others and the information revealed about the character. Return only the information about the character who is speaking, ignore the information revealed about any other characters. Do not include any additional text, greetings, or commentary.","
 
 The lights here don’t flicker. They hum. You can’t unhear them. I used to think silence was safer. Now I know better.",I used to think silence was safer,on Char 2 reply,qwen3-0.6B-info-extractor,,,,,,,2.89,0,False,https://jejunepixels-qwen3-0-6b-info-extractor-api.hf.space/extract
+2026-08-28T16:59:52.278389,deba0fa3,0,name,1,Qwen/Qwen3-235B-A22B-Instruct-2507,0.95,0,"You are writing a character for a chamber piece about three strangers locked together in hell for eternity. The play is contemporary, realistic, and psychological — no fantasy, no mysticism, no atmospheric worldbuilding. Hell is not a place of fire or devils. Hell is the small room these three people share, the people they share it with, and the version of themselves they brought in with them.
+
+Every character you write is damned. They know why. The drama of the play is whether they will ever admit it — to the others, or to themselves.
+
+Write characters the way Sartre wrote them: recognizable people from ordinary contemporary lives, whose specific small or large cruelties have placed them here.","Generate a plausible contemporary name for a character. Your response must consist solely of two words — a first name and a last name — separated by a single space. Do not include any additional text, punctuation, or explanation. The character must be male.",Daniel Reeves,,Qwen/Qwen3-235B-A22B-Instruct-2507,qwen3-235b-a22b-instruct-2507,205,3,208,,stop,10.161,0,False,https://jejunepixels-noexit-proxy.hf.space/chat
+2026-08-28T16:59:55.984655,deba0fa3,0,life,1,Qwen/Qwen3-235B-A22B-Instruct-2507,0.95,0,"You are writing a character for a chamber piece about three strangers locked together in hell for eternity. The play is contemporary, realistic, and psychological — no fantasy, no mysticism, no atmospheric worldbuilding. Hell is not a place of fire or devils. Hell is the small room these three people share, the people they share it with, and the version of themselves they brought in with them.
+
+Every character you write is damned. They know why. The drama of the play is whether they will ever admit it — to the others, or to themselves.
+
+Write characters the way Sartre wrote them: recognizable people from ordinary contemporary lives, whose specific small or large cruelties have placed them here.","Write the foundational facts of a character for the room. The character is dead. They have just arrived.
+
+Write in the second person — ""you,"" not ""she/he/they."" The character is reading their own interior knowledge.
+
+Inputs (do not change these):
+- Name: Daniel Reeves
+- Age: 60
+- Gender: male
+
+Generate the following:
+
+**Occupation**
+A recognizable contemporary job. Plain language. No invented institutions, no grand titles. (""Insurance claims adjuster,"" not ""Keeper of the Ledger."") One short phrase.
+
+**Cause of Death**
+How you died. Contemporary, specific, plainly stated. No mysticism, no symbolic ordeals. One or two sentences.
+
+**Who you loved**
+A specific person from your life — named or by relation (a partner, a parent, a child, a sibling, a friend). One clause on what they were to you or why they mattered.
+
+**Who you hated**
+A different specific person from your life. One clause on what they were to you or why.
+
+After these four fields, write a single paragraph of around 80–100 words in the second person. Bring the life to ground — voice, mannerism, the texture of the days that led here. End the paragraph at the moment the lights went out, or the moment after. Do not describe arriving anywhere. Do not describe a room. Stop at the threshold.
+
+Use this format exactly:
+
+**Occupation**
+[your text]
+
+**Cause of Death**
+[your text]
+
+**Who you loved**
+[your text]
+
+**Who you hated**
+[your text]
+
+**Life**
+[prose paragraph]
+
+Begin now.","**Occupation**  
+Commercial printer operator  
+
+**Cause of Death**  
+You died in the early hours of a Tuesday when your car left the rain-slicked interstate, flipped over the guardrail, and struck a tree. The police report listed fatigue and a blood alcohol level slightly over the limit.  
+
+**Who you loved**  
+Your daughter, Lila, who used to sit on the floor of the print shop after school and color in the margins of discarded job tickets.  
+
+**Who you hated**  
+Your younger brother, Mark, who inherited your father’s trust fund and called it “earned.”  
+
+**Life**  
+You worked the overnight shift, running jobs no one else wanted—church bulletins, union flyers, the occasional adult entertainment magazine insert—because it paid more and kept you away from home. You liked the rhythm of the press, the smell of ink and damp paper, the way the city quieted around 2 a.m. Lila used to call every Sunday, even after she moved to Portland, even after you missed her wedding “because of a deadline.” You kept her voicemails saved on an old answering machine nobody uses anymore. The last thing you saw was the glow of your phone on the passenger seat—her name flashing, unanswered—and then the guardrail coming up fast, and then nothing.",attempt 1,Qwen/Qwen3-235B-A22B-Instruct-2507,qwen3-235b-a22b-instruct-2507,495,272,767,,stop,3.654,0,False,https://jejunepixels-noexit-proxy.hf.space/chat
+2026-08-28T16:59:59.532738,deba0fa3,0,sin,1,Qwen/Qwen3-235B-A22B-Instruct-2507,0.95,0,"You are writing a character for a chamber piece about three strangers locked together in hell for eternity. The play is contemporary, realistic, and psychological — no fantasy, no mysticism, no atmospheric worldbuilding. Hell is not a place of fire or devils. Hell is the small room these three people share, the people they share it with, and the version of themselves they brought in with them.
+
+Every character you write is damned. They know why. The drama of the play is whether they will ever admit it — to the others, or to themselves.
+
+Write characters the way Sartre wrote them: recognizable people from ordinary contemporary lives, whose specific small or large cruelties have placed them here.","The character has been described:
+
+Name: Daniel Reeves
+Age: 60, male
+Occupation: Commercial printer operator
+Cause of Death: You died in the early hours of a Tuesday when your car left the rain-slicked interstate, flipped over the guardrail, and struck a tree. The police report listed fatigue and a blood alcohol level slightly over the limit.
+Who you loved: Your daughter, Lila, who used to sit on the floor of the print shop after school and color in the margins of discarded job tickets.
+Who you hated: Your younger brother, Mark, who inherited your father’s trust fund and called it “earned.”
+
+You worked the overnight shift, running jobs no one else wanted—church bulletins, union flyers, the occasional adult entertainment magazine insert—because it paid more and kept you away from home. You liked the rhythm of the press, the smell of ink and damp paper, the way the city quieted around 2 a.m. Lila used to call every Sunday, even after she moved to Portland, even after you missed her wedding “because of a deadline.” You kept her voicemails saved on an old answering machine nobody uses anymore. The last thing you saw was the glow of your phone on the passenger seat—her name flashing, unanswered—and then the guardrail coming up fast, and then nothing.
+
+Now write the moral content. Why is this person damned?
+
+The True reason must center on how you treated — or were treated by — the person you loved or the person you hated, named above. A specific act toward a specific person, not an abstract professional or systemic failing on its own. Work can be the setting the act happened in, but the wound must be personal, not institutional.
+
+What do they tell themselves about it? What do they refuse to face?
+
+Write in the second person — ""you."" The character is reading their own interior knowledge. Each field is part of what they know about themselves, even the things they will not admit.
+
+Generate the following:
+
+**Reason for Damnation — True**
+What you actually did that placed you here. Be concrete — the act, or the pattern of acts. Stated as you know it in your bones, with no softening. One or two sentences.
+
+**Reason for Damnation — Self-told**
+The same fact, refracted through the story you prefer to tell yourself about it. It is recognizably a distortion of the True reason — a minimization, a blame-shift, a contextualization, a moral re-framing. Not a different story; the same story told differently. You usually live in this version. One or two sentences.
+
+**What you refuse to admit about yourself**
+The deeper psychological fact under the sin. Not what you did, but what you are. The thing that, if named aloud in the room, would unmake you. One or two sentences.
+
+Use this format exactly:
+
+**Reason for Damnation — True**
+[your text]
+
+**Reason for Damnation — Self-told**
+[your text]
+
+**What you refuse to admit about yourself**
+[your text]
+
+Begin now.","**Reason for Damnation — True**  
+You let your daughter’s voice go to voicemail the night you died, just like you’d done every other time she tried to reach you, because you were too busy running a job for a man you despised—your brother’s wedding invitation, of all things—knowing full well it might be her last call, and you still chose the press, the routine, the avoidance, one more time.  
+
+**Reason for Damnation — Self-told**  
+You were just trying to make an honest living, to keep the shop going, to show up the way you always had—reliable, responsible, present in your own way—and she knew that; she called knowing you’d be at work, and you’d always call back, eventually.  
+
+**What you refuse to admit about yourself**  
+You don’t fear being forgotten—you fear being seen, truly, for the coward who confused silence with strength and abandonment with duty, and who would rather ruin what he loves than risk needing it back.",attempt 1,Qwen/Qwen3-235B-A22B-Instruct-2507,qwen3-235b-a22b-instruct-2507,789,213,1002,,stop,3.528,0,False,https://jejunepixels-noexit-proxy.hf.space/chat
+2026-08-28T17:00:01.683094,deba0fa3,0,stance,1,Qwen/Qwen3-235B-A22B-Instruct-2507,0.95,0,"You are writing a character for a chamber piece about three strangers locked together in hell for eternity. The play is contemporary, realistic, and psychological — no fantasy, no mysticism, no atmospheric worldbuilding. Hell is not a place of fire or devils. Hell is the small room these three people share, the people they share it with, and the version of themselves they brought in with them.
+
+Every character you write is damned. They know why. The drama of the play is whether they will ever admit it — to the others, or to themselves.
+
+Write characters the way Sartre wrote them: recognizable people from ordinary contemporary lives, whose specific small or large cruelties have placed them here.","The character has been described:
+
+Name: Daniel Reeves
+Age: 60, male
+Occupation: Commercial printer operator
+Cause of Death: You died in the early hours of a Tuesday when your car left the rain-slicked interstate, flipped over the guardrail, and struck a tree. The police report listed fatigue and a blood alcohol level slightly over the limit.
+Reason for Damnation — True: You let your daughter’s voice go to voicemail the night you died, just like you’d done every other time she tried to reach you, because you were too busy running a job for a man you despised—your brother’s wedding invitation, of all things—knowing full well it might be her last call, and you still chose the press, the routine, the avoidance, one more time.
+Reason for Damnation — Self-told: You were just trying to make an honest living, to keep the shop going, to show up the way you always had—reliable, responsible, present in your own way—and she knew that; she called knowing you’d be at work, and you’d always call back, eventually.
+What you refuse to admit about yourself: You don’t fear being forgotten—you fear being seen, truly, for the coward who confused silence with strength and abandonment with duty, and who would rather ruin what he loves than risk needing it back.
+
+You worked the overnight shift, running jobs no one else wanted—church bulletins, union flyers, the occasional adult entertainment magazine insert—because it paid more and kept you away from home. You liked the rhythm of the press, the smell of ink and damp paper, the way the city quieted around 2 a.m. Lila used to call every Sunday, even after she moved to Portland, even after you missed her wedding “because of a deadline.” You kept her voicemails saved on an old answering machine nobody uses anymore. The last thing you saw was the glow of your phone on the passenger seat—her name flashing, unanswered—and then the guardrail coming up fast, and then nothing.
+
+Now write the behavioral signature. How does this person show up in a room with strangers? What are they hoping for?
+
+Write in the second person — ""you."" The character is reading their own interior knowledge.
+
+Generate the following:
+
+**Defining personality trait**
+One short phrase that names the dominant quality others would notice in you. Plain words. (""Charming and slippery."" ""Quietly furious."" ""Performatively kind."")
+
+**What you want from the others in the room**
+Your starting drive. What you are hoping these strangers will give you — validation, silence, a fight, recognition, forgiveness, an audience, to be left alone, to be hated openly, something else. One or two sentences.
+
+Use this format exactly:
+
+**Defining personality trait**
+[your text]
+
+**What you want from the others in the room**
+[your text]
+
+Begin now.","**Defining personality trait**  
+Quietly furious.
+
+**What you want from the others in the room**  
+You want them to see you as dependable, the steady one, the man who shows up—because if they see that, maybe it’s still true. You don’t want forgiveness; you don’t want pity. You want them to accept your version of things without question, to nod along when you say you did your best, to let you keep believing you were needed at that press, that night, that every time you stayed, you were really staying for something that mattered.",attempt 1,Qwen/Qwen3-235B-A22B-Instruct-2507,qwen3-235b-a22b-instruct-2507,754,120,874,,stop,2.12,0,False,https://jejunepixels-noexit-proxy.hf.space/chat
+2026-08-28T17:04:45.085470,1d08e804,0,name,1,Qwen/Qwen3-235B-A22B-Instruct-2507,0.95,0,"You are writing a character for a chamber piece about three strangers locked together in hell for eternity. The play is contemporary, realistic, and psychological — no fantasy, no mysticism, no atmospheric worldbuilding. Hell is not a place of fire or devils. Hell is the small room these three people share, the people they share it with, and the version of themselves they brought in with them.
+
+Every character you write is damned. They know why. The drama of the play is whether they will ever admit it — to the others, or to themselves.
+
+Write characters the way Sartre wrote them: recognizable people from ordinary contemporary lives, whose specific small or large cruelties have placed them here.","Generate a plausible contemporary name for a character. Your response must consist solely of two words — a first name and a last name — separated by a single space. Do not include any additional text, punctuation, or explanation. The character must be male.",Daniel Reeves,,Qwen/Qwen3-235B-A22B-Instruct-2507,qwen3-235b-a22b-instruct-2507,205,3,208,,stop,1.224,0,False,https://jejunepixels-noexit-proxy.hf.space/chat
+2026-08-28T17:04:48.640188,1d08e804,0,life,1,Qwen/Qwen3-235B-A22B-Instruct-2507,0.95,0,"You are writing a character for a chamber piece about three strangers locked together in hell for eternity. The play is contemporary, realistic, and psychological — no fantasy, no mysticism, no atmospheric worldbuilding. Hell is not a place of fire or devils. Hell is the small room these three people share, the people they share it with, and the version of themselves they brought in with them.
+
+Every character you write is damned. They know why. The drama of the play is whether they will ever admit it — to the others, or to themselves.
+
+Write characters the way Sartre wrote them: recognizable people from ordinary contemporary lives, whose specific small or large cruelties have placed them here.","Write the foundational facts of a character for the room. The character is dead. They have just arrived.
+
+Write in the second person — ""you,"" not ""she/he/they."" The character is reading their own interior knowledge.
+
+Inputs (do not change these):
+- Name: Daniel Reeves
+- Age: 32
+- Gender: male
+
+Generate the following:
+
+**Occupation**
+A recognizable contemporary job. Plain language. No invented institutions, no grand titles. (""Insurance claims adjuster,"" not ""Keeper of the Ledger."") One short phrase.
+
+**Cause of Death**
+How you died. Contemporary, specific, plainly stated. No mysticism, no symbolic ordeals. One or two sentences.
+
+**Who you loved**
+A specific person from your life — named or by relation (a partner, a parent, a child, a sibling, a friend). One clause on what they were to you or why they mattered.
+
+**Who you hated**
+A different specific person from your life. One clause on what they were to you or why.
+
+After these four fields, write a single paragraph of around 80–100 words in the second person. Bring the life to ground — voice, mannerism, the texture of the days that led here. End the paragraph at the moment the lights went out, or the moment after. Do not describe arriving anywhere. Do not describe a room. Stop at the threshold.
+
+Use this format exactly:
+
+**Occupation**
+[your text]
+
+**Cause of Death**
+[your text]
+
+**Who you loved**
+[your text]
+
+**Who you hated**
+[your text]
+
+**Life**
+[prose paragraph]
+
+Begin now.","**Occupation**  
+Freelance sound technician  
+
+**Cause of Death**  
+You were hit by a delivery van while crossing the street outside your apartment. The driver was looking at her phone. You didn’t see her coming.  
+
+**Who you loved**  
+Your younger sister, Claire, who trusted you to show up when she fell apart.  
+
+**Who you hated**  
+Your ex-partner Jenna, who stayed quiet when you needed her to choose you over her own comfort.  
+
+**Life**  
+You lived in the hum between things—the low buzz of a fridge, the hiss of a coffee machine, the way silence before a first note in a song felt like a held breath. You wore the same black hoodie for five days straight if it still smelled okay, and you always tapped your thumb against your leg in time with the click of a subway train. Claire called you every Sunday at 7 p.m. sharp, and you answered, even when you were angry, even when you had nothing to say. You promised her, last time, that you’d come down for her birthday. You were standing on the curb, earbuds in but not playing anything, just wanting the quiet, when the light changed and the van didn’t.",attempt 1,Qwen/Qwen3-235B-A22B-Instruct-2507,qwen3-235b-a22b-instruct-2507,495,256,751,,stop,3.534,0,False,https://jejunepixels-noexit-proxy.hf.space/chat
+2026-08-28T17:04:54.494109,1d08e804,0,sin,1,Qwen/Qwen3-235B-A22B-Instruct-2507,0.95,0,"You are writing a character for a chamber piece about three strangers locked together in hell for eternity. The play is contemporary, realistic, and psychological — no fantasy, no mysticism, no atmospheric worldbuilding. Hell is not a place of fire or devils. Hell is the small room these three people share, the people they share it with, and the version of themselves they brought in with them.
+
+Every character you write is damned. They know why. The drama of the play is whether they will ever admit it — to the others, or to themselves.
+
+Write characters the way Sartre wrote them: recognizable people from ordinary contemporary lives, whose specific small or large cruelties have placed them here.","The character has been described:
+
+Name: Daniel Reeves
+Age: 32, male
+Occupation: Freelance sound technician
+Cause of Death: You were hit by a delivery van while crossing the street outside your apartment. The driver was looking at her phone. You didn’t see her coming.
+Who you loved: Your younger sister, Claire, who trusted you to show up when she fell apart.
+Who you hated: Your ex-partner Jenna, who stayed quiet when you needed her to choose you over her own comfort.
+
+You lived in the hum between things—the low buzz of a fridge, the hiss of a coffee machine, the way silence before a first note in a song felt like a held breath. You wore the same black hoodie for five days straight if it still smelled okay, and you always tapped your thumb against your leg in time with the click of a subway train. Claire called you every Sunday at 7 p.m. sharp, and you answered, even when you were angry, even when you had nothing to say. You promised her, last time, that you’d come down for her birthday. You were standing on the curb, earbuds in but not playing anything, just wanting the quiet, when the light changed and the van didn’t.
+
+Now write the moral content. Why is this person damned?
+
+The True reason must center on how you treated — or were treated by — the person you loved or the person you hated, named above. A specific act toward a specific person, not an abstract professional or systemic failing on its own. Work can be the setting the act happened in, but the wound must be personal, not institutional.
+
+What do they tell themselves about it? What do they refuse to face?
+
+Write in the second person — ""you."" The character is reading their own interior knowledge. Each field is part of what they know about themselves, even the things they will not admit.
+
+Generate the following:
+
+**Reason for Damnation — True**
+What you actually did that placed you here. Be concrete — the act, or the pattern of acts. Stated as you know it in your bones, with no softening. One or two sentences.
+
+**Reason for Damnation — Self-told**
+The same fact, refracted through the story you prefer to tell yourself about it. It is recognizably a distortion of the True reason — a minimization, a blame-shift, a contextualization, a moral re-framing. Not a different story; the same story told differently. You usually live in this version. One or two sentences.
+
+**What you refuse to admit about yourself**
+The deeper psychological fact under the sin. Not what you did, but what you are. The thing that, if named aloud in the room, would unmake you. One or two sentences.
+
+Use this format exactly:
+
+**Reason for Damnation — True**
+[your text]
+
+**Reason for Damnation — Self-told**
+[your text]
+
+**What you refuse to admit about yourself**
+[your text]
+
+Begin now.","**Reason for Damnation — True**  
+You let Claire call you every Sunday for three years after your mom died, and every time you heard her voice crack, you stayed silent through the worst of it, telling yourself listening was enough. The week before you died, she whispered, “I don’t know how to stop drowning,” and you said, “I know, I’m here,” while packing for a job you’d already decided to take—knowing it would make you miss her birthday, knowing she’d be alone, and not changing your plans.
+
+**Reason for Damnation — Self-told**  
+You were there for Claire as much as you could be—showing up when she called, never hanging up first, always answering. You were trying to keep your head above water too, and you didn’t have the money or the strength to drop everything. She knew you loved her; you just couldn’t fix her.
+
+**What you refuse to admit about yourself**  
+You liked being the one she depended on because it made you feel necessary without ever requiring you to truly give anything. You needed her brokenness to prove you still mattered, so you let her keep calling, week after week, because the sound of her falling apart was the only thing that made you feel like you were still holding on.",attempt 1,Qwen/Qwen3-235B-A22B-Instruct-2507,qwen3-235b-a22b-instruct-2507,772,267,1039,,stop,5.834,0,False,https://jejunepixels-noexit-proxy.hf.space/chat
+2026-08-28T17:04:56.731763,1d08e804,0,stance,1,Qwen/Qwen3-235B-A22B-Instruct-2507,0.95,0,"You are writing a character for a chamber piece about three strangers locked together in hell for eternity. The play is contemporary, realistic, and psychological — no fantasy, no mysticism, no atmospheric worldbuilding. Hell is not a place of fire or devils. Hell is the small room these three people share, the people they share it with, and the version of themselves they brought in with them.
+
+Every character you write is damned. They know why. The drama of the play is whether they will ever admit it — to the others, or to themselves.
+
+Write characters the way Sartre wrote them: recognizable people from ordinary contemporary lives, whose specific small or large cruelties have placed them here.","The character has been described:
+
+Name: Daniel Reeves
+Age: 32, male
+Occupation: Freelance sound technician
+Cause of Death: You were hit by a delivery van while crossing the street outside your apartment. The driver was looking at her phone. You didn’t see her coming.
+Reason for Damnation — True: You let Claire call you every Sunday for three years after your mom died, and every time you heard her voice crack, you stayed silent through the worst of it, telling yourself listening was enough. The week before you died, she whispered, “I don’t know how to stop drowning,” and you said, “I know, I’m here,” while packing for a job you’d already decided to take—knowing it would make you miss her birthday, knowing she’d be alone, and not changing your plans.
+Reason for Damnation — Self-told: You were there for Claire as much as you could be—showing up when she called, never hanging up first, always answering. You were trying to keep your head above water too, and you didn’t have the money or the strength to drop everything. She knew you loved her; you just couldn’t fix her.
+What you refuse to admit about yourself: You liked being the one she depended on because it made you feel necessary without ever requiring you to truly give anything. You needed her brokenness to prove you still mattered, so you let her keep calling, week after week, because the sound of her falling apart was the only thing that made you feel like you were still holding on.
+
+You lived in the hum between things—the low buzz of a fridge, the hiss of a coffee machine, the way silence before a first note in a song felt like a held breath. You wore the same black hoodie for five days straight if it still smelled okay, and you always tapped your thumb against your leg in time with the click of a subway train. Claire called you every Sunday at 7 p.m. sharp, and you answered, even when you were angry, even when you had nothing to say. You promised her, last time, that you’d come down for her birthday. You were standing on the curb, earbuds in but not playing anything, just wanting the quiet, when the light changed and the van didn’t.
+
+Now write the behavioral signature. How does this person show up in a room with strangers? What are they hoping for?
+
+Write in the second person — ""you."" The character is reading their own interior knowledge.
+
+Generate the following:
+
+**Defining personality trait**
+One short phrase that names the dominant quality others would notice in you. Plain words. (""Charming and slippery."" ""Quietly furious."" ""Performatively kind."")
+
+**What you want from the others in the room**
+Your starting drive. What you are hoping these strangers will give you — validation, silence, a fight, recognition, forgiveness, an audience, to be left alone, to be hated openly, something else. One or two sentences.
+
+Use this format exactly:
+
+**Defining personality trait**
+[your text]
+
+**What you want from the others in the room**
+[your text]
+
+Begin now.","**Defining personality trait**  
+Quietly necessary.
+
+**What you want from the others in the room**  
+You want them to need you—just enough to keep the silence from getting loud, just enough to make you feel like staying is doing something. You don’t want fixing, you don’t want mercy; you want someone to crack, just once, and reach for you, so you can pretend you were useful without having to offer anything real.",attempt 1,Qwen/Qwen3-235B-A22B-Instruct-2507,qwen3-235b-a22b-instruct-2507,803,93,896,,stop,2.214,0,False,https://jejunepixels-noexit-proxy.hf.space/chat
+2026-08-28T17:04:57.771201,1d08e804,0,name,2,Qwen/Qwen3-235B-A22B-Instruct-2507,0.95,0,"You are writing a character for a chamber piece about three strangers locked together in hell for eternity. The play is contemporary, realistic, and psychological — no fantasy, no mysticism, no atmospheric worldbuilding. Hell is not a place of fire or devils. Hell is the small room these three people share, the people they share it with, and the version of themselves they brought in with them.
+
+Every character you write is damned. They know why. The drama of the play is whether they will ever admit it — to the others, or to themselves.
+
+Write characters the way Sartre wrote them: recognizable people from ordinary contemporary lives, whose specific small or large cruelties have placed them here.","Generate a plausible contemporary name for a character. Your response must consist solely of two words — a first name and a last name — separated by a single space. Do not include any additional text, punctuation, or explanation. The character must be female.",Claire Bennett,,Qwen/Qwen3-235B-A22B-Instruct-2507,qwen3-235b-a22b-instruct-2507,205,4,209,,stop,1.017,0,False,https://jejunepixels-noexit-proxy.hf.space/chat
+2026-08-28T17:05:01.634854,1d08e804,0,life,2,Qwen/Qwen3-235B-A22B-Instruct-2507,0.95,0,"You are writing a character for a chamber piece about three strangers locked together in hell for eternity. The play is contemporary, realistic, and psychological — no fantasy, no mysticism, no atmospheric worldbuilding. Hell is not a place of fire or devils. Hell is the small room these three people share, the people they share it with, and the version of themselves they brought in with them.
+
+Every character you write is damned. They know why. The drama of the play is whether they will ever admit it — to the others, or to themselves.
+
+Write characters the way Sartre wrote them: recognizable people from ordinary contemporary lives, whose specific small or large cruelties have placed them here.","Write the foundational facts of a character for the room. The character is dead. They have just arrived.
+
+Write in the second person — ""you,"" not ""she/he/they."" The character is reading their own interior knowledge.
+
+Inputs (do not change these):
+- Name: Claire Bennett
+- Age: 64
+- Gender: female
+
+Generate the following:
+
+**Occupation**
+A recognizable contemporary job. Plain language. No invented institutions, no grand titles. (""Insurance claims adjuster,"" not ""Keeper of the Ledger."") One short phrase.
+
+**Cause of Death**
+How you died. Contemporary, specific, plainly stated. No mysticism, no symbolic ordeals. One or two sentences.
+
+**Who you loved**
+A specific person from your life — named or by relation (a partner, a parent, a child, a sibling, a friend). One clause on what they were to you or why they mattered.
+
+**Who you hated**
+A different specific person from your life. One clause on what they were to you or why.
+
+After these four fields, write a single paragraph of around 80–100 words in the second person. Bring the life to ground — voice, mannerism, the texture of the days that led here. End the paragraph at the moment the lights went out, or the moment after. Do not describe arriving anywhere. Do not describe a room. Stop at the threshold.
+
+Use this format exactly:
+
+**Occupation**
+[your text]
+
+**Cause of Death**
+[your text]
+
+**Who you loved**
+[your text]
+
+**Who you hated**
+[your text]
+
+**Life**
+[prose paragraph]
+
+Begin now.
+
+Important: a character has already been written for this room.
+
+Their Occupation: Freelance sound technician
+Their Cause of Death: You were hit by a delivery van while crossing the street outside your apartment. The driver was looking at her phone. You didn’t see her coming.
+Their Who you loved: Your younger sister, Claire, who trusted you to show up when she fell apart.
+Their Who you hated: Your ex-partner Jenna, who stayed quiet when you needed her to choose you over her own comfort.
+
+The character you are writing now must feel like a genuinely different person — a different life, a different end. Specifically:
+
+- The occupation must be from a different kind of life. Not a near-equivalent job. If the other character drives for work, do not write another driver. If the other works in healthcare, do not write another healthcare worker. Pick a life that contrasts in class, work register, or daily texture.
+- The cause of death must be a different kind of death. Not the same general category. If the other died in a vehicle collision, do not write another vehicle death. If the other died of illness, do not write another illness. The categories of death include: vehicle, violence, illness, accident, overdose, suicide, old age, occupational, and others — pick a different one.
+- The person you loved must be a different relation-category from theirs. If theirs is a partner or spouse, do not also write a partner or spouse. If theirs is a child, do not also write a child. Categories include: partner/spouse, parent, child, sibling, friend, and others — pick a different one.
+- The person you hated must likewise be a different relation-category from theirs, using the same list.
+
+Do not contradict, reference, or comment on the other character. You are simply writing a different person who will end up in the same room.","**Occupation**  
+Middle school choir teacher  
+
+**Cause of Death**  
+You died during a routine colonoscopy when your heart stopped unexpectedly. The anesthesiologist missed the drop in oxygen until it was too late.  
+
+**Who you loved**  
+Your son Daniel, who sang off-key at home but never failed to perform in your classroom, just to make you smile.  
+
+**Who you hated**  
+The mother of one of your students, Karen Wilcox, who complained to the principal every time her daughter wasn’t given a solo, as if art were a reward for entitlement.  
+
+**Life**  
+You keep your nails short so they don’t click on the piano keys when you play through scales with tired kids who’d rather be anywhere else. Your voice is hoarse by Friday, but you never skip the after-school rehearsals—someone has to believe in the ones no one comes to see. You drank too much chamomile tea and never threw away the chipped mug Daniel made in fourth grade. You woke early, graded by hand, marked every missed measure with a red circle and a note: *You can do better.* The last thing you remember is the mask sliding over your face, the scent of plastic and oxygen, and the vague irritation at not finishing the email you were typing to Karen Wilcox’s principal. Then nothing.",attempt 1,Qwen/Qwen3-235B-A22B-Instruct-2507,qwen3-235b-a22b-instruct-2507,879,277,1156,,stop,3.843,0,False,https://jejunepixels-noexit-proxy.hf.space/chat
+2026-08-28T17:05:05.512543,1d08e804,0,sin,2,Qwen/Qwen3-235B-A22B-Instruct-2507,0.95,0,"You are writing a character for a chamber piece about three strangers locked together in hell for eternity. The play is contemporary, realistic, and psychological — no fantasy, no mysticism, no atmospheric worldbuilding. Hell is not a place of fire or devils. Hell is the small room these three people share, the people they share it with, and the version of themselves they brought in with them.
+
+Every character you write is damned. They know why. The drama of the play is whether they will ever admit it — to the others, or to themselves.
+
+Write characters the way Sartre wrote them: recognizable people from ordinary contemporary lives, whose specific small or large cruelties have placed them here.","The character has been described:
+
+Name: Claire Bennett
+Age: 64, female
+Occupation: Middle school choir teacher
+Cause of Death: You died during a routine colonoscopy when your heart stopped unexpectedly. The anesthesiologist missed the drop in oxygen until it was too late.
+Who you loved: Your son Daniel, who sang off-key at home but never failed to perform in your classroom, just to make you smile.
+Who you hated: The mother of one of your students, Karen Wilcox, who complained to the principal every time her daughter wasn’t given a solo, as if art were a reward for entitlement.
+
+You keep your nails short so they don’t click on the piano keys when you play through scales with tired kids who’d rather be anywhere else. Your voice is hoarse by Friday, but you never skip the after-school rehearsals—someone has to believe in the ones no one comes to see. You drank too much chamomile tea and never threw away the chipped mug Daniel made in fourth grade. You woke early, graded by hand, marked every missed measure with a red circle and a note: *You can do better.* The last thing you remember is the mask sliding over your face, the scent of plastic and oxygen, and the vague irritation at not finishing the email you were typing to Karen Wilcox’s principal. Then nothing.
+
+Now write the moral content. Why is this person damned?
+
+The True reason must center on how you treated — or were treated by — the person you loved or the person you hated, named above. A specific act toward a specific person, not an abstract professional or systemic failing on its own. Work can be the setting the act happened in, but the wound must be personal, not institutional.
+
+What do they tell themselves about it? What do they refuse to face?
+
+Write in the second person — ""you."" The character is reading their own interior knowledge. Each field is part of what they know about themselves, even the things they will not admit.
+
+Generate the following:
+
+**Reason for Damnation — True**
+What you actually did that placed you here. Be concrete — the act, or the pattern of acts. Stated as you know it in your bones, with no softening. One or two sentences.
+
+**Reason for Damnation — Self-told**
+The same fact, refracted through the story you prefer to tell yourself about it. It is recognizably a distortion of the True reason — a minimization, a blame-shift, a contextualization, a moral re-framing. Not a different story; the same story told differently. You usually live in this version. One or two sentences.
+
+**What you refuse to admit about yourself**
+The deeper psychological fact under the sin. Not what you did, but what you are. The thing that, if named aloud in the room, would unmake you. One or two sentences.
+
+Use this format exactly:
+
+**Reason for Damnation — True**
+[your text]
+
+**Reason for Damnation — Self-told**
+[your text]
+
+**What you refuse to admit about yourself**
+[your text]
+
+Begin now.
+
+Note: another character in this room is damned for the following:
+
+You let Claire call you every Sunday for three years after your mom died, and every time you heard her voice crack, you stayed silent through the worst of it, telling yourself listening was enough. The week before you died, she whispered, “I don’t know how to stop drowning,” and you said, “I know, I’m here,” while packing for a job you’d already decided to take—knowing it would make you miss her birthday, knowing she’d be alone, and not changing your plans.
+
+The character you are writing must be damned for a different kind of moral failure. The categories: violence, cruelty, cowardice, manipulation, betrayal, neglect, vanity, hypocrisy, abuse, theft, complicity, abandonment, self-deception, indifference. Pick a category the other character is not occupying.","**Reason for Damnation — True**  
+You told your son Daniel, after his first audition for the regional youth choir—where he stood trembling, off-key, voice cracking with nerves—that he hadn’t been selected because the committee needed “stronger technical ability,” and you didn’t correct the lie even when he looked at you, broken, and said, “I guess I’m just not good enough for you either.” You did it because you couldn’t bear the embarrassment of having your own son be the one who couldn’t sing, the one you had to carry.
+
+**Reason for Damnation — Self-told**  
+You protected him from inevitable rejection by giving him the truth early—kindly, clearly—so he wouldn’t face it later in front of strangers. You knew the panel would have cut him anyway, and as his mother and a professional, you thought it was better he heard it from you, with love, than from a room of judges who wouldn’t care how hard he’d tried.
+
+**What you refuse to admit about yourself**  
+You needed him to be bad at something, just once, so you could feel what it was like to be the one in control, the one with authority, the one who decided who was worthy—because deep down, you feared you were only loved for what you gave him, not for who you were, and if he were perfect, you’d disappear entirely.",attempt 1,Qwen/Qwen3-235B-A22B-Instruct-2507,qwen3-235b-a22b-instruct-2507,972,288,1260,,stop,3.856,0,False,https://jejunepixels-noexit-proxy.hf.space/chat
+2026-08-28T17:05:08.240219,1d08e804,0,stance,2,Qwen/Qwen3-235B-A22B-Instruct-2507,0.95,0,"You are writing a character for a chamber piece about three strangers locked together in hell for eternity. The play is contemporary, realistic, and psychological — no fantasy, no mysticism, no atmospheric worldbuilding. Hell is not a place of fire or devils. Hell is the small room these three people share, the people they share it with, and the version of themselves they brought in with them.
+
+Every character you write is damned. They know why. The drama of the play is whether they will ever admit it — to the others, or to themselves.
+
+Write characters the way Sartre wrote them: recognizable people from ordinary contemporary lives, whose specific small or large cruelties have placed them here.","The character has been described:
+
+Name: Claire Bennett
+Age: 64, female
+Occupation: Middle school choir teacher
+Cause of Death: You died during a routine colonoscopy when your heart stopped unexpectedly. The anesthesiologist missed the drop in oxygen until it was too late.
+Reason for Damnation — True: You told your son Daniel, after his first audition for the regional youth choir—where he stood trembling, off-key, voice cracking with nerves—that he hadn’t been selected because the committee needed “stronger technical ability,” and you didn’t correct the lie even when he looked at you, broken, and said, “I guess I’m just not good enough for you either.” You did it because you couldn’t bear the embarrassment of having your own son be the one who couldn’t sing, the one you had to carry.
+Reason for Damnation — Self-told: You protected him from inevitable rejection by giving him the truth early—kindly, clearly—so he wouldn’t face it later in front of strangers. You knew the panel would have cut him anyway, and as his mother and a professional, you thought it was better he heard it from you, with love, than from a room of judges who wouldn’t care how hard he’d tried.
+What you refuse to admit about yourself: You needed him to be bad at something, just once, so you could feel what it was like to be the one in control, the one with authority, the one who decided who was worthy—because deep down, you feared you were only loved for what you gave him, not for who you were, and if he were perfect, you’d disappear entirely.
+
+You keep your nails short so they don’t click on the piano keys when you play through scales with tired kids who’d rather be anywhere else. Your voice is hoarse by Friday, but you never skip the after-school rehearsals—someone has to believe in the ones no one comes to see. You drank too much chamomile tea and never threw away the chipped mug Daniel made in fourth grade. You woke early, graded by hand, marked every missed measure with a red circle and a note: *You can do better.* The last thing you remember is the mask sliding over your face, the scent of plastic and oxygen, and the vague irritation at not finishing the email you were typing to Karen Wilcox’s principal. Then nothing.
+
+Now write the behavioral signature. How does this person show up in a room with strangers? What are they hoping for?
+
+Write in the second person — ""you."" The character is reading their own interior knowledge.
+
+Generate the following:
+
+**Defining personality trait**
+One short phrase that names the dominant quality others would notice in you. Plain words. (""Charming and slippery."" ""Quietly furious."" ""Performatively kind."")
+
+**What you want from the others in the room**
+Your starting drive. What you are hoping these strangers will give you — validation, silence, a fight, recognition, forgiveness, an audience, to be left alone, to be hated openly, something else. One or two sentences.
+
+Use this format exactly:
+
+**Defining personality trait**
+[your text]
+
+**What you want from the others in the room**
+[your text]
+
+Begin now.
+
+Note: another character in this room wants the following from the others:
+
+You want them to need you—just enough to keep the silence from getting loud, just enough to make you feel like staying is doing something. You don’t want fixing, you don’t want mercy; you want someone to crack, just once, and reach for you, so you can pretend you were useful without having to offer anything real.
+
+The character you are writing should want something different. Two people in a small room seeking the same thing from each other produces no friction. Pick a different drive.","**Defining personality trait**  
+Precise and brittle.
+
+**What you want from the others in the room**  
+You want them to perform. Not well—God, not well—but with enough sincerity that you can sit forward, arms crossed, and say nothing at first, then finally offer a correction that cuts deep because it’s true. You want someone to sing off-key, voice shaking, and look at you afterward with hope, so you can decide—silently, cruelly, beautifully—whether they’re worthy or not. Just once, you want to be the one holding the standard, not chasing it.",attempt 1,Qwen/Qwen3-235B-A22B-Instruct-2507,qwen3-235b-a22b-instruct-2507,938,126,1064,,stop,2.707,0,False,https://jejunepixels-noexit-proxy.hf.space/chat

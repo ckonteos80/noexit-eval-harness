@@ -151,16 +151,22 @@
   #session-view { display: none; flex-direction: column; gap: 14px; }
   #session-view.show { display: flex; }
 
-  /* ── character generation view: two independently-scrolling panes,
-     both bounded to the viewport so neither scrolls the page itself ── */
+  /* ── character generation view: three independently-scrolling panes
+     (human eval, AI eval, bios), all bounded to the viewport so none
+     of them scroll the page itself ── */
   #chargen-view { display: flex; gap: 20px; align-items: stretch; }
   #chargen-view.hide { display: none; }
-  #chargen-evals, #chargen-bios { overflow-y: auto; }
-  #chargen-evals { flex: 0 0 340px; }
+  #chargen-evals, #chargen-ai-evals, #chargen-bios { overflow-y: auto; }
+  #chargen-evals, #chargen-ai-evals { flex: 0 0 340px; }
   #chargen-bios { flex: 1; min-width: 0; }
+  .col-heading {
+    font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--dim2);
+    margin-bottom: 10px;
+  }
+  .pairbar.ai, .charcard.ai { border-top-color: var(--grp-eval); }
   @media (max-width: 900px){
     #chargen-view { flex-direction: column; }
-    #chargen-evals, #chargen-bios { height: auto !important; max-height: 60vh; }
+    #chargen-evals, #chargen-ai-evals, #chargen-bios { height: auto !important; max-height: 60vh; }
   }
 
   /* ── character panel ── */
@@ -355,6 +361,7 @@
     <div class="runstat" id="runstat"></div>
     <div id="chargen-view">
       <div id="chargen-evals"></div>
+      <div id="chargen-ai-evals"></div>
       <div id="chargen-bios"></div>
     </div>
     <div class="tablebar" id="table-controls" style="display:none">
@@ -570,11 +577,47 @@ function renderRunStat(){
   });
 }
 
-// Character Generation view: two independently-scrolling panes sharing the
-// same run data -- evals on the left (pair-level + each character's Rubric 1
-// form), bios on the right. Neither pane scrolls the page; each scrolls itself.
+// Builds one column's eval group (design + pair-level + per-character cards) for a
+// single run. `fieldSuffix` picks which data slot to read/write ('' for human eval
+// fields like r.pair_eval/c.eval, '_ai' for the parallel r.pair_eval_ai/c.eval_ai)
+// so human and AI scores never overwrite each other. `judgeLabel` is what gets
+// stamped into judge_model when a click happens in this column.
+function buildCharGenEvalGroup(r, chars, cids, fieldSuffix, judgeLabel, cardClass){
+  const evalGroup = document.createElement('div'); evalGroup.className = 'rungroup';
+
+  const designKey = 'character_design_eval' + fieldSuffix;
+  const designbar = document.createElement('div'); designbar.className = 'pairbar ' + cardClass;
+  designbar.innerHTML = `<div class="pairbar-h">Overall character design · ${esc(r.run_id)}</div>`;
+  r[designKey] = (r[designKey] && typeof r[designKey] === 'object') ? r[designKey] : {};
+  designbar.appendChild(buildEvalForm(r[designKey], r, null, judgeLabel));
+  evalGroup.appendChild(designbar);
+
+  const pairKey = 'pair_eval' + fieldSuffix;
+  const pairbar = document.createElement('div'); pairbar.className = 'pairbar ' + cardClass;
+  pairbar.innerHTML = `<div class="pairbar-h">Pair-level · ${esc(r.run_id)}</div>`;
+  r[pairKey] = (r[pairKey] && typeof r[pairKey] === 'object') ? r[pairKey] : {};
+  pairbar.appendChild(buildEvalForm(r[pairKey], r, null, judgeLabel));
+  evalGroup.appendChild(pairbar);
+
+  const evalKey = 'eval' + fieldSuffix;
+  cids.forEach(cid => {
+    const c = chars[cid];
+    const evalCard = document.createElement('div'); evalCard.className = 'charcard ' + cardClass;
+    evalCard.innerHTML = `<div class="charcard-evalh">${esc(c.name || 'Char '+cid)} — character generation</div>`;
+    c[evalKey] = (c[evalKey] && typeof c[evalKey] === 'object') ? c[evalKey] : {};
+    evalCard.appendChild(buildEvalForm(c[evalKey], r, null, judgeLabel));
+    evalGroup.appendChild(evalCard);
+  });
+
+  return evalGroup;
+}
+
+// Character Generation view: three independently-scrolling panes sharing the same
+// run data -- human eval, AI eval (identical structure, separate data fields), and
+// bios. None of the panes scroll the page; each scrolls itself.
 function renderCharGen(){
-  const evalsHost = $('#chargen-evals'); evalsHost.innerHTML = '';
+  const evalsHost = $('#chargen-evals'); evalsHost.innerHTML = '<div class="col-heading">Human eval</div>';
+  const aiEvalsHost = $('#chargen-ai-evals'); aiEvalsHost.innerHTML = '<div class="col-heading">AI eval</div>';
   const biosHost = $('#chargen-bios'); biosHost.innerHTML = '';
   let any = false;
 
@@ -584,31 +627,12 @@ function renderCharGen(){
     if (!cids.length) return;
     any = true;
 
-    const evalGroup = document.createElement('div'); evalGroup.className = 'rungroup';
-
-    const designbar = document.createElement('div'); designbar.className = 'pairbar';
-    designbar.innerHTML = `<div class="pairbar-h">Overall character design · ${esc(r.run_id)}</div>`;
-    r.character_design_eval = (r.character_design_eval && typeof r.character_design_eval === 'object') ? r.character_design_eval : {};
-    designbar.appendChild(buildEvalForm(r.character_design_eval, r));
-    evalGroup.appendChild(designbar);
-
-    const pairbar = document.createElement('div'); pairbar.className = 'pairbar';
-    pairbar.innerHTML = `<div class="pairbar-h">Pair-level · ${esc(r.run_id)}</div>`;
-    r.pair_eval = (r.pair_eval && typeof r.pair_eval === 'object') ? r.pair_eval : {};
-    pairbar.appendChild(buildEvalForm(r.pair_eval, r));
-    evalGroup.appendChild(pairbar);
+    evalsHost.appendChild(buildCharGenEvalGroup(r, chars, cids, '', 'human', ''));
+    aiEvalsHost.appendChild(buildCharGenEvalGroup(r, chars, cids, '_ai', 'ai', 'ai'));
 
     const bioGroup = document.createElement('div'); bioGroup.className = 'rungroup';
-
     cids.forEach(cid => {
       const c = chars[cid];
-
-      const evalCard = document.createElement('div'); evalCard.className = 'charcard';
-      evalCard.innerHTML = `<div class="charcard-evalh">${esc(c.name || 'Char '+cid)} — character generation</div>`;
-      c.eval = (c.eval && typeof c.eval === 'object') ? c.eval : {};
-      evalCard.appendChild(buildEvalForm(c.eval, r));
-      evalGroup.appendChild(evalCard);
-
       const bioCard = document.createElement('div'); bioCard.className = 'charcard';
       bioCard.innerHTML = `
         <h3>${esc(c.name || '(unnamed)')}</h3>
@@ -622,13 +646,12 @@ function renderCharGen(){
       };
       bioGroup.appendChild(bioCard);
     });
-
-    evalsHost.appendChild(evalGroup);
     biosHost.appendChild(bioGroup);
   });
 
   if (!any) {
-    evalsHost.innerHTML = '<div class="evalempty">No character data in the loaded run(s).</div>';
+    evalsHost.innerHTML += '<div class="evalempty">No character data in the loaded run(s).</div>';
+    aiEvalsHost.innerHTML += '<div class="evalempty">No character data in the loaded run(s).</div>';
   }
 }
 
@@ -636,7 +659,8 @@ const RATINGS = ['good', 'neutral', 'bad'];
 
 // Generic editable score form. Mutates `target` in place ({rating, judge_model, judge_notes})
 // and flags `run` dirty on any change. Used for character evals, pair-level evals, and dialogue evals alike.
-function buildEvalForm(target, run, onChange){
+function buildEvalForm(target, run, onChange, judgeLabel){
+  judgeLabel = judgeLabel || 'human';
   const wrap = document.createElement('div');
   wrap.className = 'evalform';
 
@@ -645,8 +669,8 @@ function buildEvalForm(target, run, onChange){
   badge.textContent = target.judge_model ? ('scored by ' + target.judge_model) : 'unscored';
 
   const touch = () => {
-    target.judge_model = 'human';
-    badge.textContent = 'scored by human';
+    target.judge_model = judgeLabel;
+    badge.textContent = 'scored by ' + judgeLabel;
     badge.classList.add('scored');
     markDirty(run);
     if (onChange) onChange();
@@ -977,11 +1001,12 @@ function syncStickyHeader(host){
 // topbar + runstat) so the page itself never needs to scroll for this view --
 // each pane scrolls independently within that fixed band instead.
 function syncChargenHeight(){
-  const evalsEl = $('#chargen-evals'), biosEl = $('#chargen-bios');
-  if (!evalsEl || !biosEl) return;
+  const evalsEl = $('#chargen-evals'), aiEvalsEl = $('#chargen-ai-evals'), biosEl = $('#chargen-bios');
+  if (!evalsEl || !aiEvalsEl || !biosEl) return;
   const usedH = $('#topbar').offsetHeight + $('#runstat').offsetHeight + 40;
   const h = `calc(100vh - ${usedH}px)`;
   evalsEl.style.height = h;
+  aiEvalsEl.style.height = h;
   biosEl.style.height = h;
 }
 

@@ -20,7 +20,10 @@ PROVIDER = "hf"  # "hf" or "openai"
 # stopped serving it. Qwen3-8B is ungated with 2 live providers (nscale, featherless-ai).
 MODEL_DIALOGUE = "Qwen/Qwen3-8B"
 MODEL_ADDRESSING = "Qwen/Qwen3-8B"
-MODEL_GENERATION = "Qwen/Qwen3-8B"
+# Generation runs once per session (cost/latency don't matter as much here), so it
+# gets Qwen's flagship instead -- same family/license as the models above, chosen
+# to address vague/disconnected character-gen content flagged in human eval.
+MODEL_GENERATION = "Qwen/Qwen3-235B-A22B-Instruct-2507"
 # Narrator uses MODEL_DIALOGUE in Unity (see CharacterController.GenerateNarratorDialogue)
 MODEL_NARRATOR = MODEL_DIALOGUE
 

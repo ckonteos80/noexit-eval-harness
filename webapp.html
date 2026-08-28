@@ -45,6 +45,7 @@
     color: var(--text-hi); letter-spacing: .5px;
   }
   #start-screen p { color: var(--dim2); max-width: 420px; text-align: center; }
+  #start-btns { display: flex; gap: 10px; }
   .primary-btn {
     font-family: var(--mono); font-size: 13px; letter-spacing: .5px;
     background: var(--accent); color: #16130c; border: none;
@@ -59,16 +60,28 @@
   .ghost-btn:hover { color: var(--accent); border-color: var(--accent); }
   #start-error { color: var(--none-col); max-width: 460px; text-align: center; font-size: 12px; }
 
+  /* ── characters-only review screen: two full bios side by side, no chat ── */
+  #chars-only-screen { display: none; height: 100vh; flex-direction: column; }
+  #chars-only-screen.show { display: flex; }
+  #chars-only-grid {
+    flex: 1; overflow-y: auto; padding: 22px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-content: start;
+  }
+  @media (max-width: 800px) { #chars-only-grid { grid-template-columns: 1fr; } }
+  #chars-only-grid .charcard { margin-bottom: 0; }
+  #chars-only-grid .bio { max-height: none; }
+  #chars-only-grid .fade, #chars-only-grid .more { display: none; }
+
   /* ── main app ── */
   #app { display: none; height: 100vh; flex-direction: column; }
   #app.show { display: flex; }
 
-  #topbar {
+  .topbar {
     background: var(--surface); border-bottom: 1px solid var(--border2);
     padding: 10px 18px; display: flex; align-items: center; gap: 14px;
   }
-  #topbar .brand { font-family: var(--serif); font-size: 17px; font-weight: 300; color: var(--accent); }
-  #topbar .sid { color: var(--dim2); font-size: 11px; }
+  .topbar .brand { font-family: var(--serif); font-size: 17px; font-weight: 300; color: var(--accent); }
+  .topbar .sid { color: var(--dim2); font-size: 11px; }
   .spacer { flex: 1; }
 
   #main { flex: 1; display: flex; min-height: 0; }
@@ -120,7 +133,7 @@
   #msg-input:focus { outline: none; border-color: var(--accent); }
   #msg-input:disabled { color: var(--dim); }
 
-  #endbar { display: flex; gap: 8px; }
+  .endbar { display: flex; gap: 8px; }
 </style>
 </head>
 <body>
@@ -128,16 +141,34 @@
 <div id="start-screen">
   <h1>No Exit</h1>
   <p>Generate two characters, hear the narrator show you in, then talk to them. Ending the session saves it to <code>runs/</code> for review in run_viewer.html.</p>
-  <button class="primary-btn" id="new-session-btn">Start New Session</button>
+  <div id="start-btns">
+    <button class="primary-btn" id="new-session-btn">Start New Session</button>
+    <button class="ghost-btn" id="chars-only-btn">Generate Characters Only</button>
+  </div>
   <div id="start-error"></div>
 </div>
 
+<div id="chars-only-screen">
+  <div class="topbar">
+    <div class="brand">NoExit</div>
+    <div class="sid" id="chars-only-session-label"></div>
+    <div class="spacer"></div>
+    <div class="endbar">
+      <button class="ghost-btn" id="regen-btn">Generate New Pair</button>
+      <button class="ghost-btn" id="chars-only-discard-btn">Discard</button>
+      <button class="ghost-btn" id="chars-only-save-btn">Save</button>
+      <button class="primary-btn" id="continue-btn">Continue to Dialogue</button>
+    </div>
+  </div>
+  <div id="chars-only-grid"></div>
+</div>
+
 <div id="app">
-  <div id="topbar">
+  <div class="topbar">
     <div class="brand">NoExit</div>
     <div class="sid" id="session-label"></div>
     <div class="spacer"></div>
-    <div id="endbar">
+    <div class="endbar">
       <button class="ghost-btn" id="abandon-btn">Abandon</button>
       <button class="ghost-btn" id="save-btn">Save &amp; End</button>
     </div>
@@ -182,8 +213,10 @@ function addMsg(cls, who, text) {
   t.scrollTop = t.scrollHeight;
 }
 
-function renderChars(characters) {
-  const host = $('#chars'); host.innerHTML = '';
+// Shared by the chat sidebar (compact, collapsed bio) and the characters-only
+// review screen (full-size, always-expanded bio -- CSS hides the fade/toggle there).
+function renderCharCards(hostSel, characters) {
+  const host = $(hostSel); host.innerHTML = '';
   charNames = {};
   [1, 2].forEach(cid => {
     const c = characters[String(cid)];
@@ -208,6 +241,7 @@ function renderChars(characters) {
     host.appendChild(card);
   });
 }
+function renderChars(characters) { renderCharCards('#chars', characters); }
 
 function classForCharNo(no) {
   if (no === 0) return 'player';
@@ -223,14 +257,21 @@ function setBusy(busy) {
   $('#typing').classList.toggle('show', busy);
 }
 
+// Three top-level screens: start, chars-only (review a generated pair with no
+// narrator/dialogue yet), and app (the full chat session).
+function showScreen(name) {
+  $('#start-screen').classList.toggle('hidden', name !== 'start');
+  $('#chars-only-screen').classList.toggle('show', name === 'chars-only');
+  $('#app').classList.toggle('show', name === 'app');
+}
+
 async function startSession() {
   const btn = $('#new-session-btn');
   btn.disabled = true; btn.textContent = 'Generating characters...';
   $('#start-error').textContent = '';
   try {
     const data = await api('/api/new');
-    $('#start-screen').classList.add('hidden');
-    $('#app').classList.add('show');
+    showScreen('app');
     $('#session-label').textContent = data.session_id;
     $('#transcript').innerHTML = '';
     renderChars(data.characters);
@@ -240,6 +281,44 @@ async function startSession() {
     $('#start-error').textContent = 'Failed to start session: ' + err.message;
   } finally {
     btn.disabled = false; btn.textContent = 'Start New Session';
+  }
+}
+
+async function generateCharsOnly(fromReviewScreen) {
+  const btn = fromReviewScreen ? $('#regen-btn') : $('#chars-only-btn');
+  const label = btn.textContent;
+  btn.disabled = true; btn.textContent = fromReviewScreen ? 'Generating...' : 'Generating characters...';
+  $('#start-error').textContent = '';
+  try {
+    const data = await api('/api/chars_only');
+    showScreen('chars-only');
+    $('#chars-only-session-label').textContent = data.session_id;
+    renderCharCards('#chars-only-grid', data.characters);
+  } catch (err) {
+    if (fromReviewScreen) alert('Failed to generate: ' + err.message);
+    else $('#start-error').textContent = 'Failed to generate characters: ' + err.message;
+  } finally {
+    btn.disabled = false; btn.textContent = label;
+  }
+}
+
+async function continueToDialogue() {
+  const btn = $('#continue-btn');
+  btn.disabled = true; btn.textContent = 'Starting...';
+  try {
+    const sid = $('#chars-only-session-label').textContent;
+    const stateData = await fetch('/api/state').then(r => r.json());
+    const res = await api('/api/run_narrator');
+    showScreen('app');
+    $('#session-label').textContent = sid;
+    $('#transcript').innerHTML = '';
+    renderChars(stateData.characters);
+    addMsg('narrator', 'Narrator', res.narrator_line);
+    $('#msg-input').focus();
+  } catch (err) {
+    alert('Failed to continue: ' + err.message);
+  } finally {
+    btn.disabled = false; btn.textContent = 'Continue to Dialogue';
   }
 }
 
@@ -275,25 +354,35 @@ async function endSession(save) {
   } catch (err) {
     alert('Error: ' + err.message);
   }
-  $('#app').classList.remove('show');
-  $('#start-screen').classList.remove('hidden');
+  showScreen('start');
   $('#start-error').textContent = '';
 }
 
 $('#new-session-btn').onclick = startSession;
+$('#chars-only-btn').onclick = () => generateCharsOnly(false);
+$('#regen-btn').onclick = () => generateCharsOnly(true);
+$('#continue-btn').onclick = continueToDialogue;
+$('#chars-only-save-btn').onclick = () => endSession(true);
+$('#chars-only-discard-btn').onclick = () => endSession(false);
 $('#send-btn').onclick = sendTurn;
 $('#msg-input').addEventListener('keydown', e => { if (e.key === 'Enter') sendTurn(); });
 $('#save-btn').onclick = () => endSession(true);
 $('#abandon-btn').onclick = () => endSession(false);
 
 // If a session is already active server-side (e.g. page was reloaded mid-session),
-// pick it back up instead of forcing a fresh start.
+// pick it back up instead of forcing a fresh start -- into the chars-only screen
+// if the narrator hasn't played yet, otherwise the full chat view.
 (async () => {
   try {
     const data = await fetch('/api/state').then(r => r.json());
+    if (data.active && !data.narrator_played) {
+      showScreen('chars-only');
+      $('#chars-only-session-label').textContent = data.session_id;
+      renderCharCards('#chars-only-grid', data.characters);
+      return;
+    }
     if (data.active) {
-      $('#start-screen').classList.add('hidden');
-      $('#app').classList.add('show');
+      showScreen('app');
       $('#session-label').textContent = data.session_id;
       renderChars(data.characters);
       data.dialogue.forEach(e => {
