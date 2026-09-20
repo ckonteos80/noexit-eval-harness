@@ -15,7 +15,7 @@ import ast
 import csv
 import json
 import random
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
 
@@ -39,6 +39,17 @@ STATE_JSON = OUTPUT_DIR / "session_state.json"
 # ──────────────────────────────────────────────────────────────────────────────
 # TRANSCRIPT WRITING
 # ──────────────────────────────────────────────────────────────────────────────
+
+def _utc_now_iso() -> str:
+    """
+    UTC timestamp in the exact format utcnow().isoformat() produced.
+
+    utcnow() is deprecated, but the naive (offset-free) shape is kept on purpose:
+    run_viewer sorts these as plain strings, and the whole run history is stored
+    this way. Switching to an offset-bearing format would mix two shapes.
+    """
+    return datetime.now(timezone.utc).replace(tzinfo=None).isoformat()
+
 
 _TRANSCRIPT_HEADERS = [
     "timestamp", "session_id", "turn_number", "call_type",
@@ -87,7 +98,7 @@ def log_call(
 
     m = meta.to_dict() if meta is not None else {}
     row = [
-        datetime.utcnow().isoformat(),
+        _utc_now_iso(),
         state.session_id,
         state.turn_count,
         call_type,
@@ -129,7 +140,7 @@ def log_edit(prompt_name: str, old_text: str, new_text: str):
     _init_transcript_files()
     with open(EDITS_CSV, "a", newline="", encoding="utf-8") as f:
         csv.writer(f).writerow([
-            datetime.utcnow().isoformat(),
+            _utc_now_iso(),
             prompt_name,
             old_text,
             new_text,

@@ -1,3 +1,8 @@
 __pycache__/
 *.pyc
 *.pyo
+
+# Scratch logs written during a session. README calls these disposable --
+# runs/ is where a session is kept on purpose. They churn on every run.
+noexit_outputs/
+noexit_exports/

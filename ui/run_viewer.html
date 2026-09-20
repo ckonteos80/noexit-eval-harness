@@ -670,8 +670,13 @@ function buildEvalForm(target, run, onChange, judgeLabel){
   badge.textContent = target.judge_model ? ('scored by ' + target.judge_model) : 'unscored';
 
   const touch = () => {
-    target.judge_model = judgeLabel;
-    badge.textContent = 'scored by ' + judgeLabel;
+    // Don't clobber a specific judge with this column's generic label. AI evals are
+    // written straight into the run JSON with judge_model like 'claude-sonnet-5';
+    // overwriting that with 'ai' the moment anyone opens the form would destroy the
+    // record of which model produced the score, which is the whole point of keeping
+    // human and AI evals in separate fields. Only stamp a judge when there isn't one.
+    if (!target.judge_model) target.judge_model = judgeLabel;
+    badge.textContent = 'scored by ' + target.judge_model;
     badge.classList.add('scored');
     markDirty(run);
     if (onChange) onChange();

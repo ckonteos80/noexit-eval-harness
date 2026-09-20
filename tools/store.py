@@ -92,6 +92,10 @@ class ExperimentStore:
         placeholders = ", ".join("?" for _ in INDEX_COLUMNS)
         col_names = ", ".join(f'"{c}"' for c in INDEX_COLUMNS)
         with sqlite3.connect(self.index_path) as conn:
+            # Writing the same run_id twice overwrites its JSON file, so the index
+            # has to match: clear this run's rows first or a re-save silently
+            # double-counts every call in cross-run token queries.
+            conn.execute("DELETE FROM calls WHERE run_id = ?", (run_id,))
             conn.executemany(
                 f"INSERT INTO calls ({col_names}) VALUES ({placeholders})", rows
             )

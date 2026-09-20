@@ -4,7 +4,7 @@ Packages session outputs into a downloadable zip.
 
 import shutil
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 
 import simulator  # for OUTPUT_DIR + file paths
 
@@ -22,7 +22,7 @@ def export_session(label: str = "") -> Path:
     Returns the path to the created zip.
     """
     EXPORT_DIR.mkdir(parents=True, exist_ok=True)
-    suffix = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+    suffix = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
     if label:
         suffix = f"{label}_{suffix}"
     out_dir = EXPORT_DIR / f"noexit_session_{suffix}"
@@ -57,21 +57,21 @@ def write_session_notes(state, summary: str = "") -> Path:
     notes_path = simulator.OUTPUT_DIR / "session_notes.md"
 
     content = [
-        f"# noexit harness session notes",
-        f"",
+        "# noexit harness session notes",
+        "",
         f"**Session ID:** `{state.session_id}`",
         f"**Started:** {state.session_started}",
         f"**Turns played:** {state.turn_count}",
         f"**Characters generated:** {state.characters_generated}",
         f"**Narrator played:** {state.narrator_played}",
-        f"",
-        f"## Characters",
+        "",
+        "## Characters",
     ]
     for cid in sorted(state.characters.keys()):
         if cid == 0:
             continue
         char = state.characters[cid]
-        content.append(f"")
+        content.append("")
         content.append(f"### Character {cid}: {char.name or '(unnamed)'}")
         content.append(f"- **Age/Gender:** {char.age}, {char.gender}")
         content.append(f"- **Occupation:** {char.occupation}")
@@ -79,11 +79,11 @@ def write_session_notes(state, summary: str = "") -> Path:
         content.append(f"- **Personality:** {char.personality_trait}")
         content.append(f"- **Wants:** {char.want}")
         if char.info_shared:
-            content.append(f"- **infoShared:**")
+            content.append("- **infoShared:**")
             for info in char.info_shared:
                 content.append(f"  - {info}")
 
-    content.append(f"")
+    content.append("")
     content.append(f"## Dialogue ({len(state.dialogue_entries)} entries)")
     for e in state.dialogue_entries[-10:]:  # last 10 for brevity
         content.append(f"- **{e.character_label}:** {e.dialogue_text}")
@@ -91,17 +91,17 @@ def write_session_notes(state, summary: str = "") -> Path:
         content.append(f"- ...({len(state.dialogue_entries) - 10} earlier entries — see transcript.csv)")
 
     if summary:
-        content.append(f"")
-        content.append(f"## Session summary")
+        content.append("")
+        content.append("## Session summary")
         content.append(summary)
 
-    content.append(f"")
-    content.append(f"## Files")
-    content.append(f"- `transcript.csv` — full per-call log")
-    content.append(f"- `transcript.json` — same data, structured")
-    content.append(f"- `edits.csv` — prompt edits made this session")
-    content.append(f"- `session_state.json` — full state snapshot for resumption")
-    content.append(f"- `game_state/` — current working prompts, config, assembly, game, providers")
+    content.append("")
+    content.append("## Files")
+    content.append("- `transcript.csv` — full per-call log")
+    content.append("- `transcript.json` — same data, structured")
+    content.append("- `edits.csv` — prompt edits made this session")
+    content.append("- `session_state.json` — full state snapshot for resumption")
+    content.append("- `game_state/` — current working prompts, config, assembly, game, providers")
 
     notes_path.write_text("\n".join(content), encoding="utf-8")
     return notes_path
