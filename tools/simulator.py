@@ -510,6 +510,10 @@ def apply_prompt_edit(prompt_name: str, new_text: str) -> tuple[bool, str]:
     Offsets are computed against the UTF-8 bytes because ast.col_offset is a byte
     offset, and these prompts contain em-dashes.
 
+    Side effect: the value is always re-emitted triple-quoted, so editing one of
+    the single-quoted prompts converts it. The value is unchanged, so DIFF.md
+    reports the file as changed with no field-level difference.
+
     Returns (success, message). On success the new text is live for the next call.
     """
     old_text = get_prompt_value(prompt_name)
@@ -538,13 +542,25 @@ def apply_prompt_edit(prompt_name: str, new_text: str) -> tuple[bool, str]:
     start = sum(len(l) for l in lines[:target.lineno - 1]) + target.col_offset
     end = sum(len(l) for l in lines[:target.end_lineno - 1]) + target.end_col_offset
 
-    # Always re-emit as a triple-quoted literal; refuse rather than produce a file
-    # that will not parse.
-    if '"""' in new_text or new_text.endswith('"') or new_text.endswith("\\"):
-        return False, "New text contains a triple quote, or ends in a quote or backslash -- cannot be written safely."
-    literal = f'"""{new_text}"""'.encode("utf-8")
+    # Re-emit as a triple-quoted literal. Backslashes must be escaped or Python
+    # interprets them on reload -- writing a windows path would silently turn
+    # \t into a tab. Only a literal triple quote or a trailing quote remain
+    # unwritable, and those are refused rather than guessed at.
+    if '"""' in new_text or new_text.endswith('"'):
+        return False, ("New text contains a triple quote, or ends in a quote "
+                       "-- cannot be written safely.")
+    literal = f'"""{new_text.replace(chr(92), chr(92) * 2)}"""'.encode("utf-8")
 
-    PROMPTS_FILE.write_bytes(raw[:start] + literal + raw[end:])
+    updated = raw[:start] + literal + raw[end:]
+    PROMPTS_FILE.write_bytes(updated)
+
+    # Verify the file still parses and the value round-tripped; roll back if not.
+    # This file is imported on every call, so a bad write breaks the whole session.
+    if get_prompt_value(prompt_name) != new_text:
+        PROMPTS_FILE.write_bytes(raw)
+        get_prompt_value(prompt_name)  # reload the restored module
+        return False, f"Write did not round-trip for '{prompt_name}' -- prompts.py restored unchanged."
+
     log_edit(prompt_name, old_text, new_text)
     return True, f"Prompt '{prompt_name}' updated. Next call will use the new content."
 

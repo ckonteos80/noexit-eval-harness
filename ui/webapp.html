@@ -347,12 +347,17 @@ async function endSession(save) {
   try {
     if (save) {
       const res = await api('/api/save');
-      alert(`Saved run '${res.run_id}' (${res.calls} calls).\nOpen run_viewer.html to review it.`);
+      alert(`Saved run '${res.run_id}' (${res.calls} calls).\nOpen ui/run_viewer.html to review it.`);
     } else {
       await api('/api/abandon');
     }
   } catch (err) {
+    // Stay on the current screen. A save can fail while the session is still
+    // alive server-side -- the drift guard returns 409 and keeps the state so
+    // you can snapshot and retry. Leaving for the start screen here would hide
+    // a session that still exists, recoverable only by reloading the page.
     alert('Error: ' + err.message);
+    return;
   }
   showScreen('start');
   $('#start-error').textContent = '';
