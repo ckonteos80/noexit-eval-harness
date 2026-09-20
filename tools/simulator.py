@@ -339,7 +339,7 @@ def run_player_turn(state: game.GameState, player_message: str) -> dict:
       "player_message": str,
       "extracted_from_player": str,  # "none" or extracted info
       "addressing_called": bool,
-      "addressing_decision": Optional[str],  # "0"/"1"/"2"/"3" or None
+      "addressing_decision": Optional[str],  # "0"/"1"/"2" or None
       "replies": [
           {"char_no": 1, "text": "...", "extracted": "name: Alex" | "none"},
           ...
@@ -391,7 +391,7 @@ def run_player_turn(state: game.GameState, player_message: str) -> dict:
             replying_char_ids = [1]
         elif addressing_decision == "2":
             replying_char_ids = [2]
-        # "3" not currently mapped (would be narrator); ignore for now
+        # Nothing else is reachable: _run_addressing only ever returns "0"/"1"/"2".
 
     # ── Run each replying character ──
     for char_id in replying_char_ids:
@@ -423,11 +423,13 @@ def _run_addressing(state: game.GameState, player_message: str) -> str:
         log_call(state, "addressing", 0, config.MODEL_ADDRESSING, config.TEMP_ADDRESSING,
                  config.MAX_TOKENS_ADDRESSING, sys_p, player_message, reply,
                  notes=f"attempt {attempt + 1}", meta=res)
-        if any(c in reply for c in ("0", "1", "2")):
-            # Match Unity behavior: first matching digit wins
-            for c in ("0", "1", "2"):
-                if c in reply:
-                    return c
+        # The prompt asks for exactly one digit, so validate rather than extract.
+        # The previous version scanned for any of "0"/"1"/"2" anywhere in the reply
+        # and returned the lowest one present, so a malformed reply like "2, not 0"
+        # silently became "0" instead of being retried.
+        choice = reply.strip()
+        if choice in ("0", "1", "2"):
+            return choice
     # Fallback: "0" (both respond)
     log_call(state, "addressing", 0, config.MODEL_ADDRESSING, config.TEMP_ADDRESSING,
              config.MAX_TOKENS_ADDRESSING, sys_p, player_message, "",

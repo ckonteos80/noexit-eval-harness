@@ -1,5 +1,13 @@
 # Prompt version changelog
 
+## 2026-09-20_addressing-drop-character-3
+
+**Stops offering character 3 in the addressing prompt -- the valet has left the room and is not addressable, so a '3' reply was rejected as invalid, burning three retries before defaulting to 'both reply'. Also states the one-digit contract that simulator's now-strict parse enforces.**
+
+Previous: 2026-09-13_experiment-no-examples
+
+---
+
 ## 2026-09-13_experiment-no-examples
 
 **EXPERIMENT: strips every concrete example, positive and negative, from the three character-generation prompts. All 24 rules survive, stated abstractly, with nothing nameable left for the model to lift. Tests whether the examples were widening the space or collapsing it -- two were provably leaking into output (the name Sanne, and 'need to be needed'). Restore the previous version if this performs worse.**

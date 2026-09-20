@@ -24,4 +24,4 @@ Which `game_state/` file corresponds to which Unity C# file(s).
 
 ## Not tracked in game_state/, but also Unity-relevant
 
-simulator.py stays at project root (not in game_state/) but its call-flow logic also mirrors Unity: CharacterGenerator.cs (GenerateCharacter) and CharacterController.cs (ParsedText) -- the sequencing of generation calls and reply/addressing routing. If you change *when* addressing triggers, reply routing, or the generation sequence, check those Unity methods too, even though this tool won't flag it automatically.
+tools/simulator.py is outside game_state/ and so is not snapshotted, but its call-flow mirrors Unity: CharacterGenerator.cs (GenerateCharacter) and CharacterController.cs (ParsedText) -- the sequencing of generation calls and reply/addressing routing. If you change *when* addressing triggers, reply routing, or the generation sequence, check those Unity methods too, even though this tool won't flag it automatically.
