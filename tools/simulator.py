@@ -226,7 +226,7 @@ def generate_character(state: game.GameState, char_no: int) -> dict:
     sys_p, user_p = assembly.assemble_character_prompts(**char_kwargs)
     _response, parsed = _call_with_parse_retry(
         sys_p, user_p, char_no, "character",
-        config.MODEL_GENERATION, config.TEMP_GENERATION, 0,
+        config.MODEL_GENERATION, config.TEMP_GENERATION, config.MAX_TOKENS_GENERATION,
         state, assembly.parse_character_response, assembly.character_parse_complete,
     )
 

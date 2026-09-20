@@ -1,5 +1,13 @@
 # Prompt version changelog
 
+## 2026-09-20_housekeeping-extract-field-and-deprecations
+
+**Housekeeping only, no prompt or behavioural change: extract_field ends a value at the next line-initial '**' rather than any '**', so inline bold can no longer truncate a field; game.py drops deprecated datetime.utcnow() while keeping the exact naive timestamp shape; providers.py loses an unused import; assemble_bio's docstring corrected to say its display order is deliberately not CHARACTER_FIELDS order.**
+
+Previous: 2026-09-20_addressing-drop-character-3
+
+---
+
 ## 2026-09-20_addressing-drop-character-3
 
 **Stops offering character 3 in the addressing prompt -- the valet has left the room and is not addressable, so a '3' reply was rejected as invalid, burning three retries before defaulting to 'both reply'. Also states the one-digit contract that simulator's now-strict parse enforces.**
