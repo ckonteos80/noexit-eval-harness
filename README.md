@@ -4,7 +4,7 @@ A Python harness that mirrors the NoExit Unity game's LLM call flow, so prompts 
 
 Nothing here runs inside Unity. `game_state/` mirrors specific Unity C# behavior closely enough that changes made here are meant to be manually re-applied there; everything else is harness/tooling that only exists to support iterating and evaluating outside the game.
 
-> **Before changing anything in `game_state/`, read [`CHANGE_PROCESS.md`](CHANGE_PROCESS.md).** Snapshot ordering is not optional — runs are tagged with whatever version is newest in `backups/` at save time, so a change made without a snapshot produces runs labelled with the wrong version.
+> **Before changing anything in `game_state/`, read [`CHANGE_PROCESS.md`](docs/CHANGE_PROCESS.md).** Snapshot ordering is not optional — runs are tagged with whatever version is newest in `backups/` at save time, so a change made without a snapshot produces runs labelled with the wrong version.
 
 ---
 
@@ -17,7 +17,7 @@ Every file that mirrors real Unity C# behavior — the prompts, model/temperatur
 Version history of `game_state/`. Each save (`save_version.py`) creates one dated folder containing a full copy of `game_state/` at that point, `NOTES.md` (state summary + which Unity files to check), `DIFF.md` (exact before/after), and a `runs/` subfolder of every session that was generated under that version. `CHANGELOG.md` is the running index across all versions; `UNITY_MAPPING.md` is the static file → Unity-script reference table.
 
 ### `runs/`
-Every saved session, one JSON file per run (bios, full per-call transcript, metadata, eval scores). This is the live, ever-growing "current" set — `run_viewer.html` reads from here, and `save_version.py` archives a copy into the relevant `backups/` version once that version is superseded.
+Every saved session, one JSON file per run (bios, full per-call transcript, metadata, eval scores). This is the live, ever-growing "current" set — `ui/run_viewer.html` reads from here, and `save_version.py` archives a copy into the relevant `backups/` version once that version is superseded.
 
 ### `noexit_outputs/`
 The raw scratch log `simulator.py` writes to *during* a session — `transcript.csv`/`transcript.json` (every call, unscoped, keeps growing across every process you run), `session_state.json` (latest session snapshot, used to resume state across separate calls), `edits.csv` (live prompt edits made mid-session). Disposable — `runs/` is where you keep a session on purpose; this is just where it's logged as it happens.
@@ -32,11 +32,7 @@ The raw scratch log `simulator.py` writes to *during* a session — `transcript.
 
 **`run_session.py`** — CLI driver for one full interactive session: generate both characters → narrator → type your own turns → save. Tags the saved run with whichever `game_state` version is currently active.
 
-**`webapp.py`** — Local browser UI for playing a session (stdlib only, no dependencies; serves `webapp.html` on `127.0.0.1:8765`). Start a full session, or use **Generate Characters Only** to produce a character pair without the narrator or any dialogue — the fast path for iterating on character-generation prompts. Saves through the same `store.write_run` path as everything else, so chars-only runs open in the viewer normally.
-
-**`webapp.html`** — The UI `webapp.py` serves. Chat view, character sidebar, and the characters-only review screen.
-
-**`run_viewer.html`** — Self-contained browser viewer (no server, no dependencies). Two views: **Character Gen** (bios + editable human-eval scoring, two independently-scrolling panes) and **Table** (every call across loaded runs, sortable/filterable by column group and row category, with inline-editable dialogue scoring). Saves edits back to the run JSON file directly via the File System Access API.
+**`webapp.py`** — Local browser UI for playing a session (stdlib only, no dependencies; serves `ui/webapp.html` on `127.0.0.1:8765`). Start a full session, or use **Generate Characters Only** to produce a character pair without the narrator or any dialogue — the fast path for iterating on character-generation prompts. Saves through the same `store.write_run` path as everything else, so chars-only runs open in the viewer normally.
 
 **`export.py`** — Bundles a session's outputs (transcripts, edits log, current `game_state/`) into a zip; writes human-readable session notes and a Unity migration brief documenting exactly which prompt fields changed.
 
@@ -48,17 +44,29 @@ The raw scratch log `simulator.py` writes to *during* a session — `transcript.
 
 **`requirements.txt`** — Python dependencies (just `requests`).
 
-**`CHANGE_PROCESS.md`** — The SOP for changing `game_state/`: check for unversioned drift before editing, snapshot before generating any runs, and what to put in `NOTES.md`. Read this first.
+---
 
-**`INTEGRATION_BRIEF.md`** — Historical record of the original harness integration into this project folder.
+## `docs/`
+
+**`CHANGE_PROCESS.md`** — The SOP for changing `game_state/`: check for unversioned drift before editing, snapshot before generating any runs, and what to put in `NOTES.md`. Read this first.
 
 **`eval-loop-scoring-design.md`** — Design doc for the two scoring rubrics (character generation, dialogue) that both human and future AI evals are built from.
 
 **`character-eval-guide.md`** — How to judge generated characters (per-character, pair-level, overall design). Written as a director's first impression rather than a checklist; the good/neutral/bad rating follows from the note, not the other way round.
 
-**`stanislavski-an-actor-prepares.md`** — Reference notes on Stanislavski's system, with each concept tied to a specific problem seen in eval. The source for the 2026-08-29 character-generation prompt changes.
+**`stanislavski-an-actor-prepares.md`** — Reference notes on Stanislavski's system, each concept tied to a problem seen in eval. Source for the 2026-08-29 prompt changes.
+
+**`aristotle-poetics.md`** — Reference notes on Aristotle's *Poetics* (plot before character, necessity and probability, peripeteia, the unity/removability test). Source for the 2026-09-12 prompt changes.
+
+**`INTEGRATION_BRIEF.md`** — Historical record of the original harness integration into this project folder.
 
 ---
+
+## `ui/`
+
+**`webapp.html`** — The UI `webapp.py` serves. Chat view, character sidebar, and the characters-only review screen.
+
+**`run_viewer.html`** — Self-contained browser viewer (no server, no dependencies). Two views: **Character Gen** (bios plus editable human and AI eval columns, three independently-scrolling panes) and **Table** (every call across loaded runs, sortable/filterable by column group and row category, with inline-editable scoring). Saves edits back to the run JSON directly via the File System Access API. Open it by double-clicking; it needs nothing else.
 
 ## Files (`game_state/`)
 

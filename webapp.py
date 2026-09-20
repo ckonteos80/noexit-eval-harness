@@ -23,7 +23,7 @@ from save_version import current_version, compute_file_diffs, ROOT
 
 HOST = "127.0.0.1"
 PORT = 8765
-WEBAPP_HTML = Path(__file__).parent / "webapp.html"
+WEBAPP_HTML = Path(__file__).parent / "ui" / "webapp.html"
 
 state = None  # current game.GameState, or None if no session is active
 
