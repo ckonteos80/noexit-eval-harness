@@ -740,6 +740,10 @@ const COL_GROUPS = [
 ];
 
 // Row categories: which call_types belong to each toggle group + color (mirrors card .t-* colors).
+// key -> declared kind for every column in every group (used by the table sort).
+const COL_KINDS = Object.fromEntries(
+  COL_GROUPS.flatMap(g => g.cols.map(c => [c[0], c[2] || 'text'])));
+
 const ROW_CATS = [
   // 'character' is the single merged call (v4+); name/life/sin/stance are the older
   // four-call chain, kept so runs recorded before that change still render.
@@ -934,11 +938,18 @@ function dialogueEvalCell(row, cols, tr){
 function renderTable(){
   const host = $('#table-view');
   let rows = flatCalls().filter(c => rowCatsOn[catForType(c.call_type)] !== false);
+  // Sort by the column's DECLARED kind rather than sniffing each pair of values.
+  // Sniffing made the comparator switch modes mid-sort: parseFloat('3 years ago')
+  // is 3, so digit-leading prose compared numerically against other digit-leading
+  // prose but lexicographically against everything else, ordering a text column as
+  // ['3 years ago', '10 minutes'] instead of ['10 minutes', '3 years ago'].
+  // COL_KINDS covers every column, not just the visible ones, so sorting still
+  // behaves when the sorted column's group is toggled off.
+  const sortIsNum = COL_KINDS[sortKey] === 'num';
   rows.sort((a,b) => {
-    let x = a[sortKey], y = b[sortKey];
-    const nx = num(x), ny = num(y);
-    const numeric = !isNaN(parseFloat(x)) && !isNaN(parseFloat(y));
-    let cmp = numeric ? nx-ny : String(x??'').localeCompare(String(y??''));
+    const x = a[sortKey], y = b[sortKey];
+    const cmp = sortIsNum ? num(x) - num(y)
+                          : String(x??'').localeCompare(String(y??''));
     return sortAsc ? cmp : -cmp;
   });
 
@@ -1041,8 +1052,14 @@ $('#view-seg').onclick = e => {
 };
 
 $('#clear').onclick = () => {
+  // Eval edits live only in memory until Save, so clearing would discard them
+  // silently -- and leaving the button reading 'Save evals (2)' over an empty
+  // RUNS list made it look like they were still pending.
+  const dirty = RUNS.filter(r => r._dirty).length;
+  if (dirty && !confirm(`${dirty} run(s) have unsaved eval edits. Clear anyway and lose them?`)) return;
   RUNS = []; $('#topbar').style.display='none'; $('#app').classList.remove('show');
   dz.classList.remove('hidden'); $('#file-input').value='';
+  updateSaveButton();
 };
 
 // ── helpers ──
