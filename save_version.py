@@ -8,17 +8,23 @@ Usage:
 """
 
 import argparse
+import ast
 import difflib
 import json
 import re
 import shutil
-from datetime import date
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).parent
 BACKUPS = ROOT / "backups"
 GAME_STATE_DIR = ROOT / "game_state"
 RUNS_DIR = ROOT / "runs"
+CURRENT_FILE = BACKUPS / "CURRENT"
+
+# Files inside game_state/ that are copied but never meaningfully diffed.
+IGNORED_PARTS = {"__pycache__"}
+IGNORED_SUFFIXES = {".pyc", ".pyo"}
 
 # Which game_state/ file mirrors which Unity C# file(s). Used to write
 # backups/UNITY_MAPPING.md and each version's "Unity files to update" note.
@@ -64,9 +70,69 @@ def slugify(s: str) -> str:
 
 
 def list_versions():
+    """
+    All version folders, sorted by name. This is DISPLAY order, not authority --
+    it is alphabetical, so two versions saved on the same date are ordered by slug
+    rather than by when they were saved. Never use [-1] to mean "the version that
+    matches live game_state/"; use current_version() for that.
+    """
     if not BACKUPS.exists():
         return []
     return sorted(p for p in BACKUPS.iterdir() if p.is_dir())
+
+
+def write_current(version_dir: Path):
+    """Record which version the live game_state/ now matches."""
+    BACKUPS.mkdir(exist_ok=True)
+    CURRENT_FILE.write_text(json.dumps({
+        "version": version_dir.name,
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+    }, indent=2), encoding="utf-8")
+
+
+def current_version() -> Path | None:
+    """
+    The version folder whose game_state/ matches what is live right now.
+
+    Read from backups/CURRENT, which save_version() and restore_version.py both
+    maintain. Falls back to the last folder by name if CURRENT is missing (only
+    expected on repos predating CURRENT), which is why that path warns.
+    """
+    if CURRENT_FILE.exists():
+        try:
+            name = json.loads(CURRENT_FILE.read_text(encoding="utf-8")).get("version")
+        except (json.JSONDecodeError, OSError):
+            name = None
+        if name:
+            candidate = BACKUPS / name
+            if candidate.is_dir():
+                return candidate
+            print(f"WARNING: backups/CURRENT names '{name}', which does not exist.")
+
+    versions = list_versions()
+    if not versions:
+        return None
+    print("WARNING: backups/CURRENT missing or unreadable -- falling back to the "
+          f"last version by name ({versions[-1].name}). This is a guess; run "
+          "save_version.py to re-establish it.")
+    return versions[-1]
+
+
+def tracked_files(root: Path) -> set:
+    """
+    Every file under root that is worth diffing -- all file types, not just .py,
+    minus the compiled-Python noise that copytree already ignores.
+    """
+    if not root.exists():
+        return set()
+    out = set()
+    for p in root.rglob("*"):
+        if not p.is_file():
+            continue
+        if IGNORED_PARTS & set(p.parts) or p.suffix in IGNORED_SUFFIXES:
+            continue
+        out.add(p.relative_to(root))
+    return out
 
 
 def next_version_dir(slug: str) -> Path:
@@ -81,9 +147,28 @@ def next_version_dir(slug: str) -> Path:
 
 
 def parse_prompt_fields(text: str) -> dict:
-    """Extracts NAME = \"\"\"...\"\"\" (or ''') top-level assignments from prompts.py source."""
-    pattern = re.compile(r'^(\w+)\s*=\s*("""|\'\'\')(.*?)\2', re.MULTILINE | re.DOTALL)
-    return {m.group(1): m.group(3) for m in pattern.finditer(text)}
+    """
+    Extracts every module-level `NAME = <string literal>` from prompts.py source.
+
+    Uses ast rather than a regex so quote style is irrelevant -- a single-quoted
+    prompt is captured exactly like a triple-quoted one. (The previous regex only
+    matched triple quotes, which silently hid changes to characterNameGenderSuffix,
+    adressingSystemPromptContext and narratorUserPrompt from every DIFF.md.)
+    """
+    try:
+        tree = ast.parse(text)
+    except SyntaxError:
+        return {}
+    fields = {}
+    for node in tree.body:
+        if not isinstance(node, ast.Assign):
+            continue
+        if not (isinstance(node.value, ast.Constant) and isinstance(node.value.value, str)):
+            continue
+        for target in node.targets:
+            if isinstance(target, ast.Name):
+                fields[target.id] = node.value.value
+    return fields
 
 
 def diff_prompt_fields(prev_text: str, new_text: str) -> str:
@@ -105,19 +190,31 @@ def diff_prompt_fields(prev_text: str, new_text: str) -> str:
 
 
 def compute_file_diffs(prev_dir: Path, new_dir: Path) -> dict:
-    """Returns {relpath: diff_text_markdown} for every game_state/*.py file that changed."""
+    """
+    Returns {relpath: diff_text_markdown} for every changed file under game_state/.
+
+    Covers all file types, not just *.py -- a .json or .txt living in game_state/
+    used to be snapshotted but never diffed, so changes to it vanished silently.
+    """
     prev_state = (prev_dir / "game_state") if prev_dir else None
     new_state = new_dir / "game_state"
-    prev_files = {p.relative_to(prev_state) for p in prev_state.rglob("*.py")} if prev_state and prev_state.exists() else set()
-    new_files = {p.relative_to(new_state) for p in new_state.rglob("*.py")} if new_state.exists() else set()
+    prev_files = tracked_files(prev_state) if prev_state else set()
+    new_files = tracked_files(new_state)
 
     diffs = {}
     for rel in sorted(prev_files | new_files, key=str):
         prev_file = (prev_state / rel) if prev_state else None
         new_file = new_state / rel
-        prev_text = prev_file.read_text(encoding="utf-8") if prev_file and prev_file.exists() else ""
-        new_text = new_file.read_text(encoding="utf-8") if new_file.exists() else ""
-        if prev_text == new_text:
+        prev_bytes = prev_file.read_bytes() if prev_file and prev_file.exists() else b""
+        new_bytes = new_file.read_bytes() if new_file.exists() else b""
+        if prev_bytes == new_bytes:
+            continue
+        try:
+            prev_text = prev_bytes.decode("utf-8")
+            new_text = new_bytes.decode("utf-8")
+        except UnicodeDecodeError:
+            diffs[rel] = ("_Binary file changed "
+                          f"({len(prev_bytes)} -> {len(new_bytes)} bytes) -- no text diff._\n")
             continue
         if rel.name == "prompts.py":
             diffs[rel] = diff_prompt_fields(prev_text, new_text)
@@ -207,8 +304,9 @@ def prepend_changelog_entry(new_dir: Path, prev_dir: Path, summary: str):
 def save_version(slug: str, summary: str) -> Path:
     BACKUPS.mkdir(exist_ok=True)
     slug = slugify(slug)
-    versions = list_versions()
-    prev_dir = versions[-1] if versions else None
+    # The version being superseded is whatever matched live game_state/ until now --
+    # not the last folder by name, which is wrong after a restore or a same-day save.
+    prev_dir = current_version() if list_versions() else None
 
     new_dir = next_version_dir(slug)
     new_dir.mkdir(parents=True)
@@ -244,6 +342,10 @@ def save_version(slug: str, summary: str) -> Path:
         n = archive_runs_for_version(prev_dir)
         if n:
             print(f"  archived {n} run(s) generated under {prev_dir.name} into {prev_dir.name}/runs/")
+
+    # Live game_state/ now matches this version. Runs saved from here on are
+    # tagged with it, so this must be written before any session is generated.
+    write_current(new_dir)
 
     return new_dir
 

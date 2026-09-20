@@ -182,8 +182,11 @@ def save_state_snapshot(state: game.GameState):
 
 def generate_character(state: game.GameState, char_no: int) -> dict:
     """
-    Run the full three-call generation chain for one character (plus name call).
-    Returns a dict with summary info (name, occupation, etc.) for chat display.
+    Generate one character in a single call.
+
+    Replaces the former four-call chain (name -> life -> sin -> stance): every field
+    now comes back in one response, ordered so that each is written knowing the ones
+    above it. Character 2 still runs after Character 1 and sees its finished bio.
     Mirrors CharacterGenerator.GenerateCharacter.
     """
     if char_no not in (1, 2):
@@ -191,88 +194,49 @@ def generate_character(state: game.GameState, char_no: int) -> dict:
 
     gender = config.CHARACTER_GENDERS[char_no]
     age = random.randint(*config.AGE_RANGE)
+    # Randomising the naming tradition is what breaks the model's strong name prior --
+    # instructing it to vary names failed across three versions. Same pattern as AGE_RANGE.
+    name_origin = random.choice(config.NAME_ORIGINS)
 
-    # Determine anti-duplication inputs (Char 2 sees Char 1's parsed fields)
+    # Determine anti-duplication inputs (Char 2 sees Char 1's finished character)
     other_char = state.characters.get(1) if char_no == 2 else None
     if char_no == 2 and (other_char is None or not other_char.occupation):
         raise RuntimeError("Cannot generate Character 2 before Character 1 is fully generated.")
 
-    summary = {"char_no": char_no, "gender": gender, "age": age}
+    summary = {"char_no": char_no, "gender": gender, "age": age, "name_origin": name_origin}
 
-    # ── Step 1: Name ──
-    sys_p, user_p = assembly.assemble_name_prompts(gender)
-    name_res = providers.call_proxy(
-        sys_p, user_p,
-        model=config.MODEL_GENERATION,
-        temperature=config.TEMP_GENERATION,
-        max_tokens=0,
-    )
-    name = name_res.content.strip()
-    log_call(state, "name", char_no, config.MODEL_GENERATION, config.TEMP_GENERATION, 0, sys_p, user_p, name, meta=name_res)
-    summary["name"] = name
-
-    # ── Step 2: Life ──
-    life_kwargs = dict(name=name, age=age, gender=gender)
+    # ── Single generation call ──
+    char_kwargs = dict(name_origin=name_origin, age=age, gender=gender)
     if char_no == 2:
-        life_kwargs["other_occupation"] = other_char.occupation
-        life_kwargs["other_cause_of_death"] = other_char.cause_of_death
-        life_kwargs["other_who_loved"] = other_char.who_loved
-        life_kwargs["other_who_hated"] = other_char.who_hated
+        char_kwargs["other_name"] = other_char.name
+        char_kwargs["other_bio"] = other_char.description
 
-    sys_p, user_p = assembly.assemble_life_prompts(**life_kwargs)
-    life_response, life_parsed = _call_with_parse_retry(
-        sys_p, user_p, char_no, "life",
+    sys_p, user_p = assembly.assemble_character_prompts(**char_kwargs)
+    _response, parsed = _call_with_parse_retry(
+        sys_p, user_p, char_no, "character",
         config.MODEL_GENERATION, config.TEMP_GENERATION, 0,
-        state, assembly.parse_life_response, assembly.life_parse_complete,
+        state, assembly.parse_character_response, assembly.character_parse_complete,
     )
-    occupation = life_parsed.get("occupation") or "[generation failed]"
-    cause_of_death = life_parsed.get("cause_of_death") or "[generation failed]"
-    who_loved = life_parsed.get("who_loved") or "[generation failed]"
-    who_hated = life_parsed.get("who_hated") or "[generation failed]"
-    prose_body = life_parsed.get("prose_body") or "[generation failed]"
-    summary.update(occupation=occupation, cause_of_death=cause_of_death)
 
-    # ── Step 3: Sin ──
-    sin_kwargs = dict(
-        name=name, age=age, gender=gender,
-        occupation=occupation, cause_of_death=cause_of_death,
-        who_loved=who_loved, who_hated=who_hated, prose_body=prose_body,
-    )
-    if char_no == 2:
-        sin_kwargs["other_reason_true"] = other_char.reason_true
+    def field(key):
+        return parsed.get(key) or "[generation failed]"
 
-    sys_p, user_p = assembly.assemble_sin_prompts(**sin_kwargs)
-    sin_response, sin_parsed = _call_with_parse_retry(
-        sys_p, user_p, char_no, "sin",
-        config.MODEL_GENERATION, config.TEMP_GENERATION, 0,
-        state, assembly.parse_sin_response, assembly.sin_parse_complete,
-    )
-    reason_true = sin_parsed.get("reason_true") or "[generation failed]"
-    reason_self_told = sin_parsed.get("reason_self_told") or "[generation failed]"
-    refuse_to_admit = sin_parsed.get("refuse_to_admit") or "[generation failed]"
+    name = field("name")
+    occupation = field("occupation")
+    cause_of_death = field("cause_of_death")
+    who_loved = field("who_loved")
+    who_hated = field("who_hated")
+    prose_body = field("prose_body")
+    reason_true = field("reason_true")
+    reason_self_told = field("reason_self_told")
+    refuse_to_admit = field("refuse_to_admit")
+    personality_trait = field("personality_trait")
+    want = field("want")
 
-    # ── Step 4: Stance ──
-    stance_kwargs = dict(
-        name=name, age=age, gender=gender,
-        occupation=occupation, cause_of_death=cause_of_death,
-        reason_true=reason_true, reason_self_told=reason_self_told,
-        refuse_to_admit=refuse_to_admit, prose_body=prose_body,
-    )
-    if char_no == 2:
-        stance_kwargs["other_want"] = other_char.want
+    summary.update(name=name, occupation=occupation, cause_of_death=cause_of_death,
+                   personality_trait=personality_trait, want=want)
 
-    sys_p, user_p = assembly.assemble_stance_prompts(**stance_kwargs)
-    stance_response, stance_parsed = _call_with_parse_retry(
-        sys_p, user_p, char_no, "stance",
-        config.MODEL_GENERATION, config.TEMP_GENERATION, 0,
-        state, assembly.parse_stance_response, assembly.stance_parse_complete,
-    )
-    personality_trait = stance_parsed.get("personality_trait") or "[generation failed]"
-    want = stance_parsed.get("want") or "[generation failed]"
-    summary["personality_trait"] = personality_trait
-    summary["want"] = want
-
-    # ── Step 5: Assemble bio & store ──
+    # ── Assemble bio & store ──
     bio = assembly.assemble_bio(
         occupation=occupation,
         cause_of_death=cause_of_death,

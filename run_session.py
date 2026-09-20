@@ -22,7 +22,7 @@ from datetime import datetime, timezone
 
 import simulator
 import store
-from save_version import list_versions
+from save_version import current_version
 
 
 def print_reply(reply: dict):
@@ -77,8 +77,8 @@ def main():
     records = [r for r in all_records if r.get("session_id") == state.session_id]
     snapshot = json.load(open(simulator.STATE_JSON, encoding="utf-8"))
 
-    versions = list_versions()
-    game_state_version = versions[-1].name if versions else None
+    current = current_version()
+    game_state_version = current.name if current else None
 
     st = store.ExperimentStore(root=args.root)
     run_id = datetime.now(timezone.utc).strftime("%Y-%m-%d_") + state.session_id

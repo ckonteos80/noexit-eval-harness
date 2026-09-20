@@ -4,6 +4,8 @@ A Python harness that mirrors the NoExit Unity game's LLM call flow, so prompts 
 
 Nothing here runs inside Unity. `game_state/` mirrors specific Unity C# behavior closely enough that changes made here are meant to be manually re-applied there; everything else is harness/tooling that only exists to support iterating and evaluating outside the game.
 
+> **Before changing anything in `game_state/`, read [`CHANGE_PROCESS.md`](CHANGE_PROCESS.md).** Snapshot ordering is not optional — runs are tagged with whatever version is newest in `backups/` at save time, so a change made without a snapshot produces runs labelled with the wrong version.
+
 ---
 
 ## Folders
@@ -30,6 +32,10 @@ The raw scratch log `simulator.py` writes to *during* a session — `transcript.
 
 **`run_session.py`** — CLI driver for one full interactive session: generate both characters → narrator → type your own turns → save. Tags the saved run with whichever `game_state` version is currently active.
 
+**`webapp.py`** — Local browser UI for playing a session (stdlib only, no dependencies; serves `webapp.html` on `127.0.0.1:8765`). Start a full session, or use **Generate Characters Only** to produce a character pair without the narrator or any dialogue — the fast path for iterating on character-generation prompts. Saves through the same `store.write_run` path as everything else, so chars-only runs open in the viewer normally.
+
+**`webapp.html`** — The UI `webapp.py` serves. Chat view, character sidebar, and the characters-only review screen.
+
 **`run_viewer.html`** — Self-contained browser viewer (no server, no dependencies). Two views: **Character Gen** (bios + editable human-eval scoring, two independently-scrolling panes) and **Table** (every call across loaded runs, sortable/filterable by column group and row category, with inline-editable dialogue scoring). Saves edits back to the run JSON file directly via the File System Access API.
 
 **`export.py`** — Bundles a session's outputs (transcripts, edits log, current `game_state/`) into a zip; writes human-readable session notes and a Unity migration brief documenting exactly which prompt fields changed.
@@ -42,9 +48,15 @@ The raw scratch log `simulator.py` writes to *during* a session — `transcript.
 
 **`requirements.txt`** — Python dependencies (just `requests`).
 
+**`CHANGE_PROCESS.md`** — The SOP for changing `game_state/`: check for unversioned drift before editing, snapshot before generating any runs, and what to put in `NOTES.md`. Read this first.
+
 **`INTEGRATION_BRIEF.md`** — Historical record of the original harness integration into this project folder.
 
 **`eval-loop-scoring-design.md`** — Design doc for the two scoring rubrics (character generation, dialogue) that both human and future AI evals are built from.
+
+**`character-eval-guide.md`** — How to judge generated characters (per-character, pair-level, overall design). Written as a director's first impression rather than a checklist; the good/neutral/bad rating follows from the note, not the other way round.
+
+**`stanislavski-an-actor-prepares.md`** — Reference notes on Stanislavski's system, with each concept tied to a specific problem seen in eval. The source for the 2026-08-29 character-generation prompt changes.
 
 ---
 

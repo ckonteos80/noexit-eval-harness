@@ -288,7 +288,8 @@
 
   /* row category stripe + pill (mirrors card .t-* colors) */
   tr.t-name td:first-child { border-left: 3px solid var(--dim2); }
-  tr.t-life td:first-child, tr.t-sin td:first-child, tr.t-stance td:first-child { border-left: 3px solid var(--accent); }
+  tr.t-life td:first-child, tr.t-sin td:first-child, tr.t-stance td:first-child,
+  tr.t-character td:first-child { border-left: 3px solid var(--accent); }
   tr.t-dialogue td:first-child { border-left: 3px solid var(--ast-col); }
   tr.t-addressing td:first-child { border-left: 3px solid var(--usr-col); }
   tr.t-narrator td:first-child { border-left: 3px solid var(--accent2); }
@@ -299,7 +300,7 @@
     text-transform: uppercase; border: 1px solid currentColor;
   }
   .pill.t-name { color: var(--dim2); }
-  .pill.t-life, .pill.t-sin, .pill.t-stance { color: var(--accent); }
+  .pill.t-life, .pill.t-sin, .pill.t-stance, .pill.t-character { color: var(--accent); }
   .pill.t-dialogue { color: var(--ast-col); }
   .pill.t-addressing { color: var(--usr-col); }
   .pill.t-narrator { color: var(--accent2); }
@@ -740,7 +741,9 @@ const COL_GROUPS = [
 
 // Row categories: which call_types belong to each toggle group + color (mirrors card .t-* colors).
 const ROW_CATS = [
-  { id:'gen',        label:'Character generation', types:['name','life','sin','stance'], color:'var(--accent)' },
+  // 'character' is the single merged call (v4+); name/life/sin/stance are the older
+  // four-call chain, kept so runs recorded before that change still render.
+  { id:'gen',        label:'Character generation', types:['character','name','life','sin','stance'], color:'var(--accent)' },
   { id:'narrator',   label:'Narrator',              types:['narrator'],                   color:'var(--accent2)' },
   { id:'player',     label:'Player message',        types:['player'],                     color:'var(--ply-col)' },
   { id:'extract',    label:'Info extraction',       types:['info_extraction'],            color:'var(--sys-col)' },
@@ -848,7 +851,7 @@ function cellHtml(c, key, kind){
     // INLINE_EVAL_TYPES rows get their interactive form appended after render
     // (see renderTable); this is just the placeholder/static text for everything else.
     if (INLINE_EVAL_TYPES.includes(c.call_type)) return '';
-    const label = ['name','life','sin','stance'].includes(c.call_type) ? 'char-level' : '—';
+    const label = ['character','name','life','sin','stance'].includes(c.call_type) ? 'char-level' : '—';
     return `<span class="evalempty">${label}</span>`;
   }
   if (key === 'judge_model' || key === 'judge_notes') {

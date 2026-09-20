@@ -20,7 +20,7 @@ import shutil
 import sys
 from pathlib import Path
 
-from save_version import save_version, GAME_STATE_DIR
+from save_version import save_version, write_current, tracked_files, GAME_STATE_DIR
 
 ROOT = Path(__file__).parent
 BACKUPS = ROOT / "backups"
@@ -41,9 +41,15 @@ def resolve_version(name: str) -> Path:
 
 
 def diff_summary(live_dir: Path, target_dir: Path):
-    """Byte-for-byte comparison of every .py file in both trees. Returns [(relpath, kind), ...]."""
-    live_files = {p.relative_to(live_dir) for p in live_dir.rglob("*.py")} if live_dir.exists() else set()
-    target_files = {p.relative_to(target_dir) for p in target_dir.rglob("*.py")} if target_dir.exists() else set()
+    """
+    Byte-for-byte comparison of every tracked file in both trees, all types --
+    not just .py, so a non-Python file can no longer be silently overwritten or
+    deleted by a restore without showing up in the confirmation preview.
+
+    Returns [(relpath, kind), ...].
+    """
+    live_files = tracked_files(live_dir)
+    target_files = tracked_files(target_dir)
     changed = []
     for rel in sorted(live_files | target_files, key=str):
         live_file, target_file = live_dir / rel, target_dir / rel
@@ -88,7 +94,14 @@ def main():
     shutil.rmtree(GAME_STATE_DIR)
     shutil.copytree(target_state, GAME_STATE_DIR, ignore=shutil.ignore_patterns("__pycache__"))
 
+    # save_version() above pointed CURRENT at the safety snapshot -- i.e. at the
+    # state we just discarded. Live game_state/ now matches the restored version,
+    # so CURRENT has to say so, or every run generated next gets tagged with the
+    # abandoned state.
+    write_current(target)
+
     print(f"\nRestored {target.name}. Previous state was preserved as {safety_dir.name} (see backups/CHANGELOG.md).")
+    print(f"backups/CURRENT now points at {target.name} -- runs saved from here are tagged with it.")
 
 
 if __name__ == "__main__":
