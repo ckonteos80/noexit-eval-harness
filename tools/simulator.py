@@ -11,9 +11,9 @@ Main simulator. Provides functions Claude calls to:
 Designed to be called from Claude in the sandbox, one operation at a time.
 """
 
+import ast
 import csv
 import json
-import os
 import random
 from datetime import datetime
 from pathlib import Path
@@ -499,30 +499,50 @@ def apply_prompt_edit(prompt_name: str, new_text: str) -> tuple[bool, str]:
     """
     Replace a prompt's value in prompts.py.
 
+    Locates the assignment with ast rather than a regex, so quote style does not
+    matter -- the old regex matched triple-quoted strings only and silently failed
+    on adressingSystemPromptContext and narratorUserPrompt, the two single-quoted
+    prompts. (Same class of bug that hid those fields from every DIFF.md until
+    save_version.parse_prompt_fields moved to ast.)
+
+    Offsets are computed against the UTF-8 bytes because ast.col_offset is a byte
+    offset, and these prompts contain em-dashes.
+
     Returns (success, message). On success the new text is live for the next call.
     """
     old_text = get_prompt_value(prompt_name)
     if old_text is None:
         return False, f"No prompt named '{prompt_name}' found in prompts.py."
 
-    text = PROMPTS_FILE.read_text(encoding="utf-8")
+    raw = PROMPTS_FILE.read_bytes()
+    try:
+        tree = ast.parse(raw.decode("utf-8"))
+    except SyntaxError as e:
+        return False, f"prompts.py does not parse: {e}"
 
-    # Find the assignment. Supports triple-quoted strings only (which is what we use).
-    # Match: prompt_name = """...""" (possibly multiline)
-    import re
-    pattern = re.compile(
-        rf'^{re.escape(prompt_name)}\s*=\s*("""|\'\'\')(.*?)(\1)',
-        re.MULTILINE | re.DOTALL,
-    )
-    match = pattern.search(text)
-    if not match:
+    target = None
+    for node in tree.body:
+        if not isinstance(node, ast.Assign):
+            continue
+        if not (isinstance(node.value, ast.Constant) and isinstance(node.value.value, str)):
+            continue
+        if any(isinstance(t, ast.Name) and t.id == prompt_name for t in node.targets):
+            target = node.value
+
+    if target is None:
         return False, f"Could not locate assignment for '{prompt_name}' in prompts.py."
 
-    quote = match.group(1)
-    # Build replacement, preserving the quote style
-    replacement = f'{prompt_name} = {quote}{new_text}{quote}'
-    new_file_text = text[:match.start()] + replacement + text[match.end():]
-    PROMPTS_FILE.write_text(new_file_text, encoding="utf-8")
+    lines = raw.splitlines(keepends=True)
+    start = sum(len(l) for l in lines[:target.lineno - 1]) + target.col_offset
+    end = sum(len(l) for l in lines[:target.end_lineno - 1]) + target.end_col_offset
+
+    # Always re-emit as a triple-quoted literal; refuse rather than produce a file
+    # that will not parse.
+    if '"""' in new_text or new_text.endswith('"') or new_text.endswith("\\"):
+        return False, "New text contains a triple quote, or ends in a quote or backslash -- cannot be written safely."
+    literal = f'"""{new_text}"""'.encode("utf-8")
+
+    PROMPTS_FILE.write_bytes(raw[:start] + literal + raw[end:])
     log_edit(prompt_name, old_text, new_text)
     return True, f"Prompt '{prompt_name}' updated. Next call will use the new content."
 

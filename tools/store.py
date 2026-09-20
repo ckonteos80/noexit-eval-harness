@@ -7,7 +7,7 @@ Turns a completed harness run (its per-call transcript records) into two things:
                                         cross-run comparison.
 
 Both live inside the project folder by default (root's runs/ and index.sqlite),
-so run_viewer.html and Claude Code both find them at the same place without
+so ui/run_viewer.html and Claude Code both find them at the same place without
 extra configuration. Pass root= to point elsewhere if needed.
 
 Nothing here makes network calls. It only reads the transcript records the

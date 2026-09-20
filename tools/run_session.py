@@ -4,11 +4,11 @@ new session -> generate both characters -> narrator opening -> a
 type-your-own-lines player loop -> write the run to the experiment store.
 
 Usage:
-    python run_session.py [--phase LABEL] [--root PATH]
+    python tools/run_session.py [--phase LABEL] [--root PATH]
 
     --phase   value stored in the run's meta.phase (default: "manual")
-    --root    experiment store root (default: . -- project folder, so runs/
-              and index.sqlite land next to run_viewer.html)
+    --root    experiment store root (default: the project folder, so runs/
+              and index.sqlite sit at the root regardless of where you run from)
 
 During the loop:
     type a message and press Enter to play a turn
@@ -89,7 +89,7 @@ def main():
     })
 
     print(f"\nSaved run '{run_id}' ({len(records)} calls) to {run_path}")
-    print(f"Open run_viewer.html and drag in that file to inspect it.")
+    print("Open ui/run_viewer.html and drag in that file to inspect it.")
 
 
 if __name__ == "__main__":

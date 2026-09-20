@@ -4,7 +4,7 @@ backups/<date>_<slug>/, with a diff against the previous version, an entry
 in backups/CHANGELOG.md, and a note on which Unity .cs files to check.
 
 Usage:
-    python save_version.py "slug-name" "One-line summary of this version's state/changes"
+    python tools/save_version.py "slug-name" "One-line summary of this version's state/changes"
 """
 
 import argparse

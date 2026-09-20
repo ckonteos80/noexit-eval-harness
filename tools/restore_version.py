@@ -10,9 +10,9 @@ Before restoring, the CURRENT state is automatically saved as a new
 "pre-restore" safety version, so restoring never loses work.
 
 Usage:
-    python restore_version.py 2026-08-09_shorter-dialogue-cap
-    python restore_version.py shorter-dialogue-cap        # unambiguous suffix match
-    python restore_version.py 2026-08-09_baseline --yes   # skip confirmation prompt
+    python tools/restore_version.py 2026-08-09_shorter-dialogue-cap
+    python tools/restore_version.py shorter-dialogue-cap        # unambiguous suffix match
+    python tools/restore_version.py 2026-08-09_baseline --yes   # skip confirmation prompt
 """
 
 import argparse
