@@ -22,8 +22,9 @@ from pathlib import Path
 
 from save_version import save_version, write_current, tracked_files, GAME_STATE_DIR
 
-ROOT = Path(__file__).parent
-BACKUPS = ROOT / "backups"
+from _paths import PROJECT_ROOT, BACKUPS
+
+ROOT = PROJECT_ROOT
 
 
 def resolve_version(name: str) -> Path:

@@ -8,7 +8,7 @@ assumption (same as run_session.py's CLI loop, just driven from a browser
 instead of stdin).
 
 Usage:
-    python webapp.py
+    python tools/webapp.py
 """
 
 import json
@@ -19,11 +19,12 @@ from pathlib import Path
 
 import simulator
 import store
+from _paths import PROJECT_ROOT, UI
 from save_version import current_version, compute_file_diffs, ROOT
 
 HOST = "127.0.0.1"
 PORT = 8765
-WEBAPP_HTML = Path(__file__).parent / "ui" / "webapp.html"
+WEBAPP_HTML = UI / "webapp.html"
 
 state = None  # current game.GameState, or None if no session is active
 
@@ -152,7 +153,7 @@ class Handler(BaseHTTPRequestHandler):
                         f"({current.name}), so this run cannot be tagged accurately.\n\n"
                         "Changed: " + ", ".join(drift) + "\n\n"
                         "Snapshot first, then click Save again:\n"
-                        "  python save_version.py \"slug\" \"summary\"\n\n"
+                        "  python tools/save_version.py \"slug\" \"summary\"\n\n"
                         "Your session is still open -- nothing has been lost."
                     )}, 409)
 
@@ -161,7 +162,7 @@ class Handler(BaseHTTPRequestHandler):
                 snapshot = json.load(open(simulator.STATE_JSON, encoding="utf-8"))
                 current = current_version()
                 game_state_version = current.name if current else None
-                st = store.ExperimentStore(root=".")
+                st = store.ExperimentStore(root=PROJECT_ROOT)
                 run_id = datetime.now(timezone.utc).strftime("%Y-%m-%d_") + state.session_id
                 meta = {"phase": phase, "game_state_version": game_state_version}
                 if drift:

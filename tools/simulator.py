@@ -19,6 +19,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Optional
 
+from _paths import GAME_STATE, OUTPUTS  # noqa: F401 -- also puts PROJECT_ROOT on sys.path
 from game_state import config, providers, assembly, game
 
 
@@ -26,7 +27,7 @@ from game_state import config, providers, assembly, game
 # PATHS
 # ──────────────────────────────────────────────────────────────────────────────
 
-OUTPUT_DIR = Path(__file__).parent / "noexit_outputs"
+OUTPUT_DIR = OUTPUTS
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 TRANSCRIPT_CSV = OUTPUT_DIR / "transcript.csv"
@@ -483,7 +484,7 @@ def _run_character_reply(state: game.GameState, char_id: int, player_message: st
 # PROMPT EDITING
 # ──────────────────────────────────────────────────────────────────────────────
 
-PROMPTS_FILE = Path(__file__).parent / "game_state" / "prompts.py"
+PROMPTS_FILE = GAME_STATE / "prompts.py"
 
 
 def get_prompt_value(prompt_name: str) -> Optional[str]:

@@ -9,7 +9,9 @@ from datetime import datetime
 import simulator  # for OUTPUT_DIR + file paths
 
 
-EXPORT_DIR = Path(__file__).parent / "noexit_exports"
+from _paths import PROJECT_ROOT, GAME_STATE
+
+EXPORT_DIR = PROJECT_ROOT / "noexit_exports"
 
 
 def export_session(label: str = "") -> Path:
@@ -32,7 +34,7 @@ def export_session(label: str = "") -> Path:
             shutil.copy(f, out_dir / f.name)
 
     # Also copy the current game_state/ (prompts, config, assembly, game, providers)
-    game_state_src = Path(__file__).parent / "game_state"
+    game_state_src = GAME_STATE
     if game_state_src.exists():
         shutil.copytree(game_state_src, out_dir / "game_state", ignore=shutil.ignore_patterns("__pycache__"))
 

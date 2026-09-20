@@ -16,10 +16,9 @@ import shutil
 from datetime import date, datetime, timezone
 from pathlib import Path
 
-ROOT = Path(__file__).parent
-BACKUPS = ROOT / "backups"
-GAME_STATE_DIR = ROOT / "game_state"
-RUNS_DIR = ROOT / "runs"
+from _paths import PROJECT_ROOT, BACKUPS, GAME_STATE as GAME_STATE_DIR, RUNS as RUNS_DIR
+
+ROOT = PROJECT_ROOT
 CURRENT_FILE = BACKUPS / "CURRENT"
 
 # Files inside game_state/ that are copied but never meaningfully diffed.
@@ -56,7 +55,7 @@ UNITY_MAPPING = {
 }
 
 UNTRACKED_UNITY_NOTE = (
-    "simulator.py stays at project root (not in game_state/) but its call-flow logic also "
+    "tools/simulator.py is outside game_state/ and so is not snapshotted, but its call-flow "
     "mirrors Unity: CharacterGenerator.cs (GenerateCharacter) and CharacterController.cs "
     "(ParsedText) -- the sequencing of generation calls and reply/addressing routing. If you "
     "change *when* addressing triggers, reply routing, or the generation sequence, check "

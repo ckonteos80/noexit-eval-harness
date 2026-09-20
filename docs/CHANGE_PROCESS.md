@@ -25,14 +25,14 @@ Everything below is in service of that one sentence.
 Live `game_state/` should match the version `CURRENT` names. If it doesn't, someone changed something and never versioned it, and you are about to bury that work inside your own change.
 
 ```bash
-python -c "import sys; sys.path.insert(0,'.'); from save_version import current_version, compute_file_diffs, ROOT; c=current_version(); d=sorted(str(k) for k in compute_file_diffs(c, ROOT)); print('CURRENT:', c.name); print('drift:', d or 'NONE - in sync')"
+python -c "import sys; sys.path.insert(0,'tools'); from save_version import current_version, compute_file_diffs, ROOT; c=current_version(); d=sorted(str(k) for k in compute_file_diffs(c, ROOT)); print('CURRENT:', c.name); print('drift:', d or 'NONE - in sync')"
 ```
 
 - `drift: NONE - in sync` → go to step 2.
 - Anything listed → **snapshot that drift first**, on its own, before you start. Give it a slug describing what the *unversioned* work was, not what you're about to do:
 
 ```bash
-python save_version.py "unversioned-drift-model-swap" "Captures changes made since the last version that were never snapshotted."
+python tools/save_version.py "unversioned-drift-model-swap" "Captures changes made since the last version that were never snapshotted."
 ```
 
 This is the "snapshot before any changes" guarantee: you never begin editing on top of an unrecorded state, and you always have a restore point.
@@ -44,7 +44,7 @@ Edit `game_state/`. Keep one change set to one coherent idea — the version fol
 ### 3. Snapshot — before generating a single run
 
 ```bash
-python save_version.py "short-kebab-slug" "One-line summary of what changed and why."
+python tools/save_version.py "short-kebab-slug" "One-line summary of what changed and why."
 ```
 
 **This must happen before any run is generated under the new state.** Not after the run looks good, not after the eval — before. Do not make it conditional on the output being good: a bad run under a known version is useful data; a good run under an unknown version is not.
@@ -87,8 +87,8 @@ Two cases still need hand-maintenance, because they are mappings the tool cannot
 
 | You did this | What breaks | What to do |
 |---|---|---|
-| Added a new file to `game_state/` | Snapshot and diff both work, but the Unity note comes out as `(no mapping recorded)` | Add an entry to `UNITY_MAPPING` (`save_version.py`) |
-| Added a Unity-mirroring file *outside* `game_state/` | Not snapshotted, not diffed, not flagged — like `simulator.py` today | Update `UNTRACKED_UNITY_NOTE` (`save_version.py`), or move the file into `game_state/` |
+| Added a new file to `game_state/` | Snapshot and diff both work, but the Unity note comes out as `(no mapping recorded)` | Add an entry to `UNITY_MAPPING` (`tools/save_version.py`) |
+| Added a Unity-mirroring file *outside* `game_state/` | Not snapshotted, not diffed, not flagged — like `simulator.py` today | Update `UNTRACKED_UNITY_NOTE` (`tools/save_version.py`), or move the file into `game_state/` |
 
 Also update `UNITY_MAPPING` if an existing `game_state/` file starts corresponding to a different Unity script than it used to.
 
@@ -99,9 +99,9 @@ Also update `UNITY_MAPPING` if an existing `game_state/` file starts correspondi
 `restore_version.py` mirror-restores `game_state/` from a chosen backup — live files end up an exact copy, so anything added since is removed, not merged. It previews the changes and asks for confirmation first, and auto-saves a safety snapshot of the current state before touching anything, so a restore is never destructive on its own.
 
 ```bash
-python restore_version.py 2026-08-23_relational-sin-anchors
+python tools/restore_version.py 2026-08-23_relational-sin-anchors
 ```
 
-It accepts an unambiguous suffix, so `python restore_version.py relational-sin-anchors` also works. Add `--yes` to skip the confirmation.
+It accepts an unambiguous suffix, so `python tools/restore_version.py relational-sin-anchors` also works. Add `--yes` to skip the confirmation.
 
 Afterwards, `CURRENT` points at the version you restored, and its stored `game_state/` genuinely matches what is live — so runs generated next are tagged correctly and no follow-up snapshot is needed. The safety snapshot remains in `backups/` as `<date>_pre-restore-safety` if you want the abandoned work back.

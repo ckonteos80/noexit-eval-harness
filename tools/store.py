@@ -24,6 +24,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
 
+from _paths import PROJECT_ROOT
+
 
 # Columns stored per call in the index. Mirrors the transcript record + an
 # empty slot for eval scores (added when the judge lands).
@@ -40,7 +42,8 @@ INDEX_COLUMNS = [
 
 
 class ExperimentStore:
-    def __init__(self, root: str = "."):
+    def __init__(self, root=None):
+        root = PROJECT_ROOT if root is None else root
         self.root = Path(root)
         self.runs_dir = self.root / "runs"
         self.index_path = self.root / "index.sqlite"

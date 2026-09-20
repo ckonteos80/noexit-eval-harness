@@ -22,6 +22,7 @@ from datetime import datetime, timezone
 
 import simulator
 import store
+from _paths import PROJECT_ROOT
 from save_version import current_version
 
 
@@ -33,7 +34,7 @@ def print_reply(reply: dict):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--phase", default="manual", help="tag stored in run meta.phase")
-    parser.add_argument("--root", default=".", help="experiment store root")
+    parser.add_argument("--root", default=str(PROJECT_ROOT), help="experiment store root")
     args = parser.parse_args()
 
     state = simulator.new_session()

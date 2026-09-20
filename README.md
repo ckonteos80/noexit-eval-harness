@@ -14,17 +14,19 @@ Nothing here runs inside Unity. `game_state/` mirrors specific Unity C# behavior
 Every file that mirrors real Unity C# behavior — the prompts, model/temperature config, and the structural code tightly coupled to them. This is what `backups/` versions and what eventually needs porting back to Unity when a change is worth keeping. See `backups/UNITY_MAPPING.md` for exactly which file maps to which Unity script.
 
 ### `backups/`
-Version history of `game_state/`. Each save (`save_version.py`) creates one dated folder containing a full copy of `game_state/` at that point, `NOTES.md` (state summary + which Unity files to check), `DIFF.md` (exact before/after), and a `runs/` subfolder of every session that was generated under that version. `CHANGELOG.md` is the running index across all versions; `UNITY_MAPPING.md` is the static file → Unity-script reference table.
+Version history of `game_state/`. Each save (`tools/save_version.py`) creates one dated folder containing a full copy of `game_state/` at that point, `NOTES.md` (state summary + which Unity files to check), `DIFF.md` (exact before/after), and a `runs/` subfolder of every session that was generated under that version. `CHANGELOG.md` is the running index across all versions; `UNITY_MAPPING.md` is the static file → Unity-script reference table.
 
 ### `runs/`
-Every saved session, one JSON file per run (bios, full per-call transcript, metadata, eval scores). This is the live, ever-growing "current" set — `ui/run_viewer.html` reads from here, and `save_version.py` archives a copy into the relevant `backups/` version once that version is superseded.
+Every saved session, one JSON file per run (bios, full per-call transcript, metadata, eval scores). This is the live, ever-growing "current" set — `ui/run_viewer.html` reads from here, and `tools/save_version.py` archives a copy into the relevant `backups/` version once that version is superseded.
 
 ### `noexit_outputs/`
-The raw scratch log `simulator.py` writes to *during* a session — `transcript.csv`/`transcript.json` (every call, unscoped, keeps growing across every process you run), `session_state.json` (latest session snapshot, used to resume state across separate calls), `edits.csv` (live prompt edits made mid-session). Disposable — `runs/` is where you keep a session on purpose; this is just where it's logged as it happens.
+The raw scratch log `tools/simulator.py` writes to *during* a session — `transcript.csv`/`transcript.json` (every call, unscoped, keeps growing across every process you run), `session_state.json` (latest session snapshot, used to resume state across separate calls), `edits.csv` (live prompt edits made mid-session). Disposable — `runs/` is where you keep a session on purpose; this is just where it's logged as it happens.
 
 ---
 
-## Files (project root)
+## `tools/`
+
+**`_paths.py`** — Single source of truth for project paths. Every other script here imports `PROJECT_ROOT`, `BACKUPS`, `GAME_STATE`, `RUNS`, `OUTPUTS` and `UI` from it rather than deriving them from its own `__file__`, and importing it also puts the project root on `sys.path` so `game_state` stays importable from inside `tools/`. Change paths here, nowhere else.
 
 **`simulator.py`** — The orchestrator. Session setup, the character-generation chain, the narrator call, player turns (info extraction → addressing → dialogue → info extraction), transcript logging, and live in-session prompt editing. Its call-flow/decision logic (who replies, when addressing triggers) mirrors Unity's `CharacterGenerator.GenerateCharacter`/`CharacterController.ParsedText`, while the logging/observability code around it has no Unity equivalent at all.
 
@@ -39,6 +41,10 @@ The raw scratch log `simulator.py` writes to *during* a session — `transcript.
 **`save_version.py`** — Snapshots `game_state/` into `backups/<date>_<slug>/`, diffs it against the previous version, writes the Unity-porting notes, and archives that now-superseded version's tagged runs.
 
 **`restore_version.py`** — Mirror-restores `game_state/` from a chosen backup version (live files end up an exact copy — nothing added since is left behind). Always auto-saves a safety snapshot of the current state first.
+
+---
+
+## Files (project root)
 
 **`index.sqlite`** — SQLite index of every call across every run (written by `store.py`), for cross-run queries like per-run token totals.
 
@@ -68,7 +74,7 @@ The raw scratch log `simulator.py` writes to *during* a session — `transcript.
 
 **`run_viewer.html`** — Self-contained browser viewer (no server, no dependencies). Two views: **Character Gen** (bios plus editable human and AI eval columns, three independently-scrolling panes) and **Table** (every call across loaded runs, sortable/filterable by column group and row category, with inline-editable scoring). Saves edits back to the run JSON directly via the File System Access API. Open it by double-clicking; it needs nothing else.
 
-## Files (`game_state/`)
+## `game_state/`
 
 **`prompts.py`** — Every prompt string. Mirrors `PromptsController.cs`.
 
