@@ -1,5 +1,37 @@
 # Prompt version changelog
 
+## 2026-09-26_generation-temperature-0-6
+
+**TEMP_GENERATION lowered 0.95 to 0.6 on gpt-oss-120b; model and prompts unchanged.**
+
+Previous: 2026-09-26_generation-on-gpt-oss-120b
+
+---
+
+## 2026-09-26_generation-on-gpt-oss-120b
+
+**MODEL_GENERATION swapped to openai/gpt-oss-120b, a reasoning model; temperature and all other models unchanged.**
+
+Previous: 2026-09-26_tolerant-field-extraction
+
+---
+
+## 2026-09-26_tolerant-field-extraction
+
+**extract_field folds dash/space variants and strips <think> blocks; replayed 6,300 historical extractions unchanged.**
+
+Previous: 2026-09-26_per-request-proxy-timeout
+
+---
+
+## 2026-09-26_per-request-proxy-timeout
+
+**Generation asks the proxy for a 300s read timeout; every other call keeps the proxy default.**
+
+Previous: 2026-09-20_housekeeping-extract-field-and-deprecations
+
+---
+
 ## 2026-09-20_housekeeping-extract-field-and-deprecations
 
 **Housekeeping only, no prompt or behavioural change: extract_field ends a value at the next line-initial '**' rather than any '**', so inline bold can no longer truncate a field; game.py drops deprecated datetime.utcnow() while keeping the exact naive timestamp shape; providers.py loses an unused import; assemble_bio's docstring corrected to say its display order is deliberately not CHARACTER_FIELDS order.**

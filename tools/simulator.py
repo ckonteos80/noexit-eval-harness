@@ -59,11 +59,22 @@ _TRANSCRIPT_HEADERS = [
     "requested_model", "served_model",
     "prompt_tokens", "completion_tokens", "total_tokens", "cached_tokens",
     "finish_reason", "response_time_s", "retry_count", "cold_start", "endpoint",
+    "proxy_timeout",
 ]
 
 
 def _init_transcript_files():
     """Create transcript files with headers if they don't exist."""
+    # A column added to _TRANSCRIPT_HEADERS makes every new row one field wider than
+    # the header already written at the top of an existing file. Nothing parses this
+    # CSV today, but a silently ragged file is worse than a rotated one -- and this
+    # directory is scratch, so rotating costs nothing.
+    if TRANSCRIPT_CSV.exists():
+        with open(TRANSCRIPT_CSV, newline="", encoding="utf-8") as f:
+            header = next(csv.reader(f), None)
+        if header != _TRANSCRIPT_HEADERS:
+            stamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+            TRANSCRIPT_CSV.replace(TRANSCRIPT_CSV.with_name(f"transcript.pre-{stamp}.csv"))
     if not TRANSCRIPT_CSV.exists():
         with open(TRANSCRIPT_CSV, "w", newline="", encoding="utf-8") as f:
             csv.writer(f).writerow(_TRANSCRIPT_HEADERS)
@@ -121,6 +132,7 @@ def log_call(
         m.get("retry_count"),
         m.get("cold_start"),
         m.get("endpoint"),
+        m.get("proxy_timeout"),
     ]
 
     with open(TRANSCRIPT_CSV, "a", newline="", encoding="utf-8") as f:
@@ -228,6 +240,7 @@ def generate_character(state: game.GameState, char_no: int) -> dict:
         sys_p, user_p, char_no, "character",
         config.MODEL_GENERATION, config.TEMP_GENERATION, config.MAX_TOKENS_GENERATION,
         state, assembly.parse_character_response, assembly.character_parse_complete,
+        proxy_timeout=config.PROXY_TIMEOUT_GENERATION,
     )
 
     def field(key):
@@ -291,6 +304,7 @@ def _call_with_parse_retry(
     sys_p, user_p, char_no, call_label,
     model, temperature, max_tokens,
     state, parse_fn, complete_check_fn,
+    proxy_timeout=None,
 ):
     """
     Call the proxy and parse the response. Retry once on incomplete parse.
@@ -302,6 +316,7 @@ def _call_with_parse_retry(
     for attempt in range(config.PARSE_RETRY_ATTEMPTS):
         res = providers.call_proxy(
             sys_p, user_p, model=model, temperature=temperature, max_tokens=max_tokens,
+            proxy_timeout=proxy_timeout,
         )
         response = res.content
         log_call(state, call_label, char_no, model, temperature, max_tokens, sys_p, user_p, response,
