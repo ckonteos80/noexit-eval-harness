@@ -5,7 +5,7 @@ Scratch prompt experiments. One folder per experiment, named `NN_YYYY-MM-DD_shor
 `NN` is a running sequence number across the whole project, so the folders always list in
 the order they were actually run. The date alone is not enough — several experiments can
 share a day, and alphabetical ordering of slugs then puts them in the wrong order. **The
-highest number is the most recent.** Next experiment is `06_`.
+highest number is the most recent.** Next experiment is `07_`.
 
 These are **not** sessions. A session belongs in `runs/`, is generated through the harness,
 is tagged with a `game_state/` version and is scored in `ui/run_viewer.html`. An experiment
@@ -46,8 +46,9 @@ only a winning variant gets promoted into a real version with a snapshot.
 | 03 | `2026-09-27_nine-field-no-antidup` | 2 | Is the anti-duplication block causing the sameness? | No. It survives the block's absence. The block does prevent name collisions |
 | 04 | `2026-09-27_story-form` | 4 | Does free-form prose beat field-by-field generation? | Frame collisions drop sharply; but stories write the room and run 750–950 words |
 | 05 | `2026-09-27_deadly-sin` | 10 | Does assigning a deadly sin reduce duplication? | No measurable effect on collision; its value is guarantee, not quality |
+| 06 | `2026-09-27_word-budget` | 10 | Can a word budget shorten the story prompt? | Yes, treated as approximate (+5–10%); the cost is the cast, 120 names down to 44 |
 
-**Latest: 05.** Totals so far: 30 generations, roughly 60,000 tokens.
+**Latest: 06.** Totals so far: 40 generations, roughly 72,000 tokens.
 
 ## Open threads these left behind
 
@@ -62,3 +63,8 @@ only a winning variant gets promoted into a real version with a snapshot.
   anti-duplication block, no block at all (03), and randomised sins (05).
 - **The proxy masks every upstream status as HTTP 500** (01), so `call_proxy`'s 503/504 retry
   has never fired in the project's history.
+- **`max_tokens` is still dropped by the proxy** (06), so output length cannot be capped at
+  the API at all — and on a reasoning model it would be the wrong lever anyway, since
+  reasoning consumes the budget before the answer does.
+- **The naming rule degrades under compression** (06): third-person pronouns per 100 words
+  rise from 4.3 to 4.8 under a word budget, because a pronoun is shorter than a name.
