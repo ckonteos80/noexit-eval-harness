@@ -5,7 +5,7 @@ Scratch prompt experiments. One folder per experiment, named `NN_YYYY-MM-DD_shor
 `NN` is a running sequence number across the whole project, so the folders always list in
 the order they were actually run. The date alone is not enough — several experiments can
 share a day, and alphabetical ordering of slugs then puts them in the wrong order. **The
-highest number is the most recent.** Next experiment is `11_`.
+highest number is the most recent.** Next experiment is `12_`.
 
 These are **not** sessions. A session belongs in `runs/`, is generated through the harness,
 is tagged with a `game_state/` version and is scored in `ui/run_viewer.html`. An experiment
@@ -51,8 +51,9 @@ only a winning variant gets promoted into a real version with a snapshot.
 | 08 | `2026-09-27_temperature-sweep` | 15 | What temperature is best for the story prompt? | 1.1. Collision falls 35.0 → 21.2 from 0.7 to 1.1, then stops. Temperature never touches names |
 | 09 | `2026-09-27_no-name-origin` | 5 | What does NAME_ORIGINS actually buy? | Keep it. Removing it raises collision and collapses the milieu — but it never reached the supporting cast |
 | 10 | `2026-09-27_end-on-a-fact` | 10 | Can one line stop stories closing on their own verdict? | Yes — 10 of 10 across both arms, against 0 of 10. The single most effective prompt line tested |
+| 11 | `2026-09-27_questions-not-instructions` | 10 | Do four questions beat instructions in the user prompt? | Yes, but no metric detects it — every new story opens on the person the sin destroys, every old one on a birth certificate |
 
-**Latest: 10.** Totals so far: 75 generations, roughly 118,000 tokens.
+**Latest: 11.** Totals so far: 85 generations, roughly 132,000 tokens.
 
 ## Open threads these left behind
 
@@ -84,4 +85,8 @@ only a winning variant gets promoted into a real version with a snapshot.
   surname `Voss` shared by two unrelated characters. Fixing it needs a randomised input one
   level down, not another instruction.
 - **The verdict moved rather than vanished** (10). The end-on-a-fact rule governs the last
-  sentence only; two of five stories still declare "Your sin is..." mid-story.
+  sentence only; two of five stories still declare "Your sin is..." mid-story. The question
+  rewrite in 11 may have fixed this, but the old prompt scored 0 on a re-run, so it is noise
+  at n=5 and cannot be claimed either way.
+- **Collision and word counts do not measure dramatic usefulness** (11). The clearest quality
+  gain in the project registered as zero on every metric and was only visible by reading.
