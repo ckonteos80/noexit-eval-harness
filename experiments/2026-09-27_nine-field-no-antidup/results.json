@@ -1,0 +1,56 @@
+{
+  "1": {
+    "inputs": {
+      "age": 36,
+      "gender": "male",
+      "origin": "Mexican"
+    },
+    "usage": {
+      "prompt_tokens": 1335,
+      "total_tokens": 1785,
+      "completion_tokens": 450,
+      "prompt_tokens_details": null
+    },
+    "seconds": 13.1,
+    "raw": "**Name**  \nMateo Rios  \n\n**Occupation**  \nconstruction supervisor  \n\n**Reason for Damnation — True**  \nYou left your younger brother José alone on a high-rise job site during a storm because you were angry he had told your boss about the missing safety railings, and he fell eight floors when the scaffold gave way in the wind.  \n\n**Reason for Damnation — Self-told**  \nJosé was supposed to follow protocol and tie in, but he didn’t, and the storm came fast—no one could’ve predicted it; I wasn’t responsible for his choices.  \n\n**What you refuse to admit about yourself**  \nYou need to be seen as right, even when people die because of it.  \n\n**Life**  \nYou supervised construction crews on high-rise buildings in Mexico City, managing schedules, crews, and safety checks. José worked under you for two years, often pointing out violations because he feared accidents. You argued with him weekly about cutting corners to meet deadlines. Three weeks before your death, you removed safety railings to speed up work and he reported it. You reassigned him to the north face alone, told the crew he wasn’t to be assisted. On the day of the storm, you withheld the evacuation order from him. The scaffold collapsed. You testified at the investigation that José ignored weather warnings. Two weeks later, your daughter Marisol was killed in a car accident while driving your truck; you were distracted arguing on the phone with your sister Elena about the funeral costs and left the keys in the ignition where she could take it. You died of a heart attack during your own trial for negligent homicide.  \n\n**Defining personality trait**  \nneed to win  \n\n**What you want from the others in the room**  \nAgreement, so you never have to face being wrong.  \n\n**People in your life**  \nJosé Rios was your younger brother and a laborer on your crew; he wanted to save enough money to move to Monterrey and open a hardware store. Marisol Rios was your daughter; she wanted to study architecture at UNAM. Elena Rios was your older sister; she wanted to keep the family together after your mother’s death.",
+    "parsed": {
+      "name": "Mateo Rios",
+      "occupation": "construction supervisor",
+      "reason_true": "You left your younger brother José alone on a high-rise job site during a storm because you were angry he had told your boss about the missing safety railings, and he fell eight floors when the scaffold gave way in the wind.",
+      "reason_self_told": "José was supposed to follow protocol and tie in, but he didn’t, and the storm came fast—no one could’ve predicted it; I wasn’t responsible for his choices.",
+      "refuse_to_admit": "You need to be seen as right, even when people die because of it.",
+      "life": "You supervised construction crews on high-rise buildings in Mexico City, managing schedules, crews, and safety checks. José worked under you for two years, often pointing out violations because he feared accidents. You argued with him weekly about cutting corners to meet deadlines. Three weeks before your death, you removed safety railings to speed up work and he reported it. You reassigned him to the north face alone, told the crew he wasn’t to be assisted. On the day of the storm, you withheld the evacuation order from him. The scaffold collapsed. You testified at the investigation that José ignored weather warnings. Two weeks later, your daughter Marisol was killed in a car accident while driving your truck; you were distracted arguing on the phone with your sister Elena about the funeral costs and left the keys in the ignition where she could take it. You died of a heart attack during your own trial for negligent homicide.",
+      "personality_trait": "need to win",
+      "want": "Agreement, so you never have to face being wrong.",
+      "people": "José Rios was your younger brother and a laborer on your crew; he wanted to save enough money to move to Monterrey and open a hardware store. Marisol Rios was your daughter; she wanted to study architecture at UNAM. Elena Rios was your older sister; she wanted to keep the family together after your mother’s death."
+    },
+    "missing": []
+  },
+  "2": {
+    "inputs": {
+      "age": 65,
+      "gender": "female",
+      "origin": "Brazilian"
+    },
+    "usage": {
+      "prompt_tokens": 1335,
+      "total_tokens": 1719,
+      "completion_tokens": 384,
+      "prompt_tokens_details": null
+    },
+    "seconds": 11.3,
+    "raw": "**Name**  \nMaria Silva  \n\n**Occupation**  \nretired schoolteacher  \n\n**Reason for Damnation — True**  \nYou withheld the truth from your daughter Ana about her biological father, not because you believed it was harmful, but because you feared losing the version of yourself as a wronged woman that the lie allowed you to sustain.  \n\n**Reason for Damnation — Self-told**  \nYou protected Ana from unnecessary pain — her real father never wanted children, and telling her would have only destroyed the image she had of him.  \n\n**What you refuse to admit about yourself**  \nYou need to be seen as a victim to feel worthy of love.  \n\n**Life**  \nYou taught Portuguese at a public high school in São Paulo for thirty-eight years, retiring at sixty. You married José Silva at twenty-four; he died of lung cancer at fifty-nine. You raised Ana believing José was her father, though you conceived her in a six-month affair with Rafael Costa during a separation from José. You never told Ana the truth, even after José’s death. Rafael moved to Porto Alegre in 2005 and had no contact with you. Ana, now forty-two, visited you monthly and believed you were protecting her by staying silent. Two days ago, you collapsed at home while arguing with Ana, who had found old letters from Rafael. The paramedics could not restart your heart.  \n\n**Defining personality trait**  \nneeding to be right  \n\n**What you want from the others in the room**  \nto confirm that you were wronged  \n\n**People in your life**  \nJosé Silva — your husband, who wanted to retire to the coast and live quietly by the sea  \nAna Silva — your daughter, who wanted to understand who she really was  \nRafael Costa — your former lover, who wanted to start a new life far from his past mistakes",
+    "parsed": {
+      "name": "Maria Silva",
+      "occupation": "retired schoolteacher",
+      "reason_true": "You withheld the truth from your daughter Ana about her biological father, not because you believed it was harmful, but because you feared losing the version of yourself as a wronged woman that the lie allowed you to sustain.",
+      "reason_self_told": "You protected Ana from unnecessary pain — her real father never wanted children, and telling her would have only destroyed the image she had of him.",
+      "refuse_to_admit": "You need to be seen as a victim to feel worthy of love.",
+      "life": "You taught Portuguese at a public high school in São Paulo for thirty-eight years, retiring at sixty. You married José Silva at twenty-four; he died of lung cancer at fifty-nine. You raised Ana believing José was her father, though you conceived her in a six-month affair with Rafael Costa during a separation from José. You never told Ana the truth, even after José’s death. Rafael moved to Porto Alegre in 2005 and had no contact with you. Ana, now forty-two, visited you monthly and believed you were protecting her by staying silent. Two days ago, you collapsed at home while arguing with Ana, who had found old letters from Rafael. The paramedics could not restart your heart.",
+      "personality_trait": "needing to be right",
+      "want": "to confirm that you were wronged",
+      "people": "José Silva — your husband, who wanted to retire to the coast and live quietly by the sea  \nAna Silva — your daughter, who wanted to understand who she really was  \nRafael Costa — your former lover, who wanted to start a new life far from his past mistakes"
+    },
+    "missing": []
+  }
+}

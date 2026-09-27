@@ -19,6 +19,9 @@ Version history of `game_state/`. Each save (`tools/save_version.py`) creates on
 ### `runs/`
 Every saved session, one JSON file per run (bios, full per-call transcript, metadata, eval scores). This is the live, ever-growing "current" set — `ui/run_viewer.html` reads from here, and `tools/save_version.py` archives a copy into the relevant `backups/` version once that version is superseded.
 
+### `experiments/`
+Scratch prompt experiments, one folder per experiment (`YYYY-MM-DD_slug`), each with a `NOTES.md`, the script exactly as it was run, and the raw results. These are **not** sessions: an experiment calls the proxy directly with model, temperature and prompt pinned inline, touches nothing in `game_state/`, produces no drift and no version, and writes nothing to `runs/`. That is the point — a prompt idea gets tested before anything in the project changes, and only a winner is promoted into a real version with a snapshot. See `experiments/README.md` for the conventions and an index of what has already been tried.
+
 ### `noexit_outputs/`
 The raw scratch log `tools/simulator.py` writes to *during* a session — `transcript.csv`/`transcript.json` (every call, unscoped, keeps growing across every process you run), `session_state.json` (latest session snapshot, used to resume state across separate calls), `edits.csv` (live prompt edits made mid-session). Disposable — `runs/` is where you keep a session on purpose; this is just where it's logged as it happens.
 
