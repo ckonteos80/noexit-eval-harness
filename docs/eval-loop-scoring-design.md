@@ -40,11 +40,11 @@ Scored once per generated character (except Distinctness, which is a pair-level 
 
 ### Practical (pass / flag)
 
-1. **Parse & completeness** — every field the chain should produce came out and was extractable (Occupation, Cause of Death, Life prose, both Reasons for Damnation, the refusal, the trait, the want). *Fail:* a field is blank, malformed, or the `**marker**` structure broke.
-2. **Distinctness from the other character** *(pair-level)* — the two people are genuinely different lives. *Fail:* same/adjacent occupation, same category of death, same category of sin, or wanting the same thing.
+1. **Parse & completeness** — every field the prompt should produce came out and was extractable (Name, Occupation, both Reasons for Damnation, the refusal, Life prose, the trait, the want, People in your life). *Fail:* a field is blank, malformed, or the `**marker**` structure broke. *Note:* Cause of Death, Who you loved and Who you hated were removed on 2026-09-27 (see `backups/2026-09-27_nine-field-character-sin-first/NOTES.md`); the death is now the last sentence of the Life paragraph.
+2. **Distinctness from the other character** *(pair-level)* — the two people are genuinely different lives. *Fail:* same/adjacent occupation, same category of sin, the same thing refused, or wanting the same thing. Same category of death still counts, but as a variety check only — two embolisms in consecutive runs is dull even though neither death has to be load-bearing.
 3. **Internal consistency** — the fields agree. *Fail:* the Self-told reason isn't a distortion of the True reason (different story, or identical); trait contradicts the life; want doesn't follow from who they are.
 4. **Constraint adherence** — obeys the prompt rules: second person throughout, contemporary/realistic register, no fantasy/mysticism, plain-language occupation, Life paragraph stops at the threshold and doesn't describe arriving in a room. *Fail:* any violated.
-5. **Length & format discipline** — Life prose in its ~80–100 word target; fields the right size. *Fail:* bloated or clipped.
+5. **Length & format discipline** — Life prose inside its 150-word cap; fields the right size. *Fail:* bloated or clipped.
 
 ### Mood (1–3, anchored)
 

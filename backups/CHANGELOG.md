@@ -1,5 +1,13 @@
 # Prompt version changelog
 
+## 2026-09-27_death-need-not-belong
+
+**The death no longer has to be caused by the character or connect to anyone; attention moves to the two Reasons for Damnation.**
+
+Previous: 2026-09-27_nine-field-character-sin-first
+
+---
+
 ## 2026-09-27_nine-field-character-sin-first
 
 **Character prompt rebuilt: 9 fields, sin first, death folded into Life, loved/hated pair replaced by an open cast.**

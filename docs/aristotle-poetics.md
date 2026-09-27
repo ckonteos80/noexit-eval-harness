@@ -2,6 +2,8 @@
 
 *Research notes gathered as background for character-generation and dialogue work, companion to `stanislavski-an-actor-prepares.md`. Where Stanislavski is about how a performer builds truth from the inside, Aristotle is about how a story is constructed from the outside — what makes an action follow from what came before, and what makes a character legible through what they do. A short "relevance" line under each concept connects it to what has actually gone wrong in eval on this project.*
 
+**Superseded in part, 2026-09-27.** The cause-of-death application of Aristotle's unity principle (below, under necessity and probability) was retired: deaths no longer have to follow from the character's own chain of action, and may be arbitrary. Attention moved to the two Reasons for Damnation. The relevance notes below are left as written, as a record of why the 2026-09-12 changes were made — they were accurate then.
+
 **One caveat up front.** NoExit is structurally anti-Aristotelian by design. There is no reversal of fortune available in the present tense — everyone is already dead, nothing can change, and the whole point is that there is no exit. Aristotle's architecture applies to the **backstories**, which are compressed tragedies, and to the **shape of a session**, which is a recognition sequence. It does not apply to the room, which is deliberately static. Reading his rules as prescriptions for the play itself would break the premise.
 
 ---
