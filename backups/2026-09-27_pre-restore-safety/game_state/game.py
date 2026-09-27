@@ -33,8 +33,10 @@ class Character:
 
     # Parsed fields (used for character generation anti-duplication and other tooling)
     occupation: str = ""
+    cause_of_death: str = ""
+    who_loved: str = ""
+    who_hated: str = ""
     prose_body: str = ""
-    people: str = ""
     reason_true: str = ""
     reason_self_told: str = ""
     refuse_to_admit: str = ""

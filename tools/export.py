@@ -75,7 +75,6 @@ def write_session_notes(state, summary: str = "") -> Path:
         content.append(f"### Character {cid}: {char.name or '(unnamed)'}")
         content.append(f"- **Age/Gender:** {char.age}, {char.gender}")
         content.append(f"- **Occupation:** {char.occupation}")
-        content.append(f"- **Cause of Death:** {char.cause_of_death}")
         content.append(f"- **Personality:** {char.personality_trait}")
         content.append(f"- **Wants:** {char.want}")
         if char.info_shared:

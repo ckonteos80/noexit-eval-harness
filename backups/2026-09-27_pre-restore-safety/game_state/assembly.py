@@ -148,23 +148,23 @@ def extract_field(response: str, field_name: str) -> Optional[str]:
 CHARACTER_FIELDS = {
     "name": "Name",
     "occupation": "Occupation",
-    # The sin comes first now, and the life is written to produce it. Generation is
-    # autoregressive, so everything below is composed knowing what the character is
-    # damned for. Cause of Death is no longer its own field -- the death is the last
-    # sentence of the Life paragraph -- and the single loved/hated person has been
-    # replaced by an open cast in People in your life.
+    # The relationship precedes the death deliberately: generation is autoregressive,
+    # so a death written before these fields cannot be caused by the person in them.
+    # That ordering is what made every death read as disconnected through v4.
+    "who_loved": "Who you loved",
+    "who_hated": "Who you hated",
+    "cause_of_death": "Cause of Death",
+    "prose_body": "Life",
     "reason_true": "Reason for Damnation — True",
     "reason_self_told": "Reason for Damnation — Self-told",
     "refuse_to_admit": "What you refuse to admit about yourself",
-    "prose_body": "Life",
     "personality_trait": "Defining personality trait",
     "want": "What you want from the others in the room",
-    "people": "People in your life",
 }
 
 
 def parse_character_response(response: str) -> dict:
-    """All nine character fields from one generation response. Values may be None."""
+    """All eleven character fields from one generation response. Values may be None."""
     return {key: extract_field(response, label) for key, label in CHARACTER_FIELDS.items()}
 
 
@@ -175,7 +175,9 @@ def character_parse_complete(parsed: dict) -> bool:
 
 def assemble_bio(
     occupation: str,
-    people: str,
+    cause_of_death: str,
+    who_loved: str,
+    who_hated: str,
     reason_true: str,
     reason_self_told: str,
     personality_trait: str,
@@ -187,14 +189,15 @@ def assemble_bio(
     Assembles the final bio string in the display order (matches CharacterGenerator).
 
     This is DISPLAY order and is deliberately NOT identical to CHARACTER_FIELDS:
-    the cast is shown near the top as context, and the trait before the refusal --
-    the reverse of the order they are generated in. The Life paragraph goes last,
-    after a rule, and now carries the death in its final sentence. Changing any of
+    the relationship precedes the death as it does there, but the trait is shown
+    before the refusal, the reverse of the order they are generated in. Changing
     this changes the dialogue system prompt, since the bio is substituted into it.
     """
     sections = [
         f"**Occupation**\n{occupation}",
-        f"**People in your life**\n{people}",
+        f"**Who you loved**\n{who_loved}",
+        f"**Who you hated**\n{who_hated}",
+        f"**Cause of Death**\n{cause_of_death}",
         f"**Reason for Damnation — True**\n{reason_true}",
         f"**Reason for Damnation — Self-told**\n{reason_self_told}",
         f"**Defining personality trait**\n{personality_trait}",

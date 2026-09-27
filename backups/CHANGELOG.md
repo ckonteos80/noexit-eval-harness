@@ -1,5 +1,21 @@
 # Prompt version changelog
 
+## 2026-09-27_nine-field-character-sin-first
+
+**Character prompt rebuilt: 9 fields, sin first, death folded into Life, loved/hated pair replaced by an open cast.**
+
+Previous: 2026-09-26_tolerant-field-extraction
+
+---
+
+## 2026-09-27_pre-restore-safety
+
+**Auto-saved before restoring 2026-09-26_tolerant-field-extraction**
+
+Previous: 2026-09-26_generation-temperature-0-6
+
+---
+
 ## 2026-09-26_generation-temperature-0-6
 
 **TEMP_GENERATION lowered 0.95 to 0.6 on gpt-oss-120b; model and prompts unchanged.**

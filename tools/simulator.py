@@ -175,10 +175,8 @@ def save_state_snapshot(state: game.GameState):
                 "age": char.age,
                 "info_shared": char.info_shared,
                 "occupation": char.occupation,
-                "cause_of_death": char.cause_of_death,
-                "who_loved": char.who_loved,
-                "who_hated": char.who_hated,
                 "prose_body": char.prose_body,
+                "people": char.people,
                 "reason_true": char.reason_true,
                 "reason_self_told": char.reason_self_told,
                 "refuse_to_admit": char.refuse_to_admit,
@@ -248,25 +246,21 @@ def generate_character(state: game.GameState, char_no: int) -> dict:
 
     name = field("name")
     occupation = field("occupation")
-    cause_of_death = field("cause_of_death")
-    who_loved = field("who_loved")
-    who_hated = field("who_hated")
     prose_body = field("prose_body")
+    people = field("people")
     reason_true = field("reason_true")
     reason_self_told = field("reason_self_told")
     refuse_to_admit = field("refuse_to_admit")
     personality_trait = field("personality_trait")
     want = field("want")
 
-    summary.update(name=name, occupation=occupation, cause_of_death=cause_of_death,
+    summary.update(name=name, occupation=occupation,
                    personality_trait=personality_trait, want=want)
 
     # ── Assemble bio & store ──
     bio = assembly.assemble_bio(
         occupation=occupation,
-        cause_of_death=cause_of_death,
-        who_loved=who_loved,
-        who_hated=who_hated,
+        people=people,
         reason_true=reason_true,
         reason_self_told=reason_self_told,
         personality_trait=personality_trait,
@@ -281,10 +275,8 @@ def generate_character(state: game.GameState, char_no: int) -> dict:
         gender=gender,
         age=age,
         occupation=occupation,
-        cause_of_death=cause_of_death,
-        who_loved=who_loved,
-        who_hated=who_hated,
         prose_body=prose_body,
+        people=people,
         reason_true=reason_true,
         reason_self_told=reason_self_told,
         refuse_to_admit=refuse_to_admit,
