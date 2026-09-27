@@ -5,7 +5,7 @@ Scratch prompt experiments. One folder per experiment, named `NN_YYYY-MM-DD_shor
 `NN` is a running sequence number across the whole project, so the folders always list in
 the order they were actually run. The date alone is not enough — several experiments can
 share a day, and alphabetical ordering of slugs then puts them in the wrong order. **The
-highest number is the most recent.** Next experiment is `12_`.
+highest number is the most recent.** Next experiment is `13_`.
 
 These are **not** sessions. A session belongs in `runs/`, is generated through the harness,
 is tagged with a `game_state/` version and is scored in `ui/run_viewer.html`. An experiment
@@ -52,8 +52,9 @@ only a winning variant gets promoted into a real version with a snapshot.
 | 09 | `2026-09-27_no-name-origin` | 5 | What does NAME_ORIGINS actually buy? | Keep it. Removing it raises collision and collapses the milieu — but it never reached the supporting cast |
 | 10 | `2026-09-27_end-on-a-fact` | 10 | Can one line stop stories closing on their own verdict? | Yes — 10 of 10 across both arms, against 0 of 10. The single most effective prompt line tested |
 | 11 | `2026-09-27_questions-not-instructions` | 10 | Do four questions beat instructions in the user prompt? | Yes, but no metric detects it — every new story opens on the person the sin destroys, every old one on a birth certificate |
+| 12 | `2026-09-27_the-gaze-questions` | 10 | Swap "what would break the lie" for two questions about how you are seen? | Yes — the public self plus the evidence that destroys it. Shorter, but the worst collision in the series |
 
-**Latest: 11.** Totals so far: 85 generations, roughly 132,000 tokens.
+**Latest: 12.** Totals so far: 95 generations, roughly 145,000 tokens.
 
 ## Open threads these left behind
 
@@ -90,3 +91,8 @@ only a winning variant gets promoted into a real version with a snapshot.
   at n=5 and cannot be claimed either way.
 - **Collision and word counts do not measure dramatic usefulness** (11). The clearest quality
   gain in the project registered as zero on every metric and was only visible by reading.
+- **Occupations collide too, not just names** (12): two of five gaze stories make the character
+  a child-protection worker. Worth measuring alongside names in future.
+- **Nothing has been tested on a pair.** Every experiment since 05 generates characters
+  independently. Whether these questions survive a second character who must differ from the
+  first is untested.
