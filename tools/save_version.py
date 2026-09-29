@@ -24,6 +24,9 @@ CURRENT_FILE = BACKUPS / "CURRENT"
 # Files inside game_state/ that are copied but never meaningfully diffed.
 IGNORED_PARTS = {"__pycache__"}
 IGNORED_SUFFIXES = {".pyc", ".pyo"}
+# Instructions for Claude, not game state: no Unity counterpart, so it is neither
+# diffed nor copied into a version. Without this it registers as permanent drift.
+IGNORED_NAMES = {"CLAUDE.md"}
 
 # Which game_state/ file mirrors which Unity C# file(s). Used to write
 # backups/UNITY_MAPPING.md and each version's "Unity files to update" note.
@@ -129,6 +132,8 @@ def tracked_files(root: Path) -> set:
         if not p.is_file():
             continue
         if IGNORED_PARTS & set(p.parts) or p.suffix in IGNORED_SUFFIXES:
+            continue
+        if p.name in IGNORED_NAMES:
             continue
         out.add(p.relative_to(root))
     return out
@@ -309,7 +314,7 @@ def save_version(slug: str, summary: str) -> Path:
 
     new_dir = next_version_dir(slug)
     new_dir.mkdir(parents=True)
-    shutil.copytree(GAME_STATE_DIR, new_dir / "game_state", ignore=shutil.ignore_patterns("__pycache__"))
+    shutil.copytree(GAME_STATE_DIR, new_dir / "game_state", ignore=shutil.ignore_patterns("__pycache__", *IGNORED_NAMES))
 
     diffs = write_diff(prev_dir, new_dir)
     unity_section = unity_notes_for(diffs.keys())

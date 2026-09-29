@@ -1,0 +1,75 @@
+# Experiments
+
+Prompt A/B runs. Each is a folder, numbered so the latest is obvious, holding everything
+needed to understand and repeat it. `README.md` in this directory is the index and the open
+threads list; both are updated by every experiment.
+
+**Scratch only.** Nothing here writes to `game_state/`, `runs/` or `index.sqlite`. Import
+from `game_state` read-only — for `PROXY_URL`, `prompts`, `extract_field` — and never write
+back.
+
+## A folder
+
+```
+NN_YYYY-MM-DD_slug/
+  <name>.py        the script, with the model and temperature pinned inside it
+  results.json     every generation, with words, seconds, tokens and the inputs
+  questions.json   the user prompt's questions, in order, for the viewers
+  tags.json        paragraph -> question, assigned by reading (see below)
+  NOTES.md         what was asked, what was predicted, what happened
+  view.*           generated views; rebuild with /experiment --views <folder>
+```
+
+## The rules that make an experiment worth anything
+
+- **Pin the model and temperature in the script.** Never read them from `config.py`, which
+  may have changed since.
+- **Pair the inputs across arms.** Draw age and gender once per sample and reuse them in
+  every arm, so a difference between arms is the variable and not the draw.
+- **Write the prediction into the script before the run.** Four predictions in this series
+  have been wrong in ways that turned out to be the finding — temperature 1.4, the "kind of
+  person" wording, the 200-word braiding, the 300-word length control. A prediction recorded
+  afterwards is worth nothing.
+- **Reuse earlier arms as free controls** when the configuration matches. Experiments 12–15
+  share five inputs for exactly this reason.
+- **Record the token cost.** Every experiment here spent real credits.
+
+## Tagging
+
+`tags.json` maps a call's index in `results.json` to a map of paragraph index → list of
+question numbers:
+
+```json
+{"0": {"0": [1, 3], "1": [2], "4": [5]}}
+```
+
+One question means the paragraph does that question's work and gets its colour. Several means
+it answers them at once and gets a striped rule — that braiding is itself a finding. Plot,
+setup, the death, and paragraphs split evenly between two questions are left untagged.
+
+**Assign them by reading every story.** This is the material that has defeated five regex
+passes.
+
+## Viewers
+
+```
+python experiments/_view.py <folder>    # view.html
+python experiments/_doc.py  <folder>    # view.docx, view.md, view.color.md, view.ansi
+```
+
+Which to hand the user:
+
+| | reads where |
+|---|---|
+| `view.color.md` | VS Code's built-in preview, Ctrl+Shift+V — no extension, works over remote |
+| `view.ansi` | `cat` in the integrated terminal — no extension at all |
+| `view.html` | a published artifact, or the Live Preview extension |
+| `view.docx` | Word or Google Docs only. VS Code's docx extensions strip the shading |
+
+## Writing up
+
+`NOTES.md` carries the question, the setup, the prediction and where it was wrong, the
+result, and a recommendation. Then update `README.md`: a row in the index, the totals line,
+and anything structural in **open threads**.
+
+State what the numbers do not support. "No separation at five samples each" is a result.
