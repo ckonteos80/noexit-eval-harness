@@ -77,6 +77,74 @@ def label_of(r, n):
     return "   ·   ".join(str(b) for b in bits)
 
 
+def rgb(h):
+    return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
+
+
+def blocks_of(r):
+    return [x.strip() for x in r["text"].split("\n\n") if x.strip()]
+
+
+def write_colour_md(d, R, T, QS):
+    """Markdown with inline HTML. VS Code's built-in preview (Ctrl+Shift+V) renders it,
+    so it works over Remote-SSH with no browser and no extension. Background and text
+    colour are both stated, so it reads the same under a light or a dark theme."""
+    box = ('<div style="background:#{fill}; border-left:4px solid #{ink}; '
+           'padding:9px 13px; margin:7px 0; color:#241F1B; '
+           'font-family:Georgia,serif; line-height:1.55;">'
+           '<b style="color:#{ink}; font-family:Consolas,monospace; font-size:11px;">'
+           '{tag}</b>&nbsp; {text}</div>')
+    plain = ('<div style="padding:9px 13px; margin:7px 0; font-family:Georgia,serif; '
+             'line-height:1.55;">{text}</div>')
+    out = [f"# {os.path.basename(d)}", ""]
+    for i, q in enumerate(QS):
+        out.append(box.format(fill=FILL[i], ink=INK[i], tag=f"Q{i + 1}", text=esc(q)))
+    for n, r in enumerate(R):
+        tags = T.get(str(n), {})
+        out += ["", f"`{label_of(r, n + 1)}`", ""]
+        for p, b in enumerate(blocks_of(r)):
+            qs = tags.get(str(p)) or tags.get(p)
+            if not qs:
+                out.append(plain.format(text=esc(b)))
+            else:
+                out.append(box.format(
+                    fill=FILL[qs[0] - 1] if len(qs) == 1 else MIXFILL,
+                    ink=INK[qs[0] - 1],
+                    tag=" ".join(f"Q{q}" for q in qs), text=esc(b)))
+    path = os.path.join(d, "view.color.md")
+    open(path, "w", encoding="utf-8", newline="\n").write("\n".join(out) + "\n")
+    return path
+
+
+def write_ansi(d, R, T, QS):
+    """True-colour ANSI: `cat` it in the integrated terminal. No extension at all."""
+    E = "\x1b"
+
+    def tint(text, fill, ink, tag):
+        fr, fg, fb = rgb(fill)
+        ir, ig, ib = rgb(ink)
+        return (f"{E}[48;2;{fr};{fg};{fb}m{E}[38;2;{ir};{ig};{ib}m{E}[1m {tag} {E}[22m"
+                f"{E}[38;2;36;31;27m {text} {E}[0m")
+
+    out = [f"{E}[1m{os.path.basename(d)}{E}[0m", ""]
+    for i, q in enumerate(QS):
+        out.append(tint(q, FILL[i], INK[i], f"Q{i + 1}"))
+    for n, r in enumerate(R):
+        tags = T.get(str(n), {})
+        out += ["", f"{E}[2m{label_of(r, n + 1)}{E}[0m", ""]
+        for p, b in enumerate(blocks_of(r)):
+            qs = tags.get(str(p)) or tags.get(p)
+            if not qs:
+                out.append(f"{E}[38;2;150;140;132m  {b}{E}[0m")
+            else:
+                out.append(tint(b, FILL[qs[0] - 1] if len(qs) == 1 else MIXFILL,
+                                INK[qs[0] - 1], " ".join(f"Q{q}" for q in qs)))
+            out.append("")
+    path = os.path.join(d, "view.ansi")
+    open(path, "w", encoding="utf-8", newline="\n").write("\n".join(out) + "\n")
+    return path
+
+
 def build(folder):
     d = folder if os.path.isabs(folder) else os.path.join(HERE, folder)
     R = json.load(open(os.path.join(d, "results.json"), encoding="utf-8"))
@@ -147,6 +215,9 @@ def build(folder):
             info = zipfile.ZipInfo(name, stamp)
             info.compress_type = zipfile.ZIP_DEFLATED
             z.writestr(info, data.encode("utf-8"))
+
+    for extra in (write_colour_md(d, R, T, QS), write_ansi(d, R, T, QS)):
+        print(f"{len(R)} calls -> {extra} ({os.path.getsize(extra)} bytes)")
 
     mdp = os.path.join(d, "view.md")
     open(mdp, "w", encoding="utf-8", newline="\n").write("\n".join(md) + "\n")
