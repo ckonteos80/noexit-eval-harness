@@ -54,11 +54,14 @@ only a winning variant gets promoted into a real version with a snapshot.
 | 11 | `2026-09-27_questions-not-instructions` | 10 | Do four questions beat instructions in the user prompt? | Yes, but no metric detects it — every new story opens on the person the sin destroys, every old one on a birth certificate |
 | 12 | `2026-09-27_the-gaze-questions` | 10 | Swap "what would break the lie" for two questions about how you are seen? | Yes — the public self plus the evidence that destroys it. Shorter, but the worst collision in the series |
 | 13 | `2026-09-27_see-vs-kind-of-person` | 10 | "How would people see you" vs "what kind of person would they think you are"? | No separation. Both return acts, not labels. Found instead that the name prior is keyed to the input, not the prompt |
+| 14 | `2026-09-29_the-secret-question-at-200` | 10 | Ask for the secret outright, at 200 words? | The secret lands 10/10 against the gaze question's 4/10 — but it cannibalises the question after it (1/10), and 3 of 10 stories lose the death |
 
-**Latest: 13.** Totals so far: 105 generations, roughly 159,000 tokens.
+**Latest: 14.** Totals so far: 115 generations, roughly 167,000 tokens.
 
 ## Open threads these left behind
 
+- **A direct question beats an evaluative one, and crowds it out** (14). Asking *what secret would make everyone see you for what you really are* is answered 10 of 10; the *what kind of person would they think you are* question that follows it drops to 1 of 10. Worth testing whether this holds for other question pairs.
+- **Below ~300 words the story stops ending on a death** (14). Three of ten at a 200-word budget either never die or put the funeral before the death, against 10 of 10 ending on a death at 600.
 - **The story prompt does not reliably produce a name or an occupation** (05). Two of ten
   protagonists were never named; two more only inside someone else's dialogue. This blocks
   the planned stage-two extractor, which would otherwise invent names for a quarter of
