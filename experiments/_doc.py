@@ -29,29 +29,36 @@ def esc(t):
 
 
 def run(text, color=None, size=22, font=BODY, caps=False, space=False):
-    rpr = f'<w:rFonts w:ascii="{font}" w:hAnsi="{font}"/><w:sz w:val="{size}"/>'
-    if color:
-        rpr += f'<w:color w:val="{color}"/>'
+    # WordprocessingML is order-sensitive: CT_RPr wants rFonts, caps, color,
+    # spacing, sz. Out of order, Word "repairs" the file and drops the formatting.
+    rpr = f'<w:rFonts w:ascii="{font}" w:hAnsi="{font}"/>'
     if caps:
         rpr += "<w:caps/>"
+    if color:
+        rpr += f'<w:color w:val="{color}"/>'
     if space:
         rpr += '<w:spacing w:val="30"/>'
+    rpr += f'<w:sz w:val="{size}"/>'
     return (f"<w:r><w:rPr>{rpr}</w:rPr>"
             f'<w:t xml:space="preserve">{esc(text)}</w:t></w:r>')
 
 
 def para(runs, fill=None, bar=None, after=120, before=0, indent=0, rule=False):
-    ppr = f'<w:spacing w:before="{before}" w:after="{after}"/>'
-    if indent:
-        ppr += f'<w:ind w:left="{indent}" w:right="120"/>'
+    # CT_PPrBase order: pBdr, shd, spacing, ind. Anything else and Word repairs
+    # the document and throws the shading away.
+    ppr = ""
+    borders = ""
     if bar:
-        ppr += ('<w:pBdr><w:left w:val="single" w:sz="18" w:space="8" '
-                f'w:color="{bar}"/></w:pBdr>')
+        borders += (f'<w:left w:val="single" w:sz="18" w:space="8" w:color="{bar}"/>')
     if rule:
-        ppr += ('<w:pBdr><w:bottom w:val="single" w:sz="4" w:space="1" '
-                f'w:color="E4DCD4"/></w:pBdr>')
+        borders += '<w:bottom w:val="single" w:sz="4" w:space="1" w:color="E4DCD4"/>'
+    if borders:
+        ppr += f"<w:pBdr>{borders}</w:pBdr>"
     if fill:
         ppr += f'<w:shd w:val="clear" w:color="auto" w:fill="{fill}"/>'
+    ppr += f'<w:spacing w:before="{before}" w:after="{after}"/>'
+    if indent:
+        ppr += f'<w:ind w:left="{indent}" w:right="120"/>'
     return f"<w:p><w:pPr>{ppr}</w:pPr>{''.join(runs)}</w:p>"
 
 
