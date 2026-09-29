@@ -5,7 +5,7 @@ Scratch prompt experiments. One folder per experiment, named `NN_YYYY-MM-DD_shor
 `NN` is a running sequence number across the whole project, so the folders always list in
 the order they were actually run. The date alone is not enough — several experiments can
 share a day, and alphabetical ordering of slugs then puts them in the wrong order. **The
-highest number is the most recent.** Next experiment is `14_`.
+highest number is the most recent.** Next experiment is `17_`.
 
 These are **not** sessions. A session belongs in `runs/`, is generated through the harness,
 is tagged with a `game_state/` version and is scored in `ui/run_viewer.html`. An experiment
@@ -56,8 +56,9 @@ only a winning variant gets promoted into a real version with a snapshot.
 | 13 | `2026-09-27_see-vs-kind-of-person` | 10 | "How would people see you" vs "what kind of person would they think you are"? | No separation. Both return acts, not labels. Found instead that the name prior is keyed to the input, not the prompt |
 | 14 | `2026-09-29_the-secret-question-at-200` | 10 | Ask for the secret outright, at 200 words? | The secret lands 10/10 against the gaze question's 4/10 — but it cannibalises the question after it (1/10), and 3 of 10 stories lose the death |
 | 15 | `2026-09-29_five-questions-at-300` | 10 | Cut the dead question, give the story 300 words? | Every question answered in 10/10, death back in 9/10, tightest length control measured (4% over). The secret becomes a findable object |
+| 16 | `2026-09-29_glm-5-3` | 5 | Experiment 15's prompt on GLM-5.3 (EQ-Bench #6, lowest slop)? | Max effort hits the router's 120s gateway; `high` works at 13–53s. Secret is a findable object in 4/5 (Qwen 2/5), places named in 5/5 (Qwen 0/5), braiding halves — but Q4 drops to 4/5 and all 5 deaths are heart or stroke |
 
-**Latest: 15.** Totals so far: 125 generations, roughly 176,000 tokens.
+**Latest: 16.** Totals so far: 130 generations, roughly 190,000 tokens.
 
 ## Open threads these left behind
 
