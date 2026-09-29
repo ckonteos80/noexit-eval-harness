@@ -90,3 +90,32 @@ The larger open item is unchanged and now overdue: **nothing has been tested on 
 experiment since 05 generates characters independently, and the whole point of the play is two
 characters who have to differ from each other in a room.
 
+## Addendum — tagging every paragraph by question (2026-09-29)
+
+The ten stories were read again and **each paragraph assigned the one question it does the
+work of** (plot, setup, the death itself and evenly-split paragraphs left untagged). The
+tags live in `TAGS` in the page builder and drive the colour tinting in the comparison page.
+110 of 153 paragraphs carry a question. By hand, not by regex — the fourth measurement of
+this material, and the first that agrees with reading it.
+
+| question | paragraphs | stories answering it |
+|---|---|---|
+| Q1 who did you love | 12 | 10 / 10 |
+| Q2 how did your sin destroy them | **48** | 10 / 10 |
+| Q3 the lie | 32 | 10 / 10 |
+| Q4 the self you want seen | 12 | 9 / 10 |
+| Q5 the self they would see if they knew | **6** | **4 / 10** (2 see, 2 kind) |
+
+**Q2 owns the page.** Nearly half of all tagged paragraphs answer it, in scene and at length;
+everything else is bookends. That is the real shape of the output, and no word count showed it.
+
+**Q5 is the question most often skipped** — six paragraphs in the whole batch, and two of the
+ten stories (`see` 2, `kind` 2) answer neither gaze question at all. `kind` 2 runs straight
+through as event and never lifts its head. Rewording Q5 did not change how often it gets
+answered; it is not a wording problem. If the gaze matters to the play, the prompt has to
+make Q5 structurally unskippable rather than asking it more nicely.
+
+Where Q5 does land it is always an act, never an adjective — the oxygen turned off twice, the
+twenty-three minutes before the 911 call, the grief rehearsed in the mirror. Once it is spoken
+by another character (Lena, `kind` pair 4: *"That's what you do. That's who you are."*), which
+is the strongest single passage in the batch.
