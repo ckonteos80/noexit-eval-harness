@@ -110,3 +110,15 @@ names in a separate pass.
    outright, it earns one hit in ten.
 3. **Raise the budget to ~300.** 200 is where the death ending starts to fall off the end.
    Five questions at 300 is the configuration I would test next.
+
+## Two small notes
+
+**One generation came back with a broken character.** Pass 1, pair 3 contains
+`she wasn<U+FFFD>t` — the provider returned a replacement character where an apostrophe
+should be. One occurrence in 115 generations across every experiment in this folder, so it
+is rare, but it would have landed in a character bio unaltered. Left in the results as
+returned rather than repaired.
+
+**Page:** the ten stories, tinted by question — https://claude.ai/artifact/Tyqre9mgkq2GnBjZyHGQU7
+Tagging: 54 of 64 paragraphs carry a question, and 11 of those answer more than one at once.
+Every question is answered in 10 of 10 stories except Q6, which is answered in 1.
