@@ -87,10 +87,23 @@ Then wait. The user decides.
 
 ## 6. After confirmation
 
-Make the edit, keeping to one coherent idea. Then:
+Make the edit, keeping to one coherent idea. Then show what actually changed, file by file,
+so the user sees the edit rather than a claim about it.
 
-- **`/snapshot`** — versions it exactly as every previous `game_state/` change has been
-  versioned, with NOTES recording what changed and why
-- **`/eval`** — verifies it on a pair
+**Then ask whether to snapshot now**, and say why it is being asked: `game_state/` has
+changed and is not yet versioned, and a run generated before the snapshot is tagged with the
+*previous* version's name — wrong, permanently, and silently. Do not generate anything until
+this is settled.
+
+Propose a slug and a one-line summary with the question, so the answer can be a yes.
+
+- **yes** → follow `/snapshot` from step 3: `python tools/save_version.py <slug> "<summary>"`,
+  fill in the new version's `NOTES.md`, then produce the Unity port list
+- **no** → say plainly that `game_state/` is now unversioned drift, and that the next
+  `/update-game` or `/snapshot` will stop on it until it is resolved
+
+Once versioned:
+
+- **`/eval`** — verify it on a generated **pair**, not a single character
 - if the source was an experiment, add a line to that experiment's `NOTES.md` recording that
   it was promoted, and to which version
