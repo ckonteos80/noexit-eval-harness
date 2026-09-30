@@ -59,6 +59,9 @@ regex standing in for a judgement is not.
 
 - `/experiment <slug>` — scaffold, run, tag and write up a new experiment; `--views <folder>`
   rebuilds an existing one's views
+- `/update-game <experiment NN | a described change>` — the single way a change enters
+  `game_state/`: establishes what it involves and what it breaks, then summarises for
+  confirmation before anything is edited
 - `/snapshot` — version `game_state/` and report what Unity still needs
 - `/eval` — start a web session for hands-on play, then score the saved run
 

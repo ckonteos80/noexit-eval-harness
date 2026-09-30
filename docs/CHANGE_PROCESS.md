@@ -20,6 +20,20 @@ Everything below is in service of that one sentence.
 
 ## The steps
 
+### 0. Where the change comes from
+
+Every change to `game_state/` enters through `/update-game`, whatever its source. It may be
+**promoted from an experiment**, or it may be a **direct change** you have decided on — a
+fix, a config swap, a refactor. Either way that command establishes what the change
+involves, what it breaks, and what it needs, and summarises it for your confirmation before
+a single file is edited.
+
+The routes differ only in where the change is read from, and in what the version's NOTES
+cite as evidence: a promotion cites the experiment it came from, a direct change states its
+own reason and what would show it worked.
+
+From here the steps below are the same for both.
+
 ### 1. Before you edit anything — check for drift
 
 Live `game_state/` should match the version `CURRENT` names. If it doesn't, someone changed something and never versioned it, and you are about to bury that work inside your own change.
