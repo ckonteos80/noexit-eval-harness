@@ -216,72 +216,36 @@ def generate_character(state: game.GameState, char_no: int) -> dict:
 
     gender = config.CHARACTER_GENDERS[char_no]
     age = random.randint(*config.AGE_RANGE)
-    # Randomising the naming tradition is what breaks the model's strong name prior --
-    # instructing it to vary names failed across three versions. Same pattern as AGE_RANGE.
-    name_origin = random.choice(config.NAME_ORIGINS)
 
-    # Determine anti-duplication inputs (Char 2 sees Char 1's finished character)
+    # Determine anti-duplication inputs (Char 2 sees Char 1's finished story).
+    # Gated on the bio rather than on an occupation field: there are no fields now.
     other_char = state.characters.get(1) if char_no == 2 else None
-    if char_no == 2 and (other_char is None or not other_char.occupation):
+    if char_no == 2 and (other_char is None or not other_char.description):
         raise RuntimeError("Cannot generate Character 2 before Character 1 is fully generated.")
 
-    summary = {"char_no": char_no, "gender": gender, "age": age, "name_origin": name_origin}
+    # ── Name call, before the story call ──
+    name = _generate_name(state, char_no, age, gender)
 
-    # ── Single generation call ──
-    char_kwargs = dict(name_origin=name_origin, age=age, gender=gender)
+    summary = {"char_no": char_no, "gender": gender, "age": age, "name": name}
+
+    # ── Story call ──
+    char_kwargs = dict(name=name, age=age, gender=gender)
     if char_no == 2:
         char_kwargs["other_name"] = other_char.name
         char_kwargs["other_bio"] = other_char.description
 
     sys_p, user_p = assembly.assemble_character_prompts(**char_kwargs)
-    _response, parsed = _call_with_parse_retry(
-        sys_p, user_p, char_no, "character",
-        config.MODEL_GENERATION, config.TEMP_GENERATION, config.MAX_TOKENS_GENERATION,
-        state, assembly.parse_character_response, assembly.character_parse_complete,
-        proxy_timeout=config.PROXY_TIMEOUT_GENERATION,
-    )
+    bio = _call_with_sanity_retry(sys_p, user_p, char_no, state)
 
-    def field(key):
-        return parsed.get(key) or "[generation failed]"
+    summary.update(words=len(bio.split()))
 
-    name = field("name")
-    occupation = field("occupation")
-    prose_body = field("prose_body")
-    people = field("people")
-    reason_true = field("reason_true")
-    reason_self_told = field("reason_self_told")
-    refuse_to_admit = field("refuse_to_admit")
-    personality_trait = field("personality_trait")
-    want = field("want")
-
-    summary.update(name=name, occupation=occupation,
-                   personality_trait=personality_trait, want=want)
-
-    # ── Assemble bio & store ──
-    bio = assembly.assemble_bio(
-        occupation=occupation,
-        people=people,
-        reason_true=reason_true,
-        reason_self_told=reason_self_told,
-        personality_trait=personality_trait,
-        refuse_to_admit=refuse_to_admit,
-        want=want,
-        prose_body=prose_body,
-    )
-
+    # The story is the bio. Nothing parses it into fields; the per-field columns on
+    # Character stay empty from this version on.
     state.characters[char_no] = game.Character(
         name=name,
         description=bio,
         gender=gender,
         age=age,
-        occupation=occupation,
-        prose_body=prose_body,
-        people=people,
-        reason_true=reason_true,
-        reason_self_told=reason_self_told,
-        refuse_to_admit=refuse_to_admit,
-        personality_trait=personality_trait,
-        want=want,
     )
 
     if 1 in state.characters and 2 in state.characters \
@@ -290,6 +254,63 @@ def generate_character(state: game.GameState, char_no: int) -> dict:
 
     save_state_snapshot(state)
     return summary
+
+
+def _generate_name(state: game.GameState, char_no: int, age: int, gender: str) -> str:
+    """
+    The name call. A story adopts a supplied name about half the time wherever the
+    name sits in the prompt (experiments 18, 19), so the supplied value is what
+    {NAME} uses downstream whether or not the prose repeats it.
+
+    Known limitation: this call is the source of the name collisions -- ten names in
+    experiment 19 gave nine beginning with E. It is reliable, not varied. Swapping it
+    for a random draw in code is a one-function change.
+    """
+    p = assembly._reload_prompts()
+    user = (p.characterNamePrompt
+            .replace("{AGE}", str(age))
+            .replace("{GENDER}", gender))
+    res = providers.call_proxy(
+        "", user, model=config.MODEL_NAME, temperature=config.TEMP_NAME, max_tokens=0,
+    )
+    name = assembly.strip_reasoning(res.content or "").strip().strip('."\u201c\u201d')
+    log_call(state, "name", char_no, config.MODEL_NAME, config.TEMP_NAME, 0,
+             "", user, name, meta=res)
+    if not name:
+        raise RuntimeError("Name call returned nothing.")
+    return name
+
+
+def _call_with_sanity_retry(sys_p, user_p, char_no, state) -> str:
+    """
+    Call the proxy for the story and return it whole, after strip_reasoning.
+
+    Retries while the response fails assembly.generation_is_usable -- the response is
+    used without parsing, so this is the only thing standing between a bad generation
+    and the dialogue system prompt.
+    """
+    response, res, why = "", None, "not called"
+    for attempt in range(config.PARSE_RETRY_ATTEMPTS):
+        res = providers.call_proxy(
+            sys_p, user_p,
+            model=config.MODEL_GENERATION,
+            temperature=config.TEMP_GENERATION,
+            max_tokens=config.MAX_TOKENS_GENERATION,
+            proxy_timeout=config.PROXY_TIMEOUT_GENERATION,
+            reasoning_effort=config.REASONING_EFFORT_GENERATION,
+        )
+        response = assembly.strip_reasoning(res.content or "").strip()
+        ok, why = assembly.generation_is_usable(response)
+        log_call(state, "character", char_no, config.MODEL_GENERATION,
+                 config.TEMP_GENERATION, config.MAX_TOKENS_GENERATION,
+                 sys_p, user_p, response,
+                 notes=f"attempt {attempt + 1}: {why}", meta=res)
+        if ok:
+            return response
+    log_call(state, "character", char_no, config.MODEL_GENERATION,
+             config.TEMP_GENERATION, config.MAX_TOKENS_GENERATION, sys_p, user_p, response,
+             notes=f"UNUSABLE after {config.PARSE_RETRY_ATTEMPTS} attempts: {why}", meta=res)
+    return response
 
 
 def _call_with_parse_retry(

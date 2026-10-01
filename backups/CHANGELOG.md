@@ -1,5 +1,13 @@
 # Prompt version changelog
 
+## 2026-10-01_story-generation-glm-pass-through
+
+**Story-form generation on GLM-5.3 at high effort; name from its own call; response used whole, with a sanity check replacing field parsing.**
+
+Previous: 2026-09-27_death-need-not-belong
+
+---
+
 ## 2026-09-27_death-need-not-belong
 
 **The death no longer has to be caused by the character or connect to anyone; attention moves to the two Reasons for Damnation.**
