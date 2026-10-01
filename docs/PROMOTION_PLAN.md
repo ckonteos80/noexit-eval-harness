@@ -3,7 +3,7 @@
 The design agreed for taking the story-form character generation live. This is the input to
 `/update-game`; it is not itself a change. Nothing here is in `game_state/` yet.
 
-Status: **decisions settled except the three in "Still open".** Written 2026-10-01.
+Status: **one question open — experiment 21.** Written 2026-10-01.
 
 ## The shape
 
@@ -97,16 +97,29 @@ wide margin and no risk of rejecting good output.
   standing no-naming-tradition rule has only ever been honoured in experiments. This change
   removes it incidentally.
 
+## Decided
+
+**The name comes from the supply call** — `Qwen3-8B` @ 1.2, as in experiments 18–20. It gives
+a name every time, which is what `{NAME}` needs.
+
+Recorded so it is not rediscovered as a surprise: this call is the source of the name
+collisions. Ten names in experiment 19 gave **nine beginning with E**, `Eleanor` three times,
+and `Voss` — which also appears in experiments 15, 16, 18 and 20, across four different
+models. It is a reliable name generator and not a varied one. Swapping it for a random draw
+in code is a one-function change if the collisions become a problem; that option is parked
+rather than closed, and it would touch the standing `NAME_ORIGINS` hold.
+
+**The death distribution ships as it is.** Experiment 20's 4 of 10 suicides and 6 of 10
+cardiovascular are accepted. Worth re-reading once characters are generated as a pair: the
+risk is not any single death but three in one room.
+
 ## Still open
 
-1. **Where the name comes from.** The supply call gave `Eleanor` three times in ten and `Voss`
-   again. A random draw in code would be free and genuinely varied, but that is adjacent to
-   `NAME_ORIGINS`, which is on standing hold.
-2. **Experiment 21** — asking for the name only, dropping gender and age from the identity
-   line. One word change. Experiment 20's line produced eight form-field openings and two
-   first-person breaks; since the text now passes through whole, that opening ships as written.
-3. **The deaths.** Experiment 20: 4 of 10 suicides, 6 of 10 cardiovascular. Three characters
-   in a room who all killed themselves is worse than three heart attacks.
+1. **Experiment 21** — asking for the name only, dropping gender and age from the identity
+   line. One word change, and it matters more under pass-through than it did before: the
+   opening ships into the dialogue prompt exactly as written, so *"You are Elizabeth Harper,
+   female, 57."* becomes part of the character the dialogue model is handed. Experiment 20's
+   line also produced two first-person breaks, one of them total.
 
 ## Verification before the version is called good
 
