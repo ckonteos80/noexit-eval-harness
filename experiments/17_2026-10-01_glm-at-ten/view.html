@@ -1,0 +1,172 @@
+<title>17_2026-10-01_glm-at-ten</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#FCFAF7; --ink:#1F1A17; --faint:#9A8E86; --rule:#E4DCD4; --sunk:#F0EBE5;
+  --q1:#1F6F5C; --q1s:#DFEFE9;
+  --q2:#A8371B; --q2s:#F7E3DC;
+  --q3:#8A6A12; --q3s:#F6EDD6;
+  --q4:#2C5A8A; --q4s:#DEE9F4;
+  --q5:#93306B; --q5s:#F7DFEE;
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  color-scheme:dark;
+  --paper:#15120F; --ink:#EDE6DF; --faint:#7A6E66; --rule:#2E2721; --sunk:#201B17;
+  --q1:#6FC5AC; --q1s:#12241F;
+  --q2:#E4784F; --q2s:#2C1B14;
+  --q3:#D6B15E; --q3s:#2B2413;
+  --q4:#7FB0E0; --q4s:#141F2B;
+  --q5:#E08CC2; --q5s:#2A1725;
+}}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#15120F; --ink:#EDE6DF; --faint:#7A6E66; --rule:#2E2721; --sunk:#201B17;
+  --q1:#6FC5AC; --q1s:#12241F;
+  --q2:#E4784F; --q2s:#2C1B14;
+  --q3:#D6B15E; --q3s:#2B2413;
+  --q4:#7FB0E0; --q4s:#141F2B;
+  --q5:#E08CC2; --q5s:#2A1725;
+}
+*{box-sizing:border-box}
+body{background:var(--paper); color:var(--ink);
+  font-family:Literata,Georgia,serif; font-size:16px; line-height:1.62;
+  margin:0; padding:0 16px 80px; -webkit-font-smoothing:antialiased}
+main{max-width:74ch; margin:0 auto}
+.key{position:sticky; top:0; z-index:5; background:var(--paper);
+  border-bottom:1px solid var(--rule); padding:10px 0 11px;
+  display:flex; flex-wrap:wrap; gap:6px; margin-bottom:34px}
+.kk{font-size:12px; line-height:1.35; padding:4px 9px; border-radius:2px;
+  border-left:3px solid currentColor}
+.kk b{font:500 9px/1 'IBM Plex Mono',ui-monospace,monospace; letter-spacing:.1em;
+  margin-right:7px; opacity:.85}
+section{margin:0 0 54px; padding-bottom:54px; border-bottom:1px solid var(--rule)}
+section:last-child{border-bottom:none}
+.lab{font:400 11px/1 'IBM Plex Mono',ui-monospace,monospace; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--faint); margin:0 0 20px}
+p{margin:0 0 1.05em; padding-left:16px; border-left:3px solid transparent}
+p.t{padding:10px 14px 11px; border-radius:2px; margin-bottom:.8em;
+  border-left:3px solid currentColor; color:var(--ink)}
+p.mix{background:var(--sunk); border-left:3px solid transparent; color:var(--ink)}
+.m{display:inline-block; font:500 9.5px/1 'IBM Plex Mono',ui-monospace,monospace;
+  letter-spacing:.1em; margin-right:9px; vertical-align:1.5px; opacity:.85}
+.t1{border-left-color:var(--q1); background:var(--q1s)}
+.t1 .m,.c1{color:var(--q1)}
+.key .k1{color:var(--q1); background:var(--q1s)}
+.t2{border-left-color:var(--q2); background:var(--q2s)}
+.t2 .m,.c2{color:var(--q2)}
+.key .k2{color:var(--q2); background:var(--q2s)}
+.t3{border-left-color:var(--q3); background:var(--q3s)}
+.t3 .m,.c3{color:var(--q3)}
+.key .k3{color:var(--q3); background:var(--q3s)}
+.t4{border-left-color:var(--q4); background:var(--q4s)}
+.t4 .m,.c4{color:var(--q4)}
+.key .k4{color:var(--q4); background:var(--q4s)}
+.t5{border-left-color:var(--q5); background:var(--q5s)}
+.t5 .m,.c5{color:var(--q5)}
+.key .k5{color:var(--q5); background:var(--q5s)}
+@media (max-width:620px){ .key{font-size:11px} }
+</style>
+<main>
+<div class="key">
+  <span class="kk k1"><b>Q1</b>Who did you love?</span>
+  <span class="kk k2"><b>Q2</b>How did your sin destroy them?</span>
+  <span class="kk k3"><b>Q3</b>What lie did you have to tell yourself and others to keep going?</span>
+  <span class="kk k4"><b>Q4</b>What kind of person do you want people to think you are?</span>
+  <span class="kk k5"><b>Q5</b>What secret would make everyone see you for what you really are?</span>
+</div>
+<section>
+  <p class="lab">call 01&nbsp;&nbsp;&middot;&nbsp;&nbsp;rep 1&nbsp;&nbsp;&middot;&nbsp;&nbsp;temp 1.1&nbsp;&nbsp;&middot;&nbsp;&nbsp;pair 0&nbsp;&nbsp;&middot;&nbsp;&nbsp;51 / male&nbsp;&nbsp;&middot;&nbsp;&nbsp;273 words</p>
+  <p class="t mix" style="border-image:linear-gradient(to bottom, var(--q1) 0.00% 50.00%, var(--q3) 50.00% 100.00%) 1"><span class="m c1">Q1</span><span class="m c3">Q3</span>You were forty when you got the contract to build Pierpoint Tower, forty-one when you signed the order for the cheaper rebar. You told yourself everyone value-engineers. You told your site manager, Danny, that the supplier paperwork was fine. Danny was your little brother. He trusted the paperwork because it had your signature on it.</p>
+<p class="t t2"><span class="m">Q2</span>The seventh-floor slab collapsed on a Tuesday. Marco Reyes, a formworker with two kids, went down with it. You were at a lunch across town, and you made sure everyone knew that.</p>
+<p class="t mix" style="border-image:linear-gradient(to bottom, var(--q2) 0.00% 50.00%, var(--q5) 50.00% 100.00%) 1"><span class="m c2">Q2</span><span class="m c5">Q5</span>The investigators found the rebar. The invoices traced to Danny&#x27;s desk, because you had put them there. You testified that you&#x27;d had no involvement with procurement. Danny got six years. You got Pierpoint&#x27;s next contract.</p>
+<p class="t t3"><span class="m">Q3</span>You visited Danny at Ossining the first Sunday of every month. You brought him cigarettes and told him to keep his head down. You told your wife, Karen, that the appeal was in the works, that the lawyers cost money, that&#x27;s why the savings were thin. Karen left after year three, not because of the money, but because you never once said the word *sorry* about Marco — you said *tragic*, you said *unavoidable*, you never said sorry.</p>
+<p class="t t4"><span class="m">Q4</span>You want people to think you&#x27;re the man who kept the company alive through hard times, who stood by his brother every single month for six years.</p>
+<p>You died at fifty-one, at Danny&#x27;s welcome-home dinner, standing up to make the toast. You said &quot;family is the one thing I never cheated,&quot; and your aorta tore. Danny caught you before you hit the floor. The Paramedics logged the time of death as 9:14 p.m.</p>
+</section>
+<section>
+  <p class="lab">call 02&nbsp;&nbsp;&middot;&nbsp;&nbsp;rep 1&nbsp;&nbsp;&middot;&nbsp;&nbsp;temp 1.1&nbsp;&nbsp;&middot;&nbsp;&nbsp;pair 1&nbsp;&nbsp;&middot;&nbsp;&nbsp;64 / female&nbsp;&nbsp;&middot;&nbsp;&nbsp;324 words</p>
+  <p>You are Diane Wechsler, sixty-four, and your sin is greed.</p>
+<p class="t mix" style="border-image:linear-gradient(to bottom, var(--q1) 0.00% 33.33%, var(--q2) 33.33% 66.67%, var(--q3) 66.67% 100.00%) 1"><span class="m c1">Q1</span><span class="m c2">Q2</span><span class="m c3">Q3</span>You loved your sister Karen. Not in the soft way — in the way of shared bedrooms and a mother named Ruth whom you both drove to chemotherapy in the spring of 2019. Ruth had the early confusion then, and you had power of attorney, and between March and August you moved four hundred and ten thousand dollars out of Ruth&#x27;s accounts into your own. You told Karen the money was going to Brightview Memory Care. Brightview cost less than you claimed, and you knew that, and you said it anyway, in Karen&#x27;s kitchen, with your hand on her shoulder.</p>
+<p class="t t2"><span class="m">Q2</span>Danny is Karen&#x27;s son. He needed sixty thousand for the surgery on his back in 2021, the rods and the fusion. Karen took a second mortgage on the house on Felton Street to cover it, because she believed the estate was empty, because you had told her probate had frozen everything. She lost the house in 2023. She was shelving canned goods at the Walmart on Route 9 when her hip gave out.</p>
+<p class="t t3"><span class="m">Q3</span>The lie you told everyone was that Ruth signed everything herself, that it was what Mom wanted. The lie you told yourself was that Karen never asked. Karen asked three times. The third time you said the lawyer, Gerald Pinsky, had advised silence, and Gerald Pinsky had said no such thing.</p>
+<p class="t t4"><span class="m">Q4</span>You want people to see a careful woman. You wore the same gray wool coat for eleven years. You drove a 2008 Camry. You clipped coupons at the diner on Saturdays where people could see you doing it, sitting on money you never spent, because spending it would have made it real.</p>
+<p class="t t5"><span class="m">Q5</span>On the last night, you were at your kitchen table with the folder of Ruth&#x27;s bank statements open in front of you. Your left arm went numb and you dropped your pen. You died reaching for the phone.</p>
+</section>
+<section>
+  <p class="lab">call 03&nbsp;&nbsp;&middot;&nbsp;&nbsp;rep 1&nbsp;&nbsp;&middot;&nbsp;&nbsp;temp 1.1&nbsp;&nbsp;&middot;&nbsp;&nbsp;pair 2&nbsp;&nbsp;&middot;&nbsp;&nbsp;45 / female&nbsp;&nbsp;&middot;&nbsp;&nbsp;304 words</p>
+  <p class="t t4"><span class="m">Q4</span>You were good with other people&#x27;s money. That&#x27;s what they said at Novak &amp; Pierce, where you ran payroll for nineteen years — that Dana Ruiz never missed a decimal.</p>
+<p class="t mix" style="border-image:linear-gradient(to bottom, var(--q1) 0.00% 33.33%, var(--q2) 33.33% 66.67%, var(--q3) 66.67% 100.00%) 1"><span class="m c1">Q1</span><span class="m c2">Q2</span><span class="m c3">Q3</span>Your mother, Cecilia, had the savings account. After her diagnosis, your brother Danny asked you to manage it because you were the responsible one. You told him it was in a money market, safe, growing. What was actually happening was the money was moving through your account at Coastal First, then into the dental work you needed, then into Pia&#x27;s tuition at Fairmont, then into the kitchen you remodeled the year you told Danny you couldn&#x27;t come to Christmas.</p>
+<p class="t t4"><span class="m">Q4</span>Pia was nineteen and didn&#x27;t know any of it. She thought the money came from your bonus. You let her. She introduced you to her roommates as &quot;the rock of the family,&quot; and you kept the phrase like a coin in your pocket.</p>
+<p class="t mix" style="border-image:linear-gradient(to bottom, var(--q3) 0.00% 50.00%, var(--q5) 50.00% 100.00%) 1"><span class="m c3">Q3</span><span class="m c5">Q5</span>Danny called every Sunday and you gave him numbers you&#x27;d rehearsed — the balance, the rate, the statement you&#x27;d photoshopped, the one time he asked to see it, the Sunday you said the bank had mailed it to your old address.</p>
+<p class="t t2"><span class="m">Q2</span>Cecilia died at Grendel House in a shared room because you told Danny the private room wasn&#x27;t worth the markup. He said okay. He trusted you. That was the whole mechanism: he trusted you.</p>
+<p class="t mix" style="border-image:linear-gradient(to bottom, var(--q2) 0.00% 50.00%, var(--q3) 50.00% 100.00%) 1"><span class="m c2">Q2</span><span class="m c3">Q3</span>After the funeral, Danny needed the estate account. You said probate was slow. He waited. You moved what was left into a CD under your name and told him the lawyer — a lawyer named Merrick you&#x27;d invented — said it could take another year.</p>
+<p>You were drafting an email to Danny about Merrick when you stood up too fast. The aneurysm hit while you were still holding the phone, and Pia&#x27;s name was on the screen.</p>
+</section>
+<section>
+  <p class="lab">call 04&nbsp;&nbsp;&middot;&nbsp;&nbsp;rep 1&nbsp;&nbsp;&middot;&nbsp;&nbsp;temp 1.1&nbsp;&nbsp;&middot;&nbsp;&nbsp;pair 3&nbsp;&nbsp;&middot;&nbsp;&nbsp;57 / female&nbsp;&nbsp;&middot;&nbsp;&nbsp;319 words</p>
+  <p class="t t1"><span class="m">Q1</span>You are Marianne Colby, and for thirty-one years you taught English at Aldergate Academy, and you were good at it. You loved Gerald, who fixed radiators and never once asked you to be softer than you were. You loved your daughter, Fiona, who became a teacher too.</p>
+<p class="t t2"><span class="m">Q2</span>In your last year, a boy named Daniel Voss turned in an essay that was too good. You stood at the front of Room 12 and read two paragraphs of it aloud, then said, &quot;This is not your voice, Daniel.&quot; You said it in front of everyone. You told the headmaster, Ruth Castellan, that Daniel had plagiarized, and you did not check, because checking would mean you might be wrong, and you had never been wrong in Room 12.</p>
+<p class="t t2"><span class="m">Q2</span>Daniel lost the Rutledge Scholarship. His mother, Anne Voss, called your house four times; you let Gerald say you were out. Daniel stopped coming to school in March. In April he walked onto the M40.</p>
+<p class="t mix" style="border-image:linear-gradient(to bottom, var(--q3) 0.00% 50.00%, var(--q5) 50.00% 100.00%) 1"><span class="m c3">Q3</span><span class="m c5">Q5</span>In June you found Daniel&#x27;s earlier drafts in a folder you&#x27;d kept — three drafts, his handwriting getting tired, the good sentences arriving late and earned. You put the folder in the bottom drawer of your desk at home. You told Ruth Castellan that the matter had been reviewed and closed. You told Gerald the school stood behind you. You told Fiona, when she asked whether the Voss boy had really cheated, &quot;I followed procedure, love.&quot;</p>
+<p class="t t2"><span class="m">Q2</span>Fiona stopped calling after Anne Voss stood up at a school-board meeting with the drafts you had told Ruth were never submitted. Gerald stayed, but he read in the other room.</p>
+<p class="t t4"><span class="m">Q4</span>Your sin was pride. You knew the word for it. You preferred &quot;standards.&quot;</p>
+<p>You died at fifty-seven of a stroke, alone at the kitchen table, correcting essays that were no longer yours to correct, a red pen still uncapped beside the folder from the bottom drawer, which you had taken out.</p>
+</section>
+<section>
+  <p class="lab">call 05&nbsp;&nbsp;&middot;&nbsp;&nbsp;rep 1&nbsp;&nbsp;&middot;&nbsp;&nbsp;temp 1.1&nbsp;&nbsp;&middot;&nbsp;&nbsp;pair 4&nbsp;&nbsp;&middot;&nbsp;&nbsp;55 / male&nbsp;&nbsp;&middot;&nbsp;&nbsp;306 words</p>
+  <p class="t t4"><span class="m">Q4</span>You are Frank Doherty, and for thirty years you told people you were a financial advisor in Scranton. You told them you took care of families. You said it so often you believed it.</p>
+<p class="t mix" style="border-image:linear-gradient(to bottom, var(--q1) 0.00% 33.33%, var(--q2) 33.33% 66.67%, var(--q3) 66.67% 100.00%) 1"><span class="m c1">Q1</span><span class="m c2">Q2</span><span class="m c3">Q3</span>You loved your brother Danny. Danny poured concrete, coached Little League, cosigned the loan on your first office on Linden Street. When your clients&#x27; money started going into the apartment complex in Jim Thorpe instead of index funds, you used Danny&#x27;s retirement account to cover the gaps because he was the only one who wouldn&#x27;t check the statements. You told yourself it was a bridge. Bridges need paying back, and the complex would pay.</p>
+<p class="t mix" style="border-image:linear-gradient(to bottom, var(--q2) 0.00% 50.00%, var(--q5) 50.00% 100.00%) 1"><span class="m c2">Q2</span><span class="m c5">Q5</span>The complex didn&#x27;t pay. Your wife Colleen found the second set of statements in the gun safe, the real ones, and you told her Danny had access to the safe too. You said it without pausing, and she believed you, and Danny stopped returning Colleen&#x27;s calls, and then Danny stopped returning anyone&#x27;s calls.</p>
+<p class="t t2"><span class="m">Q2</span>You sat next to Colleen at the funeral and let her put her hand on your knee.</p>
+<p class="t t3"><span class="m">Q3</span>You kept telling clients you took care of families. You kept telling yourself the investigators would find the money if you could just get one building to close. You got a copy of the complaint the SEC filed — United States v. Doherty — and read your own name eleven times.</p>
+<p class="t t2"><span class="m">Q2</span>You were fifty-five. You told people you were healthy, that your father had lived to ninety. Colleen had left in March. Your daughter Kara took Danny&#x27;s side, which you called disloyalty, out loud, at Thanksgiving, before she stopped calling.</p>
+<p>On a Tuesday in October you were shredding the Linden Street documents when your left arm went numb. You went to the desk drawer for the aspirin. The paramedics found the drawer open and the shredder still running.</p>
+</section>
+<section>
+  <p class="lab">call 06&nbsp;&nbsp;&middot;&nbsp;&nbsp;rep 2&nbsp;&nbsp;&middot;&nbsp;&nbsp;temp 1.1&nbsp;&nbsp;&middot;&nbsp;&nbsp;pair 0&nbsp;&nbsp;&middot;&nbsp;&nbsp;51 / male&nbsp;&nbsp;&middot;&nbsp;&nbsp;288 words</p>
+  <p class="t mix" style="border-image:linear-gradient(to bottom, var(--q1) 0.00% 50.00%, var(--q4) 50.00% 100.00%) 1"><span class="m c1">Q1</span><span class="m c4">Q4</span>You are fifty-one and the man who runs the Bethany Wren Foundation. You named it after your daughter, who drowned at nine in the reservoir at Cobb&#x27;s Landing while you were on your phone with your broker. The foundation gives swim scholarships to poor kids in her name. Your face is on the brochures. Grieving fathers hold bake sales for you.</p>
+<p class="t t5"><span class="m">Q5</span>You have taken four hundred and thirty thousand dollars out of it over eleven years. Pool permits that were never filed. A water-safety curriculum you paid yourself to write and never wrote. The accountant, Priya Nair, asked you twice about the vendor in Delaware. You told her the state required a third-party administrator, and she was twenty-six and believed you.</p>
+<p class="t t3"><span class="m">Q3</span>Your wife, Karen, still does the newsletter. She thinks the mortgage got easier because you were promoted at Hartwell Insurance, where you also work, denying claims. You denied a man named Elias Boone his roof after the tornado, and you remember his voice, and you do not think about his voice.</p>
+<p class="t mix" style="border-image:linear-gradient(to bottom, var(--q3) 0.00% 50.00%, var(--q4) 50.00% 100.00%) 1"><span class="m c3">Q3</span><span class="m c4">Q4</span>You tell yourself you were going to put it back. You tell Karen you&#x27;re keeping Beth alive. You tell the galas that grief made you a better man.</p>
+<p>Elias Boone sat outside your office for three days last October. You took the stairs.</p>
+<p class="t t5"><span class="m">Q5</span>Priya finally called the state board on a Tuesday. You were home by four, deleting the ledger, when Karen came in holding the second set of bank statements Priya had mailed her. You stood up from the desk. Your left arm went numb. You sat back down in the desk chair and the last thing you saw was the file on the screen, 96% deleted, Karen saying your name from very far away.</p>
+</section>
+<section>
+  <p class="lab">call 07&nbsp;&nbsp;&middot;&nbsp;&nbsp;rep 2&nbsp;&nbsp;&middot;&nbsp;&nbsp;temp 1.1&nbsp;&nbsp;&middot;&nbsp;&nbsp;pair 1&nbsp;&nbsp;&middot;&nbsp;&nbsp;64 / female&nbsp;&nbsp;&middot;&nbsp;&nbsp;314 words</p>
+  <p class="t t1"><span class="m">Q1</span>You loved Marcus. You have not said his name aloud in three years.</p>
+<p class="t mix" style="border-image:linear-gradient(to bottom, var(--q2) 0.00% 50.00%, var(--q3) 50.00% 100.00%) 1"><span class="m c2">Q2</span><span class="m c3">Q3</span>Marcus was twenty-two when the truck on Route 9 put him in a coma for six weeks. He woke up slow. He forgot the ends of sentences. The settlement was $410,000, and because he could not sign his own name anymore, the money went to you as trustee. You told your sister Carol it was barely six figures. You told Marcus the lawyers took most of it.</p>
+<p class="t t2"><span class="m">Q2</span>You paid off the house on Crestview Lane. You put Marcus in the Meadow Street group home, nine hundred a month, and told yourself he liked the routine. He asked twice a year about a trip to Alaska — something he&#x27;d said before the accident, something still rattling in him. You said next year, Marcus.</p>
+<p class="t mix" style="border-image:linear-gradient(to bottom, var(--q2) 0.00% 50.00%, var(--q3) 50.00% 100.00%) 1"><span class="m c2">Q2</span><span class="m c3">Q3</span>At twenty-nine he wanted to see the neurologist in Rochester, the one who handled seizure cases like his. Six thousand for the workup. You said the money was gone, that you were covering his group home out of your own pocket, that Carol would confirm it. Marcus stopped asking. Carol never asked anything, because you&#x27;d told her the settlement was small and she had her own sons.</p>
+<p class="t t2"><span class="m">Q2</span>Marcus had a seizure at the group home on April 3rd, alone in his room, and did not come out of it. He was thirty-one.</p>
+<p class="t mix" style="border-image:linear-gradient(to bottom, var(--q3) 0.00% 50.00%, var(--q4) 50.00% 100.00%) 1"><span class="m c3">Q3</span><span class="m c4">Q4</span>You told everyone at the funeral that you had done everything you could. You have told yourself, every day since, that Marcus could not have handled money, that you were protecting him from people who would take advantage. You want to be seen as the capable mother who carried the burden alone.</p>
+<p class="t t5"><span class="m">Q5</span>You died at your kitchen table on Crestview Lane, mid-morning, of a stroke, with the quarterly bank statement open in front of you. The balance was $312,440.17. The account was still titled Marcus D. Trust.</p>
+</section>
+<section>
+  <p class="lab">call 08&nbsp;&nbsp;&middot;&nbsp;&nbsp;rep 2&nbsp;&nbsp;&middot;&nbsp;&nbsp;temp 1.1&nbsp;&nbsp;&middot;&nbsp;&nbsp;pair 2&nbsp;&nbsp;&middot;&nbsp;&nbsp;45 / female&nbsp;&nbsp;&middot;&nbsp;&nbsp;311 words</p>
+  <p class="t mix" style="border-image:linear-gradient(to bottom, var(--q1) 0.00% 50.00%, var(--q4) 50.00% 100.00%) 1"><span class="m c1">Q1</span><span class="m c4">Q4</span>You married Tom Kessler at twenty-three, in your mother&#x27;s backyard in Duluth. You loved him the way you loved being married — being the one who was chosen, the one people described as *settled*.</p>
+<p>When Maisie was born, Tom took a job on the Great Lakes freighters to pay for the house on Crowell Street. He came home smelling of diesel and other names. In March of your thirty-eighth year, he told you he&#x27;d met someone at the terminal in Superior. A dispatcher named Rachel Ostrowski. He said he&#x27;d be back for his things in a week, and that he&#x27;d fight you for half of everything.</p>
+<p class="t mix" style="border-image:linear-gradient(to bottom, var(--q2) 0.00% 50.00%, var(--q3) 50.00% 100.00%) 1"><span class="m c2">Q2</span><span class="m c3">Q3</span>He turned to pack his duffel, and you hit him in the back of the head with the cast-iron skillet you&#x27;d been holding. He went down by the cellar door. You told yourself, while you dragged him, that the fall down the stairs could have happened in the ice, that he&#x27;d been drinking, that the coroner confirmed both.</p>
+<p class="t t3"><span class="m">Q3</span>The coroner, Dr. Anand, did confirm it. Tom&#x27;s blood alcohol was point-one-two. You told Maisie, then five, that Daddy&#x27;s boat went down in a storm. You told your mother he&#x27;d left us. You told the insurance agent, Mr. Pruitt, the same, and kept the payout.</p>
+<p class="t t4"><span class="m">Q4</span>You coached Maisie&#x27;s soccer team. You brought casseroles to the Ostrowski woman when Rachel&#x27;s mother died, because people noticed things like that. Rachel hugged you at the funeral and said Tom had talked about your daughter all the time.</p>
+<p class="t t5"><span class="m">Q5</span>Last winter, Maisie, now seventeen, found Tom&#x27;s duffel in the rafters of the garage, packed, with the ferry ticket to Superior still in the front pocket. She asked you why Daddy had a ticket if he drowned in a storm.</p>
+<p>You said you&#x27;d explain after dinner. You went to the garage to get the cast-iron skillet, and your heart stopped on the stairs.</p>
+</section>
+<section>
+  <p class="lab">call 09&nbsp;&nbsp;&middot;&nbsp;&nbsp;rep 2&nbsp;&nbsp;&middot;&nbsp;&nbsp;temp 1.1&nbsp;&nbsp;&middot;&nbsp;&nbsp;pair 3&nbsp;&nbsp;&middot;&nbsp;&nbsp;57 / female&nbsp;&nbsp;&middot;&nbsp;&nbsp;285 words</p>
+  <p class="t mix" style="border-image:linear-gradient(to bottom, var(--q4) 0.00% 50.00%, var(--q1) 50.00% 100.00%) 1"><span class="m c4">Q4</span><span class="m c1">Q1</span>You have been a hospital pharmacist for thirty-one years. People at St. Vincent&#x27;s call you the wall — nothing gets past you. Your daughter, Claire, believed it. She&#x27;s a pharmacist now too, at County General, because she wanted to be like you.</p>
+<p class="t t2"><span class="m">Q2</span>The lie started on a Tuesday in March, when you dispensed methotrexate for Walter Kessler, seventy-eight, with the daily dosing flag unchecked. He took it for eleven days. He died of bone marrow suppression in the ICU, and his daughter, Marcia Kessler, a schoolteacher from Dayton, asked one question at the review board: who entered the order?</p>
+<p class="t mix" style="border-image:linear-gradient(to bottom, var(--q3) 0.00% 50.00%, var(--q5) 50.00% 100.00%) 1"><span class="m c3">Q3</span><span class="m c5">Q5</span>The technician, Priya Raman, had entered the label. Priya was twenty-six, had a reprimand on file from a mislabeling incident the year before, and was two minutes late that morning because her bus didn&#x27;t come. The board found her negligent. She lost her license. You sat at that hearing and said, under oath, that you had verified the order and that Priya must have overridden it, and you looked at your own signature on the check-off log — the signature you put there at 4:50 that afternoon, batched, without opening the profile, the way you&#x27;d done ten thousand times.</p>
+<p class="t t3"><span class="m">Q3</span>You told yourself the system set Priya up, not you. You told Claire the story every Christmas: how you caught everyone else&#x27;s mistakes for thirty years and the one that got through wasn&#x27;t yours.</p>
+<p class="t t5"><span class="m">Q5</span>Last month, Marcia Kessler filed a new complaint. The hospital opened an audit of your batch verification logs going back five years. You were in the break room photocopying the March file when the stroke hit. The copies were in your hand when they found you — face down, the machine still running.</p>
+</section>
+<section>
+  <p class="lab">call 10&nbsp;&nbsp;&middot;&nbsp;&nbsp;rep 2&nbsp;&nbsp;&middot;&nbsp;&nbsp;temp 1.1&nbsp;&nbsp;&middot;&nbsp;&nbsp;pair 4&nbsp;&nbsp;&middot;&nbsp;&nbsp;55 / male&nbsp;&nbsp;&middot;&nbsp;&nbsp;317 words</p>
+  <p class="t mix" style="border-image:linear-gradient(to bottom, var(--q1) 0.00% 50.00%, var(--q3) 50.00% 100.00%) 1"><span class="m c1">Q1</span><span class="m c3">Q3</span>You are Marcus Aldridge, and you have been a very good surgeon for thirty-one years. You loved Elena, who left her gallery job to raise Maisie while you did your residencies, your fellowships, your hundred-hour weeks. You told her the hours were for them. Mostly you meant it.</p>
+<p class="t mix" style="border-image:linear-gradient(to bottom, var(--q2) 0.00% 50.00%, var(--q5) 50.00% 100.00%) 1"><span class="m c2">Q2</span><span class="m c5">Q5</span>In 2019 you operated on a man named Raymond Voss, fifty-eight, a teacher, a father of two. You were tired and you were being filmed for a conference, and you cut the wrong vessel. You repaired what you could and closed. Raymond died nine days later of a bleed you knew about on day one. The mortality review needed an explanation, so you gave one: the circulating nurse, Corinne Bexley, sixteen years on your team, had mishandled the count tray, distracted you. You said it in a deposition, in writing, under your own signature. Corinne lost her license. You gave the keynote that year on surgical accountability.</p>
+<p class="t t3"><span class="m">Q3</span>The lie you told everyone was that the record would show you&#x27;d done everything possible. The lie you told yourself was that Raymond Voss was going to die anyway, so the truth would only have destroyed two careers instead of one. You counted. Two. You did not count Corinne&#x27;s mortgage, her mother in hospice, the nights she didn&#x27;t answer Elena&#x27;s calls.</p>
+<p class="t t4"><span class="m">Q4</span>You want to be remembered as the surgeon who never lost his composure. The man residents imitated. Maisie quotes you at dinner parties: *do the next right thing.* She is thirty now and tells people you&#x27;re her hero.</p>
+<p>Maisie is a nurse. She trained on the same floor as Corinne Bexley&#x27;s sister, RuthAnn, who still works nights at St. Anne&#x27;s.</p>
+<p class="t t5"><span class="m">Q5</span>Last February, at your kitchen table, your chest went tight and your left arm went numb. Your phone was unlocked, open to a half-written email to Corinne that said *I need to tell you what actually happened in the Voss case.*</p>
+</section>
+</main>

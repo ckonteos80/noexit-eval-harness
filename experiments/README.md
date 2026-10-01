@@ -57,11 +57,15 @@ only a winning variant gets promoted into a real version with a snapshot.
 | 14 | `2026-09-29_the-secret-question-at-200` | 10 | Ask for the secret outright, at 200 words? | The secret lands 10/10 against the gaze question's 4/10 — but it cannibalises the question after it (1/10), and 3 of 10 stories lose the death |
 | 15 | `2026-09-29_five-questions-at-300` | 10 | Cut the dead question, give the story 300 words? | Every question answered in 10/10, death back in 9/10, tightest length control measured (4% over). The secret becomes a findable object |
 | 16 | `2026-09-29_glm-5-3` | 5 | Experiment 15's prompt on GLM-5.3 (EQ-Bench #6, lowest slop)? | Max effort hits the router's 120s gateway; `high` works at 13–53s. Secret is a findable object in 4/5 (Qwen 2/5), places named in 5/5 (Qwen 0/5), braiding halves — but Q4 drops to 4/5 and all 5 deaths are heart or stroke |
+| 17 | `2026-10-01_glm-at-ten` | 10 | Do experiment 16's five-sample claims hold at ten? | Secret-as-object holds and strengthens, 10/10, usually present at the death. But deaths are 10/10 cardiovascular, braiding did not halve, and the "You loved…" opening drops to 1/10 |
 
-**Latest: 16.** Totals so far: 130 generations, roughly 190,000 tokens.
+**Latest: 17.** Totals so far: 130 generations, roughly 190,000 tokens.
 
 ## Open threads these left behind
 
+- **GLM-5.3's deaths are a monoculture** (17). 10 of 10 cardiovascular, and 4 of 10 use the literal sentence *"your left arm went numb"*. Needs a craft line before GLM can be promoted.
+- **The opening trades against the name** (17). GLM opens on the self rather than on the person the sin destroys — 1 of 10 against Qwen's 10 of 10 — and that same habit is why it names the protagonist in 5 of 10 against Qwen's 0. Restoring experiment 11's opening may cost the names.
+- **Priors are keyed to the input across model families** (17). Pair 1 produced a $410,000 embezzlement from a family member in both passes; `Voss` and `Route 9` recur in both Qwen's and GLM's runs on the same inputs.
 - **The "The secret is…" label is now universal** (15). More words hardened it rather than dissolving it: 7 of 10 at 200 words, 10 of 10 at 300. If the phrase is unwanted it has to be forbidden in the prompt.
 - **A direct question beats an evaluative one, and crowds it out** (14). Asking *what secret would make everyone see you for what you really are* is answered 10 of 10; the *what kind of person would they think you are* question that follows it drops to 1 of 10. Worth testing whether this holds for other question pairs.
 - **Below ~300 words the story stops ending on a death** (14). Three of ten at a 200-word budget either never die or put the funeral before the death, against 10 of 10 ending on a death at 600.
