@@ -14,7 +14,7 @@ Experiment 18's arm A is an exact matched control differing only in where three 
 |---|---|
 | the name is used in 8–10 of 10, against 18's 5 | **4 of 10.** Wrong, and slightly worse |
 | openings on the loved one fall to 0–2 of 10 | not the way it moved — see §2 |
-| deaths stay cardiovascular | unchanged |
+| deaths stay cardiovascular, 9 or 10 of 10 | **7 of 10**, and one story has no death at all. I recorded this as "unchanged" without checking — see §5 |
 | length near 300 | **306 mean, 7 of 10 inside 300** — the best adherence recorded |
 
 ## 1. Where the fact sits does not decide whether it is used
@@ -82,3 +82,40 @@ whether or not the prose uses it. Experiments 19's findings are about quality, n
    called Elara Voss
 3. §3 is a genuine defect to watch: when the name is ignored, the surname can reappear on the
    wrong character
+
+## 5. Correction, and a result I nearly missed
+
+I wrote "deaths unchanged" in the table above from assumption, not from counting. Counting
+them:
+
+| | |
+|---|---|
+| cardiovascular | **7 of 10** — a heart attack, a stroke, an aneurysm, two numb left arms, a tight chest, a dropped receiver |
+| a fall | 2 — slipping on wet tile with the phone out of reach, and falling down her own staircase drunk |
+| **no death at all** | 1 — the marshals arrive and he goes with them quietly |
+
+Experiment 17 measured **10 of 10** cardiovascular on the same model and prompt. This is
+**7 of 10**, with two falls. The monoculture loosened, and the only difference between the
+runs is a supplied name and the order of three lines.
+
+That is worth knowing but it is not worth believing yet: ten against ten, with a difference
+of three, is exactly the size of gap that experiment 16's five-sample claims died on. It
+should be checked before anyone acts on it.
+
+The missing death is a real defect: *"You went with them quietly, shaking slightly. The glass
+was still in your hand, cracked from your grip."* An arrest, not an end.
+
+## Tagging
+
+| | |
+|---|---|
+| paragraphs tagged | 55 of 67, 18 answering more than one question |
+| Q1 who did you love | 8 of 10 |
+| Q2 how the sin destroyed them | 10 of 10 |
+| Q3 the lie | 10 of 10 |
+| Q4 what kind of person | 8 of 10 |
+| Q5 the secret | 9 of 10 |
+
+Against experiment 17's clean sweep (10/10 on four of five), coverage is slightly worse here.
+Four stories simply never say who was loved or how the narrator wanted to be seen — they are
+about the victim instead. Views: `view.html`, `view.color.md`, `view.ansi`, `view.docx`.
