@@ -59,11 +59,15 @@ only a winning variant gets promoted into a real version with a snapshot.
 | 16 | `2026-09-29_glm-5-3` | 5 | Experiment 15's prompt on GLM-5.3 (EQ-Bench #6, lowest slop)? | Max effort hits the router's 120s gateway; `high` works at 13–53s. Secret is a findable object in 4/5 (Qwen 2/5), places named in 5/5 (Qwen 0/5), braiding halves — but Q4 drops to 4/5 and all 5 deaths are heart or stroke |
 | 17 | `2026-10-01_glm-at-ten` | 10 | Do experiment 16's five-sample claims hold at ten? | Secret-as-object holds and strengthens, 10/10, usually present at the death. But deaths are 10/10 cardiovascular, braiding did not halve, and the "You loved…" opening drops to 1/10 |
 | 18 | `2026-10-01_name-by-another-call` | 10 | Supply the name by a second call, or extract it after? | Supply. The story uses a supplied name 5/10, but the supplied value is good regardless; extraction finds a real name 5/5 and invents another character's name 4/5 when there is none |
+| 19 | `2026-10-01_facts-first` | 10 | Does moving name/age/gender above the task make the name a premise? | No. 4/10 use it against 5/10 with it last — position is not the lever. It does move the opening: "You are &lt;name&gt;" drops 5/5 to 1/10. 9 of 10 supplied names begin with E |
 
-**Latest: 18.** Totals so far: 140 generations, roughly 204,000 tokens.
+**Latest: 19.** Totals so far: 150 generations, roughly 217,000 tokens.
 
 ## Open threads these left behind
 
+- **The name call is the weak link, not the story prompt** (18, 19). `Qwen3-8B` at temperature 1.2 produced nine names beginning with E in ten, `Voss` four times across the two experiments, and `Eleanor`/`Elara` six times. A name drawn at random in code would be free, instant and actually varied — but a name list is adjacent to `NAME_ORIGINS`, so it needs the user's decision.
+- **An ignored first name can come back as the spouse's surname** (19). Supplied *Ethan Harper* produced *"You married Dana Harper"*; supplied *Elena Martinez* produced *"You married Rafael Martinez"*. A character sheet would disagree with the story about who that name belongs to.
+- **Prompt order is settled and not worth retesting** (19). Moving the given facts above the task changed the opening but not whether the name is adopted.
 - **A named protagonist and a good opening are the same choice** (17, 18). Stories that take a supplied name open *"You are &lt;name&gt;"*; stories that refuse it open on the person the sin destroys, which is experiment 11's gain. Supplying the name decides which half you get rather than breaking the trade.
 - **Never give a small extractor an escape hatch** (18). Adding *"return exactly: none if absent"* to the 0.6B extractor's prompt makes it answer `none` to everything, including a sentence that opens with the name. Removing the clause fixes it. It also degrades on long input — feed it the first paragraph, not the story.
 - **The extractor cannot report absence** (18). Where no protagonist name exists it returns another character's name in 4 of 5 — the murdered husband, the daughter, the son. Nothing downstream can tell that apart from a correct answer.
