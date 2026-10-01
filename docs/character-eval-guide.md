@@ -1,29 +1,87 @@
 # Character Generation — AI Eval Guide
 
-*Companion to `eval-loop-scoring-design.md`. Scope: character generation only (the name/life/sin/stance chain), not dialogue, addressing, or narrator — those get their own guide later.*
-
 ## What this is for
 
-`run_viewer.html` already has three eval slots for character generation — per-character, pair-level, and overall character design — each scored **good / bad / neutral** with a free-text note, same scheme as the human eval. This guide is what a judge (for now, me, applying it by hand when asked; later possibly an automated model call) should have in mind when filling in that note. The rating is a byproduct of the note, not the other way around — write the reaction first, let the rating fall out of it.
+One note and one verdict per character. That is the whole output: a short written reaction,
+and **good / neutral / bad**. No sub-scores, no pass/flag list, no per-axis ratings — the
+viewer's form takes exactly this and nothing else.
 
-**Don't run this as a checklist.** Read the bio the way a director reads an actor's breakdown, or a screenwriter reads their own draft back — first impression, gut reaction, what snags you. The specific things to watch for below are what tends to go wrong, not boxes to tick in order.
+Write the note the way a director writes after a first read: what you actually felt, and the
+line or detail that caused it. If you find yourself producing a checklist, stop — a checklist
+is what this replaced.
 
----
+As of `2026-10-01_story-generation-glm-pass-through` a character is **a 300-word story in the
+second person**, not a set of labelled fields. There is nothing to check for completeness; the
+harness already rejected anything empty, too short, too long, or written in the first person
+before it reached you.
 
-## Per-character eval
+## The note
 
-What's your gut reaction? Does this feel like a real person, or a construct? Does the life hang together — the job, the death, the people they loved and hated, the sin — like one person's history, or like ingredients that never mixed? Note whatever snags you: a line that gestures at something without saying it ("afraid the truth would come out" — what truth?), a detail that contradicts another, a reference to someone who was never established, a personality trait that's just an adjective sitting next to the story rather than something the story actually demonstrates.
+Read the story once, at reading speed, and write what you are left with.
 
-The hardest thing to see, and the thing most worth looking for: **a character can be perfectly consistent and still be disconnected.** Nothing contradicts anything, every field is well written, and the pieces still don't belong to each other. Test it by lifting things out. Could this job be dropped into a stranger's life without anything else changing? Could the people they named? If the answer is yes, the character is a set of good parts rather than a life.
+The question underneath everything: **does this feel like a person, or like parts?** A
+character can be perfectly consistent and still be assembled. Test it by lifting things out —
+could this job, this house, this dead brother be dropped into a stranger's life without
+anything else changing? If yes, you have a set of good parts rather than a life.
 
-**The death is exempt from that test as of 2026-09-27.** It no longer has to be caused by the character's actions or connect to anyone in particular; a death that is simply what happened to them is fine. Do not mark a character down for a death that could belong to a stranger. A death that *is* intrinsic is a bonus, not a requirement.
+Things worth naming when they snag you, not as a list to walk but as the kind of thing that
+usually causes the feeling:
 
-**Put the attention on the two Reasons for Damnation instead** — that is what the character is built around now, and it is what the room is for. Is the True reason a specific act toward a specific person, or an abstraction? Then read the Self-told version against it: it should keep every fact and move only the motive, and you should be able to point at the exact fact it bends. If the Self-told story is a different story rather than the same story told differently, that is the failure worth naming — it is the field the whole play turns on, because the drama is whether they ever stop living in it.
+- **The lie against the truth.** The story says what the sin did, and what the narrator told
+  themselves to keep going. The lie should keep every fact and move only the motive, and you
+  should be able to point at the exact fact it bends. If the self-told version is a *different
+  story* rather than the same story told differently, that is the failure worth naming — the
+  whole play is whether they ever stop living in it.
+- **The secret.** It should be something a person could find — a voicemail, a ledger page, a
+  packed duffel in the rafters with the ferry ticket still in the pocket. A secret that is only
+  a feeling gives the other two people in the room nothing to catch them with.
+- **Gestures without content.** "Afraid the truth would come out" — what truth? Name it where
+  the story will not.
+- **Anything the story was asked for and quietly skipped.** It was asked who they loved, what
+  the sin did to them, the lie, how they want to be seen, and the secret. A missing one usually
+  reads as thinness rather than as an absence, which is why it is worth looking for.
+- **Register breaks.** Second person throughout, contemporary and realistic, stops at the
+  death, does not describe arriving anywhere or the room.
 
-## Pair-level eval
+The death is **exempt** from the connectedness test, as of 2026-09-27. It does not have to be
+caused by the character or connected to anyone. A death that is simply what happened to them
+is fine. A death that *is* intrinsic is a bonus, not a requirement.
 
-Read both bios back to back, like you're casting two actors for the same scene. Do they feel like two different people, or did the writer reach for the same drawer twice? Check specifically for repeats — shared surnames, the same kind of person filling the "loved" or "hated" slot in both (two spouses, two parents), the same category of job or death, even phrasing or imagery that echoes between the two without either character meaning to. If you could swap a detail from one into the other and nothing would feel wrong, that's the tell.
+## The verdict
 
-## Overall character design eval
+**good** — you would put this character on stage. Specific, the lie bends a nameable fact, and
+you could not swap it for someone else.
 
-Step back and take in the pair as a set — your reaction to the room as a whole, not either character alone. Does this feel like two distinct people who happen to be in the same hell together, or two copies of the same damaged-soul template wearing different names? Flag it here if the same patterns keep showing up — not just between these two characters, but the kind of thing that would nag at you if you'd seen it in the last few runs too (a phrase, a shape of sentence, a go-to relationship type the model keeps defaulting to). Note whether the traits and wants feel specific enough to actually cause friction once these two are talking to each other, or whether they're vague enough to belong to anyone.
+**neutral** — competent and familiar. A real *type* rather than a real *person*. Nothing wrong
+with it; nothing that makes you want to watch them.
+
+**bad** — a construct. Generic damaged-soul material, abstraction instead of grain, or a lie
+that is really just a second story. Also bad if it broke register badly enough that you
+noticed the prompt rather than the person.
+
+When you are between two, pick the lower one and say why in the note. The scale is only useful
+if **good** stays expensive.
+
+## The pair
+
+The viewer has one slot for the pair as well. Same shape: one note, one verdict.
+
+Read both stories back to back, as if casting two actors for the same scene. Do they feel like
+two people, or did the writer open the same drawer twice? Look for shared surnames, the same
+kind of person in the loved slot, the same category of work or sin or death, and for phrasing
+that echoes between them without either character meaning it. If you could move a detail from
+one into the other and nothing would feel wrong, that is the tell.
+
+This is the part the generation prompt has the least evidence for: until
+`2026-10-01_story-generation-glm-pass-through`, every experiment generated characters
+independently, so the anti-duplication block had never run against a story-shaped bio. Treat
+pair verdicts as the most informative thing you produce right now.
+
+## What the harness already decided before you see it
+
+So you do not spend the note on it:
+
+- the response was non-empty, 150–450 words, carried no surviving `<think>` block, and
+  contained at least five second-person markers
+- anything failing those was regenerated, up to twice
+- the name came from a separate call and is correct whether or not the prose uses it

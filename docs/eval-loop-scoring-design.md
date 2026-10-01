@@ -36,6 +36,20 @@ Current priorities, in order: **character background generation**, **dialogue re
 
 ## Rubric 1 — Character generation
 
+> **Superseded 2026-10-01.** Character evaluation is now **one note and one
+> good/neutral/bad verdict per character**, plus the same for the pair — see
+> `character-eval-guide.md`. The pass/flag checks and the 1–3 mood axes below are kept as
+> the record of what was tried, not as instructions.
+>
+> Two of the practical checks could not survive the change anyway. *Parse & completeness*
+> describes fields and `**marker**` structure that the story-form generation does not
+> produce, and its job is done automatically by `assembly.generation_is_usable`. *Length
+> discipline* names a 150-word cap on the Life prose; the whole story is now capped at 300.
+
+### Superseded detail follows
+
+
+
 Scored once per generated character (except Distinctness, which is a pair-level property scored across both characters together).
 
 ### Practical (pass / flag)
