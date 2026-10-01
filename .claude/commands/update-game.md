@@ -12,7 +12,10 @@ user's own instruction; everything after step 2 is the same either way.
 involves, what it will break, and what it needs — then summarise and wait. Do not edit
 `game_state/` before the confirmation in step 5.
 
-Read `game_state/CLAUDE.md` and `docs/CHANGE_PROCESS.md` first.
+Read `game_state/CLAUDE.md` and `docs/CHANGE_PROCESS.md` first. If the change is the
+story-form generation from experiments 15-20, `docs/PROMOTION_PLAN.md` holds the design
+already agreed - read it rather than re-deriving it, and treat its "Still open" list as
+the questions to put to the user.
 
 ## 1. Drift check
 
