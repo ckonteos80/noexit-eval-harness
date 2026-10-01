@@ -1,0 +1,350 @@
+{
+  "arm_a": [
+    {
+      "rep": 0,
+      "i": 0,
+      "age": 51,
+      "gender": "male",
+      "supplied_name": "Silas Vega",
+      "uses_full_name": true,
+      "uses_first_name": true,
+      "seconds": 12.1,
+      "tokens": 1639,
+      "words": 305,
+      "text": "You are Silas Vega. You tell people you built Vega Capital from a folding table in Queens, and that part is true. What you leave out is that by the fourth year you were paying old clients with new clients' money, and you knew it, and you kept signing the letters anyway.\n\nYou loved your brother Emilio. Emilio, who tiled bathrooms for twenty-two years and cashed out his pension the day you told him he'd be a fool not to. Six hundred and forty thousand dollars. Then Lena's savings. Then Danny's college fund — Danny, seventeen, who shook your hand at the confirmation dinner and called you Uncle Sil.\n\nWhen the regulators started circling, you used Emilio as your shield. You knew he'd defend you for free. He stood up at the Fioretti wedding and told everyone Silas had never missed a payment in nine years. His credibility bought you eighteen more months, and eighteen more months of your fees.\n\nThe lie you told was simple enough to repeat at every dinner: *I'll make everyone whole. It's a down market, not a crime.* You said it to Emilio in your kitchen with your hand on his shoulder. You said it to yourself in the mirror, and it worked, every morning, for years.\n\nThe secret is this: two weeks before the collapse, you wired the last liquid money — four hundred and ten thousand of it, Emilio's share — into an account in your own name, because he was the one man who would never ask to see the statements. Danny starts at Hudson Valley Community College in the fall, on loans. Emilio parked on the eighth level of the Radisson garage on Route 9.\n\nThe night before your SEC hearing, you take Emilio's bourbon from the garage cabinet and swallow the rest of the oxycodone."
+    },
+    {
+      "rep": 0,
+      "i": 1,
+      "age": 64,
+      "gender": "female",
+      "supplied_name": "Clara Hale",
+      "uses_full_name": false,
+      "uses_first_name": false,
+      "seconds": 7.4,
+      "tokens": 1123,
+      "words": 282,
+      "text": "You were with your mother, Margaret, every day for the last four years of her life. You drove to Maple Grove Care Center on Sundays, then Tuesdays, then most days, and you told anyone who would listen that your brother, Danny, never came.\n\nDanny lived in Tulsa then. He called her Sundays. You never mentioned that.\n\nMargaret's will named you executor. She split everything fifty-fifty: the house on Fenwick Road, the savings account at First National, about $212,000. You told Danny the money was gone — that the care home had eaten it, that you'd covered the shortfall yourself. You produced statements. You'd spent weeks learning what a believable statement looked like.\n\nDanny was three years sober. He wanted half the house money to put down on a towing business outside Tulsa, with a man named Ray Sandoval he'd met in the program. You told yourself the money would kill him. You said it out loud, to your friend Denise, more than once: \"That money would kill him.\" It was the sentence you lived inside. You almost believed it.\n\nDanny took the news quietly, which you took as proof. He came to the funeral and hugged you. Eleven months later he was dead in a Super 8 off Route 66, fentanyl, twenty minutes from the lot where the towing business never happened. Ray Sandoval called you from his own phone to tell you.\n\nYou kept the house. You told people Danny's death undid you. You let them believe it.\n\nYou died of a heart attack at your kitchen table in Margaret's house, at 64, with the deed in the drawer beside you and the For Sale sign already in the front yard."
+    },
+    {
+      "rep": 0,
+      "i": 2,
+      "age": 45,
+      "gender": "female",
+      "supplied_name": "Clara Thorne",
+      "uses_full_name": true,
+      "uses_first_name": true,
+      "seconds": 12.6,
+      "tokens": 1831,
+      "words": 259,
+      "text": "You are Clara Thorne, forty-five. You loved your mother, Dolores, who forgot your name in 2011 and never got it back. She asked for your sister Mariel every day instead. \"Where's my Mariel?\" You were there the whole six years — the feeding, the washing, the driving — and Mariel was in Santa Fe painting murals. When Dolores asked, you sometimes said, \"I'm here.\" She'd pat your hand and keep waiting.\n\nThe lie you told was that you didn't keep score. \"I don't need thanking,\" you said at Thanksgiving, at the funeral, to Gerald when he left, to anyone who'd listen. \"That's not why I do it.\"\n\nHere is what you did. In the last month, when Dolores was on hospice and the morphine made her whisper, Mariel called every night. You told her Dolores was sleeping. You told her flying would upset her, that the sight of her would confuse her, that it was kinder to wait. Dolores died on a Tuesday asking for Mariel. The house on Wrenwood Lane went to Mariel. You told the lawyer Dolores wasn't competent. You told the court Mariel had abandoned her. You told everyone, including yourself, that Mariel never came. You never mentioned the calls.\n\nMariel stopped calling after the ruling. She listed the house that spring.\n\nThe night the FOR SALE sign went up, you drank a bottle of Dolores's favorite sherry and drove to Wrenwood Lane at two in the morning. You hit the oak in front of number twelve at fifty miles an hour. The airbag didn't deploy."
+    },
+    {
+      "rep": 0,
+      "i": 3,
+      "age": 57,
+      "gender": "female",
+      "supplied_name": "Eleanor Grace",
+      "uses_full_name": true,
+      "uses_first_name": true,
+      "seconds": 9.9,
+      "tokens": 1468,
+      "words": 310,
+      "text": "You are Eleanor Grace, and for thirty-one years you ran Gracewood Manor, the care home your father built. You loved your husband, Walter Grace. He had Parkinson's for nine of those years, and for the last two he lived in Gracewood's east wing because you told yourself no one would watch him like you could — you, who went home at eight every night and left one aide, Sunil Fernando, alone with forty residents until morning.\n\nYou cut the night staff from three to one the year the mortgage on your lake house came due. You told Sunil the call bells were louder now, state-of-the-art. You told the families at the open house that Gracewood was family, and you believed the word enough to keep saying it. When Daniel Ostrowski, whose mother lived on the west wing, complained at a town meeting about the night staffing, you stood up and said you slept better knowing Sunil was on shift, and the room nodded, and Daniel sat down.\n\nWalter died on a Tuesday at 3:14 in the morning. He choked on a soft-boiled egg his evening aide, Priya Nair, left beside his bed against protocol. Sunil was on the far wing. Priya had already gone home; she'd cut her shift to get to her son's recital, and you'd approved it, because her wages were two hours you didn't pay.\n\nYou told everyone Walter died in his sleep. You told yourself Sunil couldn't have heard the call bell from that distance anyway. You gave yourself a raise in March. You won the Rotary Community Service Award in May. You never hired the second aide.\n\nOn the fourteenth of October, in your office above the east wing, you felt your left arm go numb. The quarterly report was open on your desk. You reached for the phone and knocked it to the floor."
+    },
+    {
+      "rep": 0,
+      "i": 4,
+      "age": 55,
+      "gender": "male",
+      "supplied_name": "Samuel Hale",
+      "uses_full_name": true,
+      "uses_first_name": true,
+      "seconds": 7.2,
+      "tokens": 1111,
+      "words": 313,
+      "text": "You are Samuel Hale, and you have been a surgeon for twenty-nine years. You are good. Your hands do not shake. The mortality review board never had your name on it, and you made sure of that.\n\nYou loved Priya Nair. You trained her. You watched her hands become steady like yours, and you were proud in a way you never said out loud because it would have sounded like love, and she was thirty-one and your student and you were married to Anneke, who was dying slowly in a hospice in Utrecht, your hometown, where you had not visited in nine years.\n\nOn the fourteenth of March, you clipped the wrong vessel. The man on the table was Emiel Verhoeven, a dockworker, fifty-eight, two daughters. He bled out in four minutes. You were eleven hours into the shift. Priya was assisting.\n\nYou told the review board Priya had retracted the clamp. You told them you were outside the field of view. You told Priya it would be better for everyone if she took the retraining and the suspension, that she was young, that she would recover from this in a way you could not. You told yourself you believed her hands were on the clamp. You told yourself this every night for two years, and you almost succeeded.\n\nPriya drowned herself in the IJsselmeer in June. She left a note with one line: I don't know what I did wrong.\n\nYou gave the eulogy. You quoted Osler. You said she was the finest surgeon you ever trained.\n\nEmiel's daughters sued. The case settled. You kept your license.\n\nLast month you stood at Emiel Verhoeven's grave with lilies, and no one was there to see you, and you stayed eleven minutes. You flew home. You died of a stroke in your car in the long-term parking lot at Schiphol, holding the parking ticket."
+    },
+    {
+      "rep": 1,
+      "i": 0,
+      "age": 51,
+      "gender": "male",
+      "supplied_name": "Daniel Bennett",
+      "uses_full_name": false,
+      "uses_first_name": false,
+      "seconds": 5.3,
+      "tokens": 1025,
+      "words": 300,
+      "text": "You were good with numbers before you were good with anything else. Elena married you for the steadiness — the man who checked the smoke alarms, who never missed a parent-teacher night for Maya. She told her sister you were boring, and she meant it as a compliment.\n\nBoring covered everything. Boring let you move money for twenty-two years without a single client asking a second question. You took it in small slices — a quarter point here, a delay in a trade there — from people like Ruth Halloran, a retired schoolteacher who brought you oatmeal cookies every December and called you Danny.\n\nThe lie was simple and you told it until it was true to you: *I'm the one holding this together.* The house, Elena's part-time pottery studio, Maya's riding lessons — all of it flowed from what you moved. You weren't stealing. You were *deferring*, and the market would give it back.\n\nIn 2019 you took Maya's college fund. Two hundred and nine thousand dollars, moved into a position you'd told clients was too risky for anyone. You told Elena the fund was in a conservative bond ladder. You told yourself she'd never check. She checked. She found Ruth Halloran first, then the rest — forty-one accounts, nine million dollars gone.\n\nElena filed for divorce in March. She reported you to the SEC in April. Maya, seventeen, stopped answering your calls and moved into Elena's brother Paul's guest room.\n\nIn June, the letter came from the U.S. Attorney's office. You read it twice at the kitchen table, then drove to the storage unit where you kept the old files and sat in the car with the engine running and the garage-style door pulled down behind you.\n\nMaya graduated the following spring. Paul drove her to the ceremony."
+    },
+    {
+      "rep": 1,
+      "i": 1,
+      "age": 64,
+      "gender": "female",
+      "supplied_name": "Eleanor Whitmore",
+      "uses_full_name": false,
+      "uses_first_name": false,
+      "seconds": 9.9,
+      "tokens": 1561,
+      "words": 295,
+      "text": "You loved Jean, your younger sister, who called you Nell. When your mother died at Rosedale Lodge with a pressure sore the size of a fist, you promised Jean it would never happen in a home you ran. You built Whitmore Grange with the insurance money. You were thirty-nine and it was the best residential home in the county, and Jean — multiple sclerosis by forty-four — moved into the sunroom at the end of the corridor.\n\nThe bank called the loan in your fifty-eighth year. Occupancy was down, agency nursing was ruinous, and you cut the night cover from three staff to one. You moved Jean into Maple Wing, which you'd stopped heating past sixteen degrees, so the front wing would look spotless for the families touring on Sundays. You told Jean she was your quality control. You told the families at the open day that Whitmore Grange had round-the-clock nursing.\n\nJean caught a chest infection in January. Priya, the night carer, reported it three nights running, and you told Priya to log her as \"settled.\" You deleted Priya's emails before the inspection. Jean died of sepsis on the fourth night, alone, with the call bell out of reach because the cord had been retracted after a falls audit.\n\nYou told everyone the bank left you no choice. You told the inquest you'd never received any reports. You sold Whitmore Grange to Hartwell Care Group for enough to retire to Dorset, and you sat through the adjournment looking like a woman who had given her whole life to old people, because that is what you wanted written about you.\n\nThe shredder was still warm on the 14th of March when you died at the kitchen table, with Jean's photograph face-down under the sale documents."
+    },
+    {
+      "rep": 1,
+      "i": 2,
+      "age": 45,
+      "gender": "female",
+      "supplied_name": "Elena Martinez",
+      "uses_full_name": false,
+      "uses_first_name": false,
+      "seconds": 14.0,
+      "tokens": 1703,
+      "words": 312,
+      "text": "You were charge nurse on 4-West at St. Bridget's for eleven years. You loved Sofia, your daughter, sixteen, who wanted to be a nurse just like you. That was the point of you.\n\nThe night Mr. Okafor died, you drew the insulin yourself — ten times the dose. Ana Reyes was running the med pass and the syringes sat in the same tray. When the code was called, you dropped your syringe in the sharps bin and said: Ana drew everything that night. Ana had one prior write-up for charting late. Ana lost her license. Ana moved to her sister's place in El Paso. You sent her one card at Christmas, then none.\n\nThe lie you told: Ana was sloppy, Ana should have double-checked, and you only let the truth move a little faster than it would have anyway. You said it to the review board. You said it to Sofia when she asked why you never mentioned Ana anymore. You said it to yourself at 3 a.m. until it stopped being a thing you did and became a fact about Ana.\n\nYou want people to see a woman who survived Miguel leaving, who worked nights for twenty years so Sofia could have braces and a school trip to Washington, who never missed a recital. Sofia wore your old scrubs for Halloween last year. You keep that photo on your phone.\n\nThe secret is the sharps bin. Nobody ever inventoried the sharps bin.\n\nSofia's seventeenth birthday was on a Saturday. You took a double shift anyway, because the money was time and a half, and you stopped at Delgado's Bakery on the way home for thetres leches, her favorite. You carried the box across Fell Street with your badge still clipped to your coat. The light was green for the cross traffic. The cake made it to the far curb without you."
+    },
+    {
+      "rep": 1,
+      "i": 3,
+      "age": 57,
+      "gender": "female",
+      "supplied_name": "Eleanor Hartwell",
+      "uses_full_name": false,
+      "uses_first_name": false,
+      "seconds": 16.9,
+      "tokens": 1587,
+      "words": 321,
+      "text": "You were headmistress of St. Aldric's for nineteen years. People believed you ran the best school in the county. You believed it too. That was the lie, and it needed so little maintenance — just the same sentence, each morning, in the mirror: *I have never put the school before a child.*\n\nYou loved your son, Thomas. You got him the teaching assistant post yourself, over the governors' grumbles, because he was drifting at twenty-four and you were sure that structure would save him. When Rosie Fenn, twelve years old, sat across your desk and told you what Thomas did in the equipment shed, you listened for forty minutes with your hands folded. Then you rang Rosie's mother, Helen Fenn, and said Rosie had a history of telling stories for attention. You knew that wasn't true. Helen knew it wasn't true. Rosie withdrew from the school a month later, and you wrote in her file: *family relocation.*\n\nWhen Thomas's things were seized — a laptop, three years of it — you told the police you'd had no idea, no warning, nothing. You sat in the witness box and said the words under oath. Eleven years at HMP Featherstone, and Rosie Fenn hasn't spoken above a whisper since she was twelve.\n\nWhat would undo you completely: the second letter. Rosie wrote again in June, addressed to you personally, eight pages. You read all eight. Then you fed it into the shredder behind your office door, because the centenary gala was in three weeks and the Telegraph was sending a photographer.\n\nYou wanted people to think you were the woman who built something — the medals cabinet, the exam tables, your name on the new assembly hall.\n\nYou died of a stroke at your kitchen table in April, mid-draft of a letter to the parole board that began *To whom it may concern, my son has suffered enough.* The kettle was still whistling."
+    },
+    {
+      "rep": 1,
+      "i": 4,
+      "age": 55,
+      "gender": "male",
+      "supplied_name": "Silas Voss",
+      "uses_full_name": true,
+      "uses_first_name": true,
+      "seconds": 28.6,
+      "tokens": 1267,
+      "words": 299,
+      "text": "You are Silas Voss. You built Vosscare from one assisted-living house into three facilities, and you did it by cutting the night shift from four aides to one per building. The state minimum was one. You always met the minimum.\n\nYou loved your wife, Priya, who worked the floor of your first house for eleven years and quit when you cut the staff. You loved your daughter, Lena, who stopped calling after Mrs. Okafor — Dora Okafor, 88, room 12 — fell out of her bed at 2 a.m. and lay on the floor for six hours while the one night aide, Marcus, covered three floors alone. Dora died of the fall and the cold floor. You settled with her son for $400,000 and told yourself the settlement was mercy, not a purchase.\n\nThe lie you told everyone: the margins were razor-thin, the reimbursements were shrinking, any owner would do the same. The lie you told Priya: it's this or we close the doors and put forty people on the street. The lie you told yourself: you carried the risk, so you deserved the reward.\n\nYou wanted people to see a provider. Self-made at nineteen, night school, the man who housed the forgotten.\n\nThe secret: the money was never thin. You bought the lake house on Whitmore Lake the same quarter you cut the night shift. You named the boat Second Chance. The Okafor settlement came from the interest on the account where the staffing money went.\n\nMarcus kept copies of the schedules. He mailed them to the state, to the Free Press, and to Lena. On the morning the reporter called, you went to the garage, sat in the car, and started the engine. Priya found the note on the kitchen counter. It said only: fix the fence."
+    }
+  ],
+  "arm_b": [
+    {
+      "rep": 0,
+      "i": 0,
+      "age": 51,
+      "gender": "male",
+      "extracted": "none"
+    },
+    {
+      "rep": 0,
+      "i": 1,
+      "age": 64,
+      "gender": "female",
+      "extracted": "none"
+    },
+    {
+      "rep": 0,
+      "i": 2,
+      "age": 45,
+      "gender": "female",
+      "extracted": "none"
+    },
+    {
+      "rep": 0,
+      "i": 3,
+      "age": 57,
+      "gender": "female",
+      "extracted": "none"
+    },
+    {
+      "rep": 0,
+      "i": 4,
+      "age": 55,
+      "gender": "male",
+      "extracted": "none"
+    },
+    {
+      "rep": 1,
+      "i": 0,
+      "age": 51,
+      "gender": "male",
+      "extracted": "none"
+    },
+    {
+      "rep": 1,
+      "i": 1,
+      "age": 64,
+      "gender": "female",
+      "extracted": "none"
+    },
+    {
+      "rep": 1,
+      "i": 2,
+      "age": 45,
+      "gender": "female",
+      "extracted": "none"
+    },
+    {
+      "rep": 1,
+      "i": 3,
+      "age": 57,
+      "gender": "female",
+      "extracted": "none"
+    },
+    {
+      "rep": 1,
+      "i": 4,
+      "age": 55,
+      "gender": "male",
+      "extracted": "none"
+    }
+  ],
+  "arm_b_first_paragraph": [
+    {
+      "rep": 0,
+      "i": 0,
+      "extracted": "None",
+      "expected": null,
+      "correct": true
+    },
+    {
+      "rep": 0,
+      "i": 1,
+      "extracted": "Diane Wechsler",
+      "expected": "Diane Wechsler",
+      "correct": true
+    },
+    {
+      "rep": 0,
+      "i": 2,
+      "extracted": "Dana Ruiz",
+      "expected": "Dana Ruiz",
+      "correct": true
+    },
+    {
+      "rep": 0,
+      "i": 3,
+      "extracted": "Marianne Colby",
+      "expected": "Marianne Colby",
+      "correct": true
+    },
+    {
+      "rep": 0,
+      "i": 4,
+      "extracted": "Frank Doherty",
+      "expected": "Frank Doherty",
+      "correct": true
+    },
+    {
+      "rep": 1,
+      "i": 0,
+      "extracted": "I am not a man, I am a writer",
+      "expected": null,
+      "correct": false
+    },
+    {
+      "rep": 1,
+      "i": 1,
+      "extracted": "Marcus",
+      "expected": null,
+      "correct": false
+    },
+    {
+      "rep": 1,
+      "i": 2,
+      "extracted": "Tom Kessler",
+      "expected": null,
+      "correct": false
+    },
+    {
+      "rep": 1,
+      "i": 3,
+      "extracted": "Claire",
+      "expected": null,
+      "correct": false
+    },
+    {
+      "rep": 1,
+      "i": 4,
+      "extracted": "Marcus Aldridge",
+      "expected": "Marcus Aldridge",
+      "correct": true
+    }
+  ],
+  "arm_b_whole_story": [
+    {
+      "rep": 0,
+      "i": 0,
+      "extracted": "Marco Reyes",
+      "expected": null,
+      "correct": false
+    },
+    {
+      "rep": 0,
+      "i": 1,
+      "extracted": "Diane Wechsler",
+      "expected": "Diane Wechsler",
+      "correct": true
+    },
+    {
+      "rep": 0,
+      "i": 2,
+      "extracted": "Dana Ruiz",
+      "expected": "Dana Ruiz",
+      "correct": true
+    },
+    {
+      "rep": 0,
+      "i": 3,
+      "extracted": "Marianne Colby",
+      "expected": "Marianne Colby",
+      "correct": true
+    },
+    {
+      "rep": 0,
+      "i": 4,
+      "extracted": "Frank Doherty",
+      "expected": "Frank Doherty",
+      "correct": true
+    },
+    {
+      "rep": 1,
+      "i": 0,
+      "extracted": "None",
+      "expected": null,
+      "correct": true
+    },
+    {
+      "rep": 1,
+      "i": 1,
+      "extracted": "Carol",
+      "expected": null,
+      "correct": false
+    },
+    {
+      "rep": 1,
+      "i": 2,
+      "extracted": "Maisie",
+      "expected": null,
+      "correct": false
+    },
+    {
+      "rep": 1,
+      "i": 3,
+      "extracted": "Claire",
+      "expected": null,
+      "correct": false
+    },
+    {
+      "rep": 1,
+      "i": 4,
+      "extracted": "Elena",
+      "expected": "Marcus Aldridge",
+      "correct": false
+    }
+  ]
+}
