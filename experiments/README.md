@@ -60,11 +60,15 @@ only a winning variant gets promoted into a real version with a snapshot.
 | 17 | `2026-10-01_glm-at-ten` | 10 | Do experiment 16's five-sample claims hold at ten? | Secret-as-object holds and strengthens, 10/10, usually present at the death. But deaths are 10/10 cardiovascular, braiding did not halve, and the "You loved…" opening drops to 1/10 |
 | 18 | `2026-10-01_name-by-another-call` | 10 | Supply the name by a second call, or extract it after? | Supply. The story uses a supplied name 5/10, but the supplied value is good regardless; extraction finds a real name 5/5 and invents another character's name 4/5 when there is none |
 | 19 | `2026-10-01_facts-first` | 10 | Does moving name/age/gender above the task make the name a premise? | No. 4/10 use it against 5/10 with it last — position is not the lever. It does move the opening: "You are &lt;name&gt;" drops 5/5 to 1/10. 9 of 10 supplied names begin with E |
+| 20 | `2026-10-01_state-your-name` | 10 | Ask outright for the story to open by stating name, gender and age? | Name used **10/10**, against 4–5 when merely supplied. The header lands as its own paragraph, so experiment 11's opening survives one line lower in 8/10 — but 2 stories break into first person and suicides return at 4/10 |
 
-**Latest: 19.** Totals so far: 150 generations, roughly 217,000 tokens.
+**Latest: 20.** Totals so far: 160 generations, roughly 229,000 tokens.
 
 ## Open threads these left behind
 
+- **The name/opening trade was never a trade** (20). Asked to open by stating its identity, the model puts that in its own short paragraph and starts the story underneath — the second paragraph opens *"You loved…"* in 8 of 10. Parse the name from paragraph one and drop it, and both are free.
+- **An instruction to introduce yourself can flip the person** (20). Two stories answered *"My name is…"*; one stayed in first person for all 317 words, against a craft rule that says second. Asking for the name alone, without gender and age, is the obvious mitigation.
+- **Suicide is back at 4 of 10** (20), after none in experiments 17 and 19. Experiment 02 found 10 of 12 suicides under contradictory death rules; no death rule changed here. Three characters in a room who all killed themselves is worse than three heart attacks.
 - **The name call is the weak link, not the story prompt** (18, 19). `Qwen3-8B` at temperature 1.2 produced nine names beginning with E in ten, `Voss` four times across the two experiments, and `Eleanor`/`Elara` six times. A name drawn at random in code would be free, instant and actually varied — but a name list is adjacent to `NAME_ORIGINS`, so it needs the user's decision.
 - **An ignored first name can come back as the spouse's surname** (19). Supplied *Ethan Harper* produced *"You married Dana Harper"*; supplied *Elena Martinez* produced *"You married Rafael Martinez"*. A character sheet would disagree with the story about who that name belongs to.
 - **Prompt order is settled and not worth retesting** (19). Moving the given facts above the task changed the opening but not whether the name is adopted.
