@@ -41,6 +41,45 @@ INDEX_COLUMNS = [
 ]
 
 
+def _carry_character_evals(old: dict, new: dict) -> None:
+    """
+    Re-attach per-character evals to the rebuilt state.
+
+    state comes from simulator.state_snapshot_dict, which builds each character field by
+    field and never emits eval/eval_ai -- so without this a re-save silently drops a
+    human verdict on a character.
+    """
+    old_chars = ((old.get("state") or {}).get("characters") or {})
+    new_chars = ((new.get("state") or {}).get("characters") or {})
+    for cid, old_c in old_chars.items():
+        if not isinstance(old_c, dict) or cid not in new_chars:
+            continue
+        for key in ("eval", "eval_ai"):
+            if old_c.get(key) and not new_chars[cid].get(key):
+                new_chars[cid][key] = old_c[key]
+
+
+def _carry_call_evals(old: dict, new: dict) -> None:
+    """
+    Re-attach per-call evals, matched on (timestamp, call_type, character_no).
+
+    The new calls come straight from the transcript and carry no eval slot. Matching on
+    the triple rather than on list position means a re-save that added or reordered
+    calls still lands each score on the call it was written about.
+    """
+    def key(rec):
+        return (rec.get("timestamp"), rec.get("call_type"), rec.get("character_no"))
+
+    scored = {key(c): c["eval_scores_json"] for c in (old.get("calls") or [])
+              if isinstance(c, dict) and c.get("eval_scores_json")}
+    if not scored:
+        return
+    for rec in new.get("calls") or []:
+        hit = scored.get(key(rec))
+        if hit and not rec.get("eval_scores_json"):
+            rec["eval_scores_json"] = hit
+
+
 class ExperimentStore:
     def __init__(self, root=None):
         root = PROJECT_ROOT if root is None else root
@@ -75,14 +114,34 @@ class ExperimentStore:
         Returns the path to the per-run JSON file.
         """
         # ── 1. Per-run JSON file (the full readable record) ──
-        run_obj = {
+        #
+        # Merge rather than clobber. This function owns five keys; everything else in
+        # the file was put there by something else and must survive a re-save. In
+        # practice that means the evals: ui/run_viewer.html writes pair_eval,
+        # character_design_eval, session_eval and their _ai twins at the top level,
+        # per-character eval/eval_ai inside state.characters, and eval_scores_json on
+        # individual calls. Rebuilding the object from five keys dropped all of them --
+        # 173 populated eval objects across 18 of the 25 runs on disk, with notes
+        # averaging well over a thousand characters, and nothing anywhere reads them
+        # back to notice they had gone.
+        run_path = self.runs_dir / f"{run_id}.json"
+        existing = {}
+        if run_path.exists():
+            try:
+                existing = json.loads(run_path.read_text(encoding="utf-8"))
+            except (json.JSONDecodeError, OSError):
+                existing = {}        # unreadable: treat as absent rather than refuse to save
+
+        run_obj = dict(existing)
+        run_obj.update({
             "run_id": run_id,
             "written_at": datetime.now(timezone.utc).isoformat(),
             "meta": meta or {},
             "state": state_snapshot or {},
             "calls": transcript_records,
-        }
-        run_path = self.runs_dir / f"{run_id}.json"
+        })
+        _carry_character_evals(existing, run_obj)
+        _carry_call_evals(existing, run_obj)
         run_path.write_text(json.dumps(run_obj, indent=2, ensure_ascii=False), encoding="utf-8")
 
         # ── 2. Index rows (one per call, for cross-run comparison) ──
