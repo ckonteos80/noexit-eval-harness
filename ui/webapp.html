@@ -206,6 +206,51 @@
   .aieval { font-size: 10.5px; color: var(--dim2); line-height: 1.5;
             border-left: 2px solid var(--border2); padding-left: 8px; }
   .aieval b { color: var(--accent2); font-weight: 600; }
+  /* ── eval overlay: the story on the left, Human and AI columns on the right,
+     mirroring run_viewer.html's Character Gen panes ── */
+  #eval-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.72); z-index: 50;
+                  display: none; align-items: center; justify-content: center; padding: 28px; }
+  #eval-overlay.show { display: flex; }
+  #eval-dialog { background: var(--bg); border: 1px solid var(--border2);
+                 width: min(1180px, 100%); height: min(760px, 100%);
+                 display: flex; flex-direction: column; }
+  #eval-head { display: flex; align-items: baseline; gap: 12px; padding: 12px 16px;
+               border-bottom: 1px solid var(--border2); flex-shrink: 0; }
+  #eval-head .nm { font-family: var(--serif); font-size: 19px; color: var(--text-hi); }
+  #eval-head .meta { font-family: var(--mono); font-size: 11px; color: var(--dim2); }
+  #eval-head .spacer { flex: 1; }
+  #eval-head .pos { font-family: var(--mono); font-size: 11px; color: var(--dim); }
+  #eval-body { flex: 1; display: flex; gap: 0; min-height: 0; }
+  #eval-story { flex: 1; min-width: 0; overflow-y: auto; padding: 18px 22px;
+                font-family: var(--serif); font-size: 14.5px; line-height: 1.62;
+                color: var(--text); white-space: pre-wrap; }
+  #eval-cols { flex: 0 0 660px; display: flex; min-width: 0;
+               border-left: 1px solid var(--border2); }
+  .eval-col { flex: 1; min-width: 0; overflow-y: auto; padding: 14px 16px; }
+  .eval-col + .eval-col { border-left: 1px solid var(--border); }
+  .eval-col h4 { font-family: var(--mono); font-size: 10px; letter-spacing: .6px;
+                 text-transform: uppercase; color: var(--dim2); margin: 0 0 4px; }
+  .eval-col.ai h4 { color: var(--accent2); }
+  .eval-col .evalform { border-top: none; margin-top: 0; }
+  .eval-col .evalnotes textarea { min-height: 260px; }
+  #eval-prov { font-family: var(--mono); font-size: 10.5px; color: var(--dim);
+               line-height: 1.6; padding: 10px 22px; border-top: 1px solid var(--border);
+               flex-shrink: 0; }
+  @media (max-width: 1000px) {
+    #eval-body { flex-direction: column; }
+    #eval-cols { flex: 1 1 auto; border-left: none; border-top: 1px solid var(--border2); }
+  }
+
+  .cardeval { display: flex; align-items: center; gap: 8px; margin-top: 9px;
+              padding-top: 8px; border-top: 1px solid var(--border); }
+  .cardeval .who { font-family: var(--mono); font-size: 10px; color: var(--dim);
+                   flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis;
+                   white-space: nowrap; }
+  .cardeval .eval-open { font-family: var(--mono); font-size: 10px; padding: 4px 9px;
+                         background: var(--surface2); color: var(--dim2);
+                         border: 1px solid var(--border2); cursor: pointer; }
+  .cardeval .eval-open:hover { color: var(--accent); border-color: var(--accent); }
+
   .verdict-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%;
                  margin-right: 6px; vertical-align: 1px; }
   .verdict-dot.good { background: var(--ok); }
@@ -354,6 +399,28 @@
     <button class="ghost-btn" id="lib-reset">Reset</button>
   </div>
   <div id="lib-grid"></div>
+</div>
+
+<div id="eval-overlay">
+  <div id="eval-dialog">
+    <div id="eval-head">
+      <span class="nm" id="eval-name"></span>
+      <span class="meta" id="eval-meta"></span>
+      <span class="spacer"></span>
+      <span class="pos" id="eval-pos"></span>
+      <button class="ghost-btn" id="eval-prev">&larr; prev</button>
+      <button class="ghost-btn" id="eval-next">next &rarr;</button>
+      <button class="ghost-btn" id="eval-close">Close</button>
+    </div>
+    <div id="eval-body">
+      <div id="eval-story"></div>
+      <div id="eval-cols">
+        <div class="eval-col" id="eval-col-human"><h4>Human eval</h4></div>
+        <div class="eval-col ai" id="eval-col-ai"><h4>AI eval</h4></div>
+      </div>
+    </div>
+    <div id="eval-prov"></div>
+  </div>
 </div>
 
 <div id="app">
@@ -562,30 +629,128 @@ const RATINGS = ['good', 'neutral', 'bad'];
 // the form must never overwrite `eval_ai`, because which model produced a verdict is
 // part of the verdict.
 function buildCardEval(card, c) {
-  const wrap = document.createElement('div');
-  wrap.className = 'evalform';
-  const ev = c.eval || {};
+  const row = document.createElement('div');
+  row.className = 'cardeval';
 
+  const who = document.createElement('span');
+  who.className = 'who';
+  who.textContent = evalSummaryText(c);
+
+  const btn = document.createElement('button');
+  btn.type = 'button'; btn.className = 'eval-open'; btn.textContent = 'Eval';
+  btn.onclick = (e) => { e.stopPropagation(); openEval(c.char_id); };
+
+  row.appendChild(who); row.appendChild(btn);
+  card.appendChild(row);
+}
+
+function evalSummaryText(c) {
+  const bits = [];
+  if (c.eval && c.eval.rating) bits.push(c.eval.rating + ' (human)');
+  if (c.eval_ai && c.eval_ai.rating) {
+    bits.push(c.eval_ai.rating + ' (' + (c.eval_ai.judge_model || 'ai') + ')');
+  }
+  return bits.length ? bits.join(' · ') : 'unscored';
+}
+
+// ── the eval overlay ────────────────────────────────────────────────────────
+// Two columns, Human and AI, over the full story -- the shape run_viewer.html's
+// Character Gen view had. Both are editable: set_eval only stamps a judge_model when
+// the slot is empty, so a verdict from claude-opus-5 keeps its attribution even after
+// someone types in that column.
+let evalOrder = [];        // char_ids in the order currently shown, for prev/next
+let evalIndex = -1;
+let evalRecord = null;     // the full record, which carries the notes the listing omits
+
+async function openEval(charId) {
+  evalOrder = libFiltered().map(c => c.char_id);
+  evalIndex = evalOrder.indexOf(charId);
+  $('#eval-overlay').classList.add('show');
+  await loadEvalInto(charId);
+}
+
+function closeEval() {
+  $('#eval-overlay').classList.remove('show');
+  evalRecord = null;
+  renderLibrary();                 // pick up any verdict set while it was open
+}
+
+async function stepEval(delta) {
+  if (evalIndex < 0) return;
+  const next = evalIndex + delta;
+  if (next < 0 || next >= evalOrder.length) return;
+  evalIndex = next;
+  await loadEvalInto(evalOrder[next]);
+}
+
+async function loadEvalInto(charId) {
+  $('#eval-story').textContent = 'Loading…';
+  $('#eval-pos').textContent = evalOrder.length
+    ? (evalIndex + 1) + ' of ' + evalOrder.length : '';
+  $('#eval-prev').disabled = evalIndex <= 0;
+  $('#eval-next').disabled = evalIndex < 0 || evalIndex >= evalOrder.length - 1;
+  try {
+    evalRecord = await api('/api/library/' + encodeURIComponent(charId));
+  } catch (err) {
+    $('#eval-story').textContent = 'Could not load this character: ' + err.message;
+    return;
+  }
+  const ch = evalRecord.character || {}, p = evalRecord.provenance || {};
+  $('#eval-name').textContent = ch.name || '(unnamed)';
+  $('#eval-meta').textContent = [ch.age, ch.gender, (p.words || 0) + ' words']
+    .filter(Boolean).join(' · ');
+  $('#eval-story').textContent = ch.description || '';
+  $('#eval-story').scrollTop = 0;
+
+  const o = p.origin || {};
+  $('#eval-prov').textContent = [
+    o.experiment ? 'experiment ' + o.experiment : (o.run_id ? 'run ' + o.run_id : p.source),
+    (p.settings || {}).generation_model || 'model unknown',
+    p.game_state_version || 'no version',
+    p.sanity ? 'sanity: ' + p.sanity : null,
+    evalRecord.char_id,
+  ].filter(Boolean).join('  ·  ');
+
+  buildEvalColumn('#eval-col-human', 'Human eval', 'eval', 'human');
+  buildEvalColumn('#eval-col-ai', 'AI eval', 'eval_ai', 'ai');
+}
+
+function buildEvalColumn(hostSel, heading, field, judgeLabel) {
+  const host = $(hostSel);
+  host.innerHTML = '<h4>' + heading + '</h4>';
+  const target = evalRecord[field] = evalRecord[field] || {};
+  const charId = evalRecord.char_id;
+
+  const wrap = document.createElement('div'); wrap.className = 'evalform';
   const badge = document.createElement('div');
-  badge.className = 'evalbadge' + (ev.judge_model ? ' scored' : '');
-  badge.textContent = ev.judge_model
-    ? 'scored by ' + ev.judge_model + (ev.inherited ? ' (inherited)' : '')
+  badge.className = 'evalbadge' + (target.judge_model ? ' scored' : '');
+  const badgeText = () => target.judge_model
+    ? 'scored by ' + target.judge_model +
+      (target.inherited_from ? ' (inherited from ' + target.inherited_from.run_id + ')' : '')
     : 'unscored';
+  badge.textContent = badgeText();
 
-  let saveTimer = null;
+  let timer = null;
   const save = async () => {
     badge.textContent = 'saving…'; badge.classList.add('saving');
     try {
       const res = await api('/api/library/eval', {
-        char_id: c.char_id, field: 'eval',
-        rating: c.eval && c.eval.rating ? c.eval.rating : null,
-        notes: (c.eval && c.eval.judge_notes) || '',
+        char_id: charId, field: field,
+        rating: target.rating || null,
+        notes: target.judge_notes || '',
+        judge_model: judgeLabel,
       });
-      c.eval = Object.assign({}, c.eval, {
-        judge_model: (res.eval && res.eval.judge_model) || 'human',
-      });
+      // The server owns judge_model: it refuses to overwrite an existing one, so read
+      // back rather than assuming this column's label won.
+      const saved = (res && res[field]) || {};
+      target.judge_model = saved.judge_model;
       badge.classList.remove('saving'); badge.classList.add('scored');
-      badge.textContent = 'scored by ' + c.eval.judge_model;
+      badge.textContent = badgeText();
+      const row = libAll.find(c => c.char_id === charId);
+      if (row) row[field] = { rating: target.rating || null,
+                              judge_model: target.judge_model,
+                              has_notes: !!target.judge_notes,
+                              inherited: !!target.inherited_from };
     } catch (err) {
       badge.classList.remove('saving');
       badge.textContent = 'not saved: ' + err.message;
@@ -596,13 +761,11 @@ function buildCardEval(card, c) {
   RATINGS.forEach(v => {
     const b = document.createElement('button');
     b.type = 'button'; b.className = 'evalbtn ' + v; b.textContent = v;
-    if (ev.rating === v) b.classList.add('active');
-    b.onclick = (e) => {
-      e.stopPropagation();
-      c.eval = c.eval || {};
-      c.eval.rating = c.eval.rating === v ? null : v;   // click again to clear
+    if (target.rating === v) b.classList.add('active');
+    b.onclick = () => {
+      target.rating = target.rating === v ? null : v;   // click again to clear
       Array.from(btns.children).forEach(bb =>
-        bb.classList.toggle('active', c.eval.rating === bb.textContent));
+        bb.classList.toggle('active', target.rating === bb.textContent));
       save();
     };
     btns.appendChild(b);
@@ -611,29 +774,18 @@ function buildCardEval(card, c) {
 
   const notesRow = document.createElement('div'); notesRow.className = 'evalnotes';
   const ta = document.createElement('textarea');
-  ta.placeholder = 'One note: what you actually felt, and the line that caused it.';
-  ta.value = ev.judge_notes || '';
-  ta.onclick = e => e.stopPropagation();          // typing must not select the card
+  ta.placeholder = field === 'eval'
+    ? 'One note: what you actually felt, and the line that caused it.'
+    : 'AI note.';
+  ta.value = target.judge_notes || '';
   ta.oninput = () => {
-    c.eval = c.eval || {};
-    c.eval.judge_notes = ta.value;
-    clearTimeout(saveTimer); saveTimer = setTimeout(save, 600);
+    target.judge_notes = ta.value;
+    clearTimeout(timer); timer = setTimeout(save, 700);
   };
   notesRow.appendChild(ta);
   wrap.appendChild(notesRow);
   wrap.appendChild(badge);
-
-  // An AI verdict is shown, never edited here.
-  if (c.eval_ai && (c.eval_ai.rating || c.eval_ai.has_notes)) {
-    const ai = document.createElement('div');
-    ai.className = 'aieval';
-    ai.innerHTML = '<b>' + esc(c.eval_ai.judge_model || 'ai') + '</b>: ' +
-      esc(c.eval_ai.rating || 'no verdict') +
-      (c.eval_ai.has_notes ? ' \u00b7 note on the record' : '');
-    wrap.appendChild(ai);
-  }
-
-  card.appendChild(wrap);
+  host.appendChild(wrap);
 }
 
 // First click fills slot 1, second fills slot 2, a third replaces slot 2.
@@ -1034,6 +1186,18 @@ $('#lib-reset').onclick = () => {
   renderLibrary();
 };
 $('#lib-search').oninput = () => renderLibrary();
+$('#eval-close').onclick = closeEval;
+$('#eval-prev').onclick = () => stepEval(-1);
+$('#eval-next').onclick = () => stepEval(1);
+$('#eval-overlay').onclick = (e) => { if (e.target.id === 'eval-overlay') closeEval(); };
+document.addEventListener('keydown', (e) => {
+  if (!$('#eval-overlay').classList.contains('show')) return;
+  if (e.key === 'Escape') closeEval();
+  // Arrows only when not typing, or they would fight the textarea caret.
+  if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT') return;
+  if (e.key === 'ArrowLeft') stepEval(-1);
+  if (e.key === 'ArrowRight') stepEval(1);
+});
 $('#regen-btn').onclick = () => generateCharsOnly(true);
 $('#continue-btn').onclick = continueToDialogue;
 $('#chars-only-save-btn').onclick = () => endSession(true);
