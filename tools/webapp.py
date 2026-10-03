@@ -12,11 +12,13 @@ Usage:
 """
 
 import json
+from urllib.parse import unquote
 import webbrowser
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
+import library
 import simulator
 import store
 from _paths import PROJECT_ROOT, UI
@@ -65,6 +67,25 @@ def _active_session_error(body):
             "Save or abandon it first, or send force to discard it.")
 
 
+def library_payload():
+    """
+    Every character card, plus the facet values the filter UI needs.
+
+    The library opens at ~184 records and every experiment adds ten more, so the screen
+    is unusable without filters -- and the values to filter on are already in each
+    record, so they are collected here rather than hardcoded in the HTML.
+    """
+    chars = library.list_characters()
+    facets = {k: sorted({v for v in (c.get(k) for c in chars) if v})
+              for k in ("source", "game_state_version", "model", "gender")}
+    facets["experiment"] = sorted({(c.get("origin") or {}).get("experiment")
+                                   for c in chars
+                                   if (c.get("origin") or {}).get("experiment")})
+    facets["tags"] = sorted({t for c in chars for t in (c.get("tags") or [])})
+    return {"count": len(chars), "characters": chars, "facets": facets,
+            "current_version": (current_version().name if current_version() else None)}
+
+
 def session_payload():
     if state is None:
         return {"active": False}
@@ -110,6 +131,14 @@ class Handler(BaseHTTPRequestHandler):
             self.wfile.write(body)
         elif self.path == "/api/state":
             self._send_json(session_payload())
+        elif self.path == "/api/library":
+            self._send_json(library_payload())
+        elif self.path.startswith("/api/library/"):
+            char_id = unquote(self.path[len("/api/library/"):])
+            try:
+                self._send_json(library.read_character(char_id))
+            except FileNotFoundError:
+                self._send_json({"error": f"No character {char_id}."}, 404)
         else:
             self.send_error(404)
 
