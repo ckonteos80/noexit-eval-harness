@@ -330,6 +330,8 @@ def import_from_experiment(folder, skip: set | None = None) -> list[str]:
         [r for v in data.values() if isinstance(v, list) for r in v]
     skip = skip if skip is not None else known_origins()
     lits = _script_literals(folder)
+    m = re.search(r"(\d{4}-\d{2}-\d{2})", folder.name)
+    exp_date = m.group(1) if m else None
     name_tpl = lits.get("NAME_PROMPT")
     written = []
 
@@ -351,6 +353,10 @@ def import_from_experiment(folder, skip: set | None = None) -> list[str]:
                        .replace("{NAME}", str(row.get("supplied_name", ""))))
 
         rec = new_record(
+            # Dated from the experiment folder, not from the import. These records are
+            # months old; created_at defaulting to now() made 134 of them claim they
+            # were generated the day the library was built.
+            created_at=exp_date or None,
             character={
                 "name": row.get("supplied_name") or "",
                 "description": text,

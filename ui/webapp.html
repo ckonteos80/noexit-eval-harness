@@ -241,6 +241,26 @@
     #eval-cols { flex: 1 1 auto; border-left: none; border-top: 1px solid var(--border2); }
   }
 
+  /* the prompts that produced a character, on demand */
+  .promptbox { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
+  .promptbox > summary { cursor: pointer; font-family: var(--mono); font-size: 10px;
+                         color: var(--accent2); list-style: none; }
+  .promptbox > summary::-webkit-details-marker { display: none; }
+  .promptbox > summary:hover { color: var(--accent); }
+  .promptpart { margin-top: 8px; }
+  .promptpart .ph { font-family: var(--mono); font-size: 9.5px; letter-spacing: .5px;
+                    text-transform: uppercase; color: var(--dim2); margin-bottom: 3px; }
+  .promptpart .pb { font-family: var(--mono); font-size: 10.5px; line-height: 1.5;
+                    color: var(--text); background: var(--surface2);
+                    border: 1px solid var(--border2); padding: 7px 8px;
+                    max-height: 190px; overflow-y: auto; white-space: pre-wrap; }
+  .promptpart.inferred .ph { color: var(--accent2); }
+  .promptpart .none { font-family: var(--mono); font-size: 10.5px; color: var(--dim);
+                      font-style: italic; }
+  #eval-prompts { border-top: 1px solid var(--border); padding: 10px 22px 14px;
+                  flex-shrink: 0; max-height: 46vh; overflow-y: auto; }
+  #eval-prompts .promptpart .pb { max-height: none; }
+
   .cardeval { display: flex; align-items: center; gap: 8px; margin-top: 9px;
               padding-top: 8px; border-top: 1px solid var(--border); }
   .cardeval .who { font-family: var(--mono); font-size: 10px; color: var(--dim);
@@ -419,6 +439,7 @@
         <div class="eval-col ai" id="eval-col-ai"><h4>AI eval</h4></div>
       </div>
     </div>
+    <details id="eval-prompts"><summary class="promptbox-summary"></summary></details>
     <div id="eval-prov"></div>
   </div>
 </div>
@@ -581,6 +602,50 @@ function libFiltered() {
   });
 }
 
+// "2026-10-03 11:29". The records store a local ISO timestamp; anything unparseable is
+// shown as-is rather than silently blanked.
+function madeAt(iso) {
+  if (!iso) return 'no date';
+  const m = String(iso).match(/^(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2})/);
+  return m ? `${m[1]}-${m[2]}-${m[3]} ${m[4]}:${m[5]}` : String(iso);
+}
+
+// The prompts a character was actually made with. Verbatim where they were recorded at
+// generation; for the older experiment imports the system prompt was never in the
+// experiment folder, so what is shown there is reconstructed from the backups/ snapshot
+// that was live at the time -- labelled, because an inference must not read as a record.
+function promptsHTML(rec) {
+  const p = (rec.provenance || {}).prompts || {};
+  const prov = rec.provenance || {};
+  const part = (label, text, cls) =>
+    '<div class="promptpart' + (cls ? ' ' + cls : '') + '"><div class="ph">' + label +
+    '</div>' + (text
+      ? '<div class="pb">' + esc(text) + '</div>'
+      : '<div class="none">not recorded</div>') + '</div>';
+
+  let out = '';
+  if (p.character_system) {
+    out += part('system prompt', p.character_system);
+  } else if (p.character_system_inferred) {
+    out += part('system prompt — inferred from backups/' +
+                (prov.prompts_inferred_from || '?') + ', not recorded at the time',
+                p.character_system_inferred, 'inferred');
+  } else if (prov.prompts_inferred_candidates && prov.prompts_inferred_candidates.length) {
+    out += part('system prompt — unknown, could be ' +
+                prov.prompts_inferred_candidates.join(' or '), null, 'inferred');
+  } else {
+    out += part('system prompt', null);
+  }
+  out += part('user prompt', p.character_user);
+  if (p.craft_suffix) out += part('craft rules appended to the system prompt', p.craft_suffix);
+  out += part('name call prompt', p.name_user);
+  if (prov.prompts_source) {
+    out += '<div class="promptpart"><div class="ph">source</div><div class="none">' +
+           esc(prov.prompts_source) + '</div></div>';
+  }
+  return out;
+}
+
 function verdictDot(c) {
   const r = (c.eval && c.eval.rating) || (c.eval_ai && c.eval_ai.rating);
   return r ? '<span class="verdict-dot ' + r + '" title="' + r + '"></span>' : '';
@@ -604,7 +669,7 @@ function renderLibrary() {
     card.innerHTML = `
       ${slot >= 0 ? `<span class="slotbadge">slot ${slot + 1}</span>` : ''}
       <h3>${esc(c.name || '(unnamed)')}</h3>
-      <div class="sub">${verdictDot(c)}${esc(c.age || '?')}, ${esc(c.gender || '?')} · ${c.words || 0} words</div>
+      <div class="sub">${verdictDot(c)}${esc(c.age || '?')}, ${esc(c.gender || '?')} · ${c.words || 0} words · ${esc(madeAt(c.created_at))}</div>
       <div class="bio">${esc(c.description || '')}<div class="fade"></div></div>
       <span class="more">expand ▾</span>
       <div class="prov">${esc(where)}<br>${esc(c.model || 'model unknown')} ·
@@ -642,6 +707,27 @@ function buildCardEval(card, c) {
 
   row.appendChild(who); row.appendChild(btn);
   card.appendChild(row);
+
+  // The listing does not carry prompts -- they are long and there are 191 of them -- so
+  // the record is fetched the first time this is opened, and only then.
+  const det = document.createElement('details');
+  det.className = 'promptbox';
+  det.innerHTML = '<summary>prompts \u25be</summary>' +
+                  '<div class="promptbody"><div class="none">…</div></div>';
+  det.onclick = (e) => e.stopPropagation();
+  det.ontoggle = async () => {
+    if (!det.open || det.dataset.loaded) return;
+    det.dataset.loaded = '1';
+    const body = det.querySelector('.promptbody');
+    try {
+      const rec = await api('/api/library/' + encodeURIComponent(c.char_id));
+      body.innerHTML = promptsHTML(rec);
+    } catch (err) {
+      body.innerHTML = '<div class="none">could not load: ' + esc(err.message) + '</div>';
+      det.dataset.loaded = '';
+    }
+  };
+  card.appendChild(det);
 }
 
 function evalSummaryText(c) {
@@ -697,8 +783,8 @@ async function loadEvalInto(charId) {
   }
   const ch = evalRecord.character || {}, p = evalRecord.provenance || {};
   $('#eval-name').textContent = ch.name || '(unnamed)';
-  $('#eval-meta').textContent = [ch.age, ch.gender, (p.words || 0) + ' words']
-    .filter(Boolean).join(' · ');
+  $('#eval-meta').textContent = [ch.age, ch.gender, (p.words || 0) + ' words',
+                                 madeAt(evalRecord.created_at)].filter(Boolean).join(' · ');
   $('#eval-story').textContent = ch.description || '';
   $('#eval-story').scrollTop = 0;
 
@@ -710,6 +796,10 @@ async function loadEvalInto(charId) {
     p.sanity ? 'sanity: ' + p.sanity : null,
     evalRecord.char_id,
   ].filter(Boolean).join('  ·  ');
+
+  const pb = $('#eval-prompts');
+  pb.open = false;
+  pb.innerHTML = '<summary>prompts \u25be</summary>' + promptsHTML(evalRecord);
 
   buildEvalColumn('#eval-col-human', 'Human eval', 'eval', 'human');
   buildEvalColumn('#eval-col-ai', 'AI eval', 'eval_ai', 'ai');
