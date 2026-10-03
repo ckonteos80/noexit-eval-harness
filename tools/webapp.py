@@ -20,6 +20,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 import library
+import runs as runstore
 from game_state import config, assembly
 import simulator
 import store
@@ -31,6 +32,17 @@ PORT = 8765
 WEBAPP_HTML = UI / "webapp.html"
 
 state = None  # current game.GameState, or None if no session is active
+
+# What the live session was built from: None for a generated pair, or
+# {"kind": "seated", "char_ids": [...]} for one seated from the library. The client
+# needs this to know that "Generate New Pair" would destroy a chosen pair. Assigned
+# only through _set_session, so it cannot be left describing a previous session.
+session_source = None
+
+
+def _set_session(new_state, source=None):
+    global state, session_source
+    state, session_source = new_state, source
 
 
 def drifted_files():
@@ -165,6 +177,30 @@ def library_payload():
             "current_version": (current_version().name if current_version() else None)}
 
 
+# What the inspector columns read. The transcript carries far more per call -- every
+# token count and timing field -- and shipping all of it on every turn would be most of
+# a megabyte by turn ten.
+CALL_FIELDS = ("timestamp", "turn_number", "call_type", "character_no", "model",
+               "temperature", "system_prompt", "user_prompt", "response", "notes",
+               "served_model", "total_tokens", "response_time_s")
+
+
+def calls_payload():
+    """Every LLM call made in the live session, oldest first."""
+    if state is None:
+        return {"active": False, "calls": []}
+    try:
+        recs = json.loads(simulator.TRANSCRIPT_JSON.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        recs = []            # the file is written on first call; before that there are none
+    return {
+        "active": True,
+        "session_id": state.session_id,
+        "calls": [{k: r.get(k) for k in CALL_FIELDS}
+                  for r in recs if r.get("session_id") == state.session_id],
+    }
+
+
 def session_payload():
     if state is None:
         return {"active": False}
@@ -172,6 +208,7 @@ def session_payload():
         "active": True,
         "session_id": state.session_id,
         "narrator_played": state.narrator_played,
+        "source": session_source,
         "characters": {
             str(cid): char_payload(c) for cid, c in state.characters.items() if cid != 0
         },
@@ -212,6 +249,16 @@ class Handler(BaseHTTPRequestHandler):
             self._send_json(session_payload())
         elif self.path == "/api/settings":
             self._send_json(settings_payload())
+        elif self.path == "/api/calls":
+            self._send_json(calls_payload())
+        elif self.path == "/api/runs":
+            self._send_json({"runs": runstore.list_runs()})
+        elif self.path.startswith("/api/runs/"):
+            run_id = unquote(self.path[len("/api/runs/"):])
+            try:
+                self._send_json(runstore.read_run(run_id))
+            except (FileNotFoundError, ValueError):
+                self._send_json({"error": f"No run {run_id}."}, 404)
         elif self.path == "/api/library":
             self._send_json(library_payload())
         elif self.path.startswith("/api/library/"):
@@ -234,7 +281,7 @@ class Handler(BaseHTTPRequestHandler):
                 if busy:
                     self._send_json({"error": busy}, status=409)
                     return
-                state = simulator.new_session()
+                _set_session(simulator.new_session())
                 anti_dup = bool(body.get("anti_dup"))
                 simulator.generate_character(state, 1)
                 simulator.generate_character(state, 2, anti_dup=anti_dup)
@@ -246,7 +293,7 @@ class Handler(BaseHTTPRequestHandler):
                 if busy:
                     self._send_json({"error": busy}, status=409)
                     return
-                state = simulator.new_session()
+                _set_session(simulator.new_session())
                 anti_dup = bool(body.get("anti_dup"))
                 simulator.generate_character(state, 1)
                 simulator.generate_character(state, 2, anti_dup=anti_dup)
@@ -348,7 +395,7 @@ class Handler(BaseHTTPRequestHandler):
                 if busy:
                     self._send_json({"error": busy}, status=409)
                     return
-                state = simulator.new_session()
+                _set_session(simulator.new_session())
                 self._send_json(session_payload())
 
             elif self.path == "/api/session/character":
@@ -363,6 +410,53 @@ class Handler(BaseHTTPRequestHandler):
                     settings=body.get("settings") or {},
                 )
                 self._send_json({"summary": summary, **session_payload()})
+
+            elif self.path == "/api/runs/eval":
+                try:
+                    ev = runstore.set_run_eval(
+                        body.get("run_id") or "",
+                        field=body.get("field") or "session_eval",
+                        rating=body.get("rating"), notes=body.get("notes"),
+                        judge_model=body.get("judge_model") or "human")
+                except (FileNotFoundError, ValueError) as exc:
+                    return self._send_json({"error": str(exc)}, 400)
+                self._send_json({"eval": ev})
+
+            elif self.path == "/api/runs/call_eval":
+                try:
+                    ev = runstore.set_call_eval(
+                        body.get("run_id") or "", int(body.get("call_index")),
+                        rating=body.get("rating"), notes=body.get("notes"),
+                        judge_model=body.get("judge_model") or "human")
+                except (FileNotFoundError, ValueError, IndexError, TypeError) as exc:
+                    return self._send_json({"error": str(exc)}, 400)
+                self._send_json({"eval": ev})
+
+            elif self.path == "/api/session/seat":
+                # Two characters chosen from the library, seated in a fresh session.
+                # No model is called here -- the narrator is a separate step, so the
+                # client can show progress for the call that actually takes time.
+                busy = _active_session_error(body)
+                if busy:
+                    self._send_json({"error": busy}, status=409)
+                    return
+                char_ids = [str(c) for c in (body.get("char_ids") or [])]
+                if len(char_ids) != 2:
+                    return self._send_json(
+                        {"error": f"Need exactly 2 characters, got {len(char_ids)}."}, 400)
+                records = []
+                for cid in char_ids:
+                    try:
+                        records.append(library.read_character(cid))
+                    except FileNotFoundError:
+                        return self._send_json({"error": f"No character {cid}."}, 404)
+                try:
+                    seated = simulator.session_from_library(
+                        records, settings=body.get("settings") or {})
+                except ValueError as exc:
+                    return self._send_json({"error": str(exc)}, 400)
+                _set_session(seated, {"kind": "seated", "char_ids": char_ids})
+                self._send_json(session_payload())
 
             elif self.path == "/api/run_narrator":
                 if state is None:
@@ -418,11 +512,11 @@ class Handler(BaseHTTPRequestHandler):
                     # Saved past the guard: the version tag is known not to match.
                     meta["drift_at_save"] = drift
                 run_path = st.write_run(run_id, records, snapshot, meta=meta)
-                state = None
+                _set_session(None)
                 self._send_json({"run_id": run_id, "calls": len(records), "path": str(run_path)})
 
             elif self.path == "/api/abandon":
-                state = None
+                _set_session(None)
                 self._send_json({"ok": True})
 
             else:

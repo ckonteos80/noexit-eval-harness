@@ -54,5 +54,11 @@
     "judge_notes": "",
     "judge_model": "ai",
     "scored_at": "2026-10-03T14:04:13"
+  },
+  "eval": {
+    "rating": "good",
+    "judge_notes": "",
+    "judge_model": "human",
+    "scored_at": "2026-10-03T14:16:18"
   }
 }

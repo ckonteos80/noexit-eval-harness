@@ -48,5 +48,11 @@
   },
   "calls": [],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval": {
+    "rating": "neutral",
+    "judge_notes": "Why does the wife live in a different place from him? If it was his mother instead of his wife it would be better.",
+    "judge_model": "human",
+    "scored_at": "2026-10-03T14:18:14"
+  }
 }

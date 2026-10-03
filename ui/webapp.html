@@ -122,6 +122,7 @@
     color: var(--dim2); border: 1px solid var(--border2); padding: 6px 12px; cursor: pointer;
   }
   .ghost-btn:hover { color: var(--accent); border-color: var(--accent); }
+  .ghost-btn.on { color: var(--accent); border-color: var(--accent); background: var(--surface); }
   #start-error { color: var(--none-col); max-width: 460px; text-align: center; font-size: 12px; }
 
   /* ── characters-only review screen: two full bios side by side, no chat ── */
@@ -180,6 +181,40 @@
     position: absolute; top: 8px; right: 10px; font-size: 11px; font-weight: 600;
     color: var(--bg); background: var(--accent); border-radius: 4px; padding: 2px 7px;
   }
+  #lib-grid .charcard[draggable="true"] { cursor: grab; }
+  #lib-grid .charcard.dragging { opacity: .45; }
+
+  /* The two seats, above the grid rather than on a screen of their own: drag and
+     drop cannot cross screens, and the characters are here. */
+  #lib-slots {
+    display: flex; gap: 10px; align-items: stretch; flex-shrink: 0;
+    padding: 10px 16px; border-bottom: 1px solid var(--border2);
+    background: var(--surface);
+  }
+  .slot {
+    flex: 1; min-width: 0; border: 1px dashed var(--border2); border-radius: 2px;
+    padding: 8px 10px; display: flex; flex-direction: column; gap: 2px;
+    background: var(--surface2);
+  }
+  .slot.filled { border-style: solid; border-color: var(--accent); }
+  .slot.over { border-color: var(--accent2); background: var(--surface); }
+  .slot .sl { font-size: 9.5px; letter-spacing: .6px; text-transform: uppercase;
+              color: var(--dim2); display: flex; justify-content: space-between; }
+  .slot .sl .clr { color: var(--accent2); cursor: pointer; }
+  .slot .sl .clr:hover { color: var(--accent); }
+  .slot .sn { font-family: var(--serif); font-size: 15px; color: var(--text-hi);
+              white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .slot .sm { font-size: 10px; color: var(--dim2); letter-spacing: .4px; }
+  .slot .empty { font-size: 11px; color: var(--dim); font-style: italic;
+                 margin-top: 3px; }
+  #slot-actions { display: flex; flex-direction: column; gap: 6px;
+                  justify-content: center; min-width: 190px; }
+  #seat-error { color: var(--none-col); font-size: 10.5px; white-space: pre-wrap; }
+
+  /* the same selection, offered where it was first looked for */
+  #session-selection { font-size: 11px; color: var(--accent); margin: 2px 0 8px;
+                       letter-spacing: .3px; }
+  .ghost-btn:disabled, .primary-btn:disabled { opacity: .4; cursor: not-allowed; }
   /* eval form -- lifted from run_viewer.html so a verdict looks the same in both */
   .evalform { padding: 9px 0 0; margin-top: 8px; border-top: 1px solid var(--border);
               display: flex; flex-direction: column; gap: 8px; }
@@ -208,14 +243,132 @@
   .aieval b { color: var(--accent2); font-weight: 600; }
   /* ── eval overlay: the story on the left, Human and AI columns on the right,
      mirroring run_viewer.html's Character Gen panes ── */
+  /* runs screen */
+  #runs-screen { display: none; flex-direction: column; height: 100vh; }
+  #runs-screen.show { display: flex; }
+  #runs-filters {
+    display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+    padding: 10px 16px; border-bottom: 1px solid var(--border2); flex-shrink: 0;
+  }
+  #runs-grid {
+    flex: 1; overflow-y: auto; padding: 16px;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 14px;
+    align-content: start;
+  }
+  .runcard {
+    background: var(--surface); border: 1px solid var(--border);
+    border-top: 2px solid var(--accent2); padding: 12px 14px; cursor: pointer;
+  }
+  .runcard:hover { border-color: var(--dim2); }
+  .runcard.nodialogue { border-top-color: var(--border2); opacity: .72; }
+  .runcard h3 { font-family: var(--mono); font-size: 12px; color: var(--text-hi);
+                font-weight: 600; letter-spacing: .3px; }
+  .runcard .who { font-family: var(--serif); font-size: 15px; color: var(--text);
+                  margin-top: 4px; }
+  .runcard .sub { color: var(--dim2); font-size: 10px; letter-spacing: .5px;
+                  margin-top: 5px; }
+  .runcard .types { color: var(--dim); font-size: 10px; margin-top: 6px; }
+  .runcard .note { color: var(--dim2); font-size: 11px; margin-top: 7px;
+                   border-left: 2px solid var(--border2); padding-left: 7px;
+                   font-style: italic; }
+
+  /* run evaluator -- the same shape as the character eval overlay */
+  #run-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.72); z-index: 50;
+                 display: none; align-items: center; justify-content: center; padding: 28px; }
+  #run-overlay.show { display: flex; }
+  #run-dialog { background: var(--bg); border: 1px solid var(--border2);
+                width: min(1680px, 100%); height: min(860px, 100%);
+                display: flex; flex-direction: column; }
+  /* the whole session, across the top -- it is one judgement, not a column */
+  #run-overall { flex-shrink: 0; border-bottom: 1px solid var(--border2);
+                 padding: 10px 16px; background: var(--surface); }
+  #run-overall .runcol-h { margin-bottom: 6px; }
+  #run-overall .evalform { border-top: none; margin-top: 0; flex-direction: row;
+                           align-items: flex-start; gap: 12px; }
+  #run-overall .evalbtns { flex: 0 0 240px; }
+  #run-overall .evalnotes { flex: 1; }
+  #run-overall .evalnotes textarea { min-height: 48px; }
+  #run-overall .evalbadge { flex: 0 0 150px; text-align: right; padding-top: 6px; }
+
+  /* Reference material, so it sits at the end: the dialogue stays at the left edge,
+     and the three scored columns stay next to each other for comparison. Across the
+     top it squeezed the prompts into a wide, shallow box that read badly. */
+  #run-settings { flex: 0.9 1 0; background: var(--surface); }
+  .setbox { border-bottom: 1px solid var(--border); }
+  .setbox:last-child { border-bottom: none; }
+  .setbox > summary {
+    cursor: pointer; list-style: none; padding: 7px 0;
+    font-family: var(--mono); font-size: 10.5px; color: var(--text);
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .setbox > summary::-webkit-details-marker { display: none; }
+  .setbox > summary:hover { color: var(--accent); }
+  .setbox > summary .tag { color: var(--accent2); text-transform: uppercase;
+                           letter-spacing: .5px; font-size: 9.5px; }
+  .setbox > summary .sum { color: var(--dim2); }
+  .setbox[open] > summary .tag { color: var(--accent); }
+  .setgrid { display: grid; grid-template-columns: 1fr; gap: 3px;
+             padding: 4px 0 10px; }
+  .setgrid div { font-family: var(--mono); font-size: 10px; color: var(--text); }
+  .setgrid div span { color: var(--dim2); }
+  .setgrid div.warn span, .setgrid div.warn { color: var(--ast-col); }
+  .setbody { padding-bottom: 10px; display: flex; flex-direction: column; gap: 8px; }
+  .setbody pre { max-height: 320px; overflow: auto; }
+
+  #run-body { flex: 1; display: flex; min-height: 0; }
+  .runcol { flex: 1 1 0; min-width: 0; overflow-y: auto; padding: 14px 16px; }
+  .runcol + .runcol { border-left: 1px solid var(--border2); }
+  #run-col-dialogue { flex: 1.25 1 0; }
+
+  /* one scored item: what happened, then a verdict and a note on it */
+  .ritem { border-left: 2px solid var(--border2); padding-left: 9px;
+           margin-bottom: 16px; }
+  .ritem.c1 { border-left-color: var(--accent); }
+  .ritem.c2 { border-left-color: var(--ast-col); }
+  .ritem.c3 { border-left-color: var(--accent2); }
+  .ritem.addressing { border-left-color: var(--accent2); }
+  .ritem.info_extraction { border-left-color: var(--ok); }
+  .ritem.player { border-left-color: var(--usr-col); opacity: .72; }
+  .ritem .rh { font-family: var(--mono); font-size: 9.5px; letter-spacing: .5px;
+               text-transform: uppercase; color: var(--dim2);
+               display: flex; justify-content: space-between; gap: 8px; }
+  .ritem .rin { font-family: var(--mono); font-size: 10.5px; color: var(--dim2);
+                margin-top: 3px; white-space: pre-wrap; }
+  .ritem .rout { font-family: var(--serif); font-size: 14px; line-height: 1.5;
+                 color: var(--text); margin-top: 3px; white-space: pre-wrap; }
+  .ritem .rout.none { font-family: var(--mono); font-size: 11px; color: var(--dim);
+                      font-style: italic; }
+  .ritem .pblock { margin-top: 5px; }
+  .ritem .pbh { font-size: 9px; }
+  .ritem pre { max-height: 210px; overflow: auto; font-size: 9.5px; }
+  .ritem > details { margin-top: 5px; }
+  .ritem > details > summary {
+    cursor: pointer; list-style: none; font-family: var(--mono); font-size: 9.5px;
+    letter-spacing: .4px; color: var(--accent2);
+  }
+  .ritem > details > summary::-webkit-details-marker { display: none; }
+  .ritem > details > summary:hover { color: var(--accent); }
+  .ritem > details > pre { margin-top: 4px; }
+  .ritem .evalform { border-top: none; margin-top: 6px; gap: 5px; }
+  .ritem .evalbtn { font-size: 9px; padding: 3px 5px; }
+  .ritem .evalnotes textarea { min-height: 34px; font-size: 10.5px; }
+  .ritem .evalbadge { font-size: 8.5px; }
+  .ritem.player .evalform { display: none; }
+  .runcol-h { font-family: var(--mono); font-size: 10px; letter-spacing: .6px;
+              text-transform: uppercase; color: var(--dim2); margin-bottom: 8px; }
+
   #eval-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.72); z-index: 50;
                   display: none; align-items: center; justify-content: center; padding: 28px; }
   #eval-overlay.show { display: flex; }
   #eval-dialog { background: var(--bg); border: 1px solid var(--border2);
                  width: min(1560px, 100%); height: min(820px, 100%);
                  display: flex; flex-direction: column; }
-  #eval-head { display: flex; align-items: baseline; gap: 12px; padding: 12px 16px;
-               border-bottom: 1px solid var(--border2); flex-shrink: 0; }
+  #eval-head, #run-head { display: flex; align-items: baseline; gap: 12px;
+               padding: 12px 16px; border-bottom: 1px solid var(--border2);
+               flex-shrink: 0; }
+  #run-head .nm { font-family: var(--mono); font-size: 14px; color: var(--text-hi); }
+  #run-head .meta { font-family: var(--mono); font-size: 11px; color: var(--dim2); }
+  #run-head .spacer { flex: 1; }
   #eval-head .nm { font-family: var(--serif); font-size: 19px; color: var(--text-hi); }
   #eval-head .meta { font-family: var(--mono); font-size: 11px; color: var(--dim2); }
   #eval-head .spacer { flex: 1; }
@@ -307,9 +460,11 @@
 
   /* ── transcript ── */
   #transcript-wrap { flex: 1; display: flex; flex-direction: column; min-width: 0; }
-  #transcript { flex: 1; overflow-y: auto; padding: 18px 22px; display: flex; flex-direction: column; gap: 10px; }
+  /* 18px between speakers against 3px between a name and its line: the name has to
+     read as belonging to what follows it, not to what came before. */
+  #transcript { flex: 1; overflow-y: auto; padding: 18px 22px; display: flex; flex-direction: column; gap: 18px; }
   .msg { max-width: 640px; }
-  .msg .who { font-size: 10px; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 2px; }
+  .msg .who { font-size: 10px; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 3px; }
   .msg .text { font-family: var(--serif); font-size: 15px; line-height: 1.55; white-space: pre-wrap; }
   .msg.player { align-self: flex-end; text-align: right; }
   .msg.player .who { color: var(--usr-col); }
@@ -318,6 +473,57 @@
   .msg.narrator .who { color: var(--accent2); }
   .msg.narrator .text { font-style: italic; color: var(--dim2); }
   .msg.system .text { color: var(--dim2); font-size: 12px; font-style: italic; }
+
+  /* call inspector -- the three calls behind every turn, beside the turn itself */
+  #calls-panel { display: none; border-left: 1px solid var(--border); flex-shrink: 0;
+                 width: 54%; min-width: 420px; }
+  #calls-panel.show { display: flex; }
+  .callcol { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column;
+             border-right: 1px solid var(--border); }
+  .callcol:last-child { border-right: none; }
+  .callcol > h4 {
+    font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: .6px;
+    text-transform: uppercase; color: var(--accent2); padding: 9px 11px;
+    border-bottom: 1px solid var(--border); background: var(--surface); flex-shrink: 0;
+  }
+  .callbody { flex: 1; overflow-y: auto; padding: 10px 11px;
+              display: flex; flex-direction: column; gap: 9px; }
+  .callitem { border-left: 2px solid var(--border2); padding-left: 8px; }
+  .callitem.c1 { border-left-color: var(--accent); }
+  .callitem.c2 { border-left-color: var(--ast-col); }
+  .callitem.c0 { border-left-color: var(--usr-col); }
+  .callitem .ch { font-size: 9.5px; letter-spacing: .5px; text-transform: uppercase;
+                  color: var(--dim2); display: flex; justify-content: space-between;
+                  gap: 8px; }
+  .callitem .cr { font-family: var(--serif); font-size: 13.5px; color: var(--text);
+                  margin-top: 3px; white-space: pre-wrap; }
+  .callitem .cr.none { font-family: var(--mono); font-size: 11px; color: var(--dim);
+                       font-style: italic; }
+  .callitem .cv { font-size: 10.5px; color: var(--accent); margin-top: 2px; }
+  /* A prompt is shown once, in full. The system prompt is byte-identical on every
+     turn of a session, so an expander per line repeated the same 3,000 characters
+     eleven times and hid the one thing the column is for. */
+  .chips { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 2px; }
+  .chip {
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: .4px; cursor: pointer;
+    background: var(--surface2); color: var(--dim2); border: 1px solid var(--border2);
+    padding: 4px 7px; text-transform: uppercase;
+  }
+  .chip:hover { color: var(--text-hi); }
+  .chip.on { background: var(--accent); border-color: var(--accent); color: #16130c;
+             font-weight: 600; }
+  .pblock { display: flex; flex-direction: column; }
+  .pbh { font-family: var(--mono); font-size: 9.5px; letter-spacing: .5px;
+         text-transform: uppercase; color: var(--accent2); margin-bottom: 3px;
+         display: flex; justify-content: space-between; gap: 8px; }
+  .pbh em { font-style: normal; color: var(--dim); text-transform: none;
+            letter-spacing: 0; }
+  .callbody pre, .runcol pre {
+    font-family: var(--mono); font-size: 10px; line-height: 1.55; color: var(--text);
+    background: var(--surface2); border: 1px solid var(--border2); padding: 7px 8px;
+    white-space: pre-wrap; margin: 0;
+  }
+  .callempty { color: var(--dim); font-size: 11px; font-style: italic; }
 
   #typing { padding: 0 22px 10px; color: var(--dim2); font-size: 12px; font-style: italic; display: none; }
   #typing.show { display: block; }
@@ -350,9 +556,11 @@
         <p class="panel-note">Generates two characters and the narrator, then opens the
           chat. Or pick two you already have.</p>
         <div id="session-settings"></div>
+        <div id="session-selection"></div>
         <div class="panel-actions">
           <button class="primary-btn" id="new-session-btn">Generate a fresh pair</button>
           <button class="ghost-btn" id="pick-chars-btn">Pick characters &rarr;</button>
+          <button class="primary-btn" id="seat-home-btn" hidden>Start with these two</button>
         </div>
         <div class="progress" id="session-progress"></div>
         <div class="panel-error" id="session-error"></div>
@@ -374,6 +582,20 @@
         </div>
         <div class="progress" id="generate-progress"></div>
         <div class="panel-error" id="generate-error"></div>
+      </div>
+    </div>
+
+    <div class="panel" id="panel-runs">
+      <div class="panel-head" data-panel="runs">
+        <span class="pt">Evaluate a Dialogue Run</span>
+        <span class="pd" id="runs-count-hint"></span>
+      </div>
+      <div class="panel-body">
+        <p class="panel-note">Every saved session: read the dialogue back with the
+          addressing and extraction calls beside it, and score it.</p>
+        <div class="panel-actions">
+          <button class="primary-btn" id="runs-btn">Open runs</button>
+        </div>
       </div>
     </div>
 
@@ -430,7 +652,50 @@
     <select id="lib-verdict"></select>
     <button class="ghost-btn" id="lib-reset">Reset</button>
   </div>
+  <div id="lib-slots">
+    <div class="slot" data-slot="1"></div>
+    <div class="slot" data-slot="2"></div>
+    <div id="slot-actions">
+      <button class="primary-btn" id="seat-btn" disabled>Begin dialogue</button>
+      <div class="progress" id="seat-progress"></div>
+      <div id="seat-error"></div>
+    </div>
+  </div>
   <div id="lib-grid"></div>
+</div>
+
+<div id="runs-screen">
+  <div class="topbar">
+    <div class="brand">NoExit</div>
+    <div class="sid" id="runs-count"></div>
+    <div class="spacer"></div>
+    <div class="endbar">
+      <label class="checkrow" style="margin:0">
+        <input type="checkbox" id="runs-dialogue-only" checked>
+        <span>runs with dialogue only</span>
+      </label>
+      <button class="ghost-btn" id="runs-back-btn">Back</button>
+    </div>
+  </div>
+  <div id="runs-grid"></div>
+</div>
+
+<div id="run-overlay">
+  <div id="run-dialog">
+    <div id="run-head">
+      <span class="nm" id="run-name"></span>
+      <span class="meta" id="run-meta"></span>
+      <span class="spacer"></span>
+      <button class="ghost-btn" id="run-close">Close</button>
+    </div>
+    <div id="run-overall"></div>
+    <div id="run-body">
+      <div class="runcol" id="run-col-dialogue"></div>
+      <div class="runcol" id="run-col-info"></div>
+      <div class="runcol" id="run-col-addressing"></div>
+      <div class="runcol" id="run-settings"></div>
+    </div>
+  </div>
 </div>
 
 <div id="eval-overlay">
@@ -462,6 +727,7 @@
     <div class="sid" id="session-label"></div>
     <div class="spacer"></div>
     <div class="endbar">
+      <button class="ghost-btn" id="calls-btn">Calls</button>
       <button class="ghost-btn" id="abandon-btn">Abandon</button>
       <button class="ghost-btn" id="save-btn">Save &amp; End</button>
     </div>
@@ -475,6 +741,11 @@
         <input id="msg-input" type="text" placeholder="Say something to the room..." autocomplete="off">
         <button class="primary-btn" id="send-btn">Send</button>
       </div>
+    </div>
+    <div id="calls-panel">
+      <div class="callcol"><h4>Dialogue prompts</h4><div class="callbody" id="col-prompts"></div></div>
+      <div class="callcol"><h4>Addressing</h4><div class="callbody" id="col-addressing"></div></div>
+      <div class="callcol"><h4>Info extraction</h4><div class="callbody" id="col-info"></div></div>
     </div>
   </div>
 </div>
@@ -499,8 +770,500 @@ async function api(path, body, method) {
   const text = await res.text();
   let data = null;
   try { data = text ? JSON.parse(text) : null; } catch (e) { /* not JSON: an error page */ }
-  if (!res.ok) throw new Error((data && data.error) || ('HTTP ' + res.status));
+  if (!res.ok) {
+    if (data && data.error) throw new Error(data.error);
+    // A 404 on a route this page knows about means the server does not know it: the
+    // page is read from disk on every load, but the Python routes were loaded when the
+    // process started. Only prompts.py is hot-reloaded -- everything else needs a
+    // restart, and this is the error it produces.
+    // Any route this page asks for, not just a POST: a GET 404 means the same thing.
+    if (res.status === 404 && path.startsWith('/api/')) {
+      throw new Error('The server does not have ' + path + '. It is running older code '
+                      + 'than this page -- restart it: python tools/webapp.py');
+    }
+    throw new Error('HTTP ' + res.status + ' from ' + path);
+  }
   return data;
+}
+
+// ── Saved runs: read a session back and score it ──────────────────────
+// The standalone run_viewer.html did this with no server, so it saved through the File
+// System Access API and kept a dirty flag. Here a verdict is one POST, which is why
+// none of that machinery comes across.
+
+let runsAll = [];
+let runOpen = null;        // the full run currently in the evaluator
+
+async function openRuns() {
+  showScreen('runs');
+  $('#runs-grid').innerHTML = '<div class="char-placeholder">Loading\u2026</div>';
+  try {
+    const data = await api('/api/runs');
+    runsAll = data.runs || [];
+  } catch (err) {
+    $('#runs-grid').innerHTML =
+      '<div class="char-placeholder">Could not load runs: ' + esc(err.message) + '</div>';
+    return;
+  }
+  renderRuns();
+}
+
+function renderRuns() {
+  const only = $('#runs-dialogue-only').checked;
+  const rows = runsAll.filter(r => !only || (r.dialogue_lines || 0) > 0);
+  const host = $('#runs-grid');
+  $('#runs-count').textContent =
+    `Runs \u2014 ${rows.length} of ${runsAll.length}`;
+  if (!rows.length) {
+    host.innerHTML = '<div class="char-placeholder">' + (only
+      ? 'No run has any dialogue yet. Most saved runs are character generation only.'
+      : 'No runs saved yet.') + '</div>';
+    return;
+  }
+  host.innerHTML = rows.map(r => {
+    const names = (r.characters || []).map(c => c.name || '?').join('  \u00b7  ');
+    const t = r.call_types || {};
+    const types = Object.keys(t).sort().map(k => k + ' ' + t[k]).join('  ');
+    const ev = r.session_eval || {};
+    return '<div class="runcard' + ((r.dialogue_lines || 0) ? '' : ' nodialogue') +
+      '" data-run="' + esc(r.run_id) + '">' +
+      '<h3>' + verdictDot({ eval: ev }) + esc(r.run_id) + '</h3>' +
+      '<div class="who">' + esc(names || '(no characters)') + '</div>' +
+      '<div class="sub">' + (r.turns || 0) + ' turns  \u00b7  ' +
+        (r.dialogue_lines || 0) + ' lines  \u00b7  ' + (r.calls || 0) + ' calls' +
+        (r.scored_calls ? '  \u00b7  ' + r.scored_calls + ' calls scored' : '') + '</div>' +
+      '<div class="types">' + esc(types) + '</div>' +
+      '<div class="types">' + esc(r.game_state_version || 'no version') +
+        (r.seated_char_ids && r.seated_char_ids.length ? '  \u00b7  seated' : '') + '</div>' +
+      (ev.note ? '<div class="note">' + esc(ev.note) + '</div>' : '') +
+      '</div>';
+  }).join('');
+  host.querySelectorAll('.runcard').forEach(card => {
+    card.onclick = () => openRunEval(card.dataset.run);
+  });
+}
+
+async function openRunEval(runId) {
+  $('#run-overlay').classList.add('show');
+  $('#run-name').textContent = runId;
+  $('#run-meta').textContent = 'loading\u2026';
+  ['#run-overall', '#run-settings', '#run-col-dialogue', '#run-col-info',
+   '#run-col-addressing']
+    .forEach(sel => { $(sel).innerHTML = ''; });
+  try {
+    runOpen = await api('/api/runs/' + encodeURIComponent(runId));
+  } catch (err) {
+    $('#run-meta').textContent = 'could not load: ' + err.message;
+    return;
+  }
+  renderRunEval();
+}
+
+function closeRunEval() {
+  $('#run-overlay').classList.remove('show');
+  runOpen = null;
+  openRuns();                 // verdicts just written show on the cards
+}
+
+// One verdict and one note, wherever something is scored: a dialogue line, an
+// extraction, an addressing decision, or the session as a whole. Everything that
+// differs between those is in `save`, which is the only thing the caller supplies.
+function evalBlock(ev, save) {
+  const wrap = document.createElement('div');
+  wrap.className = 'evalform';
+
+  const badge = document.createElement('div');
+  badge.className = 'evalbadge' + (ev.judge_model ? ' scored' : '');
+  badge.textContent = ev.judge_model ? 'scored by ' + ev.judge_model : 'unscored';
+
+  const commit = async () => {
+    badge.textContent = 'saving\u2026'; badge.classList.add('saving');
+    try {
+      const res = await save();
+      ev.judge_model = (res && res.eval && res.eval.judge_model) || ev.judge_model || 'human';
+      badge.classList.remove('saving'); badge.classList.add('scored');
+      badge.textContent = 'scored by ' + ev.judge_model;
+    } catch (err) {
+      badge.classList.remove('saving');
+      badge.textContent = 'not saved: ' + err.message;
+    }
+  };
+
+  const btns = document.createElement('div'); btns.className = 'evalbtns';
+  RATINGS.forEach(v => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'evalbtn ' + v; b.textContent = v;
+    if (ev.rating === v) b.classList.add('active');
+    b.onclick = () => {
+      ev.rating = ev.rating === v ? null : v;      // click again to clear
+      Array.from(btns.children).forEach(bb =>
+        bb.classList.toggle('active', ev.rating === bb.textContent));
+      commit();
+    };
+    btns.appendChild(b);
+  });
+
+  const notes = document.createElement('div'); notes.className = 'evalnotes';
+  const ta = document.createElement('textarea');
+  ta.placeholder = 'One note.';
+  ta.value = ev.judge_notes || '';
+  let timer = null;
+  ta.oninput = () => {
+    ev.judge_notes = ta.value;
+    clearTimeout(timer); timer = setTimeout(commit, 600);
+  };
+  notes.appendChild(ta);
+
+  wrap.appendChild(btns); wrap.appendChild(notes); wrap.appendChild(badge);
+  return wrap;
+}
+
+// A verdict on call `index` of the open run.
+function callEvalBlock(call, index) {
+  const ev = call.eval_scores_json || (call.eval_scores_json = {});
+  return evalBlock(ev, () => api('/api/runs/call_eval', {
+    run_id: runOpen.run_id, call_index: index,
+    rating: ev.rating || null, notes: ev.judge_notes || '',
+  }));
+}
+
+// What each kind of call was actually sent with. Grouped by call type because that is
+// how the settings differ: dialogue and addressing go to the proxy, extraction to its
+// own endpoint, and nothing about that is visible from the dialogue alone.
+const CALL_LABEL = { dialogue: 'dialogue', narrator: 'narrator',
+                     addressing: 'addressing', info_extraction: 'info extraction' };
+
+function distinct(cs, key) {
+  return [...new Set(cs.map(c => c[key]).filter(v => v !== null && v !== undefined))];
+}
+
+function renderRunSettings(calls, names) {
+  const host = $('#run-settings');
+  host.innerHTML = '<div class="runcol-h">Prompts and settings</div>';
+  const order = ['dialogue', 'narrator', 'addressing', 'info_extraction'];
+  const groups = order.map(t => [t, calls.filter(c => c.call_type === t)])
+                      .filter(([, cs]) => cs.length);
+
+  groups.forEach(([type, cs]) => {
+    const times = cs.map(c => +c.response_time_s).filter(n => n > 0);
+    const avg = times.length ? (times.reduce((a, b) => a + b, 0) / times.length) : null;
+    const models = distinct(cs, 'requested_model');
+    const served = distinct(cs, 'served_model');
+    const temps = distinct(cs, 'temperature');
+    const maxt = distinct(cs, 'max_tokens');
+    const tokens = cs.reduce((a, c) => a + (+c.total_tokens || 0), 0);
+    const retries = cs.reduce((a, c) => a + (+c.retry_count || 0), 0);
+    const cold = cs.filter(c => c.cold_start).length;
+
+    const d = document.createElement('details');
+    d.className = 'setbox';
+    const cell = (label, value, warn) =>
+      '<div' + (warn ? ' class="warn"' : '') + '><span>' + label + '</span> ' +
+      esc(value) + '</div>';
+
+    // max_tokens is recorded and then discarded: the proxy's pydantic model has no such
+    // field, so a cap of 75 on a dialogue call never reached the model.
+    const maxNote = maxt.some(v => +v > 0)
+      ? maxt.join(', ') + '  (recorded, dropped by the proxy)' : maxt.join(', ');
+
+    let body = '<div class="setgrid">' +
+      cell('model', models.join(', ') || '?') +
+      (served.length && served.join() !== models.join()
+        ? cell('served', served.join(', '), true) : '') +
+      cell('temperature', temps.join(', ')) +
+      cell('max_tokens', maxNote, maxt.some(v => +v > 0)) +
+      cell('calls', cs.length) +
+      cell('avg time', avg == null ? 'n/a' : avg.toFixed(1) + 's') +
+      (tokens ? cell('total tokens', tokens) : '') +
+      (retries ? cell('retries', retries, true) : '') +
+      (cold ? cell('cold starts', cold, true) : '') +
+      cell('endpoint', distinct(cs, 'endpoint').join(', ') || '?') +
+      '</div><div class="setbody">';
+
+    // The system prompt: one per character for dialogue, one shared for extraction,
+    // rebuilt every call for addressing. Say which, rather than implying it is fixed.
+    const sysSet = [...new Set(cs.map(c => c.system_prompt || ''))];
+    if (type === 'dialogue' && sysSet.length > 1) {
+      sysSet.forEach(sp => {
+        const owner = cs.find(c => (c.system_prompt || '') === sp);
+        body += promptBlock('system prompt',
+          (names[owner.character_no] || ('character ' + owner.character_no)) +
+          ', the same on every turn', sp);
+      });
+    } else {
+      body += promptBlock('system prompt',
+        sysSet.length === 1 ? 'the same for all ' + cs.length + ' calls'
+                            : sysSet.length + ' distinct, rebuilt per call \u2014 first shown',
+        sysSet[0]);
+    }
+    if (type === 'dialogue') {
+      // Not repeated here: every dialogue line in the first column carries the exact
+      // user prompt that produced it, and one sample would just be a worse copy.
+      body += '<div class="callempty">The user prompt is rebuilt every turn \u2014 ' +
+              'each one is on its own line in the Dialogue column.</div>';
+    } else {
+      const users = [...new Set(cs.map(c => c.user_prompt || ''))];
+      body += promptBlock('user prompt',
+        users.length === 1 ? 'the same every call'
+          : 'one of ' + users.length + ', they differ each turn',
+        cs[cs.length - 1].user_prompt);
+    }
+    body += '</div>';
+
+    d.innerHTML =
+      '<summary><span class="tag">' + esc(CALL_LABEL[type] || type) + '</span>' +
+      '<span class="sum">' + esc(models.join(', ') || '?') +
+        '  \u00b7  temp ' + esc(temps.join(', ')) +
+        '  \u00b7  ' + cs.length + ' calls' +
+        (avg == null ? '' : '  \u00b7  ' + avg.toFixed(1) + 's avg') +
+      '</span></summary>' + body;
+    host.appendChild(d);
+  });
+}
+
+function renderRunEval() {
+  const run = runOpen, st = run.state || {}, meta = run.meta || {};
+  const calls = run.calls || [];
+  const names = { 0: 'You', 3: 'Narrator' };
+  Object.entries(st.characters || {}).forEach(([k, v]) => {
+    if (k !== '0' && v.name) names[+k] = v.name;
+  });
+
+  $('#run-meta').textContent = [
+    (st.turn_count || 0) + ' turns', calls.length + ' calls',
+    meta.phase, meta.game_state_version,
+  ].filter(Boolean).join('  \u00b7  ');
+
+  renderRunSettings(calls, names);
+
+  // ── the session as a whole, across the top ──
+  const sev = run.session_eval || (run.session_eval = {});
+  const top = $('#run-overall');
+  top.innerHTML = '<div class="runcol-h">The session as a whole</div>';
+  top.appendChild(evalBlock(sev, () => api('/api/runs/eval', {
+    run_id: run.run_id, field: 'session_eval',
+    rating: sev.rating || null, notes: sev.judge_notes || '',
+  })));
+
+  // ── dialogue: every generated line, scored one at a time ──
+  // A dialogue entry carries no call id, so generated lines are matched to their call
+  // in order, by speaker. The player's own lines are shown for context and not scored:
+  // they are your typing, not the model's output.
+  const generated = calls.map((c, i) => ({ c, i }))
+    .filter(x => x.c.call_type === 'dialogue' || x.c.call_type === 'narrator');
+  const used = new Set();
+  const matchCall = (charId) => {
+    for (const x of generated) {
+      if (!used.has(x.i) && x.c.character_no === charId) { used.add(x.i); return x; }
+    }
+    return null;
+  };
+
+  const host = $('#run-col-dialogue');
+  host.innerHTML = '<div class="runcol-h">Dialogue \u2014 ' +
+    generated.length + ' generated lines</div>';
+  const entries = st.dialogue_entries || [];
+  if (!entries.length) {
+    host.innerHTML += '<div class="callempty">No dialogue in this run.</div>';
+  }
+  entries.forEach(e => {
+    const id = e.character_id;
+    const el = document.createElement('div');
+    const hit = id === 0 ? null : matchCall(id);
+    el.className = 'ritem ' + (id === 0 ? 'player' : 'c' + id);
+    const secs = hit && hit.c.response_time_s != null
+      ? (+hit.c.response_time_s).toFixed(1) + 's' : '';
+    el.innerHTML =
+      '<div class="rh"><span>' + esc(names[id] || ('char ' + id)) + '</span>' +
+      '<span>' + esc(secs) + '</span></div>' +
+      '<div class="rout">' + esc(String(e.dialogue_text || '').trim()) + '</div>' +
+      // The system prompt is identical on every turn for a given character, so it
+      // stays once in the settings column. The user prompt is rebuilt each turn with
+      // the conversation so far, which is what makes it worth reading per line.
+      (hit ? '<details><summary>user prompt \u25be</summary><pre>' +
+             esc(String(hit.c.user_prompt || '(none)').trim()) + '</pre></details>' : '');
+    if (hit) el.appendChild(callEvalBlock(hit.c, hit.i));
+    host.appendChild(el);
+  });
+
+  // ── the two diagnostic call types, one column each ──
+  const byType = (type) => calls.map((c, i) => ({ c, i })).filter(x => x.c.call_type === type);
+
+  const info = byType('info_extraction');
+  const ih = $('#run-col-info');
+  // One system prompt for every extraction call: it carries no state, only the
+  // instruction. Shown once rather than repeated on all of them.
+  ih.innerHTML = '<div class="runcol-h">Info extraction \u2014 ' + info.length + '</div>' +
+    (info.length
+      ? promptBlock('system prompt', 'the same for all ' + info.length + ' calls',
+                    info[0].c.system_prompt)
+      : '<div class="callempty">Never ran in this session.</div>');
+  info.forEach(({ c, i }) => {
+    const resp = String(c.response == null ? '' : c.response).trim();
+    const none = resp.toLowerCase() === 'none';
+    const el = document.createElement('div');
+    el.className = 'ritem info_extraction';
+    el.innerHTML =
+      '<div class="rh"><span>turn ' + (c.turn_number == null ? '?' : c.turn_number) +
+        '</span><span>' + esc(c.notes || '') + '</span></div>' +
+      '<div class="rin">' + esc(String(c.user_prompt || '').trim()) + '</div>' +
+      '<div class="rout' + (none ? ' none' : '') + '">\u2192 ' +
+        esc(none ? 'nothing extracted' : resp) + '</div>';
+    el.appendChild(callEvalBlock(c, i));
+    ih.appendChild(el);
+  });
+
+  const addr = byType('addressing');
+  const ah = $('#run-col-addressing');
+  ah.innerHTML = '<div class="runcol-h">Addressing \u2014 ' + addr.length + '</div>' +
+    (addr.length ? '' : '<div class="callempty">Never ran. Addressing only starts once a ' +
+     'character has shared information; before that both always reply.</div>');
+  addr.forEach(({ c, i }) => {
+    const resp = String(c.response == null ? '' : c.response).trim();
+    const key = resp.replace(/[^012]/g, '').slice(0, 1);
+    const el = document.createElement('div');
+    el.className = 'ritem addressing';
+    el.innerHTML =
+      '<div class="rh"><span>turn ' + (c.turn_number == null ? '?' : c.turn_number) +
+        '</span><span>' + esc(c.notes || '') + '</span></div>' +
+      '<div class="rin">asked: ' + esc(String(c.user_prompt || '').trim()) + '</div>' +
+      '<div class="rout">\u2192 ' + esc(ADDRESSED[key] || 'unrecognised') + ' replied' +
+        '  (returned ' + esc(JSON.stringify(c.response)) + ')</div>' +
+      // Unlike extraction, this prompt is rebuilt every call: it embeds what each
+      // character is known to have revealed and the dialogue so far. Judging the
+      // routing means reading what the router was actually told.
+      promptBlock('system prompt', 'rebuilt for this call', c.system_prompt);
+    el.appendChild(callEvalBlock(c, i));
+    ah.appendChild(el);
+  });
+}
+
+// ── The call inspector ─────────────────────────────────────────
+// Three calls stand behind one exchange: what the player said is extracted, who should
+// answer is decided, and each character is asked. The transcript shows only the last of
+// those, so the other two are read here or not at all.
+
+const ADDRESSED = { '0': 'both characters', '1': 'character 1', '2': 'character 2' };
+
+function callWho(c) {
+  const n = c.character_no;
+  if (n === 0) return 'player';
+  if (n === 3) return 'narrator';
+  return charNames[n] || ('character ' + n);
+}
+
+function promptBlock(label, note, text) {
+  return '<div class="pblock"><div class="pbh"><span>' + label + '</span>' +
+         (note ? '<em>' + esc(note) + '</em>' : '') + '</div>' +
+         '<pre>' + esc(text || '(none)') + '</pre></div>';
+}
+
+function callItem(c, bodyHTML) {
+  const secs = c.response_time_s == null ? '' : (+c.response_time_s).toFixed(1) + 's';
+  return '<div class="callitem c' + (c.character_no === 3 ? '0' : c.character_no) + '">' +
+    '<div class="ch"><span>turn ' + (c.turn_number == null ? '?' : c.turn_number) +
+    '  ·  ' + esc(callWho(c)) + '</span><span>' + esc(secs) + '</span></div>' +
+    bodyHTML + '</div>';
+}
+
+function fillCol(sel, items, emptyText) {
+  $(sel).innerHTML = items.length ? items.join('')
+    : '<div class="callempty">' + emptyText + '</div>';
+}
+
+// Which speaker's prompts the first column is showing. Null until the first render
+// picks one, and kept across refreshes so a turn does not reset the view.
+let callsWho = null;
+
+function renderDialoguePrompts(calls) {
+  const host = $('#col-prompts');
+  if (!calls.length) {
+    host.innerHTML = '<div class="callempty">No dialogue calls yet.</div>';
+    return;
+  }
+  // One entry per speaker, holding its latest call: the system prompt is the same on
+  // every turn, and the user prompt is the one that grows with the conversation.
+  const bySpeaker = new Map();
+  calls.forEach(c => bySpeaker.set(c.character_no, c));
+  const speakers = [...bySpeaker.keys()].sort((a, b) => a - b);
+  if (!bySpeaker.has(callsWho)) callsWho = speakers.find(n => n !== 3) ?? speakers[0];
+
+  const c = bySpeaker.get(callsWho);
+  const turns = calls.filter(x => x.character_no === callsWho).length;
+  host.innerHTML =
+    '<div class="chips">' +
+    speakers.map(n => '<button class="chip' + (n === callsWho ? ' on' : '') +
+                      '" data-who="' + n + '">' + esc(callWho(bySpeaker.get(n))) +
+                      '</button>').join('') +
+    '</div>' +
+    promptBlock('system prompt',
+                turns > 1 ? 'identical on all ' + turns + ' turns' : '',
+                c.system_prompt) +
+    promptBlock('user prompt', 'turn ' + c.turn_number + ', changes each turn',
+                c.user_prompt) +
+    '<div class="callempty">' + esc(c.model || '') +
+      (c.temperature == null ? '' : '  ·  temp ' + c.temperature) +
+      (c.response_time_s == null ? '' : '  ·  ' + (+c.response_time_s).toFixed(1) + 's') +
+    '</div>';
+  host.querySelectorAll('.chip').forEach(b => {
+    b.onclick = () => { callsWho = +b.dataset.who; renderDialoguePrompts(calls); };
+  });
+}
+
+// The system prompt for addressing and extraction is fixed too, so it sits once at the
+// top and each call below shows only what differs: what went in, and what came back.
+function renderResultCol(sel, calls, emptyText, bodyFor) {
+  const host = $(sel);
+  if (!calls.length) {
+    host.innerHTML = '<div class="callempty">' + emptyText + '</div>';
+    return;
+  }
+  host.innerHTML =
+    promptBlock('system prompt', 'the same for every call', calls[0].system_prompt) +
+    calls.map(c => callItem(c, bodyFor(c))).join('');
+}
+
+function renderCalls(calls) {
+  const dialogue = [], addressing = [], info = [];
+  calls.forEach(c => {
+    if (c.call_type === 'dialogue' || c.call_type === 'narrator') dialogue.push(c);
+    else if (c.call_type === 'addressing') addressing.push(c);
+    else if (c.call_type === 'info_extraction') info.push(c);
+  });
+
+  renderDialoguePrompts(dialogue);
+
+  renderResultCol('#col-addressing', addressing,
+    'Not called yet. Addressing only runs once somebody has shared information \u2014 ' +
+    'before that both characters always reply.',
+    c => {
+      const resp = String(c.response == null ? '' : c.response).trim();
+      // run_player_turn normalises before comparing; what is logged is raw.
+      const key = resp.replace(/[^012]/g, '').slice(0, 1);
+      return '<div class="cr none">asked about: ' + esc(c.user_prompt || '') + '</div>' +
+             '<div class="cv">returned ' + esc(JSON.stringify(c.response)) +
+             ' \u2192 ' + esc(ADDRESSED[key] || 'unrecognised') + ' replied</div>';
+    });
+
+  renderResultCol('#col-info', info, 'No extraction calls yet.',
+    c => {
+      const resp = String(c.response == null ? '' : c.response).trim();
+      const none = resp.toLowerCase() === 'none';
+      return (c.notes ? '<div class="cv">' + esc(c.notes) + '</div>' : '') +
+             '<div class="cr none">' + esc(c.user_prompt || '') + '</div>' +
+             '<div class="cr' + (none ? ' none' : '') + '">\u2192 ' +
+             esc(none ? 'nothing extracted' : resp) + '</div>';
+    });
+}
+
+async function refreshCalls() {
+  if (!$('#calls-panel').classList.contains('show')) return;
+  try {
+    const data = await api('/api/calls');
+    renderCalls(data.calls || []);
+  } catch (err) {
+    fillCol('#col-prompts', [], 'Could not load calls: ' + esc(err.message));
+  }
 }
 
 function esc(s) { return String(s == null ? '' : s).replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
@@ -509,7 +1272,11 @@ function addMsg(cls, who, text) {
   const t = $('#transcript');
   const div = document.createElement('div');
   div.className = 'msg ' + cls;
-  div.innerHTML = `<div class="who">${esc(who)}</div><div class="text">${esc(text)}</div>`;
+  // trim(): every dialogue and narrator response from GLM arrives with a leading
+  // blank line, and .text is white-space: pre-wrap, so untrimmed it renders as a gap
+  // between the name and the line it belongs to. Display only -- what the model
+  // actually returned is still what the transcript records.
+  div.innerHTML = `<div class="who">${esc(who)}</div><div class="text">${esc(String(text == null ? '' : text).trim())}</div>`;
   t.appendChild(div);
   t.scrollTop = t.scrollHeight;
 }
@@ -566,7 +1333,7 @@ function setBusy(busy) {
 // Browsing characters/, which holds every character ever generated -- by the web UI,
 // by a saved run, or by an experiment -- rather than only the pair in this session.
 let libAll = [];          // every summary, as returned by /api/library
-let libSelected = [];     // char_ids, in slot order; Phase 4 seats these
+let libSelected = [];     // char_ids, in slot order; the two seats read this
 
 async function openLibrary() {
   showScreen('library');
@@ -585,6 +1352,7 @@ async function openLibrary() {
   fillFacet('#lib-version', 'game_state_version', data.facets.game_state_version, 'any version');
   fillFacet('#lib-model', 'model', data.facets.model, 'any model');
   fillFacet('#lib-verdict', 'verdict', data.facets.verdict, 'any verdict');
+  renderSlots();                 // the seats need libAll to name what is in them
   renderLibrary();
 }
 
@@ -694,6 +1462,13 @@ function renderLibrary() {
     };
     buildCardEval(card, c);
     card.onclick = () => toggleSelect(c.char_id);
+    card.draggable = true;
+    card.ondragstart = (e) => {
+      e.dataTransfer.setData('text/plain', c.char_id);
+      e.dataTransfer.effectAllowed = 'move';
+      card.classList.add('dragging');
+    };
+    card.ondragend = () => card.classList.remove('dragging');
     host.appendChild(card);
   });
 }
@@ -894,10 +1669,62 @@ function toggleSelect(charId) {
   if (i >= 0) libSelected.splice(i, 1);
   else if (libSelected.length < 2) libSelected.push(charId);
   else libSelected[1] = charId;
+  afterSelect();
+}
+
+// Drop onto a seat. Dropping on slot 2 while slot 1 is empty fills slot 1 instead:
+// libSelected is a compact array in slot order, and a hole in it would make
+// `libSelected.length < 2` lie to toggleSelect.
+function placeInSlot(charId, n) {
+  const i = libSelected.indexOf(charId);
+  if (i >= 0) libSelected.splice(i, 1);          // never the same character twice
+  libSelected[Math.min(n - 1, libSelected.length)] = charId;
+  libSelected = libSelected.slice(0, 2);
+  afterSelect();
+}
+
+function clearSlot(n) {
+  libSelected.splice(n - 1, 1);
+  afterSelect();
+}
+
+// Everything that depends on the selection, in one place: the topbar label, the two
+// seats, the badges on the grid, and the shortcut on the home screen.
+function afterSelect() {
   const names = libSelected.map(id => (libAll.find(c => c.char_id === id) || {}).name || id);
   $('#lib-selection').textContent = names.length
     ? names.map((n, k) => `slot ${k + 1}: ${n}`).join('  ·  ') : 'none selected';
+  renderSlots();
   renderLibrary();
+}
+
+function renderSlots() {
+  [1, 2].forEach(n => {
+    const el = document.querySelector(`.slot[data-slot="${n}"]`);
+    if (!el) return;
+    const c = libAll.find(x => x.char_id === libSelected[n - 1]);
+    el.classList.toggle('filled', !!c);
+    el.innerHTML = c
+      ? `<div class="sl"><span>slot ${n}</span><span class="clr">clear</span></div>
+         <div class="sn">${esc(c.name || '(unnamed)')}</div>
+         <div class="sm">${verdictDot(c)}${esc(c.age || '?')}, ${esc(c.gender || '?')} · ${c.words || 0} words</div>`
+      : `<div class="sl"><span>slot ${n}</span></div>
+         <div class="empty">click a character, or drag one here</div>`;
+    const clr = el.querySelector('.clr');
+    if (clr) clr.onclick = (e) => { e.stopPropagation(); clearSlot(n); };
+  });
+  const ready = libSelected.length === 2;
+  const seat = $('#seat-btn');
+  if (seat) seat.disabled = !ready;
+
+  // The same pair, offered on the home screen: selecting two and then going to
+  // Start New Session is the obvious path, so it has to lead somewhere.
+  const line = $('#session-selection'), home = $('#seat-home-btn');
+  if (line && home) {
+    const names = libSelected.map(id => (libAll.find(x => x.char_id === id) || {}).name || id);
+    line.textContent = names.length ? 'Selected: ' + names.join('  ·  ') : '';
+    home.hidden = !ready;
+  }
 }
 
 // ── Home panels, settings and progress ──────────────────────────────────────
@@ -908,9 +1735,12 @@ function toggleSelect(charId) {
 let SETTINGS = null;          // defaults from /api/settings
 let genStop = false;          // Stop pressed during a library batch
 
+// Read off the DOM rather than a list kept in step by hand: a hardcoded
+// ['session','generate','library'] silently did nothing for a fourth panel, because
+// the name never matched and every panel was closed instead.
 function openPanel(name) {
-  ['session', 'generate', 'library'].forEach(p =>
-    $('#panel-' + p).classList.toggle('open', p === name));
+  document.querySelectorAll('#start-btns .panel').forEach(p =>
+    p.classList.toggle('open', p.id === 'panel-' + name));
 }
 
 function field(id, label, html, hint) {
@@ -1119,6 +1949,7 @@ async function startSession() {
 
     const data = await api('/api/state');
     sessionId = data.session_id;
+    applySessionSource(data.source);
     showScreen('app');
     $('#session-label').textContent = data.session_id;
     $('#transcript').innerHTML = '';
@@ -1131,6 +1962,55 @@ async function startSession() {
   } finally {
     btn.disabled = false; pick.disabled = false;
   }
+}
+
+// ── Seat two chosen characters ──────────────────────────────────
+// Mirrors startSession step for step. Seating itself calls no model, so it is
+// instant; the narrator is the one call worth a clock.
+async function seatSelected(fromLibrary) {
+  if (libSelected.length !== 2) return;
+  const errEl = $(fromLibrary ? '#seat-error' : '#session-error');
+  const btns = [$('#seat-btn'), $('#seat-home-btn'), $('#new-session-btn')];
+  const prog = progress(fromLibrary ? '#seat-progress' : '#session-progress');
+  errEl.textContent = '';
+  prog.clear();
+  btns.forEach(b => { if (b) b.disabled = true; });
+  try {
+    prog.step('seating');
+    await api('/api/session/seat', {
+      char_ids: libSelected.slice(),
+      // Recorded on the session for later; the dialogue does not read them yet.
+      settings: SETTINGS ? readSettings('session') : {},
+    });
+    prog.step('narrator');
+    const res = await api('/api/run_narrator', {});
+    prog.finish('done');
+
+    const data = await api('/api/state');
+    sessionId = data.session_id;
+    applySessionSource(data.source);
+    showScreen('app');
+    $('#session-label').textContent = data.session_id;
+    $('#transcript').innerHTML = '';
+    renderChars(data.characters);
+    addMsg('narrator', 'Narrator', res.narrator_line);
+    $('#msg-input').focus();
+  } catch (err) {
+    prog.fail();
+    errEl.textContent = err.message;
+  } finally {
+    btns.forEach(b => { if (b) b.disabled = false; });
+    renderSlots();                 // the seat button's state is the selection's to set
+  }
+}
+
+// A seated pair was chosen, so Generate New Pair would throw it away. That button
+// lives on the review screen, which the resume path uses for any session whose
+// narrator has not played yet -- including a seated one, after a reload.
+function applySessionSource(src) {
+  const seated = !!(src && src.kind === 'seated');
+  const btn = $('#regen-btn');
+  if (btn) btn.hidden = seated;
 }
 
 // ── Generate Characters: one request per character, into the library ────────
@@ -1185,6 +2065,7 @@ function showScreen(name) {
   $('#start-screen').classList.toggle('hidden', name !== 'start');
   $('#chars-only-screen').classList.toggle('show', name === 'chars-only');
   $('#library-screen').classList.toggle('show', name === 'library');
+  $('#runs-screen').classList.toggle('show', name === 'runs');
   $('#app').classList.toggle('show', name === 'app');
 }
 
@@ -1243,6 +2124,7 @@ async function sendTurn() {
   } finally {
     setBusy(false);
     input.focus();
+    refreshCalls();        // no-op unless the inspector is open
   }
 }
 
@@ -1263,6 +2145,12 @@ async function endSession(save) {
     alert('Error: ' + err.message);
     return;
   }
+  // The pair has been spent: leaving them selected would badge a finished session's
+  // characters as though they were still seated.
+  libSelected = [];
+  afterSelect();
+  applySessionSource(null);
+  sessionId = null;
   showScreen('start');
   $('#start-error').textContent = '';
 }
@@ -1274,7 +2162,25 @@ $('#new-session-btn').onclick = startSession;
 $('#chars-only-btn').onclick = generateIntoLibrary;
 $('#generate-stop-btn').onclick = () => { genStop = true; };
 $('#pick-chars-btn').onclick = () => openLibrary();
+$('#seat-btn').onclick = () => seatSelected(true);
+$('#seat-home-btn').onclick = () => seatSelected(false);
+[1, 2].forEach(n => {
+  const el = document.querySelector(`.slot[data-slot="${n}"]`);
+  el.ondragover = (e) => { e.preventDefault(); el.classList.add('over'); };
+  el.ondragleave = () => el.classList.remove('over');
+  el.ondrop = (e) => {
+    e.preventDefault();
+    el.classList.remove('over');
+    const id = e.dataTransfer.getData('text/plain');
+    if (id) placeInSlot(id, n);
+  };
+});
 $('#library-btn').onclick = () => openLibrary();
+$('#runs-btn').onclick = () => openRuns();
+$('#runs-back-btn').onclick = () => showScreen('start');
+$('#runs-dialogue-only').onchange = () => renderRuns();
+$('#run-close').onclick = closeRunEval;
+$('#run-overlay').onclick = (e) => { if (e.target.id === 'run-overlay') closeRunEval(); };
 $('#lib-back-btn').onclick = () => showScreen('start');
 // Leaving the review screen keeps the session alive on the server: it is still
 // recoverable by reloading, and Discard is the button that actually ends it.
@@ -1291,6 +2197,10 @@ $('#eval-prev').onclick = () => stepEval(-1);
 $('#eval-next').onclick = () => stepEval(1);
 $('#eval-overlay').onclick = (e) => { if (e.target.id === 'eval-overlay') closeEval(); };
 document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && $('#run-overlay').classList.contains('show')) {
+    closeRunEval();
+    return;
+  }
   if (!$('#eval-overlay').classList.contains('show')) return;
   if (e.key === 'Escape') closeEval();
   // Arrows only when not typing, or they would fight the textarea caret.
@@ -1302,6 +2212,12 @@ $('#regen-btn').onclick = () => generateCharsOnly(true);
 $('#continue-btn').onclick = continueToDialogue;
 $('#chars-only-save-btn').onclick = () => endSession(true);
 $('#chars-only-discard-btn').onclick = () => endSession(false);
+$('#calls-btn').onclick = () => {
+  const panel = $('#calls-panel');
+  panel.classList.toggle('show');
+  $('#calls-btn').classList.toggle('on', panel.classList.contains('show'));
+  refreshCalls();
+};
 $('#send-btn').onclick = sendTurn;
 $('#msg-input').addEventListener('keydown', e => { if (e.key === 'Enter') sendTurn(); });
 $('#save-btn').onclick = () => endSession(true);
@@ -1313,6 +2229,7 @@ $('#abandon-btn').onclick = () => endSession(false);
 (async () => {
   try {
     const data = await fetch('/api/state').then(r => r.json());
+    applySessionSource(data.source);
     if (data.active && !data.narrator_played) {
       showScreen('chars-only');
       $('#chars-only-session-label').textContent = data.session_id;
@@ -1338,6 +2255,11 @@ $('#abandon-btn').onclick = () => endSession(false);
     await loadSettings();
     const lib = await api('/api/library');
     $('#library-count-hint').textContent = lib.count + ' characters';
+    const rr = await api('/api/runs');
+    runsAll = rr.runs || [];
+    const withDialogue = runsAll.filter(r => (r.dialogue_lines || 0) > 0).length;
+    $('#runs-count-hint').textContent =
+      withDialogue + ' with dialogue, ' + runsAll.length + ' saved';
   } catch (err) {
     $('#start-error').textContent = 'Could not reach the server: ' + err.message;
   }

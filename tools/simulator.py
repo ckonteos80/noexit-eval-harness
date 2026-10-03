@@ -176,10 +176,9 @@ def state_snapshot_dict(state: game.GameState) -> dict:
     The session snapshot, as a dict.
 
     Split out from save_state_snapshot so a run can be saved from the session in
-    memory rather than by reading session_state.json back off disk. The disk file is
-    only written by the three generation/turn functions, so a session that did not go
-    through them -- one seated from the character library -- would otherwise save the
-    PREVIOUS session's snapshot as its own.
+    memory rather than by reading session_state.json back off disk. That file is a
+    resumption aid, written at a handful of points and never cleared, so reading it
+    back at save time risks saving an older session's snapshot as this one's.
     """
     return {
         "session_id": state.session_id,
@@ -742,4 +741,41 @@ def load_state_from_snapshot(snap: dict) -> game.GameState:
     state.dialogue_entries = [
         game.DialogueEntry(**e) for e in snap.get("dialogue_entries", [])
     ]
+    return state
+
+def session_from_library(records: list, settings: Optional[dict] = None) -> game.GameState:
+    """
+    A fresh session seated with two characters taken from the character library.
+
+    The counterpart to load_state_from_snapshot: same job -- build a GameState from
+    stored dicts -- but from library records rather than a session snapshot, so the
+    pair is chosen rather than generated. No model is called here; the narrator is a
+    separate step, as it is for a generated pair.
+
+    `records` is two library records in slot order. Only the `character` sub-object is
+    read; provenance, evals and tags are the library's business, not the game's.
+    """
+    if len(records) != 2:
+        raise ValueError(f"need exactly 2 characters to seat, got {len(records)}")
+
+    state = game.GameState()        # __post_init__ creates characters[0], the player
+
+    for slot, rec in enumerate(records, start=1):
+        char = character_from_dict(rec.get("character") or rec)
+        if not char.name or not char.description:
+            raise ValueError(
+                f"character for slot {slot} has no name or no story: "
+                f"{rec.get('char_id') or '(no id)'}"
+            )
+        # A record imported from a saved run carries whatever that session extracted.
+        # Seating it with info already shared would skip the turn-1 both-reply path in
+        # run_player_turn in favour of an addressing call -- an invisible confound in
+        # exactly the comparison this feature exists to make.
+        char.info_shared = []
+        state.characters[slot] = char
+
+    state.characters_generated = True
+    state.narrator_played = False
+    state.turn_count = 0
+    save_state_snapshot(state)
     return state

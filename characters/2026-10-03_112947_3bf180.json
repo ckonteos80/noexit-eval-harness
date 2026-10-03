@@ -50,9 +50,9 @@
   "tags": [],
   "notes": "",
   "eval": {
-    "rating": null,
-    "judge_notes": "",
+    "rating": "bad",
+    "judge_notes": "What is Eli's relationship to Silas?. \"at the house Rosa inherited from your grandfather. You were seventeen.\" this is irrelevant to the story.",
     "judge_model": "human",
-    "scored_at": "2026-10-03T11:41:38"
+    "scored_at": "2026-10-03T14:21:04"
   }
 }
