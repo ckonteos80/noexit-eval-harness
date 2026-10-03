@@ -122,12 +122,21 @@ def _summary(rec: dict) -> dict:
     }
 
 
+# How much of a note the listing carries. Enough to choose between characters at a
+# glance; the full note, which runs to a couple of thousand characters on the AI
+# evals, comes with the record. 191 full notes would roughly double the payload.
+EVAL_SNIPPET = 240
+
+
 def _eval_brief(ev):
     """Enough for a card and a filter; the full note comes with the record."""
     if not isinstance(ev, dict):
         return None
+    note = (ev.get("judge_notes") or "").strip()
     return {"rating": ev.get("rating"), "judge_model": ev.get("judge_model"),
-            "has_notes": bool(ev.get("judge_notes")),
+            "has_notes": bool(note),
+            "note": (note[:EVAL_SNIPPET] + "…") if len(note) > EVAL_SNIPPET else note,
+            "truncated": len(note) > EVAL_SNIPPET,
             "inherited": bool(ev.get("inherited_from"))}
 
 

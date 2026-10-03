@@ -264,11 +264,20 @@
   .promptpart .none { font-family: var(--mono); font-size: 10.5px; color: var(--dim);
                       font-style: italic; }
 
-  .cardeval { display: flex; align-items: center; gap: 8px; margin-top: 9px;
-              padding-top: 8px; border-top: 1px solid var(--border); }
-  .cardeval .who { font-family: var(--mono); font-size: 10px; color: var(--dim);
-                   flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis;
-                   white-space: nowrap; }
+  .cardeval { margin-top: 9px; padding-top: 8px; border-top: 1px solid var(--border); }
+  .cardeval-head { display: flex; align-items: center; gap: 8px; }
+  .cardeval-head .spacer { flex: 1; }
+  .vchip { font-family: var(--mono); font-size: 9.5px; letter-spacing: .5px;
+           text-transform: uppercase; padding: 3px 7px; border: 1px solid var(--border2);
+           color: var(--dim2); white-space: nowrap; }
+  .vchip.good { color: var(--ok); border-color: var(--ok); }
+  .vchip.neutral { color: var(--accent); border-color: var(--accent); }
+  .vchip.bad { color: var(--none-col); border-color: var(--none-col); }
+  .vchip .by { opacity: .7; }
+  .evalnote { font-family: var(--mono); font-size: 10.5px; line-height: 1.55;
+              color: var(--dim2); margin-top: 7px; white-space: pre-wrap; }
+  .evalnote .src { color: var(--dim); }
+  .evalnote.ai .src { color: var(--accent2); }
   .cardeval .eval-open { font-family: var(--mono); font-size: 10px; padding: 4px 9px;
                          background: var(--surface2); color: var(--dim2);
                          border: 1px solid var(--border2); cursor: pointer; }
@@ -700,47 +709,44 @@ function buildCardEval(card, c) {
   const row = document.createElement('div');
   row.className = 'cardeval';
 
-  const who = document.createElement('span');
-  who.className = 'who';
-  who.textContent = evalSummaryText(c);
+  // The verdicts, then the notes under them: picking two characters to seat means
+  // reading why they were scored, not just how.
+  const head = document.createElement('div');
+  head.className = 'cardeval-head';
+  head.innerHTML =
+    chipHTML(c.eval, 'human') + chipHTML(c.eval_ai, null) +
+    (!hasVerdict(c.eval) && !hasVerdict(c.eval_ai)
+      ? '<span class="vchip">unscored</span>' : '') +
+    '<span class="spacer"></span>';
 
   const btn = document.createElement('button');
   btn.type = 'button'; btn.className = 'eval-open'; btn.textContent = 'Eval';
   btn.onclick = (e) => { e.stopPropagation(); openEval(c.char_id); };
+  head.appendChild(btn);
+  row.appendChild(head);
 
-  row.appendChild(who); row.appendChild(btn);
+  [['', c.eval, 'human'], ['ai', c.eval_ai, null]].forEach(([cls, ev, who]) => {
+    if (!ev || !ev.note) return;
+    const n = document.createElement('div');
+    n.className = 'evalnote' + (cls ? ' ' + cls : '');
+    const label = who || (ev.judge_model || 'ai');
+    n.innerHTML = '<span class="src">' + esc(label) + ':</span> ' + esc(ev.note);
+    row.appendChild(n);
+  });
+
   card.appendChild(row);
-
-  // The listing does not carry prompts -- they are long and there are 191 of them -- so
-  // the record is fetched the first time this is opened, and only then.
-  const det = document.createElement('details');
-  det.className = 'promptbox';
-  det.innerHTML = '<summary>prompts \u25be</summary>' +
-                  '<div class="promptbody"><div class="none">…</div></div>';
-  det.onclick = (e) => e.stopPropagation();
-  det.ontoggle = async () => {
-    if (!det.open || det.dataset.loaded) return;
-    det.dataset.loaded = '1';
-    const body = det.querySelector('.promptbody');
-    try {
-      const rec = await api('/api/library/' + encodeURIComponent(c.char_id));
-      body.innerHTML = promptsHTML(rec);
-    } catch (err) {
-      body.innerHTML = '<div class="none">could not load: ' + esc(err.message) + '</div>';
-      det.dataset.loaded = '';
-    }
-  };
-  card.appendChild(det);
 }
 
-function evalSummaryText(c) {
-  const bits = [];
-  if (c.eval && c.eval.rating) bits.push(c.eval.rating + ' (human)');
-  if (c.eval_ai && c.eval_ai.rating) {
-    bits.push(c.eval_ai.rating + ' (' + (c.eval_ai.judge_model || 'ai') + ')');
-  }
-  return bits.length ? bits.join(' · ') : 'unscored';
+function hasVerdict(ev) { return !!(ev && (ev.rating || ev.has_notes)); }
+
+function chipHTML(ev, who) {
+  if (!hasVerdict(ev)) return '';
+  const r = ev.rating || 'noted';
+  const by = who || ev.judge_model || 'ai';
+  return '<span class="vchip ' + (ev.rating || '') + '">' + esc(r) +
+         ' <span class="by">' + esc(by) + '</span></span>';
 }
+
 
 // ── the eval overlay ────────────────────────────────────────────────────────
 // Two columns, Human and AI, over the full story -- the shape run_viewer.html's
