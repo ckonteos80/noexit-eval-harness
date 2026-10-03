@@ -540,9 +540,9 @@ function settingsFormHTML(prefix, withCount) {
     '</div>' +
     '<div class="fieldrow">' +
       field(prefix + '-model', 'generation model',
-        '<input type="text" id="' + prefix + '-model" value="' + esc(g.model) + '">') +
+        modelSelect(prefix + '-model', SETTINGS.model_options.generation, g.model)) +
       field(prefix + '-name-model', 'name model',
-        '<input type="text" id="' + prefix + '-name-model" value="' + esc(n.model) + '">') +
+        modelSelect(prefix + '-name-model', SETTINGS.model_options.name, n.model)) +
       field(prefix + '-name-temp', 'name temp',
         '<input type="number" id="' + prefix + '-name-temp" step="0.05" min="0" max="2" value="' + n.temperature + '">') +
     '</div>' +
@@ -553,15 +553,46 @@ function settingsFormHTML(prefix, withCount) {
     '</div>';
 }
 
+// A select over the models this project has used, plus "custom..." which swaps in a
+// text box -- a dropdown alone would make trying a new model impossible without
+// editing config.py and restarting the server.
+function modelSelect(id, options, selected) {
+  const opts = (options || []).map(m =>
+    '<option value="' + esc(m) + '"' + (m === selected ? ' selected' : '') + '>' +
+    esc(m) + '</option>').join('');
+  return '<select id="' + id + '">' + opts +
+         '<option value="__custom__">custom…</option></select>' +
+         '<input type="text" id="' + id + '-custom" placeholder="model id" ' +
+         'style="display:none;margin-top:4px">';
+}
+
+// Wired after the forms are rendered, since the selects do not exist before then.
+function wireModelSelects() {
+  ['session-model', 'session-name-model', 'generate-model', 'generate-name-model']
+    .forEach(id => {
+      const sel = $('#' + id), box = $('#' + id + '-custom');
+      if (!sel || !box) return;
+      sel.onchange = () => {
+        const custom = sel.value === '__custom__';
+        box.style.display = custom ? 'block' : 'none';
+        if (custom) box.focus();
+      };
+    });
+}
+
 function readSettings(prefix) {
   const num = id => { const el = $('#' + id); if (!el) return null;
                       const v = parseFloat(el.value); return isNaN(v) ? null : v; };
   const str = id => { const el = $('#' + id); return el && el.value.trim() ? el.value.trim() : null; };
+  const model = id => {
+    const v = str(id);
+    return v === '__custom__' ? str(id + '-custom') : v;
+  };
   return {
-    generation_model: str(prefix + '-model'),
+    generation_model: model(prefix + '-model'),
     generation_temperature: num(prefix + '-temp'),
     reasoning_effort: str(prefix + '-effort'),
-    name_model: str(prefix + '-name-model'),
+    name_model: model(prefix + '-name-model'),
     name_temperature: num(prefix + '-name-temp'),
   };
 }
@@ -685,6 +716,7 @@ async function loadSettings() {
   SETTINGS = await api('/api/settings');
   $('#session-settings').innerHTML = settingsFormHTML('session', false);
   $('#generate-settings').innerHTML = settingsFormHTML('generate', true);
+  wireModelSelects();
 }
 
 // Three top-level screens: start, chars-only (review a generated pair with no

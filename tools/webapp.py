@@ -69,6 +69,34 @@ def _active_session_error(body):
             "Save or abandon it first, or send force to discard it.")
 
 
+# Models this project has actually called, for the dropdowns. Harness-side on purpose:
+# config.py is the Unity mirror and holds the models in use, not a catalogue of options.
+# Anything already used by a character in the library is added to this at request time,
+# so the list grows by itself and never goes stale.
+KNOWN_MODELS = [
+    "zai-org/GLM-5.3",
+    "Qwen/Qwen3-235B-A22B-Instruct-2507",
+    "Qwen/Qwen3-8B",
+    "openai/gpt-oss-120b",
+    "Qwen/Qwen2.5-7B-Instruct",
+]
+
+
+def _model_options(*defaults):
+    """Known models, plus every model seen in the library, with the defaults first."""
+    seen = []
+    for rec in library.list_characters(full=True):
+        st = (rec.get("provenance") or {}).get("settings") or {}
+        for key in ("generation_model", "name_model"):
+            if st.get(key):
+                seen.append(st[key])
+    out = []
+    for m in list(defaults) + KNOWN_MODELS + sorted(set(seen)):
+        if m and m not in out:
+            out.append(m)
+    return out
+
+
 def settings_payload():
     """
     The generation defaults, so the UI never hardcodes a model string and always shows
@@ -87,6 +115,11 @@ def settings_payload():
         "dialogue": {"model": config.MODEL_DIALOGUE, "temperature": config.TEMP_DIALOGUE,
                      "max_tokens": config.MAX_TOKENS_DIALOGUE},
         "narrator": {"model": config.MODEL_NARRATOR, "temperature": config.TEMP_NARRATOR},
+        "model_options": {
+            "generation": _model_options(config.MODEL_GENERATION),
+            "name": _model_options(config.MODEL_NAME),
+            "dialogue": _model_options(config.MODEL_DIALOGUE),
+        },
         "genders": sorted(set(config.CHARACTER_GENDERS.values())),
         "age_range": list(config.AGE_RANGE),
         "effort_levels": ["low", "high", "max"],
