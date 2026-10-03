@@ -1,0 +1,53 @@
+{
+  "char_id": "2026-10-03_093133_8f5520",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved your son, Daniel, more than anything, though you told yourself you were teaching him strength when you broke his spirit. You worked as a high school principal in Cedar Ridge, a town that trusted you with its children because you looked like a man who believed in order—tall, clean-shaven, voice like a school bell. You wore a wedding ring for twenty-three years, though your wife, Lorraine, stopped sleeping in your room after Daniel’s tenth birthday. She said she couldn’t stand the sound of you sighing in your sleep, like the world owed you something.\n\nYou didn’t beat Daniel. Not with hands. You called it discipline. You called it truth. When he came home with a B in math, you said, “Your brother Marcus got A’s without trying. You’re not even trying, are you?” Marcus was your younger brother, dead at sixteen in a car crash you walked away from. You never told Daniel that the police found vodka in Marcus’s system, or that you were driving. You said Marcus was a natural, a light, a boy full of promise—everything Daniel wasn’t.\n\nAt fifteen, Daniel started skipping school. At seventeen, he stole Lorraine’s car and drove it into the lake behind your house. He survived, coughing up water on the shore, shivering in the cold while you stood on the bank in your slippers and told him, “You’re not even good at giving up.” Lorraine left the next day. She took only a suitcase and Daniel’s childhood drawings from the fridge. You left the drawings on the floor.\n\nYou told yourself the lie every morning in the mirror: *I am not the reason. I am the standard. Without me, he’d have nothing at all.* You said it when Daniel failed his final exams. You said it when he vanished for three weeks and returned hollow-eyed from a halfway house in Boise. You said it when he stood in your office at school, eighteen years old, asking for a letter of recommendation to community college, and you said, “You think they’ll want someone who can’t pass algebra?” His hands shook. You wrote the letter anyway, but sealed it with a paperclip and said, “Don’t expect me to lie for you.”\n\nThe day you died, it was raining. Daniel stood on the overpass above Route 18, holding a cardboard sign that said *Anything helps*. You drove past in your dry sedan, heater humming, coffee in the cup holder. You saw him. You looked straight at him. He wore the coat Lorraine bought him for his high school graduation—the one you never attended. His face was thinner, older, but his eyes were the same as when he was six and brought you a dandelion in a jar, saying, “Look, Dad. It’s gold.”\n\nYou didn’t stop. You told yourself: *He made this. He chose this.* You recited it like a pledge, gripping the wheel, until the rearview mirror showed only rain and road.\n\nThat night, you took your blood pressure pills. Two in the morning, one in the evening—Dr. Nwosu’s orders since the heart scare in ’17. You kept the bottle on your nightstand, next to the framed photo of you and Lorraine at your daughter’s wedding. You didn’t have a daughter. You never told anyone about Sarah—born premature, died at four days, 1999. Lorraine begged you to let her bury the baby in white. You said, “We don’t need a ceremony for something that didn’t survive.”\n\nYou took the evening pill with a glass of water. You forgot—deliberately, you would later admit to no one—that Dr. Nwosu had warned you never to mix it with alcohol. The whiskey in your cupboard was twelve years old, a gift from the PTA. You poured two fingers. You drank it while reading the evening paper.\n\nYour heart seized at 9:47 p.m., standing in your kitchen, the taste of smoke and mint still on your tongue from the cigar you smoked on the porch. The glass slipped from your hand. It shattered beside the fridge, where Daniel’s first drawing of you—crayon, yellow tie, green hair—still hung beneath a magnet shaped like a football.",
+    "gender": "male",
+    "age": 51,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "11_2026-09-27_questions-not-instructions",
+      "index": 0,
+      "arm": "new"
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "restructure_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": null,
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": null,
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 687,
+    "derived_from": null,
+    "complete": false
+  },
+  "calls": [],
+  "tags": [
+    "11"
+  ],
+  "notes": ""
+}

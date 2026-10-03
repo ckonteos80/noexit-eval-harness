@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_51c3fd",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You have been a hospital pharmacist for thirty-one years. People at St. Vincent's call you the wall — nothing gets past you. Your daughter, Claire, believed it. She's a pharmacist now too, at County General, because she wanted to be like you.\n\nThe lie started on a Tuesday in March, when you dispensed methotrexate for Walter Kessler, seventy-eight, with the daily dosing flag unchecked. He took it for eleven days. He died of bone marrow suppression in the ICU, and his daughter, Marcia Kessler, a schoolteacher from Dayton, asked one question at the review board: who entered the order?\n\nThe technician, Priya Raman, had entered the label. Priya was twenty-six, had a reprimand on file from a mislabeling incident the year before, and was two minutes late that morning because her bus didn't come. The board found her negligent. She lost her license. You sat at that hearing and said, under oath, that you had verified the order and that Priya must have overridden it, and you looked at your own signature on the check-off log — the signature you put there at 4:50 that afternoon, batched, without opening the profile, the way you'd done ten thousand times.\n\nYou told yourself the system set Priya up, not you. You told Claire the story every Christmas: how you caught everyone else's mistakes for thirty years and the one that got through wasn't yours.\n\nLast month, Marcia Kessler filed a new complaint. The hospital opened an audit of your batch verification logs going back five years. You were in the break room photocopying the March file when the stroke hit. The copies were in your hand when they found you — face down, the machine still running.",
+    "gender": "female",
+    "age": 57,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "17_2026-10-01_glm-at-ten",
+      "index": 8
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": null,
+      "script": "glm_at_ten.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nAge: 57\nGender: female",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 285,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "17"
+  ],
+  "notes": ""
+}

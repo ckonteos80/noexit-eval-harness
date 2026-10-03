@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_bfaba7",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved food because your mother, Helen, said it was the only thing she could give you that cost nothing. She worked at the Sainsbury’s in Croydon, came home smelling of baked goods past their sell-by, and handed you a custard slice every Friday. “Free,” she’d whisper, like it was a secret only the two of you shared. When you were ten, she stopped bringing them home. Said she felt watched. You cried for three nights straight. That was the first time you stole — a family-size bag of Maltesers from the school tuck shop. You ate them all in the toilets, one by one, letting each one dissolve slowly on your tongue, as if that could bring her back.\n\nYou didn’t stop. At university, you’d order Deliveroo after Deliveroo, stacking the boxes in your room until the smell drew flies. Your flatmate, Daniel, complained to the landlord. You told him you had a medical condition — slow metabolism, anxiety — and he believed you. You lied easily, because you believed it too.\n\nThen you met Susan. She worked in accounts at the local council office, liked long walks and quiet Sundays. You cooked for her — beef Wellington, sticky toffee pudding — and she said you were the best man she’d ever known. When she got pregnant, you promised to change. But the cravings got worse. You’d wake at 3 a.m., drive to the 24-hour Tesco in Sutton, and fill a basket: chocolate muffins, ready meals, jars of Nutella. You ate in the car park, windows fogged, hands shaking. Once, you were so full you vomited in the back seat. You cleaned it up before Susan could see.\n\nYour son, Thomas, was born with a cleft palate. The surgeries started at six months. Susan spent nights at the hospital. You stayed home, ordered a family feast for one — garlic bread, lasagne, two desserts — and ate it all while watching repeats of *The Great British Bake Off*. When Susan came home exhausted, you told her you’d been too anxious to eat. She believed you. You were good at looking sad.\n\nThe real sin wasn’t the eating. It was letting Thomas think he caused it. At three, he asked why Daddy always looked so tired. You said, “Because I worry about you, son. Your operations — they scare me.” He started hiding food, saying he wasn’t hungry, so you wouldn’t “worry.” You never corrected him. It was easier to let him carry the guilt than to admit you couldn’t stop.\n\nYou told yourself it was coping — that food was the only comfort you’d ever known, that Helen never taught you how to feel without filling up. You said it wasn’t hurting anyone. But when Thomas dropped out of secondary school, withdrawn, overweight, his teacher called to say he refused lunch and smelled of vomit, you knew. Susan looked at you that night and said, “This is your doing, isn’t it?” You didn’t answer. You opened a family pack of chocolate digestives and ate them standing in the kitchen, crumbs falling into the sink.\n\nThe last time Susan tried to talk, you packed a suitcase and left. Stayed in a Travelodge near Gatwick for three weeks, ordering room service three times a day. When Thomas called, voice small, saying, “Dad, Mum’s sick,” you said you were busy. You weren’t. You were eating a full English breakfast at 4 p.m., then a large pizza at 8, then a box of doughnuts at midnight.\n\nSusan died of a stroke three months later. You didn’t go to the funeral. Thomas left a voicemail: “She waited for you, Dad. She kept your plate warm.” You deleted it, then ordered a five-litre tub of Ben & Jerry’s. You were halfway through when your chest seized. You tried to stand, knocked the tub to the floor, and fell forward, your last breath drawn as you reached, not for the phone, but for a spoon.",
+    "gender": "male",
+    "age": 55,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "06_2026-09-27_word-budget",
+      "index": 4
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 0.95,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "budget_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "Write the story of your life, ending with how you died.{BUDGET} Include the real sin that\ncondemned you, and the coping mechanism you invented to justify your actions and live\nwith yourself until your demise. Who did you love, and who did you hurt?\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nThis person is an ordinary contemporary person who happens to have their background.\nDo not make the naming tradition into the character's whole identity.\n\nAge: 55\nGender: male\nNaming tradition: {NAME_ORIGIN}",
+      "name_user": null,
+      "craft_suffix": null
+    },
+    "prompts_source": "script BODY",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 659,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "06"
+  ],
+  "notes": ""
+}

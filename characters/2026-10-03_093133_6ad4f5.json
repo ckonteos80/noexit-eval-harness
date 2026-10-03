@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_6ad4f5",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "Silas Voss",
+    "description": "You were the man who owned half of Cedar Falls by the time you were fifty, and everyone called you fair. That was the word you wanted: fair. You told yourself it too.\n\nYou bought Danny Kowalczyk's farm at auction in 1998. Danny had borrowed eleven thousand dollars from your loan office after the hail took his corn, and you raised his rate twice and called it market forces. When he missed the third payment, you foreclosed. You sat in the front row at the auction with your hands folded. Danny's wife, Ruth Kowalczyk, stood against the back wall and did not bid. You got the land for forty cents an acre.\n\nDanny shot himself in the barn that November. Ruth moved to Des Moines. You told your wife, Margaret Voss, that you'd offered Danny every chance, and Margaret, who never once asked you to stop, said yes, you had. You told your son, Eric Voss, the same thing at every dinner where he tried to bring it up, until he stopped bringing it up. Eric works at a bank in Omaha now. He calls on birthdays.\n\nYou gave forty thousand dollars to the Cedar Falls Lutheran building fund. There's a plaque: VOSS FAMILY FOYER. You stood in it every Sunday, shaking hands, and people said Silas is generous, Silas is fair.\n\nThe lie was simple and you polished it daily: Danny had choices. Danny made his own bed. Nobody made Danny pick up that rifle.\n\nLast March, at the auction of the Peterson place, you felt a pain in your arm and kept bidding anyway. You won the parcel at $212,000. You signed the papers sitting down, sweating, telling the auctioneer you were fine. You drove yourself home, parked in the driveway, and dropped the pen in the gravel.",
+    "gender": "male",
+    "age": 55,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "19_2026-10-01_facts-first",
+      "index": 9
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": 1.2,
+      "script": "facts_first.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nYour name: Silas Voss\nAge: 55\nGender: male\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?",
+      "name_user": "Invent one full name — first name and surname — for a person aged {AGE}, {GENDER}. Any background. Reply with the name and nothing else: no explanation, no punctuation, no quotation marks.",
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 300,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "19"
+  ],
+  "notes": ""
+}

@@ -1,0 +1,53 @@
+{
+  "char_id": "2026-10-03_093133_a7d5d8",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved Daniel most. Not the way a father is supposed to love a son—no, that version died when he was seven and you started calling him “soft” for crying over a dead bird. You loved the version of him that obeyed: silent, still, eyes down. The one who stopped flinching when you raised your hand. That boy felt like yours.\n\nYou worked as a mechanic at Grease Pit Auto on Route 17. Sixteen years. You knew engines better than voices, so when Maria said Daniel wasn’t eating, wasn’t sleeping, you told her to stop nagging. When she found the cuts on his arms, you said he was dramatic. When she wanted to take him to Dr. Levinson, you refused. Therapy made boys weak. Weak boys didn’t survive. You’d survived your father. Daniel would survive you.\n\nThe lie you told yourself was that you were preparing him. That toughness was a gift. That every time you called him useless, every time you threw his sketchbooks in the trash, every time you said *“you’ll never be worth a damn,”* you were building calluses on his soul. Maria called it cruelty. You called it honesty.\n\nYou told neighbors Daniel was at camp when he vanished for three days. You told the school nurse he fell off a bike when he came in with a split lip. You told Maria, again and again, that if she kept coddling him, he’d end up like her brother—wasted on pills, gone by thirty-two. Her brother’s name was Eli. You never said it aloud, but you thought it every time she cried: *She knows I’m right.*\n\nDaniel stopped speaking to you when he turned eighteen. He moved in with Lila Chen, his art teacher. You spat her name like a defect—*Lila Chen thinks scribbles make her an expert?*—but you knew she’d drawn something alive back into him. You saw it in his hands, how they stopped shaking when she was near.\n\nTwo years ago, Maria found the letter. It was addressed to Lila, written in pencil, smudged. *I can’t do this anymore,* it said. *He’s still in the house. I hear him yell my name at night. I think he wants me to fail.* She brought it to you at the garage, trembling. You crumpled it and dropped it into the oil pan beneath Carver’s Ford. “That girl’s poisoning him,” you said. “Always has.”\n\nMaria left the next week. Took only her mother’s teacup and Daniel’s baby shoes. You kept the rest. His medals from school. His winter coat. The last drawing he ever gave you—a crooked fire truck with *DAD* spelled out in blocky letters across the side. You locked them in the closet under the stairs. You told people she had a breakdown. That Daniel was lost. That you were waiting.\n\nLast month, Daniel came back. Thin, pale, hands clenched like fists even at rest. He stood in your doorway and said, “I need to say it to your face.” You invited him in. Set out the good coffee cup—the one Maria saved for Easter. You listened while he spoke: about the nightmares, the shame, the voice in his head that still sounds like yours. He said, “I believed you. For twenty years, I believed I was nothing.”\n\nYou poured more coffee. Stirred sugar into your own cup. Said, “You’re here now. That proves you’re strong.”\n\nHe looked at you then not with rage, but pity. That’s when you felt it—the crack beneath your ribs, the one you’ve ignored since Maria left. You clutched your chest. Fell forward into the table. Coffee spilled across the letter he’d brought, the one stamped *RETURN TO SENDER,* the one from Dr. Levinson’s office with *urgent follow-up required* circled in red.\n\nYou heard Daniel shout. Heard the phone fumble in his hands. You opened your mouth to tell him to stop making a scene—but the words wouldn’t come. Your heart folded in on itself like wet paper.\n\nThe paramedics arrived. One of them, a woman with tired eyes, checked your pulse and said, “He’s gone.” \n\nDaniel did not touch you. He picked up the soaked letter, tucked it into his coat, and walked out.\n\nYou died at 8:47 p.m., alone at the kitchen table, still wearing the belt Maria gave you for your fiftieth birthday.",
+    "gender": "male",
+    "age": 55,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "11_2026-09-27_questions-not-instructions",
+      "index": 4,
+      "arm": "new"
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "restructure_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": null,
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": null,
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 716,
+    "derived_from": null,
+    "complete": false
+  },
+  "calls": [],
+  "tags": [
+    "11"
+  ],
+  "notes": ""
+}

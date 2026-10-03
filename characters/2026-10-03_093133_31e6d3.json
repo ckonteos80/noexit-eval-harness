@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_31e6d3",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved Daniel, your younger brother, the only one who ever looked at you like you were good. You destroyed him by stealing his inheritance after your mother’s will vanished—then claiming he’d forged it. The lie was simple: *I protected him from himself.* He’d struggled with gambling, so when $427,000 went missing from the estate account, everyone believed he took it. You said it was better this way—forced him into rehab, made him face his demons.  \n\nYou wanted people to think you were the responsible one, the steady brother, the quiet man who paid his taxes and mowed his lawn on Sundays. The kind who brings soup when a neighbor is sick.  \n\nThe secret is that you forged the bank records. You transferred the money to a Cayman account under a shell company named Wrenhold Ltd. You used it to buy the lakeside cabin where you shot yourself—legally registered under your name, found with a note reading *I can’t carry this anymore.*  \n\nDaniel never saw the will. You burned it two days after the funeral.  \n\nYou told the therapist that week, “Sometimes I wonder if I failed him.” She nodded, wrote *survivor’s guilt* in your file.  \n\nOn the last day, you loaded the revolver with one bullet, spun the chamber, and pulled the trigger while staring at Daniel’s last voicemail on your phone. It said, *Just want to talk, Marc. Please call me back.*",
+    "gender": "male",
+    "age": 51,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "14_2026-09-29_the-secret-question-at-200",
+      "index": 0
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "secret_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 200 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\nWhat kind of person would they think you are, if they knew your deepest darkest secret?\n\nAge: 51\nGender: male",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 234,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "14"
+  ],
+  "notes": ""
+}

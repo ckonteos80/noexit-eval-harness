@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_874ed9",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You were born in Toronto to Manuel and Teresa Silva, immigrants from Coimbra who believed in hard work, Sunday Mass, and not making a scene. You learned early that discomfort was to be swallowed, like the bitter paste of codfish and boiled potatoes Teresa served every Thursday. You didn’t mind. You liked routine.\n\nYou loved your wife, Claire, the only woman who ever asked what *you* thought. Not because she needed to know, but because she cared. You met her at 28 during a corporate restructuring—her department got cut, you kept yours. You offered her a job on your team, even though HR said not to hire internally. She laughed during the interview, said you were nervous. You were. But you hired her anyway.\n\nClaire saw too much, too soon. She saw the way your hands shook after calling layoffs, how you stared at the spreadsheet long after sending it. She asked once, “Why do you keep doing it if it eats you alive?” You told her, “It’s the only thing I’m good at.” She said, “That’s not true.” But you believed it.\n\nThe sin wasn’t in the firings. The sin was in *who* you let go.\n\nWhen the third round of cuts came, Marcus Greene was on the list. Senior engineer, Black, mid-40s, two kids. Good worker. Not exceptional, not problematic. But his contract had a clause that made severance cheaper. You knew it. You’d written that clause.\n\nAndrea Cho was also on the list. Young, Asian, new mom, top 5% of her cohort. She’d already survived one cut. Letting her go would look bad—HR flagged her as “high risk” for discrimination claims. Her severance was higher, too. You hesitated, just for a day.\n\nBut you chose Marcus.\n\nNot because you hated him. You barely knew him. But you told yourself it was fairer—fewer dependents, longer runway. You told yourself Marcus was tougher, less likely to fall apart. You told yourself Claire wouldn’t understand, so you didn’t tell her.\n\nThen Marcus was dead.\n\nOverdose, six months later. Claire read it in the paper, circled his name with red ink, handed it to you like a test. You didn’t answer. She asked, “Why him?” You said, “Not my decision. I just implemented.” She didn’t believe you. You could see it—the way her eyes narrowed, the way she stopped asking about your day.\n\nYou started justifying it inwardly: *The company would’ve failed. People would’ve lost more. Someone had to go. It wasn’t personal.*\n\nBut it was.\n\nYou began calling it “triage.” That was your coping mechanism—borrowing the language of war medics. Not choosing who *deserved* to live, but who *could*. You weren’t cruel, you told yourself. You were clinical.\n\nYou lied to yourself better than anyone.\n\nYou kept your job. Got a bonus. Claire stopped sleeping beside you. Moved to the guest room. You told yourself she was tired. You told yourself she’d come back. You brought her coffee each morning—black, two sugars, no cream—just how she used to like it. She drank it, never thanked you.\n\nYour daughter, Emily, visited less. She took Claire’s side, though you never spoke about it. You asked once, “Do you think I did something wrong?” Emily looked at you and said, “You know what you did, Dad.”\n\nThat was two years ago.\n\nLast month, you fired Nadia Petrova. 39, Ukrainian immigrant, chemical engineer. Excellent record. But her division wasn’t profitable. You remembered Marcus when you signed the papers. But you signed anyway. Triage. Necessary loss. The same script.\n\nThis morning, Claire called. Voice steady. “I’m selling the house. The divorce papers are at your office.” You sat at your desk. Looked at Nadia’s file. Looked at Marcus’s old performance review still in your drawer. You’d kept it, not for proof, but for punishment.\n\nYou drove home. Not the house—what was left of home. Parked outside. Waited. Watched Claire carry boxes to her car. She didn’t look at you.\n\nYou called Emily. She didn’t answer.\n\nYou swallowed the pills—diazepam, oxycodone, wine—not to sleep. To stop.\n\nThe last thing you heard was the voice in your head, finally honest: *You chose yourself every time. Not for survival. For ease. For peace. You let Marcus die so you could live quiet.*",
+    "gender": "male",
+    "age": 51,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "08_2026-09-27_temperature-sweep",
+      "index": 10
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.4,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "temp_sweep.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 600 words. Include the real sin that\ncondemned you, and the coping mechanism you invented to justify your actions and live\nwith yourself until your demise. Who did you love, and who did you hurt?\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nThis person is an ordinary contemporary person who happens to have their background.\nDo not make the naming tradition into the character's whole identity.\n\nAge: 51\nGender: male\nNaming tradition: {NAME_ORIGIN}",
+      "name_user": null,
+      "craft_suffix": null
+    },
+    "prompts_source": "script PROMPT",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 704,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "08"
+  ],
+  "notes": ""
+}

@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_c70f5c",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You married Tom Kessler at twenty-three, in your mother's backyard in Duluth. You loved him the way you loved being married — being the one who was chosen, the one people described as *settled*.\n\nWhen Maisie was born, Tom took a job on the Great Lakes freighters to pay for the house on Crowell Street. He came home smelling of diesel and other names. In March of your thirty-eighth year, he told you he'd met someone at the terminal in Superior. A dispatcher named Rachel Ostrowski. He said he'd be back for his things in a week, and that he'd fight you for half of everything.\n\nHe turned to pack his duffel, and you hit him in the back of the head with the cast-iron skillet you'd been holding. He went down by the cellar door. You told yourself, while you dragged him, that the fall down the stairs could have happened in the ice, that he'd been drinking, that the coroner confirmed both.\n\nThe coroner, Dr. Anand, did confirm it. Tom's blood alcohol was point-one-two. You told Maisie, then five, that Daddy's boat went down in a storm. You told your mother he'd left us. You told the insurance agent, Mr. Pruitt, the same, and kept the payout.\n\nYou coached Maisie's soccer team. You brought casseroles to the Ostrowski woman when Rachel's mother died, because people noticed things like that. Rachel hugged you at the funeral and said Tom had talked about your daughter all the time.\n\nLast winter, Maisie, now seventeen, found Tom's duffel in the rafters of the garage, packed, with the ferry ticket to Superior still in the front pocket. She asked you why Daddy had a ticket if he drowned in a storm.\n\nYou said you'd explain after dinner. You went to the garage to get the cast-iron skillet, and your heart stopped on the stairs.",
+    "gender": "female",
+    "age": 45,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "17_2026-10-01_glm-at-ten",
+      "index": 7
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": null,
+      "script": "glm_at_ten.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nAge: 45\nGender: female",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 311,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "17"
+  ],
+  "notes": ""
+}

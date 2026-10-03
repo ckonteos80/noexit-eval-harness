@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_7f721c",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You were good with other people's money. That's what they said at Novak & Pierce, where you ran payroll for nineteen years — that Dana Ruiz never missed a decimal.\n\nYour mother, Cecilia, had the savings account. After her diagnosis, your brother Danny asked you to manage it because you were the responsible one. You told him it was in a money market, safe, growing. What was actually happening was the money was moving through your account at Coastal First, then into the dental work you needed, then into Pia's tuition at Fairmont, then into the kitchen you remodeled the year you told Danny you couldn't come to Christmas.\n\nPia was nineteen and didn't know any of it. She thought the money came from your bonus. You let her. She introduced you to her roommates as \"the rock of the family,\" and you kept the phrase like a coin in your pocket.\n\nDanny called every Sunday and you gave him numbers you'd rehearsed — the balance, the rate, the statement you'd photoshopped, the one time he asked to see it, the Sunday you said the bank had mailed it to your old address.\n\nCecilia died at Grendel House in a shared room because you told Danny the private room wasn't worth the markup. He said okay. He trusted you. That was the whole mechanism: he trusted you.\n\nAfter the funeral, Danny needed the estate account. You said probate was slow. He waited. You moved what was left into a CD under your name and told him the lawyer — a lawyer named Merrick you'd invented — said it could take another year.\n\nYou were drafting an email to Danny about Merrick when you stood up too fast. The aneurysm hit while you were still holding the phone, and Pia's name was on the screen.",
+    "gender": "female",
+    "age": 45,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "17_2026-10-01_glm-at-ten",
+      "index": 2
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": null,
+      "script": "glm_at_ten.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nAge: 45\nGender: female",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 304,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "17"
+  ],
+  "notes": ""
+}

@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_673714",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You were fifty-one, and for twenty of those years people called you the man who built half the churches in Kane County. Your company, Rourke & Son Construction. The son was Daniel.\n\nYou loved Daniel. You loved him the way you loved the company — as proof you had made something that would outlast you.\n\nIn March 2009 your crew hung scaffolding on the Bell Street renovation. Your foreman, Vic Alvarez, told you the ledger boards were split. You were three weeks behind and the client, Pastor Neale, was calling daily. You signed the safety certification yourself — it was Daniel's signature line, but Daniel was at his daughter's christening — and you told Vic the boards would hold until the replacements came Thursday.\n\nThey held until Tuesday. Miguel Fuentes, forty-four, a father of three, fell forty feet onto the pavement. He died in the parking lot before the ambulance cleared the siren.\n\nWhen the investigators came, you said the certification was Daniel's responsibility. You'd been saying you were easing him toward ownership for years; the paperwork, you said, was his job now. You told your wife, Carol, the same thing. You told it so steadily that even Daniel half-believed it — that he'd failed, somehow, through absence, through the christening. He took the plea. Eighteen months.\n\nHe came out quiet. In 2014 he parked his truck on the Mill Creek bridge and left the engine running.\n\nYou kept the company. You kept going to St. Brigid's. You set up the Fuentes Scholarship at the high school and shook Rosa Fuentes's hand at the banquet where they gave you the Citizen of the Year plaque.\n\nLast February you climbed a ladder in your garage to reach a box of Daniel's things Carol wanted moved out. Your heart stopped on the third rung. The box on the top shelf was labeled in your handwriting: *Bell St. — certification, original.*",
+    "gender": "male",
+    "age": 51,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "16_2026-09-29_glm-5-3",
+      "index": 0
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": null,
+      "script": "glm_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nAge: 51\nGender: male",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 318,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "16"
+  ],
+  "notes": ""
+}

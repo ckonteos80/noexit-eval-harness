@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_0fdacb",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You grew up in Daly City, the daughter of Lourdes and Rafael Santos, immigrants who scrubbed floors and fixed dental crowns to keep food on the table. You learned early to swallow pride, to smile when insulted, to endure. You loved Lourdes fiercely—her tired eyes, her rosaries, the way she’d press a 20-peso coin into your palm before Mass, whispering, “For good luck.” You never told her the coin always ended up in the offering basket, bought with money stolen from her purse.\n\nYou loved Manuel Reyes in high school—the boy with guitar calluses and poems folded into origami cranes. He wrote one about your laugh. You kept it in your wallet until it disintegrated. He asked you to run away with him after graduation. You said no. You said you had to care for Lourdes. But the truth was, you were afraid—afraid of failing, afraid of being poor, afraid of ending up like your parents: worn down, forgotten.\n\nSo you studied hard. Got into UC Davis. Became an accountant. Marrying David Tan wasn’t love—it was relief. He was steady, boring, safe. His parents owned a dry cleaning chain. You moved into a two-bedroom condo in San Bruno, bought a Honda, joined a gym. You told people you were happy. You believed it, almost.\n\nThen came the audit.\n\nYou were reviewing the books for Reyes & Cruz Landscaping—no relation to Manuel, just a coincidence that made you pause. The owner, Ben Cruz, came in sweating, asking for “adjustments.” You knew the numbers. Knew they lied. But Ben smiled and said, “Everyone fudges, *hija*. It’s how we survive.”\n\nYou did it for him. Altered the filings. Wrote off personal expenses. Hid cash income. For two years, you played the careful liar. Then Manuel called.\n\nHe found you on Facebook. Said he still had the photo of you two at Pacifica Pier, your hair tangled by wind. He was divorced, living in Oakland, writing poetry again. He invited you to a reading. You went. You laughed at his jokes. You let him kiss you behind the bookstore.\n\nAfter that, you met in motels. You lied to David about late work. You lied to Ben about clean audits. And when the IRS came, it wasn’t Ben who cracked. It was Manuel.\n\nManuel, who owed back taxes from a failed bookstore. Manuel, who named you as a “consultant” on his records to look legitimate. The IRS came to you first. They offered a deal: full confession, full cooperation, walk away clean.\n\nYou took it.\n\nYou gave them Ben. You gave them Manuel. You minimized your role. You said you were pressured. You said you didn’t know the full extent. You cried in front of the agent, Elena Martinez, and she patted your hand like you were something fragile.\n\nBen lost his business. He moved his family to Stockton, working odd jobs, ashamed. Manuel—ashamed, furious—called you a coward. He said, “You sold everyone to save your own skin.” You told yourself he was bitter. You told yourself Ben was shady anyway. You told yourself the system forced your hand.\n\nYou slept okay. You started running again. David noticed you were calmer. He said, “You seem lighter.”\n\nYou justified it by thinking: I didn’t start it. I protected my family. I didn’t kill anyone.\n\nBut you knew.\n\nYou betrayed Ben who trusted you. You destroyed Manuel who loved you—twice. You traded others for your comfort. You called it survival. You called it responsibility. You called it what your mother would’ve done.\n\nThe day you died, you were driving home from Costco. Rain slicked the 380. You were thinking about dinner, about David’s birthday, about replacing the tires. A truck hydroplaned. Swerved. Hit your sedan broadside.\n\nGlass. Metal. Silence.\n\nIn your last breath, you whispered: “I had no choice.”\n\nBut you knew that was the lie you always told.",
+    "gender": "female",
+    "age": 45,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "08_2026-09-27_temperature-sweep",
+      "index": 7
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "temp_sweep.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 600 words. Include the real sin that\ncondemned you, and the coping mechanism you invented to justify your actions and live\nwith yourself until your demise. Who did you love, and who did you hurt?\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nThis person is an ordinary contemporary person who happens to have their background.\nDo not make the naming tradition into the character's whole identity.\n\nAge: 45\nGender: female\nNaming tradition: {NAME_ORIGIN}",
+      "name_user": null,
+      "craft_suffix": null
+    },
+    "prompts_source": "script PROMPT",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 642,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "08"
+  ],
+  "notes": ""
+}

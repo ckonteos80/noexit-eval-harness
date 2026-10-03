@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_2a92e8",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved Miriam, your younger sister, more than anyone. You called her “Riri” when we were kids, and you kept her photo in your wallet even after she stopped returning your calls.\n\nYou were there the night she died. She called you from the highway, crying, her car stalled in the storm. You promised to come. You told her engine trouble was nothing, told her to lock the doors, told her you were already on your way. Then you poured a drink, turned off your phone, and watched the third act of your favorite opera. You told yourself she’d be safer waiting, that roads were bad, that someone else would stop. You told yourself she deserved a break from her chaos, that she always overdramatized.\n\nWhen the police called the next morning, you wept loudly, blamed the weather, the state of emergency services. You gave a eulogy about her fragility, her reckless generosity, how the world was too harsh for someone so soft. People hugged you afterward, calling you the strong one, the devoted sister.\n\nFor thirty years, you built that version of yourself: loyal, private, enduring. You volunteered at the women’s shelter, donated in Miriam’s name, spoke gently to her old friends. You wore black on the anniversary.\n\nThe lie was simple: that you hesitated, that you tried. But you know the truth. You didn’t want to be interrupted. You didn’t want to face her mess one more time. You wanted peace, silence, your own life — and so you let her vanish into the rain.\n\nThe secret isn’t that you failed her. It’s that you chose, calmly, deliberately, and then shaped her memory into something that made you noble.\n\nYou died clutching that same photo, the glass cracked over her smile, whispering, “I would’ve come.”",
+    "gender": "female",
+    "age": 64,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "15_2026-09-29_five-questions-at-300",
+      "index": 1
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "five_at_300.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nAge: 64\nGender: female",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 297,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "15"
+  ],
+  "notes": ""
+}

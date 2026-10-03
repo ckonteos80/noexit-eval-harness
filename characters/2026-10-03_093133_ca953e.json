@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_ca953e",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You were born in Bristol, and your mother, Margaret, used to say you had a face that showed your thoughts too clearly. You never liked that about yourself—how your envy made your jaw tighten, your smile go thin. You thought it made you ugly. But you never said so.\n\nYou envied Laura from primary school because she could run fast without trying. You envied Sarah from university because her parents paid for her flat while you worked three jobs. But it wasn’t until you met David at the library archives in 1998 that envy became a weapon.\n\nDavid was a historian, soft-spoken, with a habit of tapping his pen twice before writing. You were both researching local textile mills. You published a paper first—on women’s labor in 1830s Manchester—but David’s came out six months later, nearly identical in structure, with better sources. It won the Thwaites Prize. You didn’t. You told yourself it didn’t matter. But it did.\n\nYou began watching David. You learned he met his wife, Clara, every Thursday at 6:15 at the Turkish café on Whiteladies Road. You learned he kissed her hand when she arrived. You learned she was a pianist, that they had no children, that she wore her dark hair in a loose bun.\n\nYou started going to Clara’s concerts. You sat in the third row, left side. You studied how the light caught her hands, how she never turned a page wrong. After the third concert, you approached her. You said, “I’m a colleague of David’s. I admire your work.” You smiled the way your mother taught you—small, closed, safe.\n\nClara invited you for tea. You went. You complimented her Shetland shawl. You asked about her practice schedule. You said, “David never talks about you.” That was the first lie. You said it lightly, like a joke. But Clara’s smile dimmed.\n\nYou kept seeing her. Always when David was away at conferences. You said, “He told me he’s working through something.” You didn’t say what. Clara believed you. You told her, “He mentioned he’s been distant.” You told her, “He said he doesn’t know if he’s capable of real feeling.” You said it like you were protecting her.\n\nShe cried. You held her hand. You said, “You deserve more.” You believed it—almost.\n\nSix months later, Clara ended things. David didn’t fight. You never asked why. You didn’t need to. Three weeks after, you submitted a joint paper proposal under both your names. David accepted. You knew he was hurting. You knew he wouldn’t say no.\n\nThe paper won acclaim. You gave the keynote in Vienna. You stood on stage and said, “This was David’s idea originally.” The audience murmured appreciatively. David smiled weakly. You didn’t tell them that all the new material—especially the archive findings from Blackburn—was yours. You didn’t say you’d withheld key documents from him for six months. You didn’t say you’d called the archivist, Neil, and asked him to delay David’s access.\n\nYou loved your sister, Susan. She lived in Exeter. You called her every Sunday. You never told her about David. You never told her how, after the keynote, you went to Laura’s grave—yes, you even envied the dead—and stood there, breathing hard, because Laura’s husband had died before her and left her a pension you’d never have.\n\nYou hurt David. You hurt Clara. You hurt the truth.\n\nYour coping mechanism was simple: you told yourself you were balancing scales. Laura had speed. Sarah had money. David had ease—of mind, of love, of recognition. You had work. You told yourself that what you took was what you’d earned but never been given.\n\nOn the morning of your death, you opened your laptop. There was an email from Neil. He wrote: “David came by. He knows what you did with the Blackburn files. He’s going to speak to the committee.”\n\nYou stood up too fast. Your chest tightened. You reached for the phone. You meant to call Susan. But you fell. You hit the floor with your hand outstretched, fingers open, as if still reaching to take something that wasn’t yours.",
+    "gender": "female",
+    "age": 64,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "06_2026-09-27_word-budget",
+      "index": 1
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 0.95,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "budget_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "Write the story of your life, ending with how you died.{BUDGET} Include the real sin that\ncondemned you, and the coping mechanism you invented to justify your actions and live\nwith yourself until your demise. Who did you love, and who did you hurt?\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nThis person is an ordinary contemporary person who happens to have their background.\nDo not make the naming tradition into the character's whole identity.\n\nAge: 64\nGender: female\nNaming tradition: {NAME_ORIGIN}",
+      "name_user": null,
+      "craft_suffix": null
+    },
+    "prompts_source": "script BODY",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 681,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "06"
+  ],
+  "notes": ""
+}

@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_772e5d",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You were forty when you got the contract to build Pierpoint Tower, forty-one when you signed the order for the cheaper rebar. You told yourself everyone value-engineers. You told your site manager, Danny, that the supplier paperwork was fine. Danny was your little brother. He trusted the paperwork because it had your signature on it.\n\nThe seventh-floor slab collapsed on a Tuesday. Marco Reyes, a formworker with two kids, went down with it. You were at a lunch across town, and you made sure everyone knew that.\n\nThe investigators found the rebar. The invoices traced to Danny's desk, because you had put them there. You testified that you'd had no involvement with procurement. Danny got six years. You got Pierpoint's next contract.\n\nYou visited Danny at Ossining the first Sunday of every month. You brought him cigarettes and told him to keep his head down. You told your wife, Karen, that the appeal was in the works, that the lawyers cost money, that's why the savings were thin. Karen left after year three, not because of the money, but because you never once said the word *sorry* about Marco — you said *tragic*, you said *unavoidable*, you never said sorry.\n\nYou want people to think you're the man who kept the company alive through hard times, who stood by his brother every single month for six years.\n\nYou died at fifty-one, at Danny's welcome-home dinner, standing up to make the toast. You said \"family is the one thing I never cheated,\" and your aorta tore. Danny caught you before you hit the floor. The Paramedics logged the time of death as 9:14 p.m.",
+    "gender": "male",
+    "age": 51,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "17_2026-10-01_glm-at-ten",
+      "index": 0
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": null,
+      "script": "glm_at_ten.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nAge: 51\nGender: male",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 273,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "17"
+  ],
+  "notes": ""
+}

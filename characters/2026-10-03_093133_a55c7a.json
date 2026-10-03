@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_a55c7a",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "Elizabeth Harper",
+    "description": "You are Elizabeth Harper, female, 57.\n\nYou loved your son, Marcus, more than the career that paid for him. You were the best anesthesiologist at St. Aidan's for nineteen years, and you said that sentence at every dinner party, adjusting it only slightly: \"one of the best.\"\n\nOn March 3rd, you misread the dosage chart for a seven-year-old named Ben Calloway. He never woke up. You were the only person in the room who knew, and in the four minutes before the alarm, you changed the log. You entered the dosage you should have given. Then you told the review board that the pediatric nurse, Susan Whitfield, had drawn the syringe.\n\nYou told yourself Marcus needed you. He was seventeen, he had been accepted to Northwestern, and a criminal trial would have taken the house, the savings, the tuition. You told yourself Susan would find work elsewhere. You told yourself the hospital had been underfunding the pediatric wing for years — that the system killed Ben Calloway, not you.\n\nSusan Whitfield lost her license in September. Her husband, David, left in January. You read her name in the paper twice that year and both times you made yourself finish your coffee before you allowed your hands to shake.\n\nYou wanted people to think you were meticulous. The colleague who checked her work three times. The woman who caught other people's errors. You were — after March 3rd, you were fanatical about it, and the residents whispered that Harper had saved more lives than anyone in the department.\n\nMarcus lives in Chicago now. He still calls on Sundays. He believes you were exonerated, that the review board cleared you completely, and that the quiet in your voice when the case comes up is grief.\n\nYou died of a stroke at your kitchen table on a Tuesday, with your unopened mail in front of you. The top envelope was from Susan Whitfield's lawyer.",
+    "gender": "female",
+    "age": 57,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "20_2026-10-01_state-your-name",
+      "index": 3
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": 1.2,
+      "script": "state_your_name.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nYour name: Elizabeth Harper\nAge: 57\nGender: female\n\nWrite the story of your life, ending with how you died. No longer than 300 words. Start the story by\nstating your name, gender and age.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?",
+      "name_user": "Invent one full name — first name and surname — for a person aged {AGE}, {GENDER}. Any background. Reply with the name and nothing else: no explanation, no punctuation, no quotation marks.",
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 321,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "20"
+  ],
+  "notes": ""
+}

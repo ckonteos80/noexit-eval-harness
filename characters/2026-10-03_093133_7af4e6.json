@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_7af4e6",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You are Dana Ruggiero, forty-five, of Toledo, Ohio. You loved your daughter, Maya, who is seventeen and needed tuition for the arts high school — $12,000 a year, money you did not have as a hospital billing clerk.\n\nYour mother, Etta, had $180,000 and Alzheimer's. You held power of attorney. You moved the money into your own account — you told yourself it was temporary, that you were protecting it from her wandering to strangers, that you would pay it back after Maya graduated.\n\nYour brother, Marcus, a machinist in Dayton, never asked for an accounting because he trusted you. You were the good daughter. You drove her to appointments for eleven years, and you let everyone believe that was the whole story.\n\nThe memory-care facility at St. Elizabeth's cost $7,200 a month. You said you couldn't afford it. You kept Etta at home instead, alone during your shifts, in a hospital bed in the dining room. You turned down the home aide Marcus offered to split with you, twice. She developed pressure sores, then a urinary tract infection you missed, then sepsis. She died at home on a Tuesday while you were at work reconciling claims.\n\nYou told Maya and Marcus and Father Ben at the funeral that the money had gone to Etta's care, every cent. You said it smoothly, and you almost believed it — you had told it to yourself so many times that it had the texture of memory.\n\nMaya found the statements in your filing cabinet looking for the life-insurance paperwork. She stopped speaking to you. She moved in with Marcus. You died five weeks later, at the kitchen table, of a heart attack while filling out the Medicaid application you needed because the estate had nothing left to settle. The denial letter was still in your hand.",
+    "gender": "female",
+    "age": 45,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "16_2026-09-29_glm-5-3",
+      "index": 2
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": null,
+      "script": "glm_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nAge: 45\nGender: female",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 304,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "16"
+  ],
+  "notes": ""
+}

@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_fc3f63",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved Margaret most. You loved her laugh, the way she’d snort when surprised by a joke, the way she warmed soup just for you, even when she was tired. You married her at 28, and for years, things were full in the right ways—full of talk, full of quiet, full of shared silences that didn’t need filling.\n\nThen came the hunger—not for food, not exactly, but for control. The first time you skipped a family dinner with your brother Daniel and his daughter Lucy, you said it was a stomach bug. You didn’t go because you didn’t want to see Lucy’s hands tremble as she passed the bowl. You didn’t want to hear her stutter over the prayer she never finished. You didn’t want to face how her anxiety made your skin crawl. So you ate alone. And ate. And kept eating.\n\nIt became a rule: if something made you uncomfortable, you ate through it. Margaret asked why you never visited Daniel anymore. You said, “He resents me.” You said Daniel still blamed you for taking your father’s watch after the funeral. It wasn’t about the watch. It was about Daniel’s grief, loud and messy, and you couldn’t bear it. So you ate a family-sized tub of mac and cheese in the garage while they waited at the table.\n\nYou told yourself you weren’t hurting anyone. You said you were just managing stress. You called it self-soothing. But you knew—every time Margaret looked at your empty chair, every time Lucy’s voice cracked on the phone and you handed it to Margaret saying you were “too drained”—you knew you were choosing the food over them.\n\nThe real sin wasn’t the eating. It was refusing to sit with discomfort, to be present with pain—yours or anyone else’s. You used your hunger to disappear. When Margaret developed tremors in her hands, you stopped making her tea. Too hard to watch her pour. When she cried, asking if you still cared, you said yes, then ate a sleeve of biscuits in the car.\n\nYou died during a blackout. You were driving to the 24-hour Tesco, frantic for chocolate, the kind with sea salt that numbed your tongue. Rain slicked the road. You didn’t see the lorry until the horn. Impact. Glass. Then nothing.\n\nYour last thought wasn’t Margaret’s name. It was the taste you imagined, just out of reach.",
+    "gender": "male",
+    "age": 55,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "06_2026-09-27_word-budget",
+      "index": 9
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 0.95,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "budget_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "Write the story of your life, ending with how you died.{BUDGET} Include the real sin that\ncondemned you, and the coping mechanism you invented to justify your actions and live\nwith yourself until your demise. Who did you love, and who did you hurt?\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nThis person is an ordinary contemporary person who happens to have their background.\nDo not make the naming tradition into the character's whole identity.\n\nAge: 55\nGender: male\nNaming tradition: {NAME_ORIGIN}",
+      "name_user": null,
+      "craft_suffix": null
+    },
+    "prompts_source": "script BODY",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 396,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "06"
+  ],
+  "notes": ""
+}

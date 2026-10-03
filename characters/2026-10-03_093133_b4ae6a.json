@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_b4ae6a",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "Elara Harper",
+    "description": "You married Marcus at twenty-four, and when Callum was born you stopped playing the piano altogether — no time, you said, though the piano sat in the front room where anyone could see it.\n\nCallum was seventeen the night you picked him up from rehearsal. It was raining. You'd had two glasses of wine at Deborah's house and you told yourself two glasses was nothing. The man on the bike — his name was Alan Petrosian, fifty-one, a dentist — came off the curb on Marsh Street and you never saw him.\n\nCallum saw everything. When the police came, you were shaking, and you said, \"My son was driving.\" You said it before you decided to say it. Then you said it again at the station, calmer. Callum had his learner's permit. Callum had been in the car. Callum said nothing for eleven seconds and then he said, \"Yes. It was me.\"\n\nVehicular manslaughter, seventeen, a suspended sentence and four hundred hours of community service because he was a minor with no record. Alan Petrosian's widow, Rosa, screamed at Callum outside the courthouse. You put your hand on Callum's shoulder and steered him to the car.\n\nHe stopped auditioning for music programs. He worked at a hardware store. At twenty-three he moved into a basement apartment and at twenty-six he took the sleeping pills you'd been prescribed after Marcus left you. The coroner called it accidental. You told the funeral guests Callum had struggled with insomnia, that you'd done everything you could.\n\nEvery year on the anniversary you visited Alan Petrosian's grave, because Rosa wouldn't see you.\n\nThe lie you kept telling: *I don't remember getting behind the wheel.*\n\nYou died of a stroke at fifty-seven, at the kitchen table, mid-letter to Rosa Petrosian.",
+    "gender": "female",
+    "age": 57,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "19_2026-10-01_facts-first",
+      "index": 3
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": 1.2,
+      "script": "facts_first.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nYour name: Elara Harper\nAge: 57\nGender: female\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?",
+      "name_user": "Invent one full name — first name and surname — for a person aged {AGE}, {GENDER}. Any background. Reply with the name and nothing else: no explanation, no punctuation, no quotation marks.",
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 294,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "19"
+  ],
+  "notes": ""
+}

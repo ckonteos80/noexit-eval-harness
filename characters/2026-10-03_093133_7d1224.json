@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_7d1224",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved Miriam, your younger sister, the way a mother loves a child—fiercely, possessively. You told everyone you saved her when the house burned down at ten, how you carried her through the flames. You let people call you brave. You never corrected them.\n\nThe truth is, you lit the match. You were twelve, jealous of how your parents hovered over Miriam, how she got the new clothes, the attention. You meant to scare them, to make them see you. The fire spread faster than you thought. You pulled Miriam out not to save her, but because she screamed too loud and you couldn’t bear it.\n\nAfterward, you buried the truth under bandages and silence. You told yourself it was an accident. You told doctors you didn’t remember. You let your parents weep gratitude at your “courage.” Miriam survived with scars down her back and arms. She never spoke of that night. When she asked, years later, if you remembered, you squeezed her hand and said, “No, darling. Don’t you either.”\n\nYou raised her. You were the devoted sister, the selfless guardian. You used that role to keep her close, to control her. When she started dating Daniel, you lied about his past, turned her against him. She never trusted again.\n\nYou died at 64 of a stroke, alone in your apartment, the smell of smoke faint in the air, though nothing was burning.",
+    "gender": "female",
+    "age": 64,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "14_2026-09-29_the-secret-question-at-200",
+      "index": 6
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "secret_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 200 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\nWhat kind of person would they think you are, if they knew your deepest darkest secret?\n\nAge: 64\nGender: female",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 234,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "14"
+  ],
+  "notes": ""
+}

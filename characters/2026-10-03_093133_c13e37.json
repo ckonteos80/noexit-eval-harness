@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_c13e37",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "Clara Vega",
+    "description": "My name is Clara Vega. Female, 45. I was a charge nurse in the intensive care unit at St. Agnes for nineteen years.\n\nI loved my daughter, Lucía. She became a nurse because of me — used to do her homework at the station by my elbow, and when she pinned on her badge at 22, she said, \"I want to be you.\"\n\nI also loved the thing I could do. When a patient was past saving and the family was cruel with hope, I gave them quiet. Morphine, up past the line. I did it eleven times in four years. I told myself I was mercy. I told the families nothing.\n\nThen came Ramón Delgado, 38, recovering from a gallbladder surgery gone septic. His numbers were turning. His wife, Ana Delgado, had begged me that morning — \"do everything\" — and I resented her for it, because I had already decided I knew better. I pulled the wrong chart into the wrong conclusion and I gave him the dose. He was breathing on his own the next week, was my understanding. Except he never got the week.\n\nLucía caught me adjusting the pump on a night she'd picked up an extra shift. She didn't report me for three days — three days of watching me eat dinner, laugh at her stories about her own patients. Then she filed the report with her own name on it. Her first year of practice, and she burned her mother with it. I lost my license. Nurses who'd worked with me for a decade stopped saying my name in the break room.\n\nThe lie I told everyone, including Lucía, at the hearing: that Ramón was the first. That it was only ever mercy.\n\nI went home after the verdict and drew up the morphine from my old hospice stock, and I wrote no note. The dose was one of mine.",
+    "gender": "female",
+    "age": 45,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "20_2026-10-01_state-your-name",
+      "index": 7
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": 1.2,
+      "script": "state_your_name.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nYour name: Clara Vega\nAge: 45\nGender: female\n\nWrite the story of your life, ending with how you died. No longer than 300 words. Start the story by\nstating your name, gender and age.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?",
+      "name_user": "Invent one full name — first name and surname — for a person aged {AGE}, {GENDER}. Any background. Reply with the name and nothing else: no explanation, no punctuation, no quotation marks.",
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 317,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "20"
+  ],
+  "notes": ""
+}

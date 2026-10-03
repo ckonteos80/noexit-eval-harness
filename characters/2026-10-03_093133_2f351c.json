@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_2f351c",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You are Frank Doherty, and for thirty years you told people you were a financial advisor in Scranton. You told them you took care of families. You said it so often you believed it.\n\nYou loved your brother Danny. Danny poured concrete, coached Little League, cosigned the loan on your first office on Linden Street. When your clients' money started going into the apartment complex in Jim Thorpe instead of index funds, you used Danny's retirement account to cover the gaps because he was the only one who wouldn't check the statements. You told yourself it was a bridge. Bridges need paying back, and the complex would pay.\n\nThe complex didn't pay. Your wife Colleen found the second set of statements in the gun safe, the real ones, and you told her Danny had access to the safe too. You said it without pausing, and she believed you, and Danny stopped returning Colleen's calls, and then Danny stopped returning anyone's calls.\n\nYou sat next to Colleen at the funeral and let her put her hand on your knee.\n\nYou kept telling clients you took care of families. You kept telling yourself the investigators would find the money if you could just get one building to close. You got a copy of the complaint the SEC filed — United States v. Doherty — and read your own name eleven times.\n\nYou were fifty-five. You told people you were healthy, that your father had lived to ninety. Colleen had left in March. Your daughter Kara took Danny's side, which you called disloyalty, out loud, at Thanksgiving, before she stopped calling.\n\nOn a Tuesday in October you were shredding the Linden Street documents when your left arm went numb. You went to the desk drawer for the aspirin. The paramedics found the drawer open and the shredder still running.",
+    "gender": "male",
+    "age": 55,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "17_2026-10-01_glm-at-ten",
+      "index": 4
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": null,
+      "script": "glm_at_ten.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nAge: 55\nGender: male",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 306,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "17"
+  ],
+  "notes": ""
+}

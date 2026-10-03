@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_19c82d",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved Daniel, your son, more than anything. You told yourself that—every morning with your coffee, every night when you stared at the ceiling. You said it to his mother, Lillian, during the divorce hearings. You said it to the judge, to the neighbors, to the therapist you made Daniel see after the night he stopped speaking to you.\n\nYou were not cruel, you told people. You were strict. You wanted him to be strong. When he cried at sixteen after you threw his sketchbook in the trash, you said, “No son of mine’s going to waste his life drawing.” When he flunked out of community college, you cut him off, said he needed to learn responsibility. You told him he was weak, soft, selfish—each word measured, deliberate, like you were chiseling stone.\n\nThe truth is, you couldn’t stand looking at him and seeing the parts of yourself you’d buried: the fear, the doubt, the part that wanted to make things, not money. So you broke him down, bit by bit, until he stopped trying. Until he stopped speaking. Until he stepped in front of the Metro bus on a rainy Tuesday morning just after you told him, “You’ll never be anything.”\n\nLillian called you that night. Her voice flat. “Daniel’s dead.” You didn’t cry. You told her, “She was too soft on him. That’s what this world does to weak people.”\n\nYou want people to think you’re a man of principle. A provider. A realist. You keep a photo of Daniel at eight years old on your desk—smiling, holding a baseball glove you bought him. You tell people he was good at sports.\n\nThe secret is, you kept the torn pages of his sketchbook in a shoebox in the garage. You looked at them sometimes. You even cried once, tracing a drawing he made of you—older, tired, but with kind eyes. You burned the box the next day.",
+    "gender": "male",
+    "age": 55,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "15_2026-09-29_five-questions-at-300",
+      "index": 9
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "five_at_300.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nAge: 55\nGender: male",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 319,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "15"
+  ],
+  "notes": ""
+}

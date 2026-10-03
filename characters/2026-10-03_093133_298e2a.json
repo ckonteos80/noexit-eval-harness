@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_298e2a",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You are fifty-one and the man who runs the Bethany Wren Foundation. You named it after your daughter, who drowned at nine in the reservoir at Cobb's Landing while you were on your phone with your broker. The foundation gives swim scholarships to poor kids in her name. Your face is on the brochures. Grieving fathers hold bake sales for you.\n\nYou have taken four hundred and thirty thousand dollars out of it over eleven years. Pool permits that were never filed. A water-safety curriculum you paid yourself to write and never wrote. The accountant, Priya Nair, asked you twice about the vendor in Delaware. You told her the state required a third-party administrator, and she was twenty-six and believed you.\n\nYour wife, Karen, still does the newsletter. She thinks the mortgage got easier because you were promoted at Hartwell Insurance, where you also work, denying claims. You denied a man named Elias Boone his roof after the tornado, and you remember his voice, and you do not think about his voice.\n\nYou tell yourself you were going to put it back. You tell Karen you're keeping Beth alive. You tell the galas that grief made you a better man.\n\nElias Boone sat outside your office for three days last October. You took the stairs.\n\nPriya finally called the state board on a Tuesday. You were home by four, deleting the ledger, when Karen came in holding the second set of bank statements Priya had mailed her. You stood up from the desk. Your left arm went numb. You sat back down in the desk chair and the last thing you saw was the file on the screen, 96% deleted, Karen saying your name from very far away.",
+    "gender": "male",
+    "age": 51,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "17_2026-10-01_glm-at-ten",
+      "index": 5
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": null,
+      "script": "glm_at_ten.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nAge: 51\nGender: male",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 288,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "17"
+  ],
+  "notes": ""
+}

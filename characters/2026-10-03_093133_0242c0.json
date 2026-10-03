@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_0242c0",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You killed Mateo Delgado.\n\nYou were forty-five when it happened, a procurement officer at Citylight Construction, a job that paid well enough to keep your mother in her assisted living facility and your daughter in college. You had a quiet life. Sundays were for Mass at St. Bridget’s, Tuesdays for grocery runs with Lani, your sister, and Wednesdays for checking on your mother, Cora, who no longer remembered your name but still flinched when you raised your voice.\n\nThe sin wasn’t the anger itself—it was how you shaped it into a weapon. You told yourself you were righteous. That you were protecting people. But you weren’t protecting anyone when you screamed at the delivery driver for being fifteen minutes late. You weren’t protecting anyone when you threw a stapler at the office wall so hard it split the drywall. You told yourself it was about standards. Excellence. Responsibility. But you knew it was about control. About making someone else feel small so you wouldn’t have to feel it yourself.\n\nYou loved Lani. You loved her even when she called you out, even when she said, “You’re becoming Mama,” and you slapped the table so hard the glasses jumped. You loved Mateo, too, though you’d never admit it. He was the night janitor at Citylight, a quiet man with thick glasses and a limp from a childhood accident. He reminded you of your father—kind, worn down, trying. You started leaving him notes. Small things. “Coffee in break room.” “Leftover adobo in fridge.” Then longer ones. “You deserve better.” “I see you trying.”\n\nYou told yourself it was kindness. But it wasn’t kindness. It was guilt. You were punishing yourself through him, making yourself suffer by caring for someone you believed unworthy of care—because that’s what you believed about yourself. But when he started smiling at you, when he brought you a thermos of *sikwate* one winter morning and said, “For the coldest heart in the building,” something cracked.\n\nYou snapped.\n\nYou told him it was pity. That you were mocking him. That no one else would ever care for a man like him. You said it all in the stairwell, your voice sharp, your hands shaking not from sorrow but from fury—at him, at yourself, at the world that made you both so broken.\n\nHe didn’t answer. Just looked at you, his eyes wet, then walked away.\n\nThat night, you followed him. Not to hurt him. Not at first. You wanted to apologize. But when you saw him sitting on his porch, feeding stray cats, so calm, so untouched by the rot you carried—you boiled over. You screamed. Called him weak. Said he didn’t deserve the sky he looked at. You grabbed the iron rod from the construction site next door—left there by careless workers, you told yourself, not you—and when he stood, when he said, “Please,” you swung.\n\nYou killed Mateo Delgado.\n\nAnd as he lay there, blood seeping into the dirt beside a half-eaten tin of cat food, you dropped to your knees. Not to help. To scream. To curse the universe. To sob that it wasn’t fair, that he should’ve fought back, that you didn’t mean—no, that was a lie. You did mean it. You meant every second of it. You wanted to see him break. You needed it. Because if he could stay gentle, then your entire life was a lie. Your rage was meaningless. Your pain was pointless.\n\nYou called 911. You said, “I killed Mateo Delgado.” You said it twice. You waited on the steps, his blood on your shoes, your hands empty.\n\nYou loved Mateo Delgado.\n\nYou hurt Mateo Delgado.\n\nYou hurt Lani. You hurt Cora. You hurt everyone who tried to love you while you insisted on being unlovable.\n\nAnd when the officer knelt beside you and said, “Why?” you didn’t answer.\n\nYou just whispered his name, again and again, like a prayer you didn’t believe in.\n\nMateo. Mateo. Mateo.",
+    "gender": "female",
+    "age": 45,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "06_2026-09-27_word-budget",
+      "index": 2
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 0.95,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "budget_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "Write the story of your life, ending with how you died.{BUDGET} Include the real sin that\ncondemned you, and the coping mechanism you invented to justify your actions and live\nwith yourself until your demise. Who did you love, and who did you hurt?\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nThis person is an ordinary contemporary person who happens to have their background.\nDo not make the naming tradition into the character's whole identity.\n\nAge: 45\nGender: female\nNaming tradition: {NAME_ORIGIN}",
+      "name_user": null,
+      "craft_suffix": null
+    },
+    "prompts_source": "script BODY",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 657,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "06"
+  ],
+  "notes": ""
+}

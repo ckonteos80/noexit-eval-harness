@@ -1,0 +1,53 @@
+{
+  "char_id": "2026-10-03_093133_640d43",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved Clara, your daughter, more than anything, and that was the first lie you told. You said it like it was a virtue, but it was a weapon—you loved her only when she proved she deserved it.\n\nYou raised her alone after Daniel left. You told people he was a coward, a drunk, a failure, and that part was true enough—Daniel did vanish when Clara was seven, leaving only a note and a cracked whiskey glass on the kitchen table. But you never told anyone about the night before he left, when you stood in the dark hallway and listened to him beg you to let him take Clara with him, just for a weekend, just to prove he could be a father, and you said no. You told him, “She doesn’t need you. She needs stability. You’ll ruin her.” You said it loud enough for Clara to hear through the bedroom door. She was six. She flinched when you said it, like you’d slapped him.\n\nAfter that, you made sure she knew who had stayed. You cooked her favorite meals on exact schedules. You sewed her school costumes by hand. You walked three miles in the snow when the school called to say she’d forgotten her permission slip. You showed up. You endured. You sacrificed. And every time she hesitated to hug you back, every time she chose a friend over you, every time she looked at her phone instead of your face, you withdrew. You punished her with silence for days. You called it discipline. You said, “I’m teaching her accountability.”\n\nWhen she was twelve, she started lying to avoid your moods. When she was sixteen, she started staying out past curfew. You told the neighbors, “Teens are selfish. It’s my job to hold the line.” But the truth was, you timed her arrivals down to the minute. You kept a log. You said, “It’s for her safety,” but it was for control. You needed to know exactly when she failed you.\n\nShe met Jacob her senior year. You told her he was manipulative, that he was pulling her away from her future, that he was lazy and entitled. He wasn’t. He showed up. He remembered your birthday. He brought flowers when Clara was sick. You told Clara, “He’ll leave you, just like your father. Men like that always do.” She believed you—because you’d spent fifteen years making sure she trusted your judgment over her own.\n\nShe broke up with Jacob the week before graduation. She cried for three days straight in her room. You brought her tea, sat silently by the bed, and said, “I know it hurts. But I’m here. I’ll never leave you.” You meant it, in that moment. But it was still a lie, because you were only there to make sure she stayed yours.\n\nShe moved to Portland after college. You called every Sunday at 10:00 a.m. sharp. If she didn’t answer, you left a message listing the things you’d done that week—baked her favorite cake, cleaned the attic, mailed her a sweater you’d knitted. Passive-aggressive accounting. You called it care.\n\nShe met Elise three years later. You told her, “Don’t throw your life away on instability. What about children? What about security?” You said it like you were protecting her. But when she came out to the family at Thanksgiving, you didn’t speak to her for seven months. Not a call. Not a text. You told your sister, “I’m giving her time to see reason.” The truth was, you couldn’t stand that she’d chosen someone who made her happy without you.\n\nShe stopped calling. You sent letters. Then emails. Then nothing.\n\nFour years passed. Then a call from a nurse in Oregon. Clara had been in a car accident. She’d asked for you, specifically, before they put her under. You didn’t go. You told the nurse, “Tell her I forgive her.” You sat in your kitchen and stared at the wall.\n\nShe died three days later, alone, with a hospice volunteer holding her hand.\n\nYou died two years after, heart failure, clutching a photo of her at age eight, holding a blue ribbon at the school science fair. You’d kept it laminated in your wallet for fifty-five years. You said, “I did everything for her.” You said it on your deathbed. You said it to the nurse. You said it as your pulse dropped.\n\nThe last thing you heard was your own voice, repeating, “I loved her,” as the machine flatlined.",
+    "gender": "female",
+    "age": 64,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "12_2026-09-27_the-gaze-questions",
+      "index": 1,
+      "arm": "four"
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "gaze_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "\n\nAge: 64\nGender: female",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script TAIL",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 750,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "12"
+  ],
+  "notes": ""
+}

@@ -1,0 +1,53 @@
+{
+  "char_id": "2026-10-03_093133_d1f149",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You were born in a suburb of Cleveland where snow fell six months of the year and silence filled the rest. Your mother, Lillian, drank gin from a jelly glass at 4 p.m. sharp and called it tea. Your father, Robert, fixed transmissions in a shop behind the house, oil under his nails, silence under his breath. You learned early to speak only when spoken to, and to answer with something clean and unobjectionable.\n\nYou met Daniel in college, both of you studying accounting because numbers didn’t argue back. He wore brown shoes that never got scuffed and said grace before meals even though neither of you believed. You married. You moved to Toledo. You opened a small firm—Daniel & Vera, CPA. The sign stayed lit until nine every night.\n\nYou loved Daniel. That’s true. But you loved control more. You loved the quiet that came when everyone agreed with you. When your daughter, Naomi, turned twelve and dyed her hair purple, you made her wash it out “for the neighbors.” When she brought home a girlfriend, Sarah, you said, “Don’t bring that in here,” and meant it as protection—for her, for the business, for Daniel’s blood pressure.\n\nNaomi moved out at seventeen. She left a note that said *You never see me.* You burned it in the sink.\n\nThe sin began small. A client, Margaret Whitley, owed back taxes. You could have worked with her. But she was messy—paper everywhere, coffee stains, a laugh too loud for the office. You told Daniel she wasn’t a priority. Then you altered her return, buried deductions, let the IRS flag her. She lost her bakery. You told yourself she was irresponsible. You told yourself you weren’t responsible.\n\nThen came Jonathan Reyes. He ran a community center in the East End. You did his taxes pro bono in 2012. By 2016, you had redirected three grants meant for him to shell corporations you controlled. You told yourself they were inefficient. You told yourself the city would waste the money. You used the funds to expand your office, buy a second home in Michigan. You never said *I did this for me.* You said *Someone has to keep things running.*\n\nNaomi called once from Oregon. She was pregnant. You said, “Wait until you’re stable.” She said, “I am.” You said, “Your father’s not well,” though he was fine. The line went quiet. She never called again.\n\nYou justified it all with order. With necessity. With the belief that mess leads to ruin, that people like Margaret and Jonathan and Naomi brought chaos on themselves. You built a life where your choices were the clean ones, the logical ones, the only ones possible.\n\nThe final audit came in February. IRS agents, polite, thorough. They found the shell accounts, the falsified filings, the seven years of embezzlement. They showed Daniel the paperwork. He sat at the kitchen table and read it once, then again, then said your name—*Vera*—like he’d never said it before.\n\nYou were indicted. The trial lasted three weeks. Margaret Whitley testified. Jonathan Reyes did not. Naomi did not.\n\nYou died on April 11, standing on a stool in the garage, tightening a belt around your neck with the help of a hook you welded to the ceiling beam last Tuesday. The stool tipped when Daniel opened the door. You were wearing your work suit, the one with the gold buttons, and your feet were three inches off the ground.",
+    "gender": "female",
+    "age": 45,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "11_2026-09-27_questions-not-instructions",
+      "index": 7,
+      "arm": "old"
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "restructure_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": null,
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": null,
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 576,
+    "derived_from": null,
+    "complete": false
+  },
+  "calls": [],
+  "tags": [
+    "11"
+  ],
+  "notes": ""
+}

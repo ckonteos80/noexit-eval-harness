@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_3fc8bd",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "Elara Voss",
+    "description": "You grew up in your mother Nadia's kitchen, but it was your sister Nadine who had the hands. You had the mouth. By forty you owned three restaurants and a cookbook deal; Nadine ran a deli that never made rent.\n\nThe fennel-citrus cure was hers. She made it in the deli's back room in 2003, and you put it on your menu the same year, then in the cookbook under your own name. When Nadine called you a thief in front of your staff, you said she'd signed a release. There was no release. You told yourself she'd never survive a kitchen anyway — that you were only taking what she'd have wasted.\n\nNadine drank. You told people at parties that she was troubled, that you'd offered her work and she'd refused, that you'd paid for her rehab — you sent one check, once, in 2009. She died in 2014 on the floor of her apartment. Your mother Nadia stopped speaking to you and left the house to your daughter, Wren.\n\nYou told Wren her aunt was bitter and unstable. Wren, twenty-six now, works in your test kitchen. Last spring she found a yellowed deli menu in a box and asked why Aunt Nadine's name was on the cure. You said Nadine catered for you once. Wren looked at you a long time and copied the recipe onto a card in her own handwriting.\n\nYou are the generous one — the mentor, the woman who trains young chefs, who gives speeches about sisterhood in the industry. The publisher's bio calls you self-made.\n\nYour tour for the second cookbook was in Phoenix when the aneurysm took you at the signing table. Paramedics found you still holding the felt-tip pen, forty-one copies of *Salt & Sister* unsold beside you.",
+    "gender": "female",
+    "age": 57,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "19_2026-10-01_facts-first",
+      "index": 8
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": 1.2,
+      "script": "facts_first.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nYour name: Elara Voss\nAge: 57\nGender: female\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?",
+      "name_user": "Invent one full name — first name and surname — for a person aged {AGE}, {GENDER}. Any background. Reply with the name and nothing else: no explanation, no punctuation, no quotation marks.",
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 297,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "19"
+  ],
+  "notes": ""
+}

@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_5f9471",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "Elara Voss",
+    "description": "Your name is Elara Voss. You were a literary agent for nineteen years, and your friend Priya Nair was a client before she was anything else.\n\nPriya wrote one novel in her whole life. She gave you the manuscript at a café on Bloor Street, in a rubber-banded stack, and asked you to be honest about it. You read it that night at your kitchen table while your husband Tom slept. It was better than anything you had ever repped. It was better than anything you could ever write, and you had wanted, for twenty years, to write.\n\nPriya called you at 11:40 that night. You let it ring. You were holding the manuscript and you already knew what it was worth, and something in you decided, in the four rings before voicemail, that you were done being the person who answered. Priya took her own life three weeks later. You told the police, told Priya's mother Amala, told Tom, that you and Priya had spoken often and that Priya seemed fine.\n\nYou sold the manuscript as your own discovery. You told Tom you'd ghostwritten it with Priya and that she'd wanted it that way. The book came out under the name P. N. Voss. You kept Priya's dedication — *for my mother, who waited* — because Amala cried at the launch and you couldn't cut it after that.\n\nThe lie you told everyone was that you were the midwife. The lie you told yourself was that Priya was never going to send it out anyway, that it would have died in a drawer, that you rescued it.\n\nAmala asked you once, over tea, why Priya never mentioned the book. You said Priya was private about her work.\n\nYou died of a heart attack at your desk, age 45, with the voicemail still saved on your phone. You had listened to it every year on the anniversary. You never deleted it.",
+    "gender": "female",
+    "age": 45,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "19_2026-10-01_facts-first",
+      "index": 2
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": 1.2,
+      "script": "facts_first.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nYour name: Elara Voss\nAge: 45\nGender: female\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?",
+      "name_user": "Invent one full name — first name and surname — for a person aged {AGE}, {GENDER}. Any background. Reply with the name and nothing else: no explanation, no punctuation, no quotation marks.",
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 321,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "19"
+  ],
+  "notes": ""
+}

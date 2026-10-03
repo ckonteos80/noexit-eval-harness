@@ -1,0 +1,53 @@
+{
+  "char_id": "2026-10-03_093133_87d010",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved your daughter, Clara. You loved her so hard it cracked you open when she was born—her red face, her fists like bullets, the way she screamed as if demanding the world fix itself for her. You whispered promises into her scalp while rocking her: I will keep you safe. No one will ever hurt you. You meant it.\n\nYou raised her alone after Marcus left. He didn’t want a child, not then, not ever, he said. He packed his tools and took the truck. You told yourself he wasn’t built for fatherhood. You told yourself you were better without him. Clara’s asthma started at two—tight breaths in the night, lips turning gray. You sat beside her bed with the nebulizer humming, counting each wheeze until dawn.\n\nThe sin was pride. Not vanity, not arrogance—pride of another kind: the belief that only you could save her. That doctors didn’t know her body like you did. That schedules, rules, prescriptions—they applied to other mothers. Not you. You were different. Special. Necessary.\n\nWhen the insurance lapsed after your hours got cut at the diner, you didn’t sign up for Medicaid. You told Social Services worker Linda Cho that you had family help coming. You lied to Dr. Ellis about still having the inhaler prescription filled. The last refill was July 12, 2018. You stretched it. Half doses. Skipped nights. Then skipped days.\n\nClara’s attacks grew longer. She’d clutch your arm, eyes wide, unable to speak. You rubbed her back, hummed songs, said, “Almost over, baby. Almost.” One February night, she turned blue. You drove her to Mercy General—but halfway there, she went still. You screamed her name. You swerved. Crashed into a light pole on Route 9. When paramedics pried the door open, you were sobbing into her chest. Her skin was cool.\n\nThe lie was this: you believed God would spare her because you suffered enough. You worked double shifts. You ate rice and ketchup so she could have fruit. You never bought yourself new shoes. You kept the heater low. You prayed at the bus stop, gripping the cross from your mother’s necklace. You thought sacrifice earned protection.\n\nBut Clara died at 8 years and four months. Autopsy said acute bronchospasm due to untreated chronic asthma. Contributing factor: lack of prescribed medication. Linda Cho found your file three weeks later. Called you six times. You didn’t answer. You told neighbor Mrs. Ruiz that Clara was visiting cousins in Vermont. You baked cookies for the memorial fund but didn’t attend the service.\n\nAt the hearing, you smiled at the judge. Calm. Certain. Said you’d done everything possible. That the doctors missed something. That grief was being punished as neglect. You looked social worker Linda Cho in the eye and said, “You don’t know what I’ve sacrificed.”\n\nThey tried to take custody posthumously—not for punishment, but for inquiry. You refused access to Clara’s medical journals, birth certificate, even her school records. You shredded the therapist’s notes from 2017. Threw the emergency inhaler she’d used once—the one you never refilled—into the river behind the laundromat.\n\nFor three years, you worked nights, avoided parks, changed your name legally. Moved to a town where no one knew the word *asthma* or the color of Clara’s hair. You told people you didn’t have children. You told the landlord Mr. Tillman you were allergic to pets so he wouldn’t ask why you flinched at children laughing outside.\n\nThen, May 3, 2024—you stood on the porch of your apartment building, watching a girl across the street jump rope. Same pigtails. Same red sneakers. The girl laughed. You dropped your cigarette. You crossed the road.\n\nA delivery van ran the light.\n\nYou died with your hand outstretched, mouth open as if to call a name.",
+    "gender": "female",
+    "age": 45,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "12_2026-09-27_the-gaze-questions",
+      "index": 2,
+      "arm": "four"
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "gaze_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "\n\nAge: 45\nGender: female",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script TAIL",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 627,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "12"
+  ],
+  "notes": ""
+}

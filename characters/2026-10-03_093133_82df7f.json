@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_82df7f",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You were the one who made it. Out of Millhaven, out of the rented duplex on Kessler Street, out first. That was the whole point of you.\n\nYou loved your younger brother, Danny. You loved him the way you loved proof that you were better than where you came from, because Danny stayed, and you left.\n\nIn 2008 you owned Kessler Contracting and Danny gave you his retirement — $214,000 — to buy in as your partner. You told him the firm was solid. You told yourself the same thing, every morning, in the truck. The truth was the firm had been bleeding since 2006: two developments in Sadler Township that wouldn't sell, a bank you were slow-rolling, suppliers you were juggling. Danny's money didn't save Kessler Contracting. It paid your mortgage on Halloway Road for three years and the down payment on the boat you named *Second Chance*.\n\nDanny lost the house on Pike Avenue. Marcy divorced him in 2011. He drives a delivery route now, out of the depot on Route 9. At Thanksgiving you carve the turkey and tell the table you did everything you could, that the crash took everyone, that you lost the most.\n\nYou want people to see the man who carried the family. The one who bought Mom's wheelchair. The one Danny could always call — though Danny stopped calling in 2013.\n\nThe secret is simple: you knew. When Danny signed, you knew the firm was dead, and you let him sign anyway, because his money meant your house, your boat, your face. You chose the face.\n\nIn March you drove past the depot on Route 9 and saw Danny loading the truck. You sat in your car in the lot for forty minutes.\n\nYou drove home. In the kitchen, reaching for the phone, you felt the crushing weight cross your chest and go down your left arm. You dialed Danny's number and got as far as the area code.",
+    "gender": "male",
+    "age": 55,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "16_2026-09-29_glm-5-3",
+      "index": 4
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": null,
+      "script": "glm_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nAge: 55\nGender: male",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 327,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "16"
+  ],
+  "notes": ""
+}

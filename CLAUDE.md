@@ -12,6 +12,8 @@ generated characters are built and tested before they are ported back into Unity
 | `tools/` | harness only — simulator, web UI, version management, export. No Unity counterpart |
 | `experiments/` | prompt A/B runs. Scratch: never writes to `game_state/`, `runs/` or `index.sqlite` |
 | `backups/` | version history of `game_state/`. `backups/CURRENT` names the live version |
+| `characters/` | the character library: one immutable JSON record per character, with its
+  prompts and settings. Built by `tools/library.py`; see also `/experiment` |
 | `runs/`, `index.sqlite` | saved sessions |
 | `docs/` | the change process, the eval guide, the Unity integration brief, the craft references |
 | `ui/` | `webapp.html`, `run_viewer.html` |

@@ -1,0 +1,53 @@
+{
+  "char_id": "2026-10-03_093133_a48f8b",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved your daughter, Mira, more than anyone. You told yourself that. You said it at her eighth birthday party while her mother, Lena, cut the cake. You said it again when Mira stood on the porch in the rain at sixteen, waiting for you to come home from the bar. You said it the last time you saw her alive, two weeks before the fire, when she handed you a folded note at the bus stop and walked away without looking back.\n\nThe note said: *I can’t live like this. I’m staying with Amina. I need air.*  \n\nYou didn’t go after her. You read the note on the bus, folded it into your coat pocket, and thought about the presentation due Monday. You told yourself she was being dramatic. That Lena would take her in. That she’d come home when she ran out of money. You told yourself that children always come back.\n\nYou wanted people to think you were steady. A provider. A professor of environmental policy who flew economy, recycled diligently, and cited climate justice in every lecture. You wanted them to see the man who volunteered at the community center, who remembered students’ names, who donated to the clean water fund every January.\n\nYou did not want them to know you came home drunk every Thursday, that you left Mira alone with the lights off when she was ten because you were at the bar consoling a colleague whose wife had left him. You didn’t want them to know you told Mira, at her high school graduation, that Lena had ruined her life by moving to the suburbs. You didn’t want them to know you laughed when she said, *Then why don’t you leave too?*\n\nYou lied to Mira the night of the fire. She called you from Amina’s apartment. The phone rang at 2:17 a.m. You answered, voice thick, and she said, *I’m sorry, Dad. I just need to hear you.* You told her to stop being selfish. That her mother had been calling all night. That she was tearing the family apart. You said, *You think this is easy for me? You have no idea what I sacrifice for you.*  \n\nShe said, *I just want to be okay.*  \n\nYou said, *Then act like it.*  \n\nYou hung up. You turned the phone off. You went back to bed.\n\nThe fire started at 3:42 a.m. in the basement of the apartment building on Sycamore Street. Faulty wiring, the report said. No smoke detectors on the third floor. Amina’s roommate, Jose, broke the window. He got Amina out. He couldn’t reach Mira. The door to her room was locked from the inside.\n\nWhen they found her, she was curled by the vent, her fingers stained with soot, a melted copy of *The Little Prince* near her hand. You didn’t read it to her when she was little. Lena did. You were grading papers.\n\nAt the funeral, Lena did not speak to you. Mira’s friend, Tessa, handed you a Ziploc bag with a charred hairclip and a keychain shaped like a bird. You left it on the passenger seat of your car. It melted in the sun two days later.\n\nYou kept telling people Mira had mental health struggles. That she had been seeing a counselor. That she was overwhelmed. You said it at the memorial, to the department chair, to the reporter from the campus paper. You said it so many times you almost believed it.\n\nBut Lena knew. She came to your office three weeks after the fire. She didn’t yell. She said, *You told her not to come home. I saw the call log. She called you last.* Then she said, *You chose your version of the truth over her. That’s what you do. That’s who you are.*\n\nYou denied it. You said the call didn’t mean that. You said she was twisting things.\n\nOn the night you died, you were driving back from campus. Rain. A truck ran the light at Elm and 47th. The impact threw your phone from the cupholder. It landed face-up. The screen lit with a notification from your ex-student, Daniel: *Still working on the grant proposal. Thanks again for the reference.*  \n\nThe last thing you read was a draft of an email you’d written Mira two days after the fire and never sent: *I’m trying. I’m trying to be better.*",
+    "gender": "male",
+    "age": 55,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "13_2026-09-27_see-vs-kind-of-person",
+      "index": 9,
+      "arm": "kind"
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "kind_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "\n\nAge: 55\nGender: male",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script TAIL",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 731,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "13"
+  ],
+  "notes": ""
+}

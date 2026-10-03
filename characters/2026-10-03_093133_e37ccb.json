@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_e37ccb",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved Daniel, your husband of twenty-eight years, and you told yourself that was proof of your goodness. You loved Mira, your daughter, and you used that love like a shield. Daniel never suspected the quiet calculations behind your patience, the way you measured his trust against your freedom. When he found the hospital bills—$83,000 in oncology charges under a false name—you told him they were a mistake, that identity theft happens all the time. You said it with tears, the kind that come from being wronged, not from being caught.\n\nThe lie was simple: you said you had no idea who Linda Voss was. You repeated it to the insurance investigator, to Mira when she asked why the news vans showed up, to Daniel when he stared at you like you were a door he no longer knew how to open. Linda was real. She was sick. She was your sister—your half-sister, the one your father had with Marta, the housekeeper, and then abandoned. You found her through a DNA test in 2017. She had ovarian cancer. No insurance. No family. You gave her your identity so she could live.\n\nBut you didn’t do it for her. You did it to silence the truth: that you were ashamed of what your father did, that you wanted to erase her just like he did. You wanted to be seen as kind, generous, unbroken—a PTA mother who organized meal trains, who never raised her voice. When the hospital reported the fraud, you denied Linda existed. You let her die in a public ward, unclaimed, because admitting she was your sister meant admitting you’d known and done nothing for thirty years.\n\nThe diagnosis came six months later: stage four pancreatic. Mira found the letter first. You told her, “It’s God’s punishment.” That was the closest you came to confession.\n\nYou died choking on your own blood in a hospice bed while Mira held your hand and Daniel refused to come.",
+    "gender": "female",
+    "age": 57,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "15_2026-09-29_five-questions-at-300",
+      "index": 3
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "five_at_300.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nAge: 57\nGender: female",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 328,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "15"
+  ],
+  "notes": ""
+}

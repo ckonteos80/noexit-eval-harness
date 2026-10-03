@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_e87cae",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "Elena Martinez",
+    "description": "You married Rafael Martinez at twenty-two, divorced him at thirty-one, and kept the name out of spite. You had one daughter, Daniela, and you raised her alone in a two-bedroom house on Callahan Street.\n\nDaniela was sixteen when she started dating Marcus Webb, nineteen, worked at his uncle's tire shop. You told her he was trash. You told everyone he was trash.\n\nThe night of October 12th, Daniela said she was moving in with Marcus. You followed her into the upstairs hallway. You grabbed her arm. She pulled away, and you pushed her — once, open-handed, into the banister — and she went over it and landed on the landing below with a sound you played over and over for the rest of your life.\n\nWhen the paramedics came, you told them Marcus pushed her. He'd been in the kitchen. His fingerprints were on the railing because he'd painted it that summer. The jury gave him nine years. You sat in the front row every day of the trial in your black dress. The local paper ran a photograph of you holding Daniela's photograph. Neighbors brought casseroles. You told everyone you were the mother who fought for justice.\n\nYou told yourself it was an accident that Marcus caused — that if he'd never touched her, she'd never have been in that hallway to defy you. You said it so many times it stopped being a lie and became the shape of your memory.\n\nMarcus wrote you letters from Ellsworth Correctional. You burned them unread.\n\nAt your church, you ran the grief support group. You were known as the strongest woman in the parish.\n\nNine years is a long time. Marcus came up for parole in year six, and his lawyer, Anna Kowalczyk, subpoenaed your medical records — the antidepressants, the blood work from the hospital that night, your blood alcohol level of point-one-nine.\n\nYou died at forty-five, falling down your own staircase. You'd been drinking Merlot straight from the bottle.",
+    "gender": "female",
+    "age": 45,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "19_2026-10-01_facts-first",
+      "index": 7
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": 1.2,
+      "script": "facts_first.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nYour name: Elena Martinez\nAge: 45\nGender: female\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?",
+      "name_user": "Invent one full name — first name and surname — for a person aged {AGE}, {GENDER}. Any background. Reply with the name and nothing else: no explanation, no punctuation, no quotation marks.",
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 330,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "19"
+  ],
+  "notes": ""
+}

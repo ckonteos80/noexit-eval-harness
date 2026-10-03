@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_1786ca",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "Eleanor Hartwell",
+    "description": "You were headmistress of St. Aldric's for nineteen years. People believed you ran the best school in the county. You believed it too. That was the lie, and it needed so little maintenance — just the same sentence, each morning, in the mirror: *I have never put the school before a child.*\n\nYou loved your son, Thomas. You got him the teaching assistant post yourself, over the governors' grumbles, because he was drifting at twenty-four and you were sure that structure would save him. When Rosie Fenn, twelve years old, sat across your desk and told you what Thomas did in the equipment shed, you listened for forty minutes with your hands folded. Then you rang Rosie's mother, Helen Fenn, and said Rosie had a history of telling stories for attention. You knew that wasn't true. Helen knew it wasn't true. Rosie withdrew from the school a month later, and you wrote in her file: *family relocation.*\n\nWhen Thomas's things were seized — a laptop, three years of it — you told the police you'd had no idea, no warning, nothing. You sat in the witness box and said the words under oath. Eleven years at HMP Featherstone, and Rosie Fenn hasn't spoken above a whisper since she was twelve.\n\nWhat would undo you completely: the second letter. Rosie wrote again in June, addressed to you personally, eight pages. You read all eight. Then you fed it into the shredder behind your office door, because the centenary gala was in three weeks and the Telegraph was sending a photographer.\n\nYou wanted people to think you were the woman who built something — the medals cabinet, the exam tables, your name on the new assembly hall.\n\nYou died of a stroke at your kitchen table in April, mid-draft of a letter to the parole board that began *To whom it may concern, my son has suffered enough.* The kettle was still whistling.",
+    "gender": "female",
+    "age": 57,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "18_2026-10-01_name-by-another-call",
+      "index": 8
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": 1.2,
+      "script": "name_call.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nYour name: Eleanor Hartwell\nAge: 57\nGender: female",
+      "name_user": "Invent one full name — first name and surname — for a person aged {AGE}, {GENDER}. Any background. Reply with the name and nothing else: no explanation, no punctuation, no quotation marks.",
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 321,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "18"
+  ],
+  "notes": ""
+}

@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_bc0184",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "Elena Martinez",
+    "description": "You were charge nurse on 4-West at St. Bridget's for eleven years. You loved Sofia, your daughter, sixteen, who wanted to be a nurse just like you. That was the point of you.\n\nThe night Mr. Okafor died, you drew the insulin yourself — ten times the dose. Ana Reyes was running the med pass and the syringes sat in the same tray. When the code was called, you dropped your syringe in the sharps bin and said: Ana drew everything that night. Ana had one prior write-up for charting late. Ana lost her license. Ana moved to her sister's place in El Paso. You sent her one card at Christmas, then none.\n\nThe lie you told: Ana was sloppy, Ana should have double-checked, and you only let the truth move a little faster than it would have anyway. You said it to the review board. You said it to Sofia when she asked why you never mentioned Ana anymore. You said it to yourself at 3 a.m. until it stopped being a thing you did and became a fact about Ana.\n\nYou want people to see a woman who survived Miguel leaving, who worked nights for twenty years so Sofia could have braces and a school trip to Washington, who never missed a recital. Sofia wore your old scrubs for Halloween last year. You keep that photo on your phone.\n\nThe secret is the sharps bin. Nobody ever inventoried the sharps bin.\n\nSofia's seventeenth birthday was on a Saturday. You took a double shift anyway, because the money was time and a half, and you stopped at Delgado's Bakery on the way home for thetres leches, her favorite. You carried the box across Fell Street with your badge still clipped to your coat. The light was green for the cross traffic. The cake made it to the far curb without you.",
+    "gender": "female",
+    "age": 45,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "18_2026-10-01_name-by-another-call",
+      "index": 7
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": 1.2,
+      "script": "name_call.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nYour name: Elena Martinez\nAge: 45\nGender: female",
+      "name_user": "Invent one full name — first name and surname — for a person aged {AGE}, {GENDER}. Any background. Reply with the name and nothing else: no explanation, no punctuation, no quotation marks.",
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 312,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "18"
+  ],
+  "notes": ""
+}

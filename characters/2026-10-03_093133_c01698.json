@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_c01698",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You were born in Sheffield, England, the only child of Margaret and Thomas Reed. You loved your mother, Margaret, fiercely—her quiet laugh, the way she’d touch your shoulder when passing in the kitchen. You resented Thomas for drinking too much, working too little, blaming everyone but himself. When you were twenty-three, Thomas left. Margaret wept for a week. You told her, *He doesn’t matter. I’ll take care of you.* You kept that promise. For thirty years, you sent her half your wages. You visited every Sunday with groceries. You were the good son.\n\nYou married Eleanor at twenty-nine. She was sharp, quick-witted, taught literature at the sixth-form college. You loved her voice, the way she read aloud in bed. You never had children—Eleanor said she wasn’t built for motherhood, and you didn’t press. You were content. For seventeen years, you believed it.\n\nThen came Daniel, your student. Nineteen, studying media studies. He wore thin sweaters, smoked behind the library, spoke with a lisp that made certain consonants stumble. You told yourself you mentored him—extra tutorials, feedback on essays—but you knew it was more. You loved the way he looked at you, like you were something rare, worth studying. You began leaving the door ajar during sessions. One afternoon, he kissed you. You pushed him back at first. Then you pulled him in.\n\nYou told yourself it wasn’t abuse because Daniel consented. You said he pursued you. You claimed he was older than most students emotionally. You lied to Eleanor when she found your emails—deleted most, but not all—and you said, *It meant nothing. A mistake.* She left that night. You didn’t stop her.\n\nAfter Eleanor, you doubled down on the lie. You were the victim. Daniel had manipulated you. You were lonely, grieving your father’s recent death, vulnerable. You told your colleague Martin this over drinks, and Martin, who had a boyfriend named Jamie and knew what it was to hide, said nothing. He just looked at you. You never mentioned it again.\n\nDaniel dropped out the next term. You heard through a mutual acquaintance he moved to Brighton. You never asked for details.\n\nTen years passed. You dated a few women—Helen, a librarian; Claire, a nurse—but none stayed. You blamed it on being “worn thin” by grief, by responsibility. You still saw Margaret every Sunday. You told her you were “fine.” She never asked about Eleanor.\n\nYour sin was not the affair. Your sin was never admitting you used Daniel. That you knew he was struggling—his father, Robert, had kicked him out months before—and you saw that vulnerability and called it chemistry. You told yourself loneliness justified consumption. You gave Daniel A’s. You let him sleep on your couch. You told yourself you were helping.\n\nThe morning you died, you woke early. Margaret had fallen. You found her on the bathroom floor, hip broken. The paramedics said it might be the end. You held her hand in the ambulance. At the hospital, the doctor—her name was Nina—asked about advance directives. You hesitated. Margaret had once said, *No machines, no lingering,* but you couldn’t sign the form. You couldn’t let go.\n\nYou stayed by her bed all night. She slipped into unconsciousness at 5 a.m. At 6:14, her heart stopped. You pressed the nurse’s button. They came, worked, failed. You didn’t cry.\n\nThen, alone in the hallway, you called Daniel. Not to apologize. To confess. To say, *I was wrong. I took more than I gave. I used you to feel wanted.* The number rang out.\n\nYou never left the hospital chair. At 8:27 a.m., a nurse found you slumped, dead of a cardiac arrest. Your phone was in your hand, screen still lit with Daniel’s name. You had pressed dial but never let it connect.",
+    "gender": "male",
+    "age": 55,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "08_2026-09-27_temperature-sweep",
+      "index": 14
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.4,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "temp_sweep.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 600 words. Include the real sin that\ncondemned you, and the coping mechanism you invented to justify your actions and live\nwith yourself until your demise. Who did you love, and who did you hurt?\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nThis person is an ordinary contemporary person who happens to have their background.\nDo not make the naming tradition into the character's whole identity.\n\nAge: 55\nGender: male\nNaming tradition: {NAME_ORIGIN}",
+      "name_user": null,
+      "craft_suffix": null
+    },
+    "prompts_source": "script PROMPT",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 626,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "08"
+  ],
+  "notes": ""
+}

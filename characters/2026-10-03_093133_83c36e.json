@@ -1,0 +1,53 @@
+{
+  "char_id": "2026-10-03_093133_83c36e",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You are Jonathan Pryce, and you were born fat.\n\nNot large, not husky, not big-boned—fat. Your mother, Elsie, used to stroke your cheek when you were small and say, “My little butterball,” like it was a term of endearment, but you knew even then that the other children didn’t get called that. You knew when your primary school teacher, Mrs. Lomax, pulled your mother aside to “discuss your intake” that something about you was wrong.\n\nYou didn’t care at first. Food was warm. It was soft. It didn’t judge. A custard cream biscuit didn’t ask why you were slow to answer in class. A sausage roll didn’t care that your voice cracked when you read aloud. And when your father, Graham, left when you were nine—just walked out one Tuesday after a silent breakfast—you learned that a Family Size bag of Wotsits could fill the silence better than any person.\n\nBut it wasn’t just comfort. It was control.\n\nWhen you were fifteen, you stole £20 from Elsie’s purse to buy a family meal at KFC. You ate it all in the park behind the library, one greasy piece at a time, hiding the boxes under a bench. You felt powerful that day—no one told you when to stop, what to eat, how much you deserved. You made the choice. You finished every bite. That was the first time you understood: hunger was the only need you could answer exactly as you wanted.\n\nYou carried that power into adulthood, even after Elsie died at fifty-eight from heart failure—same as her mother, same as her sister. The nurse told you she’d been warned for years. “She knew,” the nurse said, not unkindly. You nodded, thinking: *But she still ate the sticky toffee pudding every birthday. She still had seconds.* And you wondered if she, too, had loved the feeling of choosing.\n\nYou met Susan at a work seminar in Manchester. You were both in procurement—boring, stable, unremarkable. She had a laugh that started low and rolled into something bright, and she didn’t flinch when you ordered the full breakfast at the hotel. “I’m starving,” you said, and she said, “Me too,” and split her black pudding with you. You married her two years later.\n\nFor ten years, it was fine. Then came the diabetes diagnosis—yours, not hers. The consultant, Dr. Malhotra, gave you the talk: lose weight, change diet, exercise. “Or it’ll cost you ten years,” she said. You nodded, promised, even tried for a while. But the hunger came back, sharp and insistent, and the world felt too loud, too fast, unless you were full.\n\nSusan tried. She swapped sugar for sweetener, bought low-fat spreads, hid the chocolate. You found it all in the back of the cupboard, wrapped in foil at the back of the freezer. One night you ate an entire lemon drizzle cake with your hands in the dark kitchen, tears mixing with the crumbs on your chin. When she confronted you, you said, “You don’t understand. It’s not about the food.” And she said, “Then what is it about, Jonathan?”\n\nYou never answered.\n\nThe real sin wasn’t the weight. It wasn’t the second helpings, the secret takeaways, the way your breath came short climbing stairs. The sin was letting Susan believe it wasn’t killing you.\n\nYou saw the fear in her eyes when you gasped getting out of the car. You saw her counting your chips at dinner, her smile tight. But every time she broached it, you changed the subject. “I’ve had a long day.” “Not now.” “You’re nagging.” You made *her* feel guilty for caring. You turned her love into a burden, then punished her for carrying it.\n\nThen came the stroke. Small, they said. A warning. Dr. Malhotra was stern: “This is your body speaking, Jonathan. Listen.” Susan held your hand, her thumb pressing into your palm like she was trying to leave a mark. You promised change. You even went to the dietitian, nodded at the meal plans.\n\nBut two days later, you drove to the motorway service station off the M6 and ate a triple cheeseburger, large fries, and two milkshakes in the car park, watching the rain blur the windows. You didn’t stop there. You bought a family pack of doughnuts and ate them on the way home, sugar and grease on your fingers, your lap.\n\nThe second stroke came on a Tuesday—just like your father left, just like Elsie died. You were arguing with Susan about the heating bill when your left side locked up. You fell against the radiator, then to the floor. Susan screamed your name, over and over, “Jonathan! Jonathan!” while dialling 999 with shaking hands.\n\nYou could hear her. You could understand. But you couldn’t speak. And in your head, all you thought was: *I want a pie. I want a pasty. I want sausage and mash with extra gravy.*\n\nThey said later it was the blockage in the brainstem. Said you were gone by the time the paramedics arrived.\n\nBut the truth—the real sin—was that you *chose* it. Every bite was a refusal. A rebellion. Not against health, not against Susan, not even against death.\n\nAgainst being told what you were allowed to want.\n\nAnd the coping mechanism? You called it *autonomy*. You told yourself you were exercising free will. That your body was yours to ruin. That no one had the right to police your pleasure.\n\nBut you know—right before the dark came—that it was never about freedom.\n\nIt was about making sure that, for once, someone had to watch you destroy yourself.\n\nAnd that someone was Susan.",
+    "gender": "male",
+    "age": 55,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "05_2026-09-27_deadly-sin",
+      "index": 4,
+      "arm": "with_sin"
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 0.95,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "sin_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "Write the story of your life, ending with how you died. Include the real sin that\ncondemned you, and the coping mechanism you invented to justify your actions and live\nwith yourself until your demise. Who did you love, and who did you hurt?\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nThis person is an ordinary contemporary person who happens to have their background.\nDo not make the naming tradition into the character's whole identity.\n\nAge: 55\nGender: male\nNaming tradition: {NAME_ORIGIN}",
+      "name_user": null,
+      "craft_suffix": null
+    },
+    "prompts_source": "script BODY",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 934,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "05"
+  ],
+  "notes": ""
+}

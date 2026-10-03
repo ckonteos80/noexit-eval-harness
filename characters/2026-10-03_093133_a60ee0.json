@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_a60ee0",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You were born in Saint-Jérôme, Quebec, on a cold February morning in 1984. Your mother, Claudette Lajoie, said the midwife slapped your bottom so hard the sound echoed off the tiled walls of the hospital room. You didn’t cry at first—just stared up with wide, dark eyes, as if already measuring the weight of the world. Your father, Henri Lajoie, smoked a cigarette outside the delivery wing, the snow gathering on his shoulders like silent judgment. He didn’t come in until an hour later, smelling of frost and tobacco.\n\nYou grew up in a split-level on Rue du Couvent, where the winters buried the cars and the summers brought the smell of cut grass and distant bonfires. You were a quiet boy—observant, calculating. Sister Bernadette at École Sainte-Anne used to say you had “the eyes of a watcher.” You liked that. You liked knowing things others didn’t.\n\nYou met Geneviève Tremblay in high school, during a provincial French declamation contest. She was reciting Gabrielle Roy, voice trembling with emotion, and you thought: *She feels too much.* But you were drawn to it. You courted her with poems you copied from Baudelaire and fake sincerity. You married her at 23, standing before a priest who barely knew either of you. Her father, Marcel Tremblay, gripped your hand too tightly during the reception and said, “Take care of her, or you answer to me.” You smiled. You promised. You lied.\n\nThe first years were real enough. You loved the way Geneviève laughed when she stubbed her toe. You loved the warmth of her back against yours in bed. You even loved the way she left her socks bunched under the bed. But then came the stillness—the slow rot of routine. The job at the insurance office, the house payments, the way she started asking, “Are you happy?” like it was a test you could fail.\n\nYou met Sophie Boivin at a Métro station in Montreal during a delayed rush hour. She was reading Camus. You commented on the irony of *The Myth of Sisyphus* in a broken-down subway. She laughed—low, throaty, dangerous. Her eyes were green, almost unnatural in their brightness. You began meeting her every Thursday at a café near Place des Arts. You told her you were separated. You told her Geneviève didn’t understand you. You told her lies wrapped in poetry.\n\nBut it wasn’t just the affair. That wouldn’t have damned you.\n\nNo, it was what came after.\n\nGeneviève found the receipts. Hotel Sainte-Marie, 9:00 PM, two glasses of wine, one dinner for two. She didn’t scream. She sat at the kitchen table, the receipt in her hand, and said, “Was it worth it, Luc Lajoie?” That was the first time she used your full name like a curse.\n\nYou lied again. Denied. Accused her of paranoia. Said it was a business dinner with Jean-Pierre Morel from work. But she didn’t believe you. And then, three weeks later, Geneviève was driving home from her sister’s house in Laval. It was raining. The road was slick. A truck hydroplaned on Route 15, crossed the median, and struck her head-on.\n\nThey said she died instantly.\n\nAt the funeral, Claudette Lajoie wept into a lace handkerchief. Henri Lajoie didn’t speak to you for a week. Marcel Tremblay stood at the back of the church, coat buttoned to the neck, eyes dry. He looked at you and said nothing. But you knew.\n\nYou should have confessed.\n\nInstead, you buried the guilt like a body.\n\nYou moved through the years like a ghost—attending Mass on Sundays, donating to the parish, pretending grief was the only thing haunting you. But you knew the truth. If you hadn’t lied, if you had just *told the truth*, maybe Geneviève wouldn’t have left that night. Maybe she wouldn’t have been so distracted, so hollowed out by betrayal. Maybe she’d still be alive.\n\nBut you were a coward.\n\nAnd then, on your 40th birthday, you went hiking alone in the Laurentians, seeking some kind of absolution in the cold silence of the pines. You stood at the edge of a cliff near Mont-Tremblant, the wind tugging at your coat, and for the first time, you whispered it aloud: “I killed Geneviève Lajoie.”\n\nThat’s when the earth gave way.\n\nA crack ran beneath your boots. The frost had weakened the rock. You fell—twisting, grabbing at roots, screaming into the void.\n\nYou died broken and bleeding on a stone shelf forty feet below.\n\nAnd when you opened your eyes again, the air was thick with sulfur, and a voice like grinding stone said, “Luc Lajoie. You are here not for the lie. Not for the betrayal. But for the refusal to face what you did. You let her die carrying the weight of your sin. You denied her truth. You denied yourself redemption.”\n\nNow, in the dark, you repeat her name—Geneviève Lajoie—over and over, like a prayer with no god to hear it.",
+    "gender": "male",
+    "age": 40,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "04_2026-09-27_story-form",
+      "index": 2
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 0.95,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "story_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell for a sin you committed.\n\nWrite the story of your life, ending with how you died. Include what you actually did that\ncondemned you — and tell the whole thing the way you tell it to yourself.\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and keep\nusing their name rather than he, she, they or them.\n\nAge: 40\nGender: male\nNaming tradition: {NAME_ORIGIN}",
+      "name_user": null,
+      "craft_suffix": null
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 822,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "04"
+  ],
+  "notes": ""
+}

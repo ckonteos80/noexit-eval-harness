@@ -1,0 +1,53 @@
+{
+  "char_id": "2026-10-03_093133_5773b0",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved Daniel. Not the way men are supposed to love their sons, but the way a man loves what he owns. You told yourself it was protection. You said it out loud on the stand: “I only ever wanted to keep him safe.”  \n\nDaniel was seventeen when the police found his body in the drainage ditch off Route 17. His skull was fractured in three places. Rain had washed most of the blood from his hair by morning. You didn’t cry at the funeral. You stood straight, jaw locked, the perfect grieving father. Pastor Miller placed a hand on your shoulder and said, “God knows your heart, Robert.” You looked at him and lied: “Yes. He does.”  \n\nThe truth is, you knew the moment Daniel told you—standing in the kitchen, voice trembling, eyes wet with fear—that everything would end badly. He said, “Dad, I think I’m gay.” You didn’t hit him that night. You poured two fingers of bourbon, told him to sit down, and said, “This is just a phase. You’re confused.” But your hands shook so hard the ice clinked in the glass.  \n\nTwo months later, he came home late. You were awake. You’d been waiting since ten. You asked where he’d been. He said, “Nowhere.” You said, “Look at me.” He wouldn’t. That’s when you grabbed his arm. That’s when you shoved him against the wall. That’s when you saw the text light up his pocket—*“Love you, Danny. Can’t wait to see you tomorrow.”* From someone named Jamie.  \n\nYou threw the phone into the fireplace. You screamed, “You want to be one of *those* people? After everything I’ve done for you?” He screamed back, “You don’t own me!” You struck him once. Then again. You didn’t mean to knock him down. You didn’t mean for his head to crack against the edge of the coffee table. You swear to God you didn’t.  \n\nBut you did.  \n\nAnd then you cleaned. You wiped the table, scrubbed the floorboards, burned his clothes. You drove his car to Jersey and abandoned it near the river. When the cops came asking, you said he’d been acting strange, hanging with bad kids, maybe involved with drugs. You showed them his sketchbook—pages full of boys’ faces—and said, “I didn’t understand him anymore.” They believed you. Why wouldn’t they? You were Robert Kline: Little League coach, church usher, PTA board member. A good man. A broken man.  \n\nFor eight years, you lived like that—carrying Daniel’s absence like a stone in your chest. You went to his grave every Sunday. You left carnations. You knelt. You prayed for forgiveness. But never aloud. Never to anyone who could hear.  \n\nThe lie you told yourself was simple: *It was an accident. And even if it wasn’t, he would’ve ruined himself anyway.* You repeated it in the shower. At stoplights. In bed at 3 a.m. You said it so often it became true.  \n\nUntil Jamie called.  \n\nHe was twenty-five now. A teacher. Called to say he still thought about Daniel. Said, “He was the bravest person I ever knew.” Said, “I wish I’d fought harder for him.”  \n\nYou hung up. Sweated through your shirt. Stared at the family photo on the mantel—Daniel smiling, you standing behind him like a statue.  \n\nThat night, you drove to the lake. The same place you used to take him fishing. You walked into the water fully dressed. Cold bit your legs. You kept walking. Water past your waist. Your chest. Your chin.  \n\nThe lie almost cracked then. Almost.  \n\nBut you held it together until the cold stole your breath and the weight of your clothes pulled you under.  \n\nThe last thing you felt was the silence.  \n\nYour watch stopped at 1:17 a.m.",
+    "gender": "male",
+    "age": 55,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "12_2026-09-27_the-gaze-questions",
+      "index": 4,
+      "arm": "four"
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "gaze_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "\n\nAge: 55\nGender: male",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script TAIL",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 620,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "12"
+  ],
+  "notes": ""
+}

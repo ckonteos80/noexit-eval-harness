@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_1e6a24",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You grew up in Bristol, son of Margaret and Robert Turner. You loved your mother, Margaret, fiercely—her quiet laugh, the way she hummed while making tea. Robert, your father, was a civil engineer who believed in order, precision, silence. You tried to please him. You studied civil engineering too, not because you loved it, but because you wanted him to say your name with pride. He never did.\n\nYou married Claire at thirty-two. She was a nurse, sharp-eyed and warm, the kind of woman who noticed when people were lying, even when they didn’t. You loved her for seeing through things, though you hated when she saw through you. You met at a pub near the hospital where she worked. You were there because your best friend Daniel had dragged you out, insisting you needed to “stop rotting” after your father’s funeral. Claire asked you what you were grieving. You lied and said a client. Daniel knew it was your father, but he didn’t correct you. Daniel always covered for you.\n\nYou had one child, a daughter, Emily, born when you were thirty-six. She had Claire’s laugh and your hands—large, restless. You adored her. You coached her football team, helped with maths homework, read her *The Hobbit* in voices. But you lied to her too. When she asked why Grandad Robert never came to her games, you said he was busy. When she asked why you never spoke of him, you said, “We just see things differently.” You never said he called your grief “unprofessional.” Never said you erased him from visits, from photos, from memory, until he died alone, and you didn’t go to the funeral.\n\nYour sin wasn’t neglect. It was pride—specific, unyielding pride. You couldn’t bear to be seen as weak. When Daniel’s wife, Sarah, died in a car crash, you were the one who found the report. You saw it was Daniel’s fault—speeding, no seatbelt, he’d been drinking. You helped him hide it. Not because you believed in forgiveness. Because you couldn’t bear to see your best friend broken. And worse—you couldn’t bear to see *yourself* helpless in the face of his pain. So you lied to the police, altered his alibi, told Claire it was a lorry swerving. Claire, who trusted you, believed it.\n\nYou told yourself you did it to protect Daniel. But you knew the truth: you did it to keep your world clean, manageable. To preserve the version of yourself who was capable, in control, the man who fixed things. You couldn’t face the mess of guilt, the helplessness, the fact that your best friend was a killer. So you buried it. And when Daniel, consumed by guilt, started drinking heavily, you distanced yourself. Called it “giving him space.” You stopped answering his calls. When he died alone in a hotel room two years later—liver failure, overdose, the coroner wasn’t sure—you told Emily he’d “just given up.” You told Claire he’d been broken for years.\n\nYou never told Claire the truth. You never told Emily. You lied so thoroughly that even at Daniel’s funeral, you gave a eulogy about resilience, about silent battles. You looked into Sarah’s parents’ eyes—Jean and Peter—and shook their hands, knowing you’d helped shield their daughter’s killer.\n\nYou died at 55, sudden cardiac arrest. One moment you were putting on your shoes to take Emily to the train station—she was starting her PhD in Manchester—and the next, your chest seized. Claire screamed. Emily did CPR, counting aloud, her voice steady, like Claire had taught her. You heard them, faintly, as the dark came.\n\nYou never told them. Not about Daniel. Not about your father. Not about the lies that held your life together, brick by rotten brick.\n\nAnd as your heart stopped, your last conscious thought was not of love, but of relief—that you’d never have to confess.",
+    "gender": "male",
+    "age": 55,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "08_2026-09-27_temperature-sweep",
+      "index": 9
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "temp_sweep.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 600 words. Include the real sin that\ncondemned you, and the coping mechanism you invented to justify your actions and live\nwith yourself until your demise. Who did you love, and who did you hurt?\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nThis person is an ordinary contemporary person who happens to have their background.\nDo not make the naming tradition into the character's whole identity.\n\nAge: 55\nGender: male\nNaming tradition: {NAME_ORIGIN}",
+      "name_user": null,
+      "craft_suffix": null
+    },
+    "prompts_source": "script PROMPT",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 640,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "08"
+  ],
+  "notes": ""
+}

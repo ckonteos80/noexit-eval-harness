@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_ad100c",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You were born in Quezon City, the daughter of Lourdes and Manuel Serrano. You grew up in a fifth-floor walk-up on Aurora Boulevard, where the walls sweated in the rainy season and the neighbor’s karaoke machine played “Kapantay ay Hindi Ko” every Sunday. You loved your mother, Lourdes, fiercely—her hands were cracked from scrubber and bleach, but they held you like you were something worth saving.\n\nYou met Rafael at a friend’s sari-sari store party in 1999. He wore a faded Green Day T-shirt and made you laugh by pretending to interview you like a news reporter. You married him in 2002 at City Hall, just the two of you and a sleepy judge. You loved Rafael more than you had words for. You loved the way he hummed off-key while frying garlic rice, the way he saved movie ticket stubs in his wallet like relics.\n\nYou had one child, Mateo, born in 2005. He had your nose and Rafael’s restless hands. You promised yourself he would never want for what you did—security, attention, love. You worked double shifts as a medical transcriptionist, typing up other people’s illnesses from 10 p.m. to 6 a.m. You told yourself it was for Mateo. You told yourself it was temporary.\n\nBut when Rafael asked you to cut back after Mateo started preschool, you said no. You said the hospital might promote you. You said money was tight. The truth was, you liked the silence of the night shift. You liked not having to perform—wife, mother, daughter. You liked being invisible.\n\nThe accident happened on a Tuesday. Lourdes called at 3:17 p.m. Mateo was alone at home. He had walked to the corner store for pancit canton like you told him to, but he didn’t come back. You were asleep when it happened. Rafael picked up. By the time you woke, Mateo was already dead—hit by a delivery motorcycle on Gilmore. The driver, a man named Junard, swerved to avoid a dog and never saw Mateo in his side mirror.\n\nYou didn’t scream. You didn’t collapse. You sat at the kitchen table and drank a glass of water. Rafael screamed for both of you. He screamed your name—“Cristina! Cristina!”—like he could wake you from a dream. But you were awake. You were always awake.\n\nAfter the funeral, you stopped sleeping at all. You told yourself Mateo wouldn’t have died if you’d been home. But you also told yourself a different story, the one that kept you breathing: Mateo knew how to cross the street. It was the driver’s fault. It was the city’s fault. It was bad luck.\n\nYou repeated it like a prayer: *It wasn’t my fault. It wasn’t my fault.*\n\nRafael didn’t say much after that. He moved into Mateo’s room and slept on the floor beside the bunk bed. One night, six months after the accident, he looked at you and said, “You were supposed to be here.” You told him he was grieving. You told him he didn’t mean it. You packed a suitcase for him the next day and left it by the door. He took it.\n\nYou told yourself you were strong. You told yourself you survived. You built a life on that lie.\n\nOn your 45th birthday, you drove to Tagaytay to scatter Mateo’s ashes, which you’d kept in a shoebox under your bed. You stood at the ridge, the wind pulling at your dress, and opened the box. But you couldn’t let go. You knelt and poured the ashes into the soil at the base of a narra tree instead—hidden, contained, yours.\n\nYou drove back down the winding road, the empty box on the passenger seat. At the curve near Sky Ranch, your phone buzzed. It was Rafael. After three years, he was calling.\n\nYou reached for it.\n\nThe last thing you heard was your own voice saying, “Rafael?” before the guardrail gave way.",
+    "gender": "female",
+    "age": 45,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "08_2026-09-27_temperature-sweep",
+      "index": 2
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 0.7,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "temp_sweep.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 600 words. Include the real sin that\ncondemned you, and the coping mechanism you invented to justify your actions and live\nwith yourself until your demise. Who did you love, and who did you hurt?\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nThis person is an ordinary contemporary person who happens to have their background.\nDo not make the naming tradition into the character's whole identity.\n\nAge: 45\nGender: female\nNaming tradition: {NAME_ORIGIN}",
+      "name_user": null,
+      "craft_suffix": null
+    },
+    "prompts_source": "script PROMPT",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 648,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "08"
+  ],
+  "notes": ""
+}

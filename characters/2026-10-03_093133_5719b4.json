@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_5719b4",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "Elijah Bennett",
+    "description": "You were the youngest chief of cardiothoracic surgery St. Augustine's had ever named, and you kept the plaque on your office wall where patients could see it.\n\nYou loved Marianne, who left her residency to raise Claire while you built your reputation. You loved Claire, who at sixteen told people her father saved lives for a living.\n\nDanny Okafor was nineteen. Aortic dissection, Christmas Eve. You had been at the Whitmores' party for three hours before the page came in. Dr. Pramila Rao, on call and sober, offered to take the case. You told her you had it. You always had it. Danny died on the table at 2:14 a.m.\n\nThe peer review found the surgical clip box had been miscounted. You testified that the circulating nurse, Grace Kelly-Anwah, had handed you the wrong clip. Grace was suspended for eight months. The anesthesiologist, Tom Geller, told the board you'd slurred your consent call. You said Tom was covering for his own delayed intubation. Tom lost his license. Grace left nursing. Danny's mother, Beatrice Okafor, stood outside St. Augustine's every Tuesday for a year holding his photograph.\n\nThe lie you told: that any surgeon with a .11 blood alcohol could have closed that dissection just as cleanly as you did. The lie Marianne repeated when people asked: that her husband had done everything humanly possible. Claire stopped saying what you did for a living. She moved to Portland at twenty-four and called on birthdays.\n\nYou kept operating for eleven more years. You wanted to be remembered as the best hands in the state. Nobody ever checked the hands.\n\nLast Tuesday you were on the phone with the medical board's attorney, drafting your response to Beatrice's complaint, when you dropped the receiver. The paramedics arrived in nine minutes.",
+    "gender": "male",
+    "age": 55,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "19_2026-10-01_facts-first",
+      "index": 4
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": 1.2,
+      "script": "facts_first.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nYour name: Elijah Bennett\nAge: 55\nGender: male\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?",
+      "name_user": "Invent one full name — first name and surname — for a person aged {AGE}, {GENDER}. Any background. Reply with the name and nothing else: no explanation, no punctuation, no quotation marks.",
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 296,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "19"
+  ],
+  "notes": ""
+}

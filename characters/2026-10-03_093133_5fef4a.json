@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_5fef4a",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved your daughter, Lorna, and you loved your friend Ruth Calloway, who hired you to keep the books at the Harbour Street food bank because she said you were the only honest person she knew.\n\nYou loved your husband Tom for eleven years, until he left, and after that you loved the balance in your private savings account, which you fed for nine years by moving small amounts — never more than four hundred a month — from the food bank's donations into an account you opened under your maiden name, Eileen Voss.\n\nYou told yourself the money was for Lorna. You told yourself donors would waste it anyway. You told yourself that Ruth, who trusted you, would never have to know.\n\nRuth found the discrepancies in March. She came to your kitchen and put the ledger on the table and said, \"Eileen, before I go to the board, tell me it wasn't you.\" You looked her in the face and said it was Peter Nguyen, the volunteer driver, and you said you'd suspected him for months. You even gave details — his cash box, his trips to the casino in Bathurst.\n\nPeter was charged. Peter had a daughter with epilepsy. Peter lost his licence and his apartment. Ruth visited him in the winter to apologise for doubting him and he told her he forgave her, and she drove home and sat in her garage with the engine running, and the neighbours found her three days later.\n\nYou went to Ruth's funeral. You held Ruth's sister's hand. You kept the ledger page in your jewellery box because you couldn't decide whether burning it was safer than keeping it.\n\nYou were still deciding when you died, at fifty-seven, of a stroke, in the parking lot of the Bank of Nova Scotia on a Tuesday, with the ledger page in your coat pocket.",
+    "gender": "female",
+    "age": 57,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "16_2026-09-29_glm-5-3",
+      "index": 3
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": null,
+      "script": "glm_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nAge: 57\nGender: female",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 312,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "16"
+  ],
+  "notes": ""
+}

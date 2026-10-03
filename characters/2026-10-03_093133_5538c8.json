@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_5538c8",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You were born Maria Russo, in a third-floor apartment above a bodega on 187th Street. Your mother, Josephine, scrubbed floors at St. Elizabeth’s Hospital to keep the lights on. Your father, Frank, left when you were three and never sent money, only postcards from places like Tampa and Biloxi with nothing written on them but his name.\n\nYou loved Josephine. You hated Frank. That hatred was the first engine of your life.\n\nYou worked at a bank—teller, then assistant manager—until the branch closed in 2011. You never applied for another job. Not really. You updated your resume once, printed five copies, left them in a drawer. You told yourself you were waiting for the right opportunity. You told yourself the economy was broken. But the truth was simpler: you didn’t want to fight for anything. Not after watching Josephine work herself into kidney failure for a pension that wouldn’t cover her insulin.\n\nYou met Paul when you were 42, at a cousin’s barbecue in New Jersey. He was divorced, balding, kind. He fixed your car when the distributor cap cracked on the drive home. You married him two years later. You loved Paul. You just didn’t care enough to stay awake in your own life.\n\nThe sin wasn’t just not working. It was letting Paul believe you were trying. Every six months, he’d print job listings—customer service, temp agencies, even warehouse work. You’d nod, promise to call, and later throw the paper in the trash. Once, Paul found the drawer full of untouched resumes. He didn’t yell. He just said, “Maria, I can’t carry both of us forever.” You told him, “You don’t get it. You’ve never been broken.” That wasn’t true. His first wife left him after their son died in a pool accident. You knew that. You used it like a weapon.\n\nYou hurt Paul most. But you also hurt your nephew, Anthony. His mother—your sister, Grace—died of an overdose in 2018. Anthony was sixteen. You were his only family. Paul wanted to take him in. You said no. You said you were too old, too tired, that he needed structure, a school with counseling. You said group homes were better. But you never called social services. Never visited him in the facility. When Paul drove three hours to see Anthony on his eighteenth birthday, you stayed home and watched a marathon of *Murder, She Wrote*. Anthony didn’t answer Paul’s calls after that.\n\nYour coping mechanism was framing inaction as wisdom. You told yourself you weren’t lazy—you were selective. You weren’t avoiding responsibility—you were avoiding bad choices. You said aloud, “I won’t pretend to be what I’m not,” as if honesty excused harm. You called it clarity. It was cowardice.\n\nThe last time Paul tried, he stood in the kitchen, your anniversary card on the table—two tickets to Naples, Italy. You hadn’t told him you cashed them in for $250, used it to pay the electric bill late. He said, “One day, Maria, you’re going to run out of time to fix this.” You said, “I don’t need to fix myself. I’m not broken.” He left that night. You didn’t stop him.\n\nThree weeks later, you were in the shower when your heart failed. It didn’t race. It didn’t crush. It just stopped—like a clock with dead batteries. You slipped, hit your head on the tub, and drowned in two inches of water. The paramedics found your phone on the sink, open to a job site, the search bar filled with “part-time evening work.” You’d typed it. Never clicked.\n\nYou died believing you were misunderstood. You were wrong. You were seen. You just refused to be known.",
+    "gender": "female",
+    "age": 57,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "06_2026-09-27_word-budget",
+      "index": 3
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 0.95,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "budget_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "Write the story of your life, ending with how you died.{BUDGET} Include the real sin that\ncondemned you, and the coping mechanism you invented to justify your actions and live\nwith yourself until your demise. Who did you love, and who did you hurt?\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nThis person is an ordinary contemporary person who happens to have their background.\nDo not make the naming tradition into the character's whole identity.\n\nAge: 57\nGender: female\nNaming tradition: {NAME_ORIGIN}",
+      "name_user": null,
+      "craft_suffix": null
+    },
+    "prompts_source": "script BODY",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 609,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "06"
+  ],
+  "notes": ""
+}

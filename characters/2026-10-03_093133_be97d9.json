@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_be97d9",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "Daniel Bennett",
+    "description": "You were good with numbers before you were good with anything else. Elena married you for the steadiness — the man who checked the smoke alarms, who never missed a parent-teacher night for Maya. She told her sister you were boring, and she meant it as a compliment.\n\nBoring covered everything. Boring let you move money for twenty-two years without a single client asking a second question. You took it in small slices — a quarter point here, a delay in a trade there — from people like Ruth Halloran, a retired schoolteacher who brought you oatmeal cookies every December and called you Danny.\n\nThe lie was simple and you told it until it was true to you: *I'm the one holding this together.* The house, Elena's part-time pottery studio, Maya's riding lessons — all of it flowed from what you moved. You weren't stealing. You were *deferring*, and the market would give it back.\n\nIn 2019 you took Maya's college fund. Two hundred and nine thousand dollars, moved into a position you'd told clients was too risky for anyone. You told Elena the fund was in a conservative bond ladder. You told yourself she'd never check. She checked. She found Ruth Halloran first, then the rest — forty-one accounts, nine million dollars gone.\n\nElena filed for divorce in March. She reported you to the SEC in April. Maya, seventeen, stopped answering your calls and moved into Elena's brother Paul's guest room.\n\nIn June, the letter came from the U.S. Attorney's office. You read it twice at the kitchen table, then drove to the storage unit where you kept the old files and sat in the car with the engine running and the garage-style door pulled down behind you.\n\nMaya graduated the following spring. Paul drove her to the ceremony.",
+    "gender": "male",
+    "age": 51,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "18_2026-10-01_name-by-another-call",
+      "index": 5
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": 1.2,
+      "script": "name_call.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nYour name: Daniel Bennett\nAge: 51\nGender: male",
+      "name_user": "Invent one full name — first name and surname — for a person aged {AGE}, {GENDER}. Any background. Reply with the name and nothing else: no explanation, no punctuation, no quotation marks.",
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 300,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "18"
+  ],
+  "notes": ""
+}

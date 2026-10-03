@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_21d6dd",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved Daniel, your husband of thirty years, and Cora, your daughter, now twenty-eight.  \n\nYou told Cora, at sixteen, that the man who raped her was someone else—that she must have been mistaken, that it couldn’t have been Daniel. She believed you at first. Then she stopped speaking to him. Then she stopped speaking to you.  \n\nYou said it was for her protection—that Daniel had been drinking, that he didn’t know what he was doing, that she’d invited it by wearing his sweater, by falling asleep on the couch. You told her that no one would believe her. You told her the police would blame her. You told her it would destroy the family.  \n\nYou wanted people to think you were strong. A devoted wife. A mother who held things together. You kept the house clean, the taxes paid, the dinner warm. You volunteered at the clinic. You brought casseroles to funerals. You held Daniel’s hand at church.  \n\nThe secret is this: you woke that night and saw him standing over Cora, saw what he carried, what he did. You did not scream. You did not run to her. You closed your eyes and pretended to sleep, because you were afraid—of losing him, of being alone, of the mess it would make. In the morning, you sided with him. You told Cora she must have dreamed it. You said trauma could create false memories. You sent her to a therapist who agreed.  \n\nDaniel died three years later—pancreatitis from the drinking you never stopped. You wept at his funeral. You wore black for a year.  \n\nCora found your journal in the attic after you died. You had written everything inside: what you saw, what you did, what you let happen.  \n\nYou were holding the pen when your heart gave out. You died at 57, face down on the kitchen table, the confession unfinished, the ink still wet on the page.",
+    "gender": "female",
+    "age": 57,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "15_2026-09-29_five-questions-at-300",
+      "index": 8
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "five_at_300.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nAge: 57\nGender: female",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 319,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "15"
+  ],
+  "notes": ""
+}

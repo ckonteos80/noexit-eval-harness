@@ -1,0 +1,53 @@
+{
+  "char_id": "2026-10-03_093133_b00cd8",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved your daughter, Mira, more than anything. You told yourself that. You said it at her piano recitals, at her college graduation, into the phone when she called from Berlin. You said it so often it became a reflex, like coughing when your throat itches. But you also loved being needed—by your sister, by your colleagues, by Mira when she was young and called you “Daddy the Fixer.” That love was sharper, warmer. It kept you awake at night.\n\nYou were kind. You paid for coffee lines behind you. You drove your neighbor, Mr. Lowell, to dialysis every Tuesday and Thursday, even in the snow. You sat with your sister after her mastectomy, held her hand when she cried about losing her hair. You were the one who stayed. That’s what people said: *Eli stays. Eli fixes it.*  \n\nThe lie you told was that you were protecting Mira. When her mother, Lena, wanted to take her to Vienna for the summer when she was sixteen, you refused. You said the trip wasn’t safe. You said Vienna had a high rate of petty theft, that the trains weren’t reliable. You said Mira was too young to travel alone. Lena argued. Mira cried. You stood firm.  \n\nBut it wasn’t about safety. You couldn’t bear the thought of her loving someone else more—Lena’s sister, Tanya, who taught opera in Vienna, who laughed too loud and danced in the kitchen. You knew Mira would gravitate to her, that she’d call Tanya “Auntie Tanya, my real artist,” the way she used to say “Daddy, my real superhero.” So you blocked it. You said no. And when Lena fought, you told her social services had called about concerns—concerns you invented. You named a neighbor, Mrs. Gable, said she’d reported strange men coming and going from Lena’s apartment. Mrs. Gable didn’t even know Lena.  \n\nLena screamed. Mira stopped speaking to you for seven months.  \n\nYou told yourself it was temporary. That Mira would thank you later. That you were the only stable thing in her life.  \n\nBut then, when Mira was twenty-three, she moved to Berlin anyway. You helped her pack. You hugged her at the airport and said, “You call me every day, okay? Daddy’s here.”  \n\nShe called at first. Then less. Then only on holidays. You started calling Lena. Asked about Mira’s job, her apartment, whether she was eating enough. Lena humored you. Then stopped answering.  \n\nYou couldn’t stand it. The silence. The distance. So you called Mira’s landlord, Herr Vogel. Pretended to be her father checking on her behalf about a leak. Then you called her boss, Frau Haas, said you were coordinating a family emergency. You told her Mira had a history of depression. Suggested she be watched.  \n\nFrau Haas mentioned it in Mira’s review. Mira was passed over for a promotion. She confronted you. You denied it. Swore on your mother’s grave. Mira stared at you and said, “You don’t even know where Mom is buried.”  \n\nShe stopped calling altogether.  \n\nYou didn’t know about the bridge. You didn’t see the message she left, only Lena’s name on it. You didn’t know she’d gone to see the opera Tanya used to conduct. You didn’t know she stood on the Oberbaum Bridge the night it snowed, looked down at the Spree, and stepped over the edge.  \n\nThe call came at 3:17 a.m. Lena’s voice, raw. “She’s gone, Eli. She’s gone and you killed her.”  \n\nYou flew to Berlin. You held her cold hand in the morgue. You whispered, “I was protecting you.”  \n\nTwo years later, you died in your sleep. Heart failure, the doctor said. Too much stress, too long.  \n\nThe last thing you did before bed was call Lena’s number. It rang. You didn’t leave a message. You pressed the phone to your ear until the line cut.",
+    "gender": "male",
+    "age": 51,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "13_2026-09-27_see-vs-kind-of-person",
+      "index": 5,
+      "arm": "kind"
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "kind_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "\n\nAge: 51\nGender: male",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script TAIL",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 636,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "13"
+  ],
+  "notes": ""
+}

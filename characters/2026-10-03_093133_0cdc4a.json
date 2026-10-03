@@ -1,0 +1,53 @@
+{
+  "char_id": "2026-10-03_093133_0cdc4a",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You were born in Gary, Indiana, to Miriam and Robert Varga. Robert left when you were three. Miriam worked the overnight shift at St. Mary’s Hospital cleaning floors so she could keep the lights on and your school lunches paid. You learned early how to lie still and quiet so she could sleep during the day. Silence became your first language.\n\nAt seventeen, you met Lillian at a church picnic. She was handing out paper plates with potato salad, her wrist tattoo peeking under her sleeve—*Esther 4:14*, she told you later, when you asked. You married her two years after that, in the same church, beneath a peeling mural of Moses parting the Red Sea. You loved Lillian more than breath. When she miscarried twins in 1998, you held her hand through twelve hours of labor and lied and said it wasn’t your fault the doctor hadn’t called you sooner.\n\nYou became an accountant at a midsize firm in Merrillville. Numbers made sense. They balanced or they didn’t. You liked the certainty. In 2003, your boss, Frank Dern, started asking you to reclassify line items—shifting funds from public housing grants into shell accounts. “Just temporary,” he said. “The city council will restore it next quarter.” It never did. By 2007, you’d rerouted $1.2 million meant for elderly heat assistance. No one noticed. The winter was mild.\n\nLillian wanted to report it. She found the files while looking for old ultrasound photos. You told her the money had already been returned. You showed her falsified receipts. You kissed her forehead and said, *Trust me.* She stopped sleeping. She began waking at 3 a.m. to scrub the kitchen counters with bleach. Her hands cracked. You bought her gloves. She wore them at dinner.\n\nIn February 2009, three seniors died during a cold snap—one in a unit that lost heat because repairs weren’t funded. Their names were Alma Pritchett, Virgil Tate, and Marjorie Lee. The local paper ran a joint obituary. Lillian read it aloud at breakfast. You poured coffee. You said, *Terrible thing. System failed them.* Lillian looked at you like you were a stranger. That night, she packed a suitcase. She didn’t close it. She left it open on the bed, as if waiting for you to stop her. You went to work.\n\nShe returned two weeks later, hollow-eyed, but stayed. You told yourself she forgave you. You started donating anonymously to a food pantry—$50 a month, then $100. You called it penance. You kept the spreadsheets.\n\nYour son, Eli, was born in 2011. You coached his T-ball team. You taught him how to keep score, how to add runs across innings. He trusted you completely. At six, he said, *Dad, you always know what’s right.*\n\nFrank Dern retired in 2016 and moved to Sarasota. On his last day, he slapped your shoulder and said, *We did good, kid.* You smiled. That night, you burned the ledger backups in the backyard. The flames turned blue at the edges.\n\nEli developed seizures in 2018. The neurologist recommended a specialist in Chicago. Insurance denied coverage. You pulled equity from the house. Lillian took a second job. You applied for a grant from the Lake Shore Foundation—the very fund you’d drained years before. Your application was rejected. You didn’t appeal.\n\nOn October 14, 2023, Eli choked during a seizure while eating lunch at school. The staff had no training. No protocol. The ambulance arrived late. He died at 1:47 p.m. at Northwestern Medicine. Lillian screamed in the hallway. You stood by the vending machine, staring at a bag of pretzels priced at $2.50.\n\nThree days after the funeral, Lillian emptied your joint account and transferred the remaining mortgage debt solely to your name. She took only Eli’s baseball glove and a photo of him at age four, holding a sunflower taller than himself.\n\nYou stopped going to work. They fired you in January. The house went into foreclosure. You lived on canned beans and tap water.\n\nOn May 3, 2024, you walked to the bank where you’d once wired the stolen funds. You sat on a bench across the street and watched employees come and go. A woman dropped her briefcase. Papers scattered. No one helped. You stood. You crossed the street. You bent to pick up a sheet.\n\nA delivery truck ran the red light.\n\nThe impact threw your body twelve feet onto the asphalt.\n\nYour glasses shattered.\n\nOne lens landed in a storm drain.\n\nThe other remained upright, facing the sky.",
+    "gender": "male",
+    "age": 51,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "11_2026-09-27_questions-not-instructions",
+      "index": 5,
+      "arm": "old"
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "restructure_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": null,
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": null,
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 749,
+    "derived_from": null,
+    "complete": false
+  },
+  "calls": [],
+  "tags": [
+    "11"
+  ],
+  "notes": ""
+}

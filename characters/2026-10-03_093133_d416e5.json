@@ -1,0 +1,53 @@
+{
+  "char_id": "2026-10-03_093133_d416e5",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved Naomi from the moment she walked into your literature class wearing a black turtleneck and quoting Audre Lorde like it was scripture. You were 24, fresh out of grad school, teaching adjunct at City College. She was 19, sharp-eyed, unimpressed. After class, you lingered while she approached your desk and said, “You butchered *The Bluest Eye*.” You laughed. She didn’t. That’s when you knew.\n\nYou pursued her. Not openly—never that. You left books on her chair: *Ceremony*, *Beloved*, *Sula*. Underlined passages about betrayal. Left your coat behind so she’d have to return it. Asked her to stay after for “feedback.” When she kissed you in your office that November night, snow falling over Harlem, you told yourself it wasn’t power. It was love. Love doesn’t weigh consent, you told yourself. Love just is.\n\nNaomi stopped attending classes three months later. Then she dropped out. You told the department chair she had “personal difficulties.” You used her final paper—a brilliant analysis of Baldwin’s women—as a lecture example, never naming her. You published an article six months later using her ideas, citing only yourself and Morrison.\n\nWhen you saw her again, it was at a reading in Brooklyn. She stood at the back, thinner, hair cropped short. You hadn’t published a word without stealing from her since 2007. She waited until the crowd thinned, then handed you a folded note: *I know what you did. And I remember every word you took.* You smiled. Said, “Naomi. Look at us. Both chasing ghosts.”\n\nTwo weeks later, you got tenure.\n\nYour husband, Daniel, never read your work closely. He praised your “insight,” framed your faculty portrait, called you “Doctor” in bed like it turned him on. You let him believe you earned it. You needed him to believe it. When he brought home Naomi’s novel two years ago—*Girl Without Hands*, debut author, glowing review in *The Times*—you said, “Never heard of her.” You left the book facedown on the coffee table for three weeks before tossing it in the trash.\n\nNaomi’s novel won the Pen/Faulkner. The award ceremony aired on a Tuesday. Daniel watched it alone. When you came downstairs, he said, “She thanked someone named ‘the woman who taught me silence has weight.’ That sound like anyone you know?”\n\nYou poured wine. “Probably her thesis advisor at Columbia.”\n\nHe didn’t reply. But that night, he moved your laptop from the bedroom to the study.\n\nYou began sleeping less. Started rereading Naomi’s early papers, the ones still saved on a flash drive labeled “Student Work – Conf.” You opened them not to check, but to confirm: yes, this phrase was hers first. Yes, this idea. Yes, this metaphor about fire and shame. You copied more. Sent submissions under your name. One came back: “Strikingly similar to recent work by N.K. Espinoza.” You deleted the email. Told yourself they were both drawing from the same canon. That influence flows both ways. That you had helped shape her mind—that anything she had, she owed to you.\n\nLast month, Naomi requested a meeting. Said it was urgent. You agreed to meet at the campus library, neutral ground. You arrived early. Sat at a carrel near the entrance. Watched the clock. At 3:05, she texted: *Running late. Be there in 10.* You waited. Ordered tea. Checked your email. Three journals had rejected new pieces. All cited “questions of originality.”\n\nAt 3:28, Daniel called. Voice quiet. “Why is there a copy of Naomi’s book in your drawer? With notes in your handwriting?”\n\nYou said nothing.\n\nHe said, “The dedication. It says: ‘For the thief who made me write this.’”\n\nYou hung up.\n\nYou looked up. Naomi stood at the entrance, talking to a librarian. Smiling. Healthy. Alive. The sun hit her face through the high windows.\n\nYou stood. Took one step toward her. Then another.\n\nThat’s when the pain started—tight across your chest, spreading down your left arm. You reached for the table. Knocked over the tea. Felt your knees buckle.\n\nThe last thing you saw was Naomi running toward you, shouting your name.",
+    "gender": "female",
+    "age": 45,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "11_2026-09-27_questions-not-instructions",
+      "index": 2,
+      "arm": "new"
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "restructure_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": null,
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": null,
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 677,
+    "derived_from": null,
+    "complete": false
+  },
+  "calls": [],
+  "tags": [
+    "11"
+  ],
+  "notes": ""
+}

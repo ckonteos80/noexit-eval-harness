@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_2c983f",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You were born in Newark, to Maria and João Ferreira, and you learned early that worth had to be earned. You measured yourself against everyone: your smarter classmates, your sharper coworkers, your seemingly calmer friends. You called it ambition. You told yourself it was discipline. But it was pride—cold, unyielding, and absolute.\n\nYou loved your daughter, Sofia, more than anything. You wanted her to have what you didn’t: approval, respect, control. When she was twelve, her mother, Elena, left you after you told her—during an argument about Sofia’s failing math grade—“You don’t even know how to raise her right.” Elena had worked double shifts as a radiology tech, and you resented her exhaustion, her inability to “just push through.” You said it like you were helping. You said it like it was truth.\n\nYou hurt Elena most. Not with violence, not with lies, but with certainty. When she asked if you were too hard on Sofia, you said, “I’m preparing her for reality.” When she cried, you told her emotions clouded judgment. You believed your way was superior. You believed it still, when Sofia, at sixteen, stopped speaking to you for three months after you called her boyfriend “a waste of time” and mocked her art portfolio as “juvenile.”\n\nYou justified it all by building a story: that you were the one who saw clearly, that others were too weak or sentimental. You called it clarity. You wore your sacrifices like medals—working late, paying for Sofia’s private school, fixing Elena’s father’s roof. But you never admitted you did it all to prove you were better.\n\nThe night you died, you drove to Sofia’s college after she missed a call. You told yourself you were worried. But you were angry—she’d skipped her pre-med advising meeting, texted she was “rethinking.” You arrived at her dorm, stormed the stairs, found her room dark. You shook her awake, voice sharp: “You don’t get to throw this away because you’re scared.” She sat up, trembling, whispered, “I don’t want this, Dad. I want to teach art.” You laughed—actually laughed—and said, “You think that’s a life? That’s a hobby.”\n\nShe didn’t scream. She didn’t cry. She looked at you with something worse: pity. And in that moment, you knew. You’d rather die than be wrong.\n\nYou stepped back, turned, walked to your car. On the highway, rain slicked the road. A truck swerved. You didn’t swerve. You kept driving straight, eyes forward, until the impact.",
+    "gender": "male",
+    "age": 51,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "06_2026-09-27_word-budget",
+      "index": 5
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 0.95,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "budget_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "Write the story of your life, ending with how you died.{BUDGET} Include the real sin that\ncondemned you, and the coping mechanism you invented to justify your actions and live\nwith yourself until your demise. Who did you love, and who did you hurt?\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nThis person is an ordinary contemporary person who happens to have their background.\nDo not make the naming tradition into the character's whole identity.\n\nAge: 51\nGender: male\nNaming tradition: {NAME_ORIGIN}",
+      "name_user": null,
+      "craft_suffix": null
+    },
+    "prompts_source": "script BODY",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 409,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "06"
+  ],
+  "notes": ""
+}

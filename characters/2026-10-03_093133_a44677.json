@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_a44677",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "Eleanor Grace",
+    "description": "You are Eleanor Grace, and for thirty-one years you ran Gracewood Manor, the care home your father built. You loved your husband, Walter Grace. He had Parkinson's for nine of those years, and for the last two he lived in Gracewood's east wing because you told yourself no one would watch him like you could — you, who went home at eight every night and left one aide, Sunil Fernando, alone with forty residents until morning.\n\nYou cut the night staff from three to one the year the mortgage on your lake house came due. You told Sunil the call bells were louder now, state-of-the-art. You told the families at the open house that Gracewood was family, and you believed the word enough to keep saying it. When Daniel Ostrowski, whose mother lived on the west wing, complained at a town meeting about the night staffing, you stood up and said you slept better knowing Sunil was on shift, and the room nodded, and Daniel sat down.\n\nWalter died on a Tuesday at 3:14 in the morning. He choked on a soft-boiled egg his evening aide, Priya Nair, left beside his bed against protocol. Sunil was on the far wing. Priya had already gone home; she'd cut her shift to get to her son's recital, and you'd approved it, because her wages were two hours you didn't pay.\n\nYou told everyone Walter died in his sleep. You told yourself Sunil couldn't have heard the call bell from that distance anyway. You gave yourself a raise in March. You won the Rotary Community Service Award in May. You never hired the second aide.\n\nOn the fourteenth of October, in your office above the east wing, you felt your left arm go numb. The quarterly report was open on your desk. You reached for the phone and knocked it to the floor.",
+    "gender": "female",
+    "age": 57,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "18_2026-10-01_name-by-another-call",
+      "index": 3
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": 1.2,
+      "script": "name_call.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nYour name: Eleanor Grace\nAge: 57\nGender: female",
+      "name_user": "Invent one full name — first name and surname — for a person aged {AGE}, {GENDER}. Any background. Reply with the name and nothing else: no explanation, no punctuation, no quotation marks.",
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 310,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "18"
+  ],
+  "notes": ""
+}

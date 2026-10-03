@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_af2862",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved Daniel more than anyone, though you never said it aloud. He was your partner for twenty-three years, steady, kind, the one who brought you soup when you were sick and called your mother every Sunday just to make you look good. You told people you were building a life. What you built was silence.\n\nYou destroyed Mira Patel, the tenant in 3B. She paid late that December, $720 short. You stood in her doorway, cold air biting your neck, and told her eviction was final. She begged. Said the hospital bill for her son was still processing. Said she’d have it in ten days. You knew the boy, Karan—quiet kid, always drawing in the lobby. You saw the sketches once. You told her the law left you no choice.\n\nBut you had a choice. You delayed other evictions. You let Gary in 4A stay six months rent-free after his stroke. You just didn’t like the way Mira looked at you—like she saw through the charity smile, the Rotary Club speeches, the framed photo of you shaking the mayor’s hand.\n\nThe night she and Karan left in a battered sedan, the heater sputtering, you poured a Scotch and said to Daniel, “Business is business.” Daniel didn’t answer. He packed his suitcase two weeks later. You told yourself it was the stress, not your cold tone when Karabegged you not to take the drawings off the fridge.\n\nThe lie you kept was simple: you were fair. Not cruel. Just firm. The building needed upkeep. Others paid on time. You even donated winter coats to the shelter every year.\n\nThe secret is in the ledger. Mira’s account was paid in full—by Daniel, from your joint account, the day before you handed her the final notice. You voided the payment. Wrote “insufficient funds” in red.\n\nYou died when the elevator cable snapped on the twelfth floor. The car dropped. You had time—enough—to see the maintenance report you’d forged last month, still in your coat pocket.",
+    "gender": "male",
+    "age": 55,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "15_2026-09-29_five-questions-at-300",
+      "index": 4
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "five_at_300.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nAge: 55\nGender: male",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 333,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "15"
+  ],
+  "notes": ""
+}

@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_0d5002",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved your sister, Clara, the way people pray—fervently, desperately, as if she could save you. You told everyone you were kind, that you lived to help others, that you stayed up nights counseling women like the one your husband, Daniel, brought home that rainy Thursday in 2014. You told Daniel that Lena was just a friend, that her staying over was nothing. You told yourself you didn’t notice how she looked at him, how he looked back.\n\nYou loved Daniel too, in your way—the way of possession, of silent ledgers kept since the first lie you told to keep him. When you found the pills in Lena’s coat pocket, you didn’t call for help. You waited. You watched her convulse on the bathroom floor of your guest room, her mouth opening like a fish’s, and you locked the door so Daniel wouldn’t hear.\n\nClara found out. Not all of it—never all—but enough. She threatened to tell, so you told her she was paranoid, that she’d always been unstable. You said it until she believed it. Until she swallowed your pills instead of Lena’s.\n\nThey called it an accident. The coroner believed you. Daniel believed you. You told yourself it was survival.\n\nYou died when the car hit you, crossing the street without looking, your daughter’s voicemail still playing: “Mom, why did Aunt Clara’s necklace smell like your perfume?”",
+    "gender": "female",
+    "age": 45,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "14_2026-09-29_the-secret-question-at-200",
+      "index": 2
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "secret_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 200 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\nWhat kind of person would they think you are, if they knew your deepest darkest secret?\n\nAge: 45\nGender: female",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 229,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "14"
+  ],
+  "notes": ""
+}

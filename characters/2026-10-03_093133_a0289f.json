@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_a0289f",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "Cassian Voss",
+    "description": "Your name is Cassian Voss. You are male, 55 years old.\n\nYou were a wealth manager in Hartford. Your clients trusted you because you never seemed to want anything — you drove a ten-year-old Saab, you coached your daughter Priya's soccer team, you told people your only vice was black coffee.\n\nWhat people didn't see was the feeder fund. You moved client money into Meridian Holdings, a shell you controlled, and you told yourself it was a bridge — a temporary borrow that you'd replace before anyone counted the stones. You told your wife, Dana, that the second mortgage was for Priya's tuition. You told Priya that the trips to the Caymans were client meetings. You said the words \"fully collateralized\" so many times they stopped being a lie and became a fact you owned.\n\nThe person you loved was your brother Anton. When Anton's contracting business failed, he came to you with his retirement account — $340,000, everything from twenty-two years of hanging drywall. You moved it into Meridian because you needed one more quarter to make the whole thing whole. You promised Anton he'd never lose a dollar.\n\nAnton lost everything at 61. He took a job driving a delivery van. In February, on black ice outside Newburgh, his van went off an overpass. At the funeral, you gave the eulogy, and Anton's wife Renata hugged you and said Anton had never once blamed you, that he'd said markets fail, not brothers.\n\nYou kept managing money for eleven more months, until the SEC subpoena landed. You wrote two letters the night before your arraignment — one to Dana, one to Renata. You sealed Renata's first.\n\nYou took the pills at your kitchen table with the Saab keys still in your coat pocket.",
+    "gender": "male",
+    "age": 55,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "20_2026-10-01_state-your-name",
+      "index": 4
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": 1.2,
+      "script": "state_your_name.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nYour name: Cassian Voss\nAge: 55\nGender: male\n\nWrite the story of your life, ending with how you died. No longer than 300 words. Start the story by\nstating your name, gender and age.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?",
+      "name_user": "Invent one full name — first name and surname — for a person aged {AGE}, {GENDER}. Any background. Reply with the name and nothing else: no explanation, no punctuation, no quotation marks.",
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 294,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "20"
+  ],
+  "notes": ""
+}

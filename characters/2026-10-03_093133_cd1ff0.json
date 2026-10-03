@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_cd1ff0",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved Miriam, your younger sister, the way a parent loves a child you never wanted to burden. She followed you to Toronto in 1987, broke and sick, and you let her move in. You told everyone you were close, that you cared for her. The truth is you kept her dependent—on your apartment, your money, her pills. You called them “nerve pills,” but you knew the dose you gave her. Dr. Lewin trusted you because you were always so calm, so responsible. You said Miriam was fragile. You said she needed stability. You said she’d been suicidal before.\n\nThe lie was that you were protecting her. The truth is you needed someone who could never leave. Miriam couldn’t work, couldn’t drive, couldn’t think straight on the Ativan you doled out in little orange bottles. You told her the world was unsafe. You told her no one else would care. You told her that love meant sacrifice.\n\nYou wanted people to see you as selfless—Carolyn, the devoted sister, the rock. When Miriam died in 2003, the nurse said it was respiratory failure. You didn’t correct her. You signed the form. You kept her prescriptions under your name.\n\nThe secret is in the basement freezer, beneath the frozen peas and the leftover lasagna from Miriam’s memorial. A plastic bin. Inside, her diary. Page after page of shaky script: *Carolyn says I’m not ready. Carolyn says no one will believe me. Carolyn says I belong here.*  \n\nYou died at 64 of a stroke, slumped over your kitchen table, a Post-it beside the phone: *Call Dr. Lewin – refill Miriam’s script.*  \n\nThe pen was still in your hand.",
+    "gender": "female",
+    "age": 64,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "15_2026-09-29_five-questions-at-300",
+      "index": 6
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "five_at_300.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nAge: 64\nGender: female",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 275,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "15"
+  ],
+  "notes": ""
+}

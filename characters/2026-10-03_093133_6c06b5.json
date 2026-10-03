@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_6c06b5",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved Daniel, your younger brother, more than anyone. You called him \"little D\" and taught him to ride a bike, to skip stones, to pretend we were pirates. He trusted you.  \n\nYou destroyed Daniel by stealing his life. At 34, he was offered a job in Vancouver—his dream, his escape. You were drowning, fired, broke, desperate. You lied and said the stress would kill you. Said you’d kill yourself if he left. He stayed. He took a job at the grocery store. He drank. He drove home in the blizzard of ’17, swerved into a ditch, and bled out waiting for a tow that never came. You got his life insurance. You kept saying you were sorry.  \n\nThe lie was that you were protecting him. That he was too fragile. That he needed you.  \n\nYou want people to think you’re loyal. A rock. The kind of man who puts family first.  \n\nThe secret is that you called the tow company and gave the wrong location. You stood in the kitchen, snow falling outside, and let the phone ring in your hand until the line went dead.  \n\nIf they knew, they’d see you as a predator. Calculating. Patient. The kind of man who lets his brother freeze, then wears his coat.  \n\nYou died of a heart attack at 51, alone in your apartment, the phone silent in your hand.",
+    "gender": "male",
+    "age": 51,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "14_2026-09-29_the-secret-question-at-200",
+      "index": 5
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "secret_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 200 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\nWhat kind of person would they think you are, if they knew your deepest darkest secret?\n\nAge: 51\nGender: male",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 229,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "14"
+  ],
+  "notes": ""
+}

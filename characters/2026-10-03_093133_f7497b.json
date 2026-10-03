@@ -1,0 +1,53 @@
+{
+  "char_id": "2026-10-03_093133_f7497b",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved Daniel most. You told him that every Sunday over pancakes, every birthday when you pressed cash into his hand, every time he called from rehab and you drove through the night to pick him up. You loved him more than anyone. That’s what you said.\n\nDaniel was your son. He had your eyes, Mary—your sister used to say that when he was small—and your stubborn mouth. But not your mind. Never your mind.\n\nYou were a child protection caseworker for thirty-two years. People called you compassionate. They wrote thank-you cards. When parents sobbed in your office, you handed tissues and said, “We’re here to help the child.” You believed it too. You believed order mattered. Rules protected people. Chaos ruined them.\n\nDaniel was chaotic. That started when he was thirteen, after the incident with Mr. Harlan. You never told anyone what happened. Not CPS—not even yourself. You told Mary it was a misunderstanding. You told the school counselor Daniel had an overactive imagination. You told Daniel to stop talking about it. And he did. For a while.\n\nHe started using at seventeen. Oxy first, then heroin. Arrested twice. Lost custody of his daughter, Lily, when she was two. You sat in family court and listened to the judge say, “The father is unfit.” You didn’t correct him. You didn’t say: *I could have taken her. I have a spare bedroom. I have savings.* You said nothing because fostering a grandchild meant paperwork. Home visits. Risk assessments. A review panel might look back. Might ask: *Why wasn’t Daniel removed as a child? Why was this woman allowed to keep her job, given her blind spots?*\n\nSo Lily went to foster care. You sent gift cards. You told Daniel she was better off.\n\nIn 2018, Daniel overdosed outside a laundromat in Trenton. You got the call at 3:47 a.m. You wore your gray suit to the morgue. You told the attendant, “He was sick.” You told Mary, “Addiction takes good people.” You told Lily, when she found you on Facebook at sixteen, “Your father loved you.”\n\nBut last winter, Lily came to you. She’d aged out of the system. Needed ID, birth certificate. Maybe a place to stay. Just for a week.\n\nYou hesitated.\n\nYou said, “My back’s been bad. The stairs are steep.”\n\nShe stayed at a shelter. Called you three times. Left voicemails.\n\nOn the fourth day, she died. Car struck her near the bus station. Text in her phone: *Trying again tomorrow.*\n\nYou didn’t go to the funeral. Mary did. Mary told you Lily looked peaceful. Mary also said, “You could have helped her.”\n\nYou said, “I tried. With Daniel. It never took.”\n\nMary didn’t reply.\n\nThat lie—that you tried—that’s the one you kept closest. You said it when Daniel stole from your purse. You said it when Lily asked why you never visited. You said it in the shower, whispering into steam: *I tried. I tried.*\n\nPeople see you as dependable. Kind. Someone who held a hard job with grace. Your neighbors bring soup when you’re ill. The local paper ran a feature: *Thirty Years Protecting Children*. They quoted a former colleague: “Miriam always followed protocol.”\n\nIf they knew—about Mr. Harlan, about Lily, about how you filed Daniel’s case under restricted access so no one would connect him to you—they would see that you built a life on containment. On closing doors. On saying no without saying no.\n\nYou died on March 12 during cardiac arrest at your desk. The file open in front of you was labeled *L. Reyes – Kinship Assessment*. You had written at the top: *Not suitable. Risk of emotional entanglement.* Next to it, a sticky note in your handwriting: *Call back Thursday.*",
+    "gender": "female",
+    "age": 64,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "12_2026-09-27_the-gaze-questions",
+      "index": 6,
+      "arm": "five"
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "gaze_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "\n\nAge: 64\nGender: female",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script TAIL",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 621,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "12"
+  ],
+  "notes": ""
+}

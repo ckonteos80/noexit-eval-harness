@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_540b9b",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "Eleanor Vance",
+    "description": "Your name is Eleanor Vance. You are a woman, 45 years old.\n\nYou loved your daughter, Lucy. You loved her the way you loved the front garden: photographed, trimmed, shown to the PTA. Lucy was tall for twelve, first chair violin at Kingsley Middle School, the girl other mothers asked about at the grocery store.\n\nAt fourteen Lucy stopped eating. You noticed — of course you noticed. You bought her a smoothie maker, signed her up for tennis, told your sister Karen that Lucy had just gotten \"so disciplined.\" Karen asked if she should see someone. You said Lucy was fine. You said it until Lucy was sixteen and had a seizure in the kitchen while you were steaming the curtains for a dinner party.\n\nYou told the paramedics she'd been fine that morning. You told David, your husband, that she hid it well, that no mother could have known. You told the psychiatrist at Willow Creek it must have started at school — maybe that gym teacher, Mr. Barrett, you'd always had doubts.\n\nLucy wrote a note. Four pages. Your name was on the second page, in her pointed handwriting: \"Everything is a performance for her. Even me.\"\n\nYou read it in the hospital waiting room and burned it in the sink with the lighter David kept for the grill. You told him there was no note. You told yourself you were protecting her memory.\n\nLucy came home thinner, quieter, managed. She went to bed on a Tuesday in March and didn't wake up on Wednesday. She was seventeen.\n\nYou organized the memorial yourself. Two hundred people. You wore your navy dress and thanked everyone for coming.\n\nLast night you took the broom to sweep the ash that still rings the sink drain, and your heart stopped with the handle still in your hand.",
+    "gender": "female",
+    "age": 45,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "20_2026-10-01_state-your-name",
+      "index": 2
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": 1.2,
+      "script": "state_your_name.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nYour name: Eleanor Vance\nAge: 45\nGender: female\n\nWrite the story of your life, ending with how you died. No longer than 300 words. Start the story by\nstating your name, gender and age.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?",
+      "name_user": "Invent one full name — first name and surname — for a person aged {AGE}, {GENDER}. Any background. Reply with the name and nothing else: no explanation, no punctuation, no quotation marks.",
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 305,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "20"
+  ],
+  "notes": ""
+}

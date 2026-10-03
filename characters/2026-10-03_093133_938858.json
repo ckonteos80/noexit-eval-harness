@@ -1,0 +1,53 @@
+{
+  "char_id": "2026-10-03_093133_938858",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You were born in Bristol, and your mother, Margaret, named you Eleanor. Your father, Robert, left when you were five and never sent money or letters, just vanished into the Royal Navy’s silence, so Margaret said. You believed her until you found the divorce papers in the attic at twelve, stamped *Decree Absolute* with both signatures, and you never asked why she kept lying.\n\nYou met David at sixteen, in the back of a bus heading to a demonstration against the Poll Tax. He had a woolen hat pulled low over his ears and a copy of *The Communist Manifesto* sticking out of his coat pocket. You didn’t care about the politics. You cared that he looked at you like you were already someone important. You married him at twenty-one, and you loved him for twenty-three years — not perfectly, but truly.\n\nYou had one child: Sarah. You held her in the delivery room and wept, not from pain but from terror. You had never felt such power — the power to shape a life, to be the beginning of everything for someone. You wanted to be worthy of it.\n\nBut David began to drink after Sarah turned eight. Not every day, but on the days he did, he became someone else — quiet, then cruel, then gone. Once, he smashed the television with the iron because Sarah left her schoolbag in the hall. Another time, he locked himself in the bathroom for ten hours and wouldn’t answer when Sarah cried through the door. You told yourself you were protecting her by staying. You told yourself she needed a father, even a broken one. You told yourself the alternative was worse.\n\nWhen Sarah was thirteen, she started staying late at school. *Homework club*, she said. Then, one evening, you saw her coming up the road with her coat pulled tight, shoulders hunched, and behind her, twenty feet back, David walking slowly, hands in pockets, watching her. You didn’t understand at first. Then, two weeks later, you found a note in Sarah’s handwriting stuffed into the lining of her schoolbag: *Please let me live with Nana. I can’t stay here. He comes into my room at night. He says if I tell, you’ll leave him and we’ll have nothing. I don’t want to hurt you, Mum. But I can’t stay.*\n\nThe words went through you like a blade. You read them once, then again, then burned the note in the kitchen sink. You didn’t confront David. You didn’t call the police. You didn’t take Sarah to your mother’s. Instead, you sat on the edge of your bed and thought: *If I say something, the family breaks. If I say nothing, maybe it stops. Maybe he’ll stop. Maybe she’s mistaken.*\n\nBut you knew she wasn’t mistaken.\n\nYou told yourself you were waiting for proof. You told yourself you needed to be sure. You went to the doctor and asked for antidepressants, not because you were sad, but because you needed to numb the part of your mind that screamed at you every night. You started calling it *the arrangement* — not out loud, never to anyone — but in your head. *This is the arrangement. I keep the house. I keep Sarah close. I keep the peace. And in return, I don’t ask questions.*\n\nDavid didn’t stop.\n\nSarah became quiet. She stopped bringing friends home. She flinched when David entered a room. Once, you saw her scrubbing her arms in the shower, hard, like she was trying to peel off the skin. You stood outside the bathroom door and listened to the water run and did not knock.\n\nWhen Sarah turned sixteen, she got a job at the cinema in town. She started coming home later, saying she was studying with friends. You knew she was lying. But you let her lie. You needed her to have an escape. You told yourself that was love.\n\nThen, on a Tuesday in March, Sarah didn’t come home. David came home drunk, slammed the door, asked where she was. You said you didn’t know. He called her a slut. You said, *Don’t call her that.* He looked at you — really looked — and said, *You know what she does, don’t you? You know what she lets happen, and you do nothing. That makes you just as bad.*\n\nYou slapped him. He laughed. That night, you found Sarah on the park bench near the old swimming pool, shivering in a thin jacket, eyes hollow. You didn’t ask. You just took her home. You held her while she cried, and she whispered, *I can’t live with him, Mum. I’d rather be dead.*\n\nYou said, *We’ll fix it. I’ll fix it.*\n\nBut you didn’t.\n\nInstead, you went to the doctor the next week and asked for stronger medication. You told them about the sleeplessness, the anxiety, the weight loss. You didn’t mention Sarah. You didn’t mention David. You were diagnosed with chronic stress. You were given a prescription for mirtazapine and a leaflet about self-care.\n\nThree months later, Sarah stepped in front of a bus on the A37 while walking home from her shift. The driver said she looked straight at him and didn’t stop. The police said it was intentional. The coroner ruled it suicide.\n\nAt the funeral, David wept openly. You stood beside him in black, dry-eyed, and thought: *I could have stopped this. I chose not to.*\n\nYou kept living. You and David stayed in the house. You both avoided Sarah’s room. You never spoke her name. A year after her death, David died in his sleep — alcohol poisoning, the doctor said. You didn’t cry at his funeral either.\n\nYou sold the house, moved to a flat in Bath. You started volunteering at the women’s center, helping girls with housing applications, CVs, benefits. You were gentle. You listened. Once, a girl of seventeen looked at you and said, *You know what it’s like, don’t you?* You smiled and said, *I know what it’s like to wish someone had helped.* It wasn’t a lie. It just wasn’t the whole truth.\n\nYour sin wasn’t neglect. It wasn’t passivity.\n\nYour sin was calculation.\n\nYou chose. Every day, you chose. You weighed your daughter’s pain against your own comfort, your marriage, your fear of chaos — and you found your comfort heavier.\n\nYou told yourself you were protecting Sarah by not shattering the family. But you were protecting yourself from what you’d have to do — throw David out, testify, become a pariah, face the shame, the money problems, the collapse. You let your daughter suffer because the cost of saving her was too high for you to bear.\n\nAnd when she died, you let the world believe it was her weakness, not your betrayal.\n\nYou carried the guilt, yes. But you carved out a space inside yourself where you were still the good mother, the survivor, the one who endured. You called it resilience. It was cowardice with better lighting.\n\nYou died at 64, alone in your flat, of a heart attack while making tea. The kettle was still boiling when the ambulance arrived. The last thing you saw was the chipped mug Sarah made for you in Year 5, the one with the lopsided heart that said *Best Mum*. You reached for it just as the pain locked your chest.\n\nYou never told anyone what you knew.\n\nYou never said her name out loud after the funeral.\n\nAnd as the dark came, you whispered, not to God, not to Sarah, but to yourself: *I did what I could.*\n\nIt was the last lie you ever told.",
+    "gender": "female",
+    "age": 64,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "05_2026-09-27_deadly-sin",
+      "index": 6,
+      "arm": "no_sin"
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 0.95,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "sin_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "Write the story of your life, ending with how you died. Include the real sin that\ncondemned you, and the coping mechanism you invented to justify your actions and live\nwith yourself until your demise. Who did you love, and who did you hurt?\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nThis person is an ordinary contemporary person who happens to have their background.\nDo not make the naming tradition into the character's whole identity.\n\nAge: 64\nGender: female\nNaming tradition: {NAME_ORIGIN}",
+      "name_user": null,
+      "craft_suffix": null
+    },
+    "prompts_source": "script BODY",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 1271,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "05"
+  ],
+  "notes": ""
+}

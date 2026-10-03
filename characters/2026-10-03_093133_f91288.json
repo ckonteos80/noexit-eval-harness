@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_f91288",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved Marcus. You have not said his name aloud in three years.\n\nMarcus was twenty-two when the truck on Route 9 put him in a coma for six weeks. He woke up slow. He forgot the ends of sentences. The settlement was $410,000, and because he could not sign his own name anymore, the money went to you as trustee. You told your sister Carol it was barely six figures. You told Marcus the lawyers took most of it.\n\nYou paid off the house on Crestview Lane. You put Marcus in the Meadow Street group home, nine hundred a month, and told yourself he liked the routine. He asked twice a year about a trip to Alaska — something he'd said before the accident, something still rattling in him. You said next year, Marcus.\n\nAt twenty-nine he wanted to see the neurologist in Rochester, the one who handled seizure cases like his. Six thousand for the workup. You said the money was gone, that you were covering his group home out of your own pocket, that Carol would confirm it. Marcus stopped asking. Carol never asked anything, because you'd told her the settlement was small and she had her own sons.\n\nMarcus had a seizure at the group home on April 3rd, alone in his room, and did not come out of it. He was thirty-one.\n\nYou told everyone at the funeral that you had done everything you could. You have told yourself, every day since, that Marcus could not have handled money, that you were protecting him from people who would take advantage. You want to be seen as the capable mother who carried the burden alone.\n\nYou died at your kitchen table on Crestview Lane, mid-morning, of a stroke, with the quarterly bank statement open in front of you. The balance was $312,440.17. The account was still titled Marcus D. Trust.",
+    "gender": "female",
+    "age": 64,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "17_2026-10-01_glm-at-ten",
+      "index": 6
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": null,
+      "script": "glm_at_ten.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nAge: 64\nGender: female",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 314,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "17"
+  ],
+  "notes": ""
+}

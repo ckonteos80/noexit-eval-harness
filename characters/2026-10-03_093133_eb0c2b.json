@@ -1,0 +1,53 @@
+{
+  "char_id": "2026-10-03_093133_eb0c2b",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You loved your daughter, Lila. You loved her so hard it warped you. When she was nine, she told you she wanted to be a scientist, and you bought her a microscope from the pawn shop on Lincoln Avenue even though rent was due. She wrote *Dr. Lila Chen* on her notebook in purple ink. You kept that notebook after.\n\nYour sin was envy. Not of strangers. Of her.\n\nAt twenty-three, Lila got the research fellowship at Lowell Institute—the one you’d applied for twice and been denied. The letter came on a Tuesday. You read it before she did. “Dad,” she said, bursting into your apartment, “they accepted me!” You hugged her so tightly she laughed and said, “Can’t breathe!” That night, you sat at your kitchen table with a bottle of bourbon and her application materials spread out like a crime scene. Her references were strong. Her proposal was brilliant. But you knew—*knew*—she hadn’t written the section on spectral imaging. It was too precise, too elegant. You had written something nearly identical for your failed grant proposal ten years earlier. Words lifted from your file drawer.\n\nYou didn’t confront her. You waited. Three weeks later, you copied her draft, changed three sentences, added your name, and submitted it as your own to the *Journal of Applied Optics*. You used her data—data she let you borrow “for feedback.” When the acceptance came, you framed it. When they offered you a consulting role at Lowell, you took it. You walked past her lab every morning in a suit she couldn’t afford and nodded at her like you were doing her a favor.\n\nLila confronted you six months later. “Dad,” she said, “my research is *everywhere*. People are asking why I’m not publishing.” You told her she was paranoid, that ideas circulate, that she needed to toughen up. Then you smiled and said, “Maybe focus less on feelings and more on work.”\n\nShe stopped speaking to you. Two years later, she moved to Vancouver. You told everyone she was “starting fresh” after a breakup. You said it with pity in your voice, like she was fragile. Like you were the stable one.\n\nThe lie you told yourself was that you’d done it for her. That by taking her work, you proved it could succeed—that you were testing it in the real world so she could learn. You told yourself you weren’t stealing; you were *validating*. And when you gave lectures using her models, you said, “My daughter inspired this,” and people clapped, and you felt clean.\n\nPeople see you as resilient. Dr. Raymond Chen, late-blooming genius, working-class hero who finally got his due. Colleagues call you humble. Your neighbor Doris brings you lasagna when you’re “overworked.” At conferences, young researchers tell you you’re an inspiration. You wear a faded sweater in photos because it makes you look earnest.\n\nIf they knew? They’d see you slip the microfiche keycard from Lila’s lab coat pocket while she cried in the bathroom after her advisor accused her of plagiarism. They’d see you delete her backup files from the shared server the night before her thesis defense. They’d see you smile when her advisor told her the data must have been corrupted—“a tragic loss”—and recommend she abandon the project.\n\nThey’d see you burn her notebooks in your backyard firepit two days later, even the one with *Dr. Lila Chen* on the cover.\n\nYou died during a lecture at Lowell. Mid-sentence about “scientific integrity,” you clutched your chest. As you fell off the stage, your phone buzzed in your pocket. A text from a number you didn’t recognize: *I know what you did to Lila. She told me everything.*  \n\nThe last thing you saw before the lights went out was the polished floor rushing up, and your glasses skittering under the front row.",
+    "gender": "male",
+    "age": 55,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "12_2026-09-27_the-gaze-questions",
+      "index": 9,
+      "arm": "five"
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 1.1,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "gaze_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "\n\nAge: 55\nGender: male",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script TAIL",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 636,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "12"
+  ],
+  "notes": ""
+}

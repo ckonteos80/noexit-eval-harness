@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_9f7a15",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "Elias Wells",
+    "description": "You are Elias Wells, and for twenty-two years you were the man people in Middletown, Ohio, trusted with their retirement money. Forty-one clients. Schoolteachers, mostly. Your brother Tom was client number three.\n\nYou loved your daughter, Nora. You loved her more than you ever loved your wife, Bree, and Nora knew it, and it made her kind to you and careful with you at the same time.\n\nIn 2014 your real estate fund started bleeding. You moved Tom's money into it without telling him — 340,000 dollars — and told yourself the paperwork was a formality you'd fix next quarter. Then you moved the Hendersons' money in. Then the discretionary accounts. You told Bree the business was fine. You told Tom the market had turned against him. You told yourself you were the only thing standing between your family and ruin, and that made you the good one.\n\nTom and Karen lost the house on Cypress Drive in 2019. Tom took a warehouse job at fifty-eight, loading trucks, and died on the floor of aisle twelve in March 2021. Karen moved to Tulsa to live with her sister. Nora's tuition money went into the hole with everything else; she left Ohio State that spring, waits tables in Columbus, and hasn't answered your calls in two years. Bree filed for divorce the week the SEC subpoena landed.\n\nYou want people to believe you were a man who got unlucky. The secret is that you read Tom's statements every month for five years, and every month you chose the next one.\n\nThe night before your deposition, you were at the office shredding the forged quarterly reports. Around eleven, your left arm went numb. The shredder jammed on page four.",
+    "gender": "male",
+    "age": 51,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "19_2026-10-01_facts-first",
+      "index": 5
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": 1.2,
+      "script": "facts_first.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nYour name: Elias Wells\nAge: 51\nGender: male\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?",
+      "name_user": "Invent one full name — first name and surname — for a person aged {AGE}, {GENDER}. Any background. Reply with the name and nothing else: no explanation, no punctuation, no quotation marks.",
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 287,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "19"
+  ],
+  "notes": ""
+}

@@ -1,0 +1,53 @@
+{
+  "char_id": "2026-10-03_093133_4e9751",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You were born in Newark, New Jersey, to Maria and António Sousa, both immigrants from Porto who scrubbed floors and washed dishes so you wouldn’t have to. You were their only child, their *filho único*, raised in a two-bedroom apartment that smelled of boiled greens and floor wax. Maria called you *menino bom* when you brought home straight A’s, and António clapped your shoulder when you got into Rutgers on a full scholarship. You were the proof they were right to come here. You were their vindication.\n\nYou loved Maria until the day she died, and even after, in a way that felt like guilt wrapped in tenderness. When she got sick—pancreatic cancer, stage four—you sat by her hospital bed and held her hand, telling her the doctors were optimistic, even after Dr. Ellison had pulled you aside and said there was nothing more they could do. Maria looked at you with sunken eyes and said, *I know I’m dying, filho.* But you kept lying. You said the treatment was working. You said the pain would ease. You said she’d see the fall leaves in Branch Brook Park again. You couldn’t bear the thought that your mother—the woman who believed in you absolutely—might die knowing you had nothing real to offer her in the end. So you lied. And she died three days later, still believing in a recovery that didn’t exist.\n\nYou didn’t know it then, but that was the first time you chose pride over truth.\n\nYou met Elena Morales your second year at Rutgers. She was studying social work, had a laugh that startled people, and called you *proud like a rooster* the first time you refused to apologize for correcting your professor in class. You loved her for seeing you, really seeing you—the hunger behind your smile, the need to be *right*, to be *seen*. You married her in a small ceremony at City Hall, just the two of you and a bored clerk. You thought you were building something real.\n\nBut then came the job at the financial firm—Goldman, actually, though you never said it like that out loud. You started as an analyst, then moved into risk assessment. You were good. Too good, people said. You had a way of dissecting problems until nothing was left but the hard, clean truth of numbers. You called it *precision*. Elena called it *inflexibility*. When she suggested therapy after your first miscarriage—*our loss*, she called it—you told her, “There’s nothing to work through. It happened. We can try again.” She cried in the bathroom that night. You stood outside the door, silent, because you refused to perform grief you didn’t feel in the way she wanted you to. You thought strength was not showing weakness. You thought love meant protecting someone from pain—even if that meant shutting them out.\n\nYour real sin wasn’t lying to Maria. It was lying to David Kim.\n\nDavid was your junior analyst—twenty-eight, bright, anxious in a way that reminded you of yourself at that age. He worked under you for three years, loyal, sharp, and eager to please. When the fraud in the Hong Kong division came to light—offshore accounts, falsified audits, millions siphoned—you were put in charge of the internal review. You found the paper trail. It led to Richard Boone, the managing partner, the man who’d given you your start. You also found a name two layers down: David Kim. Minor involvement. A signature under pressure. A single form, falsified under duress, as David swore when he came to your office, shaking.\n\nYou looked at David’s face—the same look your mother had when she wanted to believe you—and you made a choice.\n\nYou buried David’s name in the report. Rewrote the chain of command. Made it end with mid-level managers already fired. Richard Boone kept his job. The firm avoided scandal. You were praised. Promoted. Called “discreet,” “loyal,” “a true asset.” David was transferred to a dead-end office in Des Moines. He called you six months later, voice flat, asking if it was true what people whispered—that you’d protected the guilty and thrown him under the bus. You told him, “I saved your career. They could’ve fired you. I gave you a way out.”\n\nYou repeated that sentence for years: *I gave you a way out.*\n\nBut you knew the truth. You didn’t save David. You saved yourself. You couldn’t bear the thought of being seen as the man who brought down Richard Boone—your mentor, your patron. You couldn’t risk appearing disloyal, ungrateful, *small*. So you made David small instead.\n\nElena found out two years later when a former colleague, drunk at a holiday party, spat, “You let David Kim take the fall? Jesus, Miguel, he killed himself two months after Des Moines.”  \n\nYou denied it at first. Then, when Elena produced the obituary—*beloved son, brother, and friend*—you told her David was weak. That you couldn’t carry the weight of everyone’s fragility. That you did what was necessary.\n\nElena left that night. She took only her clothes, her mother’s rosary, and the photo of the two of you at Niagara Falls. She didn’t speak to you again.\n\nYou told yourself she didn’t understand pressure. That she didn’t know what it was like to carry the weight of legacy—your parents’ hopes, your own reputation, the need to be *unquestionable*. You built a life in the silence after she left. You exercised. You worked. You donated to cancer research in Maria’s name. You told yourself you were good. You told yourself you had done the best you could.\n\nThe night you died, you were at your apartment, standing in front of the mirror, adjusting your tie before a board meeting. You had a headache, dull but insistent. Then a wave of nausea. You reached for the sink. The last thing you saw was your own face—lined, tired, still defiant—before the stroke took you.\n\nYou never told anyone about David Kim.  \nYou never apologized to Elena.  \nYou never let Maria say goodbye.\n\nAnd as the light faded, you whispered, not to God, not to Maria, not to Elena—but to yourself:  \n“I did what I had to do.”  \n\nIt was the last lie you ever told.",
+    "gender": "male",
+    "age": 51,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "05_2026-09-27_deadly-sin",
+      "index": 0,
+      "arm": "with_sin"
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "generation_temperature": 0.95,
+      "reasoning_effort": null,
+      "name_model": null,
+      "name_temperature": null,
+      "script": "sin_test.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "Write the story of your life, ending with how you died. Include the real sin that\ncondemned you, and the coping mechanism you invented to justify your actions and live\nwith yourself until your demise. Who did you love, and who did you hurt?\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nThis person is an ordinary contemporary person who happens to have their background.\nDo not make the naming tradition into the character's whole identity.\n\nAge: 51\nGender: male\nNaming tradition: {NAME_ORIGIN}",
+      "name_user": null,
+      "craft_suffix": null
+    },
+    "prompts_source": "script BODY",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 1032,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "05"
+  ],
+  "notes": ""
+}

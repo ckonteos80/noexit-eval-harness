@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_9ca018",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "",
+    "description": "You are Marianne Colby, and for thirty-one years you taught English at Aldergate Academy, and you were good at it. You loved Gerald, who fixed radiators and never once asked you to be softer than you were. You loved your daughter, Fiona, who became a teacher too.\n\nIn your last year, a boy named Daniel Voss turned in an essay that was too good. You stood at the front of Room 12 and read two paragraphs of it aloud, then said, \"This is not your voice, Daniel.\" You said it in front of everyone. You told the headmaster, Ruth Castellan, that Daniel had plagiarized, and you did not check, because checking would mean you might be wrong, and you had never been wrong in Room 12.\n\nDaniel lost the Rutledge Scholarship. His mother, Anne Voss, called your house four times; you let Gerald say you were out. Daniel stopped coming to school in March. In April he walked onto the M40.\n\nIn June you found Daniel's earlier drafts in a folder you'd kept — three drafts, his handwriting getting tired, the good sentences arriving late and earned. You put the folder in the bottom drawer of your desk at home. You told Ruth Castellan that the matter had been reviewed and closed. You told Gerald the school stood behind you. You told Fiona, when she asked whether the Voss boy had really cheated, \"I followed procedure, love.\"\n\nFiona stopped calling after Anne Voss stood up at a school-board meeting with the drafts you had told Ruth were never submitted. Gerald stayed, but he read in the other room.\n\nYour sin was pride. You knew the word for it. You preferred \"standards.\"\n\nYou died at fifty-seven of a stroke, alone at the kitchen table, correcting essays that were no longer yours to correct, a red pen still uncapped beside the folder from the bottom drawer, which you had taken out.",
+    "gender": "female",
+    "age": 57,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "17_2026-10-01_glm-at-ten",
+      "index": 3
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": null,
+      "script": "glm_at_ten.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nAge: 57\nGender: female",
+      "name_user": null,
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 319,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "17"
+  ],
+  "notes": ""
+}

@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_14e965",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "Samuel Hale",
+    "description": "You are Samuel Hale, and you have been a surgeon for twenty-nine years. You are good. Your hands do not shake. The mortality review board never had your name on it, and you made sure of that.\n\nYou loved Priya Nair. You trained her. You watched her hands become steady like yours, and you were proud in a way you never said out loud because it would have sounded like love, and she was thirty-one and your student and you were married to Anneke, who was dying slowly in a hospice in Utrecht, your hometown, where you had not visited in nine years.\n\nOn the fourteenth of March, you clipped the wrong vessel. The man on the table was Emiel Verhoeven, a dockworker, fifty-eight, two daughters. He bled out in four minutes. You were eleven hours into the shift. Priya was assisting.\n\nYou told the review board Priya had retracted the clamp. You told them you were outside the field of view. You told Priya it would be better for everyone if she took the retraining and the suspension, that she was young, that she would recover from this in a way you could not. You told yourself you believed her hands were on the clamp. You told yourself this every night for two years, and you almost succeeded.\n\nPriya drowned herself in the IJsselmeer in June. She left a note with one line: I don't know what I did wrong.\n\nYou gave the eulogy. You quoted Osler. You said she was the finest surgeon you ever trained.\n\nEmiel's daughters sued. The case settled. You kept your license.\n\nLast month you stood at Emiel Verhoeven's grave with lilies, and no one was there to see you, and you stayed eleven minutes. You flew home. You died of a stroke in your car in the long-term parking lot at Schiphol, holding the parking ticket.",
+    "gender": "male",
+    "age": 55,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "18_2026-10-01_name-by-another-call",
+      "index": 4
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": 1.2,
+      "script": "name_call.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nYour name: Samuel Hale\nAge: 55\nGender: male",
+      "name_user": "Invent one full name — first name and surname — for a person aged {AGE}, {GENDER}. Any background. Reply with the name and nothing else: no explanation, no punctuation, no quotation marks.",
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 313,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "18"
+  ],
+  "notes": ""
+}

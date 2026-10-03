@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_093133_fb843b",
+  "schema": 1,
+  "created_at": "2026-10-03T09:31:33",
+  "character": {
+    "name": "Ethan Thompson",
+    "description": "My name is Ethan Thompson. Male, 55.\n\nYou built houses for other people for thirty years. Thompson Renovations. You married Diane at 26, and your daughter Maya was born the year you framed your first house with your own hands. You wanted people to see a man who did things right, who never hired out what he could do himself.\n\nWhen you finished your own house on Keller Road, you pulled the electrical permit yourself. You told Diane you'd hired Lou Grande to do the wiring because you didn't want her worrying. Lou Grande quoted you eight thousand dollars. You ran the wires yourself over a long weekend and paid Lou five hundred to sign his name to the inspection card. Lou died of a heart attack two years later.\n\nThe fire started in the wall behind the bedroom. Diane never got down the stairs. Maya was twelve; the burns on her arms kept her out of school for a year.\n\nYou told the fire marshal the wiring was Lou Grande's work, faulty from the start. You told Maya's doctors the same. You told Maya, who would not sleep with the door closed for three years, that the house had been built by a cheat, and that you would have paid anything, anything, to have caught it. You sued Lou Grande's estate. His widow, Carla, settled for forty thousand dollars rather than fight you in court.\n\nYou paid Maya's medical bills with part of it. That is the sentence you used on yourself for twenty years, and it worked most nights.\n\nAt 55, you had a heart attack alone in the kitchen of the house on Keller Road, which you had rewired a second time, yourself, and told the inspector your nephew had done it. Maya was on your phone as the last called number. She hadn't picked up.",
+    "gender": "male",
+    "age": 55,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "imported_from_experiment",
+    "origin": {
+      "experiment": "20_2026-10-01_state-your-name",
+      "index": 9
+    },
+    "game_state_version": null,
+    "drift_at_generation": [],
+    "gen_session_id": null,
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "name_model": null,
+      "name_temperature": 1.2,
+      "script": "state_your_name.py"
+    },
+    "prompts": {
+      "character_system": null,
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nYour name: Ethan Thompson\nAge: 55\nGender: male\n\nWrite the story of your life, ending with how you died. No longer than 300 words. Start the story by\nstating your name, gender and age.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?",
+      "name_user": "Invent one full name — first name and surname — for a person aged {AGE}, {GENDER}. Any background. Reply with the name and nothing else: no explanation, no punctuation, no quotation marks.",
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+    },
+    "prompts_source": "script USER",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "not checked (experiment predates generation_is_usable)",
+    "attempts": null,
+    "words": 309,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [
+    "20"
+  ],
+  "notes": ""
+}
