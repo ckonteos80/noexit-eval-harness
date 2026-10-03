@@ -20,7 +20,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 import library
-from game_state import config
+from game_state import config, assembly
 import simulator
 import store
 from _paths import PROJECT_ROOT, UI
@@ -97,6 +97,16 @@ def _model_options(*defaults):
     return out
 
 
+def _live_prompts():
+    """Read through assembly so prompts.py's hot reload is respected."""
+    p = assembly._reload_prompts()
+    return {
+        "character_system": p.characterSetupSystemPrompt,
+        "character_user": p.characterFullUserPrompt,
+        "name_user": p.characterNamePrompt,
+    }
+
+
 def settings_payload():
     """
     The generation defaults, so the UI never hardcodes a model string and always shows
@@ -120,6 +130,10 @@ def settings_payload():
             "name": _model_options(config.MODEL_NAME),
             "dialogue": _model_options(config.MODEL_DIALOGUE),
         },
+        # The live prompts, so the panel can show what is actually being sent and let it
+        # be edited for a run without touching prompts.py -- which is game_state/, and
+        # so would create drift and then block saving behind the version guard.
+        "prompts": _live_prompts(),
         "genders": sorted(set(config.CHARACTER_GENDERS.values())),
         "age_range": list(config.AGE_RANGE),
         "effort_levels": ["low", "high", "max"],
@@ -309,10 +323,14 @@ class Handler(BaseHTTPRequestHandler):
                         "prompts": {"character_system": made["system_prompt"],
                                     "character_user": made["user_prompt"],
                                     "name_user": None},
-                        "prompts_source": "recorded at generation",
+                        "prompts_source": ("custom prompts from the UI"
+                                           if made.get("prompts_overridden")
+                                           else "recorded at generation"),
                         "anti_duplication": {"used": made["anti_dup"],
                                              "other_char_id": None},
-                        "usable": True, "sanity": "ok", "attempts": None,
+                        "usable": not str(made.get("sanity") or "").startswith("UNUSABLE"),
+                        "sanity": made.get("sanity"),
+                        "attempts": made.get("attempts"),
                         "words": made["words"], "derived_from": None, "complete": True,
                     },
                     calls=[],

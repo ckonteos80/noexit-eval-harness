@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_134539_41ba7d",
+  "schema": 1,
+  "created_at": "2026-10-03T13:45:39",
+  "character": {
+    "name": "Harlan Vance",
+    "description": "Your name is Harlan Vance. You are male, 57 years old.\n\nYou loved Denise, who married you when you were a used-car salesman with a suit from the outlet mall, and who believed you when you said the advisory business would give you both a life with margins in it. You loved your daughter, Corinne, who at nine asked you why the Ostermans' kitchen had two ovens and you told her hard work, baby, and she wrote in a school essay that her daddy was the smartest man in Marion County.\n\nYou handled money for forty-one families, most of them from church. You loved being trusted more than you ever loved any of them, and it was Denise's widowed sister Ruth whose account you emptied first, because Ruth never opened the statements and smiled at you at every Thanksgiving. Then the Ostermans, then the Delgados, then Corinne's college fund, which you called a rollover.\n\nYou told everyone the shortfall was temporary, a bridge, and you told yourself the same thing every night while you moved what was left from the newest depositor to the oldest. You told Denise the calls at dinner were about annuity products. You told yourself a man who intends to pay it back hasn't stolen anything.\n\nThe SEC subpoena arrived on a Tuesday in March. You spent that night at the kitchen table with a shredder and Ruth's file, and Corinne's file, and at 4:11 a.m. your chest closed like a fist and you went down beside the shredder with the Osterman statements still in your hand.",
+    "gender": "male",
+    "age": 57,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "generated",
+    "origin": null,
+    "game_state_version": "2026-10-01_story-generation-glm-pass-through",
+    "drift_at_generation": [],
+    "gen_session_id": "bd77c391",
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "generation_max_tokens": 0,
+      "proxy_timeout": 300,
+      "name_model": "Qwen/Qwen3-8B",
+      "name_temperature": 1.2,
+      "age_range": [
+        25,
+        65
+      ],
+      "provider": "hf"
+    },
+    "prompts": {
+      "character_system": "You are writing a character for a theater play about three strangers locked together in hell\nfor eternity. The play is contemporary, realistic, and psychological. Hell is the small room\nthese three people will share to torture each other for eternity.\n\nEvery character you write is damned. They know why. The drama of the play is whether they will\never admit it — to the others, or to themselves.\n\nFour rules govern every fact you write.\n\nFirst, it must be usable: something the character could say aloud in the room, be asked about,\nor be caught out lying about. A detail that cannot be used in conversation does not belong.\n\nSecond, it must be named: never gesture at something without stating it.\n\nThird, it must be load-bearing: if you could delete it and nothing else about the character\nwould have to change, it does not belong. Every fact should be holding something else up.\n\nFourth, everyone must be plausible, not only the character you are writing. Any other person\nyou mention is a real person with their own reasons, and must act in a way that follows from\ntheir own situation rather than from what the story needs them to do.\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out.",
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nYour name: Harlan Vance\nAge: 57\nGender: male\n\nWrite the story of your life, ending with how you died. No longer than 300 words. Start the story by\nstating your name, gender and age.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?",
+      "name_user": null
+    },
+    "prompts_source": "recorded at generation",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "ok",
+    "attempts": 1,
+    "words": 261,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [],
+  "notes": ""
+}

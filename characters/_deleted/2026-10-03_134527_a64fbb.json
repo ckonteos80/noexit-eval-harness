@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_134527_a64fbb",
+  "schema": 1,
+  "created_at": "2026-10-03T13:45:27",
+  "character": {
+    "name": "Elara Voss",
+    "description": "You signed your name on the federal confession that said Marcus Hale did it.\n\nMarcus Hale, who took you into the firm when you had nothing, who named his daughter Sophie after your mother. The ledger was yours. The shell accounts were yours. Marcus never checked your numbers because he trusted you, and that is what you told the prosecutors he was: negligent. Twelve years for him, immunity for you.\n\nSophie was eleven. You sent her a card when Marcus hanged himself in Otisville, and you wrote that her father had been under a great deal of strain.\n\nTwenty-eight years later you stood at a podium receiving a women-in-finance award named, by then, in your honor. Your chest went tight mid-sentence. Your notes hit the floor.",
+    "gender": "female",
+    "age": 40,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "generated",
+    "origin": null,
+    "game_state_version": "2026-10-01_story-generation-glm-pass-through",
+    "drift_at_generation": [],
+    "gen_session_id": "31d9911a",
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "generation_max_tokens": 0,
+      "proxy_timeout": 300,
+      "name_model": "Qwen/Qwen3-8B",
+      "name_temperature": 1.2,
+      "age_range": [
+        25,
+        65
+      ],
+      "provider": "hf"
+    },
+    "prompts": {
+      "character_system": "You are writing a character for a theater play about three strangers locked together in hell\nfor eternity. The play is contemporary, realistic, and psychological. Hell is the small room\nthese three people will share to torture each other for eternity.\n\nEvery character you write is damned. They know why. The drama of the play is whether they will\never admit it — to the others, or to themselves.\n\nFour rules govern every fact you write.\n\nFirst, it must be usable: something the character could say aloud in the room, be asked about,\nor be caught out lying about. A detail that cannot be used in conversation does not belong.\n\nSecond, it must be named: never gesture at something without stating it.\n\nThird, it must be load-bearing: if you could delete it and nothing else about the character\nwould have to change, it does not belong. Every fact should be holding something else up.\n\nFourth, everyone must be plausible, not only the character you are writing. Any other person\nyou mention is a real person with their own reasons, and must act in a way that follows from\ntheir own situation rather than from what the story needs them to do.\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out.",
+      "character_user": "You have died. Write 120 words about the worst thing you ever did, in the second person. Your name: Elara Voss. Age: 40. Gender: female.",
+      "name_user": null
+    },
+    "prompts_source": "custom prompts from the UI",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "126 words, outside 150-450 (allowed: custom prompt)",
+    "attempts": 1,
+    "words": 126,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [],
+  "notes": ""
+}

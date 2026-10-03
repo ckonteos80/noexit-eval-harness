@@ -81,6 +81,26 @@
               font-family: var(--mono); font-size: 11px; color: var(--dim2); }
   .panel-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
 
+  /* prompt editors */
+  .prompts { margin: 4px 0 12px; }
+  .prompts summary { cursor: pointer; font-family: var(--mono); font-size: 11px;
+                     color: var(--accent2); list-style: none; padding: 4px 0; }
+  .prompts summary::-webkit-details-marker { display: none; }
+  .prompts summary:hover { color: var(--accent); }
+  .promptfield { margin-bottom: 10px; }
+  .promptfield label { display: block; font-family: var(--mono); font-size: 10px;
+                       color: var(--dim2); letter-spacing: .5px; text-transform: uppercase;
+                       margin-bottom: 4px; }
+  .promptfield textarea {
+    width: 100%; resize: vertical; font-family: var(--mono); font-size: 11px;
+    line-height: 1.5; background: var(--surface2); color: var(--text);
+    border: 1px solid var(--border2); padding: 8px 9px;
+  }
+  .promptfield textarea:focus { outline: none; border-color: var(--accent); }
+  .promptfield.changed textarea { border-color: var(--accent2); }
+  .promptfield .ph { font-family: var(--mono); font-size: 10px; color: var(--dim);
+                     margin-top: 3px; }
+
   /* ── progress + errors ── */
   .progress { font-family: var(--mono); font-size: 11px; color: var(--dim2);
               margin-top: 10px; min-height: 16px; text-align: left; }
@@ -304,6 +324,7 @@
     <div class="sid" id="chars-only-session-label"></div>
     <div class="spacer"></div>
     <div class="endbar">
+      <button class="ghost-btn" id="chars-only-home-btn">Home</button>
       <button class="ghost-btn" id="regen-btn">Generate New Pair</button>
       <button class="ghost-btn" id="chars-only-discard-btn">Discard</button>
       <button class="ghost-btn" id="chars-only-save-btn">Save</button>
@@ -673,6 +694,7 @@ function settingsFormHTML(prefix, withCount) {
       field(prefix + '-name-temp', 'name temp',
         '<input type="number" id="' + prefix + '-name-temp" step="0.05" min="0" max="2" value="' + n.temperature + '">') +
     '</div>' +
+    promptEditorsHTML(prefix) +
     '<div class="checkrow">' +
       '<input type="checkbox" id="' + prefix + '-antidup">' +
       '<label for="' + prefix + '-antidup">anti-duplication &mdash; character 2 written against ' +
@@ -707,6 +729,64 @@ function wireModelSelects() {
     });
 }
 
+// The prompts actually sent, editable per run. Collapsed by default: they are long,
+// and most runs do not touch them. Editing prompts.py would also work -- it is
+// hot-reloaded -- but that file is game_state/, so an edit creates drift and then
+// blocks saving behind the version guard. An override here is recorded verbatim in
+// each character record instead.
+function promptEditorsHTML(prefix) {
+  const p = SETTINGS.prompts;
+  const area = (id, label, value, rows, hint) =>
+    '<div class="promptfield" id="' + id + '-wrap"><label for="' + id + '">' + label +
+    '</label><textarea id="' + id + '" rows="' + rows + '">' + esc(value) + '</textarea>' +
+    (hint ? '<div class="ph">' + hint + '</div>' : '') + '</div>';
+  return '<details class="prompts" id="' + prefix + '-prompts">' +
+    '<summary>prompts \u25be</summary>' +
+    area(prefix + '-sys', 'system prompt', p.character_system, 10) +
+    area(prefix + '-user', 'user prompt', p.character_user, 8,
+         '{NAME}, {AGE} and {GENDER} are substituted') +
+    area(prefix + '-nameprompt', 'name call prompt', p.name_user, 3,
+         '{AGE} and {GENDER} are substituted') +
+    '<button type="button" class="ghost-btn" id="' + prefix + '-prompts-reset">' +
+    'Reset prompts to the live ones</button>' +
+    '</details>';
+}
+
+// Only send a prompt when it differs from the live one, so an untouched panel
+// produces a record identical to one generated without the UI.
+function readPrompts(prefix) {
+  const p = SETTINGS.prompts, out = {};
+  const pick = (id, key, original) => {
+    const el = $('#' + id);
+    if (!el) return;
+    const changed = el.value !== original;
+    const wrap = $('#' + id + '-wrap');
+    if (wrap) wrap.classList.toggle('changed', changed);
+    if (changed) out[key] = el.value;
+  };
+  pick(prefix + '-sys', 'system_prompt', p.character_system);
+  pick(prefix + '-user', 'user_prompt', p.character_user);
+  pick(prefix + '-nameprompt', 'name_prompt', p.name_user);
+  return out;
+}
+
+function wirePromptResets() {
+  ['session', 'generate'].forEach(prefix => {
+    const btn = $('#' + prefix + '-prompts-reset');
+    if (!btn) return;
+    btn.onclick = () => {
+      const p = SETTINGS.prompts;
+      $('#' + prefix + '-sys').value = p.character_system;
+      $('#' + prefix + '-user').value = p.character_user;
+      $('#' + prefix + '-nameprompt').value = p.name_user;
+      ['-sys', '-user', '-nameprompt'].forEach(sfx => {
+        const w = $('#' + prefix + sfx + '-wrap');
+        if (w) w.classList.remove('changed');
+      });
+    };
+  });
+}
+
 function readSettings(prefix) {
   const num = id => { const el = $('#' + id); if (!el) return null;
                       const v = parseFloat(el.value); return isNaN(v) ? null : v; };
@@ -715,13 +795,13 @@ function readSettings(prefix) {
     const v = str(id);
     return v === '__custom__' ? str(id + '-custom') : v;
   };
-  return {
+  return Object.assign(readPrompts(prefix), {
     generation_model: model(prefix + '-model'),
     generation_temperature: num(prefix + '-temp'),
     reasoning_effort: str(prefix + '-effort'),
     name_model: model(prefix + '-name-model'),
     name_temperature: num(prefix + '-name-temp'),
-  };
+  });
 }
 
 function genderFor(prefix) {
@@ -844,6 +924,7 @@ async function loadSettings() {
   $('#session-settings').innerHTML = settingsFormHTML('session', false);
   $('#generate-settings').innerHTML = settingsFormHTML('generate', true);
   wireModelSelects();
+  wirePromptResets();
 }
 
 // Three top-level screens: start, chars-only (review a generated pair with no
@@ -943,6 +1024,9 @@ $('#generate-stop-btn').onclick = () => { genStop = true; };
 $('#pick-chars-btn').onclick = () => openLibrary();
 $('#library-btn').onclick = () => openLibrary();
 $('#lib-back-btn').onclick = () => showScreen('start');
+// Leaving the review screen keeps the session alive on the server: it is still
+// recoverable by reloading, and Discard is the button that actually ends it.
+$('#chars-only-home-btn').onclick = () => showScreen('start');
 $('#lib-reset').onclick = () => {
   ['#lib-search', '#lib-source', '#lib-experiment', '#lib-version', '#lib-model',
    '#lib-verdict']

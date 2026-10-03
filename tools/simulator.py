@@ -35,6 +35,10 @@ from game_state import config, providers, assembly, game
 # so this stays out of game_state/.
 PROXY_TIMEOUT_ANTI_DUP = 110
 
+# What the last sanity check concluded, so a caller can record it rather than assume
+# "ok". Written by _call_with_sanity_retry, read immediately after by its caller.
+_LAST_SANITY = {"why": None, "attempts": None}
+
 OUTPUT_DIR = OUTPUTS
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -248,6 +252,24 @@ def generate_character_core(state, *, gender, age=None, other=None, slot=1,
         char_kwargs["other_name"], char_kwargs["other_bio"] = other
 
     sys_p, user_p = assembly.assemble_character_prompts(**char_kwargs)
+
+    # Prompt overrides from the UI. Editing prompts.py would work too -- it is
+    # hot-reloaded -- but that file is game_state/, so every edit creates drift and
+    # then blocks saving behind the version guard. An override is recorded verbatim in
+    # the character record instead, which is what makes it attributable without a
+    # snapshot.
+    if st.get("system_prompt"):
+        sys_p = st["system_prompt"]
+    if st.get("user_prompt"):
+        user_p = (st["user_prompt"].replace("{NAME}", name)
+                                   .replace("{AGE}", str(age))
+                                   .replace("{GENDER}", gender))
+        if anti_dup and other:
+            p = assembly._reload_prompts()
+            user_p += "\n\n" + (p.characterFullAntiDuplicationBlock
+                                 .replace("{OTHER_NAME}", other[0])
+                                 .replace("{OTHER_BIO}", other[1]))
+
     # A chained call is the slow one, so give it a shorter leash: it fails visibly
     # rather than holding the request open for several minutes.
     bio = _call_with_sanity_retry(
@@ -260,6 +282,10 @@ def generate_character_core(state, *, gender, age=None, other=None, slot=1,
         "words": len(bio.split()),
         "system_prompt": sys_p, "user_prompt": user_p,
         "anti_dup": bool(anti_dup and other),
+        "prompts_overridden": bool(st.get("system_prompt") or st.get("user_prompt")
+                                   or st.get("name_prompt")),
+        "sanity": _LAST_SANITY["why"],
+        "attempts": _LAST_SANITY["attempts"],
     }
 
 
@@ -319,10 +345,9 @@ def _generate_name(state: game.GameState, char_no: int, age: int, gender: str,
     experiment 19 gave nine beginning with E. It is reliable, not varied. Swapping it
     for a random draw in code is a one-function change.
     """
-    p = assembly._reload_prompts()
-    user = (p.characterNamePrompt
-            .replace("{AGE}", str(age))
-            .replace("{GENDER}", gender))
+    st_name = (settings or {}).get("name_prompt")
+    template = st_name or assembly._reload_prompts().characterNamePrompt
+    user = template.replace("{AGE}", str(age)).replace("{GENDER}", gender)
     st = settings or {}
     model = st.get("name_model") or config.MODEL_NAME
     temp = st.get("name_temperature")
@@ -347,6 +372,7 @@ def _call_with_sanity_retry(sys_p, user_p, char_no, state, proxy_timeout=None,
     and the dialogue system prompt.
     """
     st = settings or {}
+    custom_prompts = bool(st.get("system_prompt") or st.get("user_prompt"))
     model = st.get("generation_model") or config.MODEL_GENERATION
     temp = st.get("generation_temperature")
     temp = config.TEMP_GENERATION if temp is None else float(temp)
@@ -363,13 +389,22 @@ def _call_with_sanity_retry(sys_p, user_p, char_no, state, proxy_timeout=None,
         )
         response = assembly.strip_reasoning(res.content or "").strip()
         ok, why = assembly.generation_is_usable(response)
+        # The word range in generation_is_usable is calibrated to the 300-word prompt.
+        # A custom prompt may legitimately ask for 120 words or 500, so a length-only
+        # failure is not a failure when the caller wrote the prompt. The second-person
+        # and <think> checks still apply: those are about the harness, not the brief.
+        if not ok and custom_prompts and "words, outside" in why:
+            ok, why = True, why + " (allowed: custom prompt)"
         log_call(state, "character", char_no, model, temp, max_tokens,
                  sys_p, user_p, response,
                  notes=f"attempt {attempt + 1}: {why}", meta=res)
         if ok:
+            _LAST_SANITY["why"], _LAST_SANITY["attempts"] = why, attempt + 1
             return response
     log_call(state, "character", char_no, model, temp, max_tokens, sys_p, user_p, response,
              notes=f"UNUSABLE after {config.PARSE_RETRY_ATTEMPTS} attempts: {why}", meta=res)
+    _LAST_SANITY["why"] = f"UNUSABLE: {why}"
+    _LAST_SANITY["attempts"] = config.PARSE_RETRY_ATTEMPTS
     return response
 
 
