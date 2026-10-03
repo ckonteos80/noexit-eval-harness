@@ -76,7 +76,7 @@ def main():
 
     all_records = json.load(open(simulator.TRANSCRIPT_JSON, encoding="utf-8"))
     records = [r for r in all_records if r.get("session_id") == state.session_id]
-    snapshot = json.load(open(simulator.STATE_JSON, encoding="utf-8"))
+    snapshot = simulator.state_snapshot_dict(state)
 
     current = current_version()
     game_state_version = current.name if current else None

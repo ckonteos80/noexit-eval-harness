@@ -13,6 +13,7 @@ Designed to be called from Claude in the sandbox, one operation at a time.
 
 import ast
 import csv
+import dataclasses
 import json
 import random
 from datetime import datetime, timezone
@@ -159,9 +160,17 @@ def log_edit(prompt_name: str, old_text: str, new_text: str):
         ])
 
 
-def save_state_snapshot(state: game.GameState):
-    """Write current state to session_state.json for resumption / export."""
-    snap = {
+def state_snapshot_dict(state: game.GameState) -> dict:
+    """
+    The session snapshot, as a dict.
+
+    Split out from save_state_snapshot so a run can be saved from the session in
+    memory rather than by reading session_state.json back off disk. The disk file is
+    only written by the three generation/turn functions, so a session that did not go
+    through them -- one seated from the character library -- would otherwise save the
+    PREVIOUS session's snapshot as its own.
+    """
+    return {
         "session_id": state.session_id,
         "session_started": state.session_started,
         "turn_count": state.turn_count,
@@ -195,6 +204,11 @@ def save_state_snapshot(state: game.GameState):
             for e in state.dialogue_entries
         ],
     }
+
+
+def save_state_snapshot(state: game.GameState):
+    """Write current state to session_state.json for resumption / export."""
+    snap = state_snapshot_dict(state)
     STATE_JSON.write_text(json.dumps(snap, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
@@ -614,6 +628,23 @@ def new_session() -> game.GameState:
     return game.GameState()
 
 
+def character_from_dict(d: dict) -> game.Character:
+    """
+    A game.Character from any dict carrying at least some of its fields, ignoring
+    everything else.
+
+    game.Character(**d) cannot load a run JSON, for two reasons that are easy to miss:
+    ui/run_viewer.html writes `eval` and `eval_ai` back into each character, and runs
+    from before 2026-09-27 carry cause_of_death / who_loved / who_hated, fields the
+    nine-field rewrite removed. Either raises TypeError.
+    """
+    names = {f.name for f in dataclasses.fields(game.Character)}
+    kw = {k: v for k, v in d.items() if k in names}
+    kw["age"] = int(kw.get("age") or 0)
+    kw["info_shared"] = list(kw.get("info_shared") or [])
+    return game.Character(**kw)
+
+
 def load_state_from_snapshot(snap: dict) -> game.GameState:
     """Rehydrate GameState from a session_state.json dict."""
     state = game.GameState(
@@ -626,7 +657,7 @@ def load_state_from_snapshot(snap: dict) -> game.GameState:
     state.characters = {}
     for cid_str, cdata in snap["characters"].items():
         cid = int(cid_str)
-        state.characters[cid] = game.Character(**cdata)
+        state.characters[cid] = character_from_dict(cdata)
     state.dialogue_entries = [
         game.DialogueEntry(**e) for e in snap.get("dialogue_entries", [])
     ]

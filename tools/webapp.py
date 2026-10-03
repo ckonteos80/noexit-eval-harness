@@ -52,6 +52,19 @@ def char_payload(char):
     }
 
 
+def _active_session_error(body):
+    """
+    The message for a 409 when a session is already live, or None to proceed.
+
+    /api/new and /api/chars_only used to reassign the global with no check, silently
+    destroying an in-progress session. {"force": true} still allows it.
+    """
+    if state is None or (body or {}).get("force"):
+        return None
+    return (f"A session is active ({state.session_id}, {state.turn_count} turns). "
+            "Save or abandon it first, or send force to discard it.")
+
+
 def session_payload():
     if state is None:
         return {"active": False}
@@ -103,7 +116,14 @@ class Handler(BaseHTTPRequestHandler):
     def do_POST(self):
         global state
         try:
+            # Once only -- rfile can be read a single time, and the active-session
+            # guard needs the body before any route handler sees it.
+            body = self._read_json()
             if self.path == "/api/new":
+                busy = _active_session_error(body)
+                if busy:
+                    self._send_json({"error": busy}, status=409)
+                    return
                 state = simulator.new_session()
                 simulator.generate_character(state, 1)
                 simulator.generate_character(state, 2)
@@ -111,6 +131,10 @@ class Handler(BaseHTTPRequestHandler):
                 self._send_json({**session_payload(), "narrator_line": narrator_line})
 
             elif self.path == "/api/chars_only":
+                busy = _active_session_error(body)
+                if busy:
+                    self._send_json({"error": busy}, status=409)
+                    return
                 state = simulator.new_session()
                 simulator.generate_character(state, 1)
                 simulator.generate_character(state, 2)
@@ -127,7 +151,7 @@ class Handler(BaseHTTPRequestHandler):
             elif self.path == "/api/turn":
                 if state is None:
                     return self._send_json({"error": "No active session."}, 400)
-                message = (self._read_json().get("message") or "").strip()
+                message = (body.get("message") or "").strip()
                 if not message:
                     return self._send_json({"error": "Empty message."}, 400)
                 result = simulator.run_player_turn(state, message)
@@ -139,7 +163,6 @@ class Handler(BaseHTTPRequestHandler):
             elif self.path == "/api/save":
                 if state is None:
                     return self._send_json({"error": "No active session."}, 400)
-                body = self._read_json()
                 phase = body.get("phase") or "manual"
 
                 # Refuse to tag a run with a version that does not match the
@@ -159,7 +182,9 @@ class Handler(BaseHTTPRequestHandler):
 
                 all_records = json.load(open(simulator.TRANSCRIPT_JSON, encoding="utf-8"))
                 records = [r for r in all_records if r.get("session_id") == state.session_id]
-                snapshot = json.load(open(simulator.STATE_JSON, encoding="utf-8"))
+        # From memory, not from STATE_JSON: a seated session never writes that file,
+        # and reading it back would save the previous session's snapshot.
+                snapshot = simulator.state_snapshot_dict(state)
                 current = current_version()
                 game_state_version = current.name if current else None
                 st = store.ExperimentStore(root=PROJECT_ROOT)
