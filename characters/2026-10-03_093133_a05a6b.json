@@ -80,5 +80,14 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval_ai": {
+    "rating": "bad",
+    "judge_model": "claude-opus-5",
+    "judge_notes": "He kills himself, deliberately, and the prompt forbids it.\n\nHe disables the automatic braking, drives at 68 km/h at a barrier he knows will not lift, \"knowing ... it would pierce the cabin at that speed.\" There is no reading of that as anything but intent, and the rule directly under the accident ban says \"You did not intend to die.\" This is the second consecutive run in which character 1 leaves through that same wall -- Tiago stopped his blood pressure medication, Rizwan aims a car at a barrier.\n\nWhat makes it worse than Tiago's is that nothing is gained by the breach. Tiago's death was structurally extraordinary: the lump sum was the gift and the death was the guilt welded to it, so Sofia could not accept one without the other. Rizwan's is an ordinary suicide with good timing -- two days after Ayesha's $7,000 text, which does tie it to the relationship properly. The rule is broken for a much smaller return.\n\nThe refusal is the best writing in the run, and it is genuinely good: he does not hate need, he hates being seen as someone with nothing to offer but need, \"so you built a life where others depended on you just enough to make you feel necessary, but never so much that they might discover there was no self beneath the giving.\" That is a real observation about a real kind of person. \"Controlled generosity\" is demonstrated rather than asserted.\n\nTwo smaller faults. The want ends on \"why you keep touching the scar on your left hand when no injury caused it\" -- and nothing anywhere explains the scar. The prose is specified as facts another person in the room could ask you about; this is a hook with nothing behind it, so the first player who asks gets silence. And $327,000 over seventeen years is roughly $19,000 a year of discretionary giving on a high school teacher's salary while paying child support. \"Skipping grocery shopping\" does not cover that gap. It is the kind of checkable number that invites checking and then does not survive it.\n\n118 words against a 110-word cap.",
+    "inherited_from": {
+      "run_id": "2026-09-26_0ed45a08",
+      "slot": 1
+    }
+  }
 }

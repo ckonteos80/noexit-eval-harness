@@ -116,7 +116,19 @@ def _summary(rec: dict) -> dict:
         "game_state_version": p.get("game_state_version"),
         "model": (p.get("settings") or {}).get("generation_model"),
         "tags": rec.get("tags", []),
+        "eval": _eval_brief(rec.get("eval")),
+        "eval_ai": _eval_brief(rec.get("eval_ai")),
+        "notes": rec.get("notes", ""),
     }
+
+
+def _eval_brief(ev):
+    """Enough for a card and a filter; the full note comes with the record."""
+    if not isinstance(ev, dict):
+        return None
+    return {"rating": ev.get("rating"), "judge_model": ev.get("judge_model"),
+            "has_notes": bool(ev.get("judge_notes")),
+            "inherited": bool(ev.get("inherited_from"))}
 
 
 def list_characters(full: bool = False) -> list[dict]:
@@ -513,3 +525,89 @@ def enrich_inferred_system_prompts() -> int:
             json.dumps(rec, indent=2, ensure_ascii=False), encoding="utf-8")
         n += 1
     return n
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# EVALS
+# ──────────────────────────────────────────────────────────────────────────────
+#
+# A verdict belongs to the character, not to a run. A character now outlives any
+# session and can be seated in several, so scoring it inside a run would mean the
+# same character judged repeatedly with no way to see those verdicts together -- and
+# a character generated into the library but never seated could never be scored at
+# all. Human and AI stay in separate fields, exactly as ui/run_viewer.html keeps
+# them: the two must never overwrite each other, because which model produced a
+# verdict is part of the verdict.
+
+EVAL_FIELDS = ("eval", "eval_ai")
+RATINGS = ("good", "neutral", "bad")
+
+
+def set_eval(char_id: str, field: str = "eval", rating=None, notes=None,
+             judge_model=None) -> dict:
+    """
+    Write a verdict and a note. `rating` of None clears it, as the viewer's
+    click-to-toggle does. Evals, tags and notes are the mutable part of a record;
+    `character` and `provenance` are not.
+    """
+    if field not in EVAL_FIELDS:
+        raise ValueError(f"field must be one of {EVAL_FIELDS}")
+    if rating is not None and rating not in RATINGS:
+        raise ValueError(f"rating must be one of {RATINGS} or None")
+    rec = read_character(char_id)
+    ev = dict(rec.get(field) or {})
+    ev["rating"] = rating
+    if notes is not None:
+        ev["judge_notes"] = notes
+    # Only stamp a judge when there is not one: overwriting 'claude-opus-5' with
+    # 'human' the moment someone opens the form would destroy the record of who
+    # scored it.
+    if judge_model and not ev.get("judge_model"):
+        ev["judge_model"] = judge_model
+    ev["scored_at"] = datetime.now().isoformat(timespec="seconds")
+    rec[field] = ev
+    path_for(char_id).write_text(json.dumps(rec, indent=2, ensure_ascii=False),
+                                 encoding="utf-8")
+    return rec
+
+
+def backfill_evals_from_runs() -> dict:
+    """
+    Carry verdicts from the run a character came from onto the character itself.
+
+    Only for records with provenance.origin.run_id, and only where the record has no
+    verdict of its own already -- a judgement made in the library always wins over an
+    inherited one. Each carried eval records which run it came from.
+    """
+    done = {"eval": 0, "eval_ai": 0, "skipped": 0}
+    runs = {}
+    for rec in list_characters(full=True):
+        origin = (rec.get("provenance") or {}).get("origin") or {}
+        run_id, slot = origin.get("run_id"), origin.get("slot")
+        if not run_id or slot is None:
+            continue
+        if run_id not in runs:
+            p = PROJECT_ROOT / "runs" / f"{run_id}.json"
+            try:
+                runs[run_id] = json.loads(p.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError):
+                runs[run_id] = {}
+        src = (((runs[run_id].get("state") or {}).get("characters") or {})
+               .get(str(slot)) or {})
+        changed = False
+        for field in EVAL_FIELDS:
+            incoming = src.get(field)
+            if not incoming or not isinstance(incoming, dict):
+                continue
+            if rec.get(field):                      # never overwrite a live judgement
+                done["skipped"] += 1
+                continue
+            carried = dict(incoming)
+            carried["inherited_from"] = {"run_id": run_id, "slot": slot}
+            rec[field] = carried
+            done[field] += 1
+            changed = True
+        if changed:
+            path_for(rec["char_id"]).write_text(
+                json.dumps(rec, indent=2, ensure_ascii=False), encoding="utf-8")
+    return done

@@ -160,6 +160,38 @@
     position: absolute; top: 8px; right: 10px; font-size: 11px; font-weight: 600;
     color: var(--bg); background: var(--accent); border-radius: 4px; padding: 2px 7px;
   }
+  /* eval form -- lifted from run_viewer.html so a verdict looks the same in both */
+  .evalform { padding: 9px 0 0; margin-top: 8px; border-top: 1px solid var(--border);
+              display: flex; flex-direction: column; gap: 8px; }
+  .evalbtns { display: flex; gap: 6px; }
+  .evalbtn {
+    font-family: var(--mono); font-size: 10px; padding: 5px 8px; cursor: pointer;
+    background: var(--surface2); color: var(--dim2); border: 1px solid var(--border2);
+    text-transform: uppercase; letter-spacing: .5px; flex: 1; text-align: center;
+  }
+  .evalbtn:hover { color: var(--text-hi); border-color: var(--dim2); }
+  .evalbtn.good.active { background: var(--ok); border-color: var(--ok); color: #0e1a10; font-weight: 600; }
+  .evalbtn.bad.active { background: var(--none-col); border-color: var(--none-col); color: #1a0e0e; font-weight: 600; }
+  .evalbtn.neutral.active { background: var(--accent); border-color: var(--accent); color: #16130c; font-weight: 600; }
+  .evalnotes textarea {
+    width: 100%; min-height: 40px; resize: vertical; font-family: var(--mono);
+    font-size: 11px; background: var(--surface2); color: var(--text);
+    border: 1px solid var(--border2); padding: 6px 8px;
+  }
+  .evalnotes textarea:focus { outline: none; border-color: var(--accent); }
+  .evalbadge { font-size: 9px; letter-spacing: .5px; text-transform: uppercase;
+               color: var(--dim2); }
+  .evalbadge.scored { color: var(--accent); }
+  .evalbadge.saving { color: var(--accent2); }
+  .aieval { font-size: 10.5px; color: var(--dim2); line-height: 1.5;
+            border-left: 2px solid var(--border2); padding-left: 8px; }
+  .aieval b { color: var(--accent2); font-weight: 600; }
+  .verdict-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+                 margin-right: 6px; vertical-align: 1px; }
+  .verdict-dot.good { background: var(--ok); }
+  .verdict-dot.neutral { background: var(--accent); }
+  .verdict-dot.bad { background: var(--none-col); }
+
   .prov { font-size: 11px; color: var(--dim); margin-top: 8px; line-height: 1.5;
           border-top: 1px solid var(--border); padding-top: 7px; }
   .prov code { font-size: 10.5px; }
@@ -297,6 +329,7 @@
     <select id="lib-experiment"></select>
     <select id="lib-version"></select>
     <select id="lib-model"></select>
+    <select id="lib-verdict"></select>
     <button class="ghost-btn" id="lib-reset">Reset</button>
   </div>
   <div id="lib-grid"></div>
@@ -430,6 +463,7 @@ async function openLibrary() {
   fillFacet('#lib-experiment', 'experiment', data.facets.experiment, 'any experiment');
   fillFacet('#lib-version', 'game_state_version', data.facets.game_state_version, 'any version');
   fillFacet('#lib-model', 'model', data.facets.model, 'any model');
+  fillFacet('#lib-verdict', 'verdict', data.facets.verdict, 'any verdict');
   renderLibrary();
 }
 
@@ -444,14 +478,24 @@ function libFiltered() {
   const q = ($('#lib-search').value || '').toLowerCase().trim();
   const src = $('#lib-source').value, exp = $('#lib-experiment').value;
   const ver = $('#lib-version').value, mod = $('#lib-model').value;
+  const verdict = $('#lib-verdict').value;
   return libAll.filter(c => {
     if (src && c.source !== src) return false;
     if (exp && (c.origin || {}).experiment !== exp) return false;
     if (ver && c.game_state_version !== ver) return false;
     if (mod && c.model !== mod) return false;
+    if (verdict) {
+      const r = (c.eval && c.eval.rating) || (c.eval_ai && c.eval_ai.rating) || null;
+      if (verdict === 'unscored' ? r : r !== verdict) return false;
+    }
     if (q && !((c.name || '') + ' ' + (c.description || '')).toLowerCase().includes(q)) return false;
     return true;
   });
+}
+
+function verdictDot(c) {
+  const r = (c.eval && c.eval.rating) || (c.eval_ai && c.eval_ai.rating);
+  return r ? '<span class="verdict-dot ' + r + '" title="' + r + '"></span>' : '';
 }
 
 function renderLibrary() {
@@ -472,7 +516,7 @@ function renderLibrary() {
     card.innerHTML = `
       ${slot >= 0 ? `<span class="slotbadge">slot ${slot + 1}</span>` : ''}
       <h3>${esc(c.name || '(unnamed)')}</h3>
-      <div class="sub">${esc(c.age || '?')}, ${esc(c.gender || '?')} · ${c.words || 0} words</div>
+      <div class="sub">${verdictDot(c)}${esc(c.age || '?')}, ${esc(c.gender || '?')} · ${c.words || 0} words</div>
       <div class="bio">${esc(c.description || '')}<div class="fade"></div></div>
       <span class="more">expand ▾</span>
       <div class="prov">${esc(where)}<br>${esc(c.model || 'model unknown')} ·
@@ -483,9 +527,92 @@ function renderLibrary() {
       bio.classList.toggle('expanded');
       ev.target.textContent = bio.classList.contains('expanded') ? 'collapse ▴' : 'expand ▾';
     };
+    buildCardEval(card, c);
     card.onclick = () => toggleSelect(c.char_id);
     host.appendChild(card);
   });
+}
+
+const RATINGS = ['good', 'neutral', 'bad'];
+
+// One note and one verdict, as docs/character-eval-guide.md asks for -- no sub-scores,
+// no axes. Adapted from run_viewer.html's buildEvalForm: same shape and same CSS, but
+// it POSTs instead of marking a file dirty, and it writes only `eval`. A human opening
+// the form must never overwrite `eval_ai`, because which model produced a verdict is
+// part of the verdict.
+function buildCardEval(card, c) {
+  const wrap = document.createElement('div');
+  wrap.className = 'evalform';
+  const ev = c.eval || {};
+
+  const badge = document.createElement('div');
+  badge.className = 'evalbadge' + (ev.judge_model ? ' scored' : '');
+  badge.textContent = ev.judge_model
+    ? 'scored by ' + ev.judge_model + (ev.inherited ? ' (inherited)' : '')
+    : 'unscored';
+
+  let saveTimer = null;
+  const save = async () => {
+    badge.textContent = 'saving…'; badge.classList.add('saving');
+    try {
+      const res = await api('/api/library/eval', {
+        char_id: c.char_id, field: 'eval',
+        rating: c.eval && c.eval.rating ? c.eval.rating : null,
+        notes: (c.eval && c.eval.judge_notes) || '',
+      });
+      c.eval = Object.assign({}, c.eval, {
+        judge_model: (res.eval && res.eval.judge_model) || 'human',
+      });
+      badge.classList.remove('saving'); badge.classList.add('scored');
+      badge.textContent = 'scored by ' + c.eval.judge_model;
+    } catch (err) {
+      badge.classList.remove('saving');
+      badge.textContent = 'not saved: ' + err.message;
+    }
+  };
+
+  const btns = document.createElement('div'); btns.className = 'evalbtns';
+  RATINGS.forEach(v => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'evalbtn ' + v; b.textContent = v;
+    if (ev.rating === v) b.classList.add('active');
+    b.onclick = (e) => {
+      e.stopPropagation();
+      c.eval = c.eval || {};
+      c.eval.rating = c.eval.rating === v ? null : v;   // click again to clear
+      Array.from(btns.children).forEach(bb =>
+        bb.classList.toggle('active', c.eval.rating === bb.textContent));
+      save();
+    };
+    btns.appendChild(b);
+  });
+  wrap.appendChild(btns);
+
+  const notesRow = document.createElement('div'); notesRow.className = 'evalnotes';
+  const ta = document.createElement('textarea');
+  ta.placeholder = 'One note: what you actually felt, and the line that caused it.';
+  ta.value = ev.judge_notes || '';
+  ta.onclick = e => e.stopPropagation();          // typing must not select the card
+  ta.oninput = () => {
+    c.eval = c.eval || {};
+    c.eval.judge_notes = ta.value;
+    clearTimeout(saveTimer); saveTimer = setTimeout(save, 600);
+  };
+  notesRow.appendChild(ta);
+  wrap.appendChild(notesRow);
+  wrap.appendChild(badge);
+
+  // An AI verdict is shown, never edited here.
+  if (c.eval_ai && (c.eval_ai.rating || c.eval_ai.has_notes)) {
+    const ai = document.createElement('div');
+    ai.className = 'aieval';
+    ai.innerHTML = '<b>' + esc(c.eval_ai.judge_model || 'ai') + '</b>: ' +
+      esc(c.eval_ai.rating || 'no verdict') +
+      (c.eval_ai.has_notes ? ' \u00b7 note on the record' : '');
+    wrap.appendChild(ai);
+  }
+
+  card.appendChild(wrap);
 }
 
 // First click fills slot 1, second fills slot 2, a third replaces slot 2.
@@ -817,7 +944,8 @@ $('#pick-chars-btn').onclick = () => openLibrary();
 $('#library-btn').onclick = () => openLibrary();
 $('#lib-back-btn').onclick = () => showScreen('start');
 $('#lib-reset').onclick = () => {
-  ['#lib-search', '#lib-source', '#lib-experiment', '#lib-version', '#lib-model']
+  ['#lib-search', '#lib-source', '#lib-experiment', '#lib-version', '#lib-model',
+   '#lib-verdict']
     .forEach(sel => $(sel).value = '');
   renderLibrary();
 };

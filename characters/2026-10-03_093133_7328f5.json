@@ -78,5 +78,14 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval_ai": {
+    "rating": "neutral",
+    "judge_model": "claude-opus-5",
+    "judge_notes": "The best death the project has produced, attached to a character whose supporting fields keep\nmissing.\n\nShe ignores chest pain for three days to finish the quarterly audit and dies of a pulmonary\nembolism at her desk. Read it against the corridor the old prompt could never describe: it follows\nfrom a decision she made, nothing had to go wrong for it to kill her, and she plainly did not\nintend to die. She thought the risk did not apply to her. That is precisely the shape the two\nsuccessful samples in the A/B had, and it arrived here with no death rules in the prompt at all.\n\nThe Self-told line is the best single sentence in the run: \"You followed the rules exactly as they\nwere written, and the system, not you, decided who got paid.\" That is how this kind of harm is\nactually metabolised by the people who do it.\n\nThree real problems.\n\nThe sin is institutional. Falsifying records under departmental cost pressure is a systemic\nfailing, and the old prompt required that the wound be personal rather than institutional. What\nrescues it is Maria Ruiz, who called the office six times and was discharged untreated -- one named\nperson, one specific act of not returning a call.\n\nWhich makes the People field a genuine miss. It lists her mother, her father and her brother, none\nof whom bear on anything, and omits Maria Ruiz entirely. The one person in this character's life\nwho is load-bearing is not in the field for people, and three inert relatives are. The system\nprompt's third rule says a fact you could delete without changing anything does not belong; this\nfield is now three of those.\n\nIt also contains a fact she cannot know: \"David Chang wanted to sell the family home after your\ndeath to pay off debt.\" She is dead and newly arrived. Nothing in her interior knowledge can\ninclude her brother's post-death intentions.\n\nAnd the want is broken as written. \"to notice you only when you speak\" has no subject -- read\nliterally it is she who notices. That field is the character's starting drive and feeds straight\ninto the dialogue system prompt; as written it cannot be acted on.\n\nThe refusal, \"You believe you are invisible unless you are needed,\" is the need-to-be-needed\nmonoculture again, now in its fifth or sixth consecutive appearance across models and prompts.\n141 words.",
+    "inherited_from": {
+      "run_id": "2026-09-27_a5f4d60b",
+      "slot": 2
+    }
+  }
 }

@@ -79,5 +79,22 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval": {
+    "judge_notes": "the cause of death seems disconnected from the who you loved and who you hated.",
+    "judge_model": "human",
+    "inherited_from": {
+      "run_id": "2026-09-12_0441d06f",
+      "slot": 2
+    }
+  },
+  "eval_ai": {
+    "rating": "neutral",
+    "judge_model": "claude-sonnet-5",
+    "judge_notes": "Strong in the same places as Mateo and weaker in one that matters: her sin is not anchored where the prompt requires.\n\nThe rule is that the True reason must center on the person she loved or the person she hated. Hers centers on neither. It is about the new employee at the store — a third person who exists only because the Cause of Death introduced her. Darnell and Marlene are both left holding nothing. This looks like a side effect of merging: with everything in one response, the employee is fresh in context from the death two fields earlier, so the sin reaches for her instead of back to the relationship fields.\n\nMarlene is the worst case of it. Her want is perfectly good on its own terms — retire to Jamaica, asking for the final cheque early to book the flight — but nothing else in the character touches her, and she drags in a mother who is never established anywhere else. Delete Marlene and not one other line has to change, which is precisely the test the load-bearing rule is supposed to apply.\n\nThe prose also doesn't quite land the death. She dies when a truck hits her driver's side, but the paragraph ends \"left your keys in the ignition when you got out to check the damage.\" Getting out to check the damage is something a person who survived does. It is much milder than the previous run's invented second death, but the sequence still doesn't close where the death is. And at 119 words it's over the 110 cap that Mateo respected.\n\nWhat works: the refusal is plain and goes properly underneath — \"you believe you have no value unless you are feared, and you confuse control with safety\" — and it is reachable from the repayment agreement, the cash purchases, the script training. \"Hyper vigilant\" is evidenced from the same details, and came through with no asterisks, so the markdown leak from last run is fixed.",
+    "inherited_from": {
+      "run_id": "2026-09-12_0441d06f",
+      "slot": 2
+    }
+  }
 }

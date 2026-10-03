@@ -154,5 +154,14 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval": {
+    "rating": "bad",
+    "judge_model": "human",
+    "judge_notes": "this is kind of random: You died in a car crash on the way home from a late shift. Its a random event not connected to anyone in ther story arc. This doesnt make a lot of sense: Your husband, James, who kept your favorite mug on the counter even after you stopped drinking coffee. This doesnt make sense: You abandoned him not out of neglect, but out of fear—, who was abandoned, what fear?",
+    "inherited_from": {
+      "run_id": "2026-08-23_f67ee73a",
+      "slot": 2
+    }
+  }
 }

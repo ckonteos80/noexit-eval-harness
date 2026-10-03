@@ -152,5 +152,14 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval": {
+    "judge_notes": "Too much focus on their work. we need to make the prompt generate more of a story with other people in their lives",
+    "judge_model": "human",
+    "rating": "bad",
+    "inherited_from": {
+      "run_id": "2026-08-23_684fcdbd",
+      "slot": 2
+    }
+  }
 }

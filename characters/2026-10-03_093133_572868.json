@@ -79,5 +79,14 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval_ai": {
+    "rating": "bad",
+    "judge_model": "claude-sonnet-5",
+    "judge_notes": "He dies in a car crash. \"You drove your car into a concrete barrier on the 110 Freeway at 2:17 a.m.\" — a collision, with chance cooperating, which is the exact category banned two versions ago and eliminated completely at the time. Removing the ban list brought it back in one run. That alone is disqualifying: it is the rule human eval asked for by name.\n\nWhich is a shame, because the death is otherwise the most dramatically loaded in the project. He is texting Lena a lie about staying late at school while driving to a motel to meet a former student. The death, the lie and the sin are the same moment. If it had been anything other than a crash it would be the best death yet.\n\nTwo more rule failures. The sin introduces **Leila Nassar**, a person who appears for the first time in that field — the prompt forbids exactly this (\"not someone introduced here for the first time\"). It is arguable, since the affair is aimed at punishing Lena, but a third name enters the character at the sin and never appears anywhere else.\n\nAnd the prose is now a **single 94-word sentence** — a comma-chained inventory running from \"taught at Jordan High for twelve years\" through \"deleted your browser history nightly\" to \"and died at 39 when the car left the freeway.\" Individually the facts are excellent and very usable. As a paragraph it is a list, not a life. The example that was removed from this field demonstrated shaping the paragraph to the person; without it the model reached for an inventory.\n\n\"Measured intensity\" is a nominalisation rather than a quality with a qualifier on it — the form spec that said so was stripped along with the examples, and the trait form went with it.",
+    "inherited_from": {
+      "run_id": "2026-09-13_9e3649df",
+      "slot": 1
+    }
+  }
 }

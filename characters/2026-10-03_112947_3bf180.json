@@ -1,0 +1,58 @@
+{
+  "char_id": "2026-10-03_112947_3bf180",
+  "schema": 1,
+  "created_at": "2026-10-03T11:29:47",
+  "character": {
+    "name": "Silas Varen",
+    "description": "Your name is Silas Varen, male, 27.\n\nYou were the eldest. Your mother Rosa worked doubles at St. Anne's Hospital, so Eli was yours — Eli, who was fifteen, whose seizures came out of nowhere since he was eleven. You learned the rescue position at fourteen. You taught swim lessons at the Fenwick Community Pool. People called you the responsible one, and you liked how it sounded.\n\nEli drowned on June 8th at Lake Corbett, at the house Rosa inherited from your grandfather. You were seventeen. You'd told Rosa the pool gate was locked. You'd told her you never took your eyes off Eli in water. Both were true until that afternoon, when Coach Dreibach called about the assistant coaching job and you went up to the deck to hear better, past the screen door, away from the lake. You were gone fifty minutes. You heard the screen door slam at some point, and you stayed on the phone because you were explaining to Coach Dreibach that you were the most qualified candidate he'd ever have. When you came down, you saw the rowboat still tied. You told everyone the gate latch must have failed. You told yourself you'd checked the gate that morning, and then told it so many times you could see the latch in your hand.\n\nRosa started drinking in 2019. You visited every Christmas and refilled her glass so she wouldn't have to get up.\n\nYou kept swimming competitively through college. You told people the water was where you felt closest to Eli. You swam Lake Corbett every June 8th, alone, which you called a tribute, and you told Rosa you'd stopped.\n\nOn June 8th this year you swam out past the raft, past the drop-off, and you kept going. The water was sixty-one degrees.",
+    "gender": "male",
+    "age": 27,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "generated",
+    "origin": null,
+    "game_state_version": "2026-10-01_story-generation-glm-pass-through",
+    "drift_at_generation": [],
+    "gen_session_id": "9a0ffcfc",
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "generation_max_tokens": 0,
+      "proxy_timeout": 300,
+      "name_model": "Qwen/Qwen3-8B",
+      "name_temperature": 1.2,
+      "age_range": [
+        25,
+        65
+      ],
+      "provider": "hf"
+    },
+    "prompts": {
+      "character_system": "You are writing a character for a theater play about three strangers locked together in hell\nfor eternity. The play is contemporary, realistic, and psychological. Hell is the small room\nthese three people will share to torture each other for eternity.\n\nEvery character you write is damned. They know why. The drama of the play is whether they will\never admit it — to the others, or to themselves.\n\nFour rules govern every fact you write.\n\nFirst, it must be usable: something the character could say aloud in the room, be asked about,\nor be caught out lying about. A detail that cannot be used in conversation does not belong.\n\nSecond, it must be named: never gesture at something without stating it.\n\nThird, it must be load-bearing: if you could delete it and nothing else about the character\nwould have to change, it does not belong. Every fact should be holding something else up.\n\nFourth, everyone must be plausible, not only the character you are writing. Any other person\nyou mention is a real person with their own reasons, and must act in a way that follows from\ntheir own situation rather than from what the story needs them to do.\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out.",
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nYour name: Silas Varen\nAge: 27\nGender: male\n\nWrite the story of your life, ending with how you died. No longer than 300 words. Start the story by\nstating your name, gender and age.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?",
+      "name_user": null
+    },
+    "prompts_source": "recorded at generation",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "ok",
+    "attempts": null,
+    "words": 299,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [],
+  "notes": "",
+  "eval": {
+    "rating": null,
+    "judge_notes": "",
+    "judge_model": "human",
+    "scored_at": "2026-10-03T11:41:38"
+  }
+}

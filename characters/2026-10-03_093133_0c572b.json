@@ -79,5 +79,14 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval_ai": {
+    "rating": "neutral",
+    "judge_model": "claude-sonnet-5",
+    "judge_notes": "The death is a proper decision: stopping blood pressure medication because she was tired of the side effects, then ignoring chest heaviness for three days until she collapsed at work moving a patient to the MRI bay. No chance involved, no accident.\n\nBut it does not belong to Lotte. The stated reason is side effects and self-persuasion — nothing connects it to the sister. That is the rule human eval demanded two versions ago (\"the cause of death needs to connect to every other element\"), and Rami's death satisfies it while hers does not.\n\nEverything else is strong and unusually concrete. $450 every month without fail, the riding trophies wrapped in newspaper in the closet, calling every third Sunday at 8 p.m. sharp, letting the calls go to voicemail when Lotte did not answer. The sin is properly anchored and genuinely unpleasant in a way that is hard to name — letting someone believe you are fine specifically so they will stay away, then holding their absence against them. The self-told version (\"you didn't want to be a burden the way your mother was\") bends a fact the bio has already established.\n\nThree smaller things. The prose is a single sentence again and runs to **113 words**, over the 110 cap Rami's respected. \"Quiet control\" is the **fifth** consecutive character whose trait is *quiet* something — furious, controlling, insistent, stubborn, now control — and deleting the trait examples has never touched that prior. And her refusal contains \"**needed to be needed**\", which is notable: that exact phrase was deleted from the anti-duplication block in this version precisely because it had leaked into output, and it came back anyway.",
+    "inherited_from": {
+      "run_id": "2026-09-13_9e3649df",
+      "slot": 2
+    }
+  }
 }

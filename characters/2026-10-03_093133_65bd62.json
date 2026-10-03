@@ -79,5 +79,14 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval_ai": {
+    "rating": "good",
+    "judge_model": "claude-sonnet-5",
+    "judge_notes": "The death is the tightest causal chain the project has produced. Sanne starts refilling the pillbox after he leaves it empty twice; she finds the full blister pack in the bin; she sits him down and calls him irresponsible; so he throws the next prescription away to spite her, knowing what could happen. Every step follows from the one before, it is entirely his decision, no chance is involved, and it could not be lifted into anyone else's life. That is what the last three versions were trying to produce.\n\nThe self-told bends a fact you can point at — \"you just got careless with the pills\" against a True reason that says he threw them away deliberately — and the prose is the first in several runs to break the standard opening. It starts with the relationship (\"You met Sanne in a training course for tenant engagement\") rather than job-plus-three-gerunds, and it closes on a plain fact: \"You died in the hospital three hours later.\" 103 words, blood pressure 220 over 118, Sanne calling the ambulance. Nothing decorative.\n\n\"Quietly stubborn\" is demonstrated — a year of not discussing it, the same conversation every six months, \"her hopeful, you closed\" — but it is the **fourth** character in a row whose trait is *quietly* something: furious, controlling, insistent, now stubborn. Removing the worked examples two versions ago did not touch that prior.\n\nThirteen third-person pronouns about Sanne, where the rule asks for none. And his refusal is half of a verbatim template — see the pair note.",
+    "inherited_from": {
+      "run_id": "2026-09-13_d131a541",
+      "slot": 1
+    }
+  }
 }

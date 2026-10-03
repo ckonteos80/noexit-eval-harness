@@ -78,5 +78,14 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval_ai": {
+    "rating": "neutral",
+    "judge_model": "claude-opus-5",
+    "judge_notes": "A very good sin attached to a death that does not belong to it.\n\nTelling her sister the results were fine when the doctor had left a message asking for urgent\nclarification is a precise, ugly, entirely human act, and the mechanism is fully specified: she\npostponed the follow-up twice claiming the clinic rescheduled, then said the results came back\nclear. Elena Mendoza stopped asking. That last sentence does more work than anything else in the\ncharacter.\n\nThe Self-told version is the best example of that field in the project's history. \"You thought you\nwere protecting Elena Mendoza from panic and pain -- she was scared of hospitals\" keeps every fact\nand changes only the motive, which is exactly the specification. And the refusal goes underneath\nit properly: not \"I lied\" but \"You were afraid of the burden of caring for her.\"\n\nThen she dies of a pulmonary embolism while steaming milk the next morning. Nothing connects that\nto the lie. Grief does not cause an embolism; the timing is coincidence dressed as consequence. The\nprompt still asks that the death belong to the person named above, and this one could be lifted into\na stranger's life without changing a word of the rest. Against the other character in this run,\nwhere the heart attack follows directly from finding the boy dead, the gap is obvious.\n\nThe other failure is in the new field. \"People in your life\" asks for the people already named\nabove. Elena Mendoza qualifies. Marina Santos, a former college roommate, appears nowhere in the\nlife, and neither does Dr. Rafael Cruz -- the doctor exists in the life only as \"the doctor left a\nmessage,\" unnamed. So the field invented two new people instead of expanding established ones,\nwhich is the opposite of what it is for: those two are exactly the sort of fact the system prompt\ncalls not load-bearing.\n\n119 words, second person throughout, no name collisions with the other character.",
+    "inherited_from": {
+      "run_id": "2026-09-27_01525eb7",
+      "slot": 2
+    }
+  }
 }

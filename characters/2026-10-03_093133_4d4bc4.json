@@ -79,5 +79,22 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval": {
+    "judge_notes": "Again the cause of death is accidental, we want to avoid these, need to be from concious desisions. In this sentence: \"You drove to her apartment\" we need to avoid the \"her\" or any pronouns might cause confusion later. Aggree about the trait with the AI eval.",
+    "judge_model": "human",
+    "inherited_from": {
+      "run_id": "2026-09-12_788601a3",
+      "slot": 1
+    }
+  },
+  "eval_ai": {
+    "rating": "good",
+    "judge_model": "claude-sonnet-5",
+    "judge_notes": "The connection problem is fixed, and this is what it looks like when it works. Sanne is one person, she is in every field, and the death is genuinely hers: he is driving to her flat at eleven at night because she left three voicemails, and the last call was from her, unanswered, ten seconds before impact. You cannot lift that death out and drop it into a stranger's life. That was the whole point of this version and it landed.\n\nThe prose closes on the best single line the project has produced: \"The night you died, you were driving to return the money you'd already decided not to give her.\" That is a fact, not a flourish, and it reverses the entire character in one clause. 104 words, inside the cap, ends on the stated death.\n\nThe sin carries its reversal properly — he withheld the money so she'd stop seeing him as someone who owed her, and \"in that act of control, you destroyed the one person who still believed you were worth reaching out to.\" Aim visible, result running against it. The refusal is plain, goes underneath rather than restating, and is genuinely reachable from the facts: the €200 he sends parents who have pensions and never asked, the Sunday calls he lets ring out. \"You preferred being pitied over being needed, because pity required nothing from you\" is a real observation about a person.\n\nTwo weaknesses. \"Careful with details\" is the wrong trait — it is drawn from the logistics job rather than from the man, and nothing about lying to your sister about your finances to keep her small is *careful with details*. The rule says the trait must be demonstrated by the life, the death or the sin; this one is demonstrated by the occupation only, which is the thinnest possible reading of it.\n\nAnd the self-told is a template — see the pair note. On its own it is fine; next to Carmen's it is the same sentence.",
+    "inherited_from": {
+      "run_id": "2026-09-12_788601a3",
+      "slot": 1
+    }
+  }
 }

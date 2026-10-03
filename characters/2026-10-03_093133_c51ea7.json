@@ -154,5 +154,14 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval": {
+    "judge_notes": "the who you love and who you hate make no sense together",
+    "judge_model": "human",
+    "rating": "bad",
+    "inherited_from": {
+      "run_id": "2026-08-23_33e2908b",
+      "slot": 2
+    }
+  }
 }

@@ -78,5 +78,14 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval_ai": {
+    "rating": "good",
+    "judge_model": "claude-opus-5",
+    "judge_notes": "The strongest single character the project has produced.\n\nThe sin is a real thing that real people have done and been destroyed by: he leaves his\nsix-year-old in the car outside a pub for seven hours and the boy dies of heat exposure. It is\nspecific, it is checkable, and it is exactly the register the play wants -- Estelle in the source\ntext drowned her own infant, so a dead child is not an escalation out of Sartre, it is Sartre.\n\nThe refusal is the best in months, and it is four words: \"You have always resented your son.\"\nThat goes properly underneath the act instead of restating it. The act was negligence; the\nrefusal is that the negligence was not an aberration. It reframes everything above it without\nduplicating any of it, which is precisely what the field is for, and it is the thing that -- said\naloud in that room -- would finish him.\n\nThe death works too, and it is the first death in weeks that does. He drives to the hospital,\nfinds the boy already dead, and has a heart attack in the A&E waiting area at 9:47 p.m. It follows\nfrom the sin rather than merely happening near it. Lift it into a stranger's life and it makes no\nsense, which is the test.\n\nThe life is 138 words, factual, and does not waste any of them. Naomi Hartley in Bristol, James\nTurner, the Friday-to-Sunday custody rhythm he \"often delayed\" -- every fact is a thing another\nperson could ask him about, and the delay detail quietly supports the refusal.\n\nTwo weaknesses. \"Needs to be right\" is not demonstrated by anything above it; the story shows\nnegligence and resentment, and the only support for the trait arrives in the field below it. And\nthe want -- \"You want them to agree it was an accident and not your fault\" -- is the Self-told\nreason restated as a request. It names the thing he is avoiding, which the old prompt forbade and\nthis one no longer does.",
+    "inherited_from": {
+      "run_id": "2026-09-27_01525eb7",
+      "slot": 1
+    }
+  }
 }

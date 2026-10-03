@@ -1,0 +1,52 @@
+{
+  "char_id": "2026-10-03_112822_c4f85c",
+  "schema": 1,
+  "created_at": "2026-10-03T11:28:22",
+  "character": {
+    "name": "Clara Thorne",
+    "description": "Your name is Clara Thorne. You are female, forty years old, a pediatric nurse at St. Mary's in Dayton, Ohio.\n\nYou loved your younger sister, Margot. Margot, who got the solos in choir, Margot who married Daniel Reyes, Margot whose son Leo called you Aunt Clara the Brave because you let him touch your stethoscope. You were the one everyone trusted — the nurse, the steady one, the one who never lied.\n\nMargot had been sober for nine years when Leo was born. You told Daniel you'd found a half-empty bottle of Tito's in the diaper bag. You told him Margot had called you crying, that she'd been hiding it for months. You told your mother, Ruth, so she'd watch Leo's visits.\n\nThere was no bottle, not until you put one there.\n\nThe lie you told yourself was simple: *I'm protecting Leo.* You said it at every family dinner, at Margot's funeral, to Daniel when he thanked you for being honest when no one else would.\n\nMargot relapsed because everyone she loved looked at her like she already had. Nine months after the funeral for her sobriety, she drove her car into a pole on Wagner Ford Road at one in the morning. Leo was asleep at home. She was alone.\n\nDaniel moved to Columbus with Leo in 2022. Leo was six. He still sends you a drawing every Christmas, and you still write back, \"Aunt Clara the Brave was so happy to hear from you.\"\n\nYou tell people you never touch alcohol. There are bottles in your pantry, and you drive home from St. Mary's night shifts.\n\nOn October 3rd, at 2 a.m., on the Wagner Ford Road — the same road — you crossed the center line. The dashboard camera of the car you hit recorded eleven seconds before impact.",
+    "gender": "female",
+    "age": 40,
+    "info_shared": []
+  },
+  "provenance": {
+    "source": "generated",
+    "origin": null,
+    "game_state_version": "2026-10-01_story-generation-glm-pass-through",
+    "drift_at_generation": [],
+    "gen_session_id": "14a293bb",
+    "settings": {
+      "generation_model": "zai-org/GLM-5.3",
+      "generation_temperature": 1.1,
+      "reasoning_effort": "high",
+      "generation_max_tokens": 0,
+      "proxy_timeout": 300,
+      "name_model": "Qwen/Qwen3-8B",
+      "name_temperature": 1.2,
+      "age_range": [
+        25,
+        65
+      ],
+      "provider": "hf"
+    },
+    "prompts": {
+      "character_system": "You are writing a character for a theater play about three strangers locked together in hell\nfor eternity. The play is contemporary, realistic, and psychological. Hell is the small room\nthese three people will share to torture each other for eternity.\n\nEvery character you write is damned. They know why. The drama of the play is whether they will\never admit it — to the others, or to themselves.\n\nFour rules govern every fact you write.\n\nFirst, it must be usable: something the character could say aloud in the room, be asked about,\nor be caught out lying about. A detail that cannot be used in conversation does not belong.\n\nSecond, it must be named: never gesture at something without stating it.\n\nThird, it must be load-bearing: if you could delete it and nothing else about the character\nwould have to change, it does not belong. Every fact should be holding something else up.\n\nFourth, everyone must be plausible, not only the character you are writing. Any other person\nyou mention is a real person with their own reasons, and must act in a way that follows from\ntheir own situation rather than from what the story needs them to do.\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out.",
+      "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nYour name: Clara Thorne\nAge: 40\nGender: female\n\nWrite the story of your life, ending with how you died. No longer than 300 words. Start the story by\nstating your name, gender and age.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?",
+      "name_user": null
+    },
+    "prompts_source": "recorded at generation",
+    "anti_duplication": {
+      "used": false,
+      "other_char_id": null
+    },
+    "usable": true,
+    "sanity": "ok",
+    "attempts": null,
+    "words": 302,
+    "derived_from": null,
+    "complete": true
+  },
+  "calls": [],
+  "tags": [],
+  "notes": ""
+}

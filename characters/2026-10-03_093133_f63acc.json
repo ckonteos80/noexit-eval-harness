@@ -79,5 +79,23 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval": {
+    "rating": "neutral",
+    "judge_model": "human",
+    "judge_notes": "This can work on its own. ",
+    "inherited_from": {
+      "run_id": "2026-09-12_8f7eadc2",
+      "slot": 1
+    }
+  },
+  "eval_ai": {
+    "rating": "neutral",
+    "judge_model": "claude-sonnet-5",
+    "judge_notes": "The death is the best this project has generated, and it is the thing the version was built for. A third dose of prescription sleep medication eight hours after the second, against a label he reads for a living, with elevated liver enzymes two years back — and he does it the night Sanne comes home with brochures and says \"This time, Klaus, I'm not asking.\" Nothing had to go wrong for that to kill him. No chance, no third party, no vehicle. It is a decision, it is specific, and it is timed to the exact moment the relationship turned. The accident ban worked completely here.\n\nThe prose closes on it properly: swallowing the pills one by one from the bottle while Sanne sits on the edge of the bed watching, then lying down without speaking. Factual, no imagery, consistent with the stated death, and genuinely unpleasant. 109 words, inside the cap.\n\nThe self-told holds up too, and notably it does *not* repeat last run's \"I was going to fix it before the accident\" alibi — that template is broken. \"You needed rest, and the medication was prescribed, and Sanne knew your limits better than anyone\" bends facts the True reason has already established.\n\nAgainst that: **19 third-person pronouns**, across who-hated, the death, the sin, the refusal and the prose. The new rule asked for zero. Klaus is also the third character running whose trait is \"Quietly [something]\" — furious, controlling, now insistent — which is a model prior the removal of the worked examples has not touched.\n\nAnd his want is the same sentence as Marloes's. See the pair note.",
+    "inherited_from": {
+      "run_id": "2026-09-12_8f7eadc2",
+      "slot": 1
+    }
+  }
 }

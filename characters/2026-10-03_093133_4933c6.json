@@ -79,5 +79,14 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval_ai": {
+    "rating": "bad",
+    "judge_model": "claude-sonnet-5",
+    "judge_notes": "The death is the problem, and it is a serious one.\n\nShe drives a school bus into a reservoir **with three children on board**, to avoid returning to the garage, because the dispatcher would report her and an investigation might surface Mateo's truancy. Read plainly: she kills three children to conceal her son skipping school. Nothing in the Reason for Damnation mentions it. Her stated sin is controlling Mateo through demands for obedience -- which is now, by a wide margin, not the worst thing she did. The damnation should be the worst thing about a character; here the bio contains something far worse that the sin never acknowledges, so the moral architecture inverts.\n\nIt also fails \"You did not intend to die.\" Driving a bus into a reservoir is not a risk that caught up with her; it reads as deliberate. And the proportion is wrong for the register the setup prompt asks for -- Sartre's damned commit specific, ordinary, recognisable cruelties. Three dead children is not that.\n\nEverything around it is strong, which makes it worse. Checking the attendance portal every morning with a teacher's login memorised while cleaning her classroom during a summer job is the best single detail in the run. The refusal goes properly underneath the act: she built a son who needed rescuing so she would never meet the one who did not need her. \"Smothering vigilance\" is well evidenced. The prose is 92 words and factual. Second-person voice is consistent here, unlike Ravi.",
+    "inherited_from": {
+      "run_id": "2026-09-20_13372a1e",
+      "slot": 2
+    }
+  }
 }

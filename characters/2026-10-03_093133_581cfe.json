@@ -79,5 +79,14 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval_ai": {
+    "rating": "neutral",
+    "judge_model": "claude-sonnet-5",
+    "judge_notes": "Coherent and well-built, and the weaker half of the pair on every axis that was measured.\n\nThe death qualifies: refusing the MRI her doctor ordered, told to cancel it, dead three weeks later of a hemorrhaged aneurysm during a dress rehearsal. It is a decision, it is connected to Gabriella, and the reason given for it — that Gabriella had once cried about not wanting to go through tests alone — is a genuinely twisted piece of logic that fits the character. The self-told is properly checkable. The prose is 101 words and ends on two flat facts: collapsing onstage while directing \"Hallelujah,\" never making it to the hospital.\n\n\"Desperately capable\" is the better of the two traits in this run — original, evidenced by the weekend grading and the apartment ten minutes from Gabriella's, and quietly contradicted by the fact that she stopped returning the calls.\n\nBut the prose runs the standard template that Jasper's avoided: job, city, three parallel clauses, living situation. And at **23 pronouns about Gabriella** she is the highest-scoring character in the run on a rule that was rewritten specifically to be obeyable.\n\nThe bigger problem is that her refusal and her want are both the same as Jasper's with different nouns.",
+    "inherited_from": {
+      "run_id": "2026-09-13_d131a541",
+      "slot": 2
+    }
+  }
 }

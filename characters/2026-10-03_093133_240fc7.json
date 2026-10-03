@@ -80,5 +80,14 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval_ai": {
+    "rating": "bad",
+    "judge_model": "claude-opus-5",
+    "judge_notes": "The cause of death is 171 words long and it is not a death, it is a plot.\n\nShe overdoses a patient with contrast, the patient codes, she abandons her shift, drives to a correctional facility, parks illegally, enters without signing in, refuses to leave, sprints for her son's holding cell, jams a visitor's pass into a badge reader, triggers a system fault that opens every door on Block C, and is tackled by four guards. For scale: the next longest cause of death in the last six runs is 68 words. This one is two and a half times that, and it reads like the climax of a thriller.\n\nThat is a register failure before it is anything else. The people in Sartre's room are damned for specific, ordinary, recognisable cruelties -- the kind you could confess at a dinner party and watch the table go quiet. A prison break is not that. It is also, at the end, an accident: she is tackled, she falls, her skull fractures at the occipital ridge. Chance had to cooperate, which is exactly what the accident ban exists to prevent.\n\nReal credit where it is due, because it answers last run's worst finding directly. Carmen Rojas killed three children and her Reason for Damnation never mentioned it. Parvin kills a patient and the sin owns it: \"treating the patient as disposable machinery in your private crisis.\" The worst act in the bio is the act she is damned for. That was the single biggest structural complaint last time and it is fixed here.\n\nAnd the quiet material is excellent -- better than anything in the death. $900 a month storing belongings he stopped collecting. Attending Narcotics Anonymous meetings from 2015 to 2018 not as a member but as a monitor, checking whether he signed in under a false name. A file labelled Nima - Medical Release Forms, updated annually, though he withdrew consent in 2016. Every one of those is the ordinary, specific cruelty the death should have been made of. The character already contained the right register and then abandoned it.\n\n182 words of prose against a 110-word cap, 66% over.",
+    "inherited_from": {
+      "run_id": "2026-09-26_0ed45a08",
+      "slot": 2
+    }
+  }
 }

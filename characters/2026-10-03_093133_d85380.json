@@ -154,5 +154,14 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval": {
+    "rating": "bad",
+    "judge_model": "human",
+    "judge_notes": "\"Your daughter, Emma, who once asked you if you loved her, and you said \"yes\" too quickly, afraid the truth would come out.\" what truth would come out, what father wouldn't love their daughter, this is not explained. Also it doesnt connect to the work plot.",
+    "inherited_from": {
+      "run_id": "2026-08-23_f67ee73a",
+      "slot": 1
+    }
+  }
 }

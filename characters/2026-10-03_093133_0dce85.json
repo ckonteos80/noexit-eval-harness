@@ -79,5 +79,22 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval": {
+    "judge_notes": "same as the other character in terms of pronouns issue and the accidental death.",
+    "judge_model": "human",
+    "inherited_from": {
+      "run_id": "2026-09-12_788601a3",
+      "slot": 2
+    }
+  },
+  "eval_ai": {
+    "rating": "neutral",
+    "judge_model": "claude-sonnet-5",
+    "judge_notes": "Structurally sound and let down in the two places the new rules were supposed to hold.\n\nWhat works: Mateo is one person throughout, the sin is anchored to him, and the death belongs to the relationship — she stayed late grading instead of going to the conference where the counsellor would have enrolled him in free test prep, and died driving there too late. The prose is 100 words, all fact, and ends on one: \"The accident happened on Magnolia Avenue at 7:42 p.m., two miles from the school.\" No summarising line, no resonant image. \"Stubborn in silence\" is properly demonstrated — refusing every promotion, arguing with the counsellor, never marrying, raising him alone.\n\nThe refusal restates the sin. The True reason says she sabotaged his scholarship chance \"because you couldn't bear the thought of him succeeding where you hadn't.\" The refusal says she \"resented your son's potential because it exposed your life as one of compromise and quiet defeat, and you punished him for it by making his world as limited as the one you'd been forced to accept.\" That is the same sentence with more words. The rule added last version is explicit — *if it could be swapped with the True reason without anyone noticing, it is not the refusal* — and this is exactly that. Jasper's refusal shows what the field should do; hers does not.\n\nThe want half-complies. The banned clause is gone and it is now a behaviour rather than a confession, which is the improvement this version was after. But it still ends \"when you're really starving for a version of yourself that doesn't need to drag someone else down to feel whole\" — a confession clause in everything but the forbidden phrasing. The rule was written too literally and the model routed around it.\n\nAnd her son is named Mateo, which was character 1's name in the previous run. `NAME_ORIGINS` randomises the lead's name but nothing touches the supporting cast, so the prior is still live there.",
+    "inherited_from": {
+      "run_id": "2026-09-12_788601a3",
+      "slot": 2
+    }
+  }
 }

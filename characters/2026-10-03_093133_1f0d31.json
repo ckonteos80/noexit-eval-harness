@@ -79,5 +79,23 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval": {
+    "judge_notes": "the cause of death has nothing to do with who they loved and who they hated, we need to fix this. The cause of death needs to connect to every other element.",
+    "judge_model": "human",
+    "rating": "bad",
+    "inherited_from": {
+      "run_id": "2026-09-12_0441d06f",
+      "slot": 1
+    }
+  },
+  "eval_ai": {
+    "rating": "good",
+    "judge_model": "claude-sonnet-5",
+    "judge_notes": "The most coherent character this project has produced. Nothing in it contradicts anything else, which sounds like a low bar until you remember the last run gave a woman two different deaths.\n\nThe death and the prose finally agree, and they do more than agree — they reinforce each other. Cause of Death: ignored the shaking in his chest, took a nap instead of going to the hospital. The paragraph ends: \"you ate microwave rice, skipped your blood pressure pills, and fell asleep on the couch in your work clothes.\" Same death, same means, same place, and the skipped pills are new information that makes the death more legible rather than restating it. That is exactly what the new rule was written to produce.\n\nThe refusal is the best the project has written. \"You needed to be the center of her life because you had no self-worth outside being needed, and you resented her for being able to leave.\" Plain, no cadence, genuinely underneath the act rather than a longer version of it, and reachable from the facts — the Sunday calls, the three he ducked, the brother's help he called interference. The instruction to go under the act rather than restate it did real work here.\n\n\"Quietly controlling\" is evidenced from several directions: withholding affection, the cold house, the unmade appointments, dismissing Luis. And the want explicitly protects the refusal.\n\nTwo soft spots. Luis is half-decorative — he reaches the prose (\"you dismissed your brother's offers to help, called them interference\") but never the sin, which is entirely Elena. That is better integrated than the previous run's roommate-and-Xbox, but the load-bearing rule still is not really biting. And the peripeteia is only half-present: the aim is visible (\"so you could feel needed and in control\") but the field never shows the result running against it. He drove his daughter away and died alone, which is the reversal — it is just not in the sentence.\n\nProse is 99 words, inside the cap.",
+    "inherited_from": {
+      "run_id": "2026-09-12_0441d06f",
+      "slot": 1
+    }
+  }
 }

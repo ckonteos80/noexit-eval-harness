@@ -80,5 +80,14 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval_ai": {
+    "rating": "bad",
+    "judge_model": "claude-opus-5",
+    "judge_notes": "He drives a pickup truck into a maternity hospital. Everything else is downstream of that.\n\nIt breaks the accident ban -- it is a crash -- but the bigger failure is register. The people in that room are damned for cruelties you could confess at a dinner table and watch it go quiet. Driving a vehicle into a hospital to stop a birth is a news event with a body count, and it makes him the wrong kind of monster for this play. The previous model was inflating deaths toward spectacle; this one has gone past spectacle into homicide.\n\nAnd the sentence does not survive being read closely. \"the university hospital where Leila Hosseini was delivering the baby\" -- which baby? No pregnancy, no child, no father appears anywhere in the character. Leila wanted to become a doctor, so \"delivering\" could mean she is the physician, which would make the whole motive incoherent. A definite article with nothing behind it, in the field the prompt says should be facts another person could ask you about.\n\nThe life contradicts itself too. The hated field says she reported him to the school board \"which cost you your job\" -- but the prose says he spent twenty years teaching at Riverdale Secondary and never mentions being fired, or her reporting him at all. The single most consequential event between these two people exists in one field and not in the life that is supposed to contain it.\n\nTwo fields have stopped doing their job. The refusal -- \"You are fundamentally resentful of Leila Hosseini's talent and cannot stand her independence\" -- is the sin restated as a label, and stated with a self-awareness that makes \"refuses to admit\" meaningless; you cannot refuse to admit something you have just announced. The want -- \"You are urging them to blame the world for the choices you made\" -- describes a posture, not a thing to do in the room. Previous runs gave characters a tactic: ask them about their children, then interrupt. This gives the dialogue system nothing to act on.\n\nWhat works: the sin itself. Forging a disciplinary report to block his sister's medical scholarship, to keep her dependent, is specific, checkable and genuinely ugly, and \"controlling jealousy\" follows from it. That single field is the standard the rest should have met.\n\n109 words of prose, about a third of which is the cause of death copied in verbatim as the closing sentence.",
+    "inherited_from": {
+      "run_id": "2026-09-26_2c8e5b4c",
+      "slot": 1
+    }
+  }
 }

@@ -152,5 +152,13 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval": {
+    "practical": {},
+    "mood": {},
+    "inherited_from": {
+      "run_id": "2026-08-09_f225d3f2",
+      "slot": 2
+    }
+  }
 }

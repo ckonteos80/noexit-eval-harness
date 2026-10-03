@@ -152,5 +152,18 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval": {
+    "practical": {
+      "length_format": "fail"
+    },
+    "mood": {
+      "thematic_resonance": 1
+    },
+    "judge_model": "human",
+    "inherited_from": {
+      "run_id": "2026-08-09_f225d3f2",
+      "slot": 1
+    }
+  }
 }

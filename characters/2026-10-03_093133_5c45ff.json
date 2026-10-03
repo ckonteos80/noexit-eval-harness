@@ -80,5 +80,14 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval_ai": {
+    "rating": "bad",
+    "judge_model": "claude-opus-5",
+    "judge_notes": "She pours gasoline through her husband's house, lights it, and then walks into the fire.\n\nThat is the \"you did not intend to die\" rule broken as plainly as it can be. Entering a burning building to make sure the blaze reaches the basement is not a risk that caught up with her; it is a decision to be inside it. Add that it is also a murder, and this is the second character in the same run whose death is a homicide -- the register problem is not an accident of one draft.\n\nThe chronology does not hold. Born 1967, London at twelve, married in 1985, cart on Brick Lane in 1995, abandoned in 2002 -- and then she burns his house down in 2026. Twenty-four years pass between the grievance and the revenge, and nothing in the character explains why this year. Apply the removability test to the timing rather than the event: the death could be moved to any year between 2003 and 2026 and nothing else would change, which means it does not belong to the life.\n\nWorse, she has already had her revenge. The Reason for Damnation is that she forged a police report accusing him of child abuse and got him imprisoned. That is a complete act with a complete consequence. The death is then a second, unrelated revenge against a man she had already destroyed, so the two fields describe two separate finished stories rather than one.\n\nThe refusal fails the same way as the other character's: \"You are a vengeful person who cannot bear anyone's success without destroying it\" is a diagnosis she is apparently comfortable reciting. The want is a posture again rather than a tactic.\n\nAnd yet the best single field in the run is hers. \"You tell yourself you shielded your children from a man who would have harmed them\" is exactly the shape a self-told damnation should take -- it takes the real act, keeps every fact, and changes only the motive. The concrete texture is good too: samosas from a market stall at sixteen, her own cart on Brick Lane in 1995. Aisha and Rahul are named once and then never matter again.\n\n122 words, over the cap. \"losing his custody rights\" dangles -- she filed the report; he lost the rights.",
+    "inherited_from": {
+      "run_id": "2026-09-26_2c8e5b4c",
+      "slot": 2
+    }
+  }
 }

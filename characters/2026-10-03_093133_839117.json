@@ -154,5 +154,14 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval_ai": {
+    "rating": "bad",
+    "judge_model": "claude-sonnet-5",
+    "judge_notes": "The sin is the best thing this project has generated, and the bio around it is broken in a way that makes the character unusable.\n\nFirst the good, because it's substantial. Keeping a boy late not because he stole and not because the rules required it, but so his mother would have to call and ask for him -- \"I decide when you are free\" -- is specific, petty in an entirely believable register, and genuinely ugly. The self-told version is the cleanest distortion this project has produced: \"the boy was safe, dry, and fed\" against the true version's rain and wet clothes, \"you broke no rule\" against \"not because the rules required it.\" You can put a finger on both bends. And Latrice's own want -- move him to a looser school so she can keep him home to watch the younger kids -- is a real want belonging to a real person with her own problems, which is the new plausibility rule working properly.\n\nThen the bio contradicts itself twice, and both are fatal.\n\nShe dies in the car that night, hydroplaning on the way home, killed instantly. The hated-person field then says Latrice \"called you the next day to accuse you of targeting her son.\" She was dead. There was no next day.\n\nWorse, the prose describes a completely different death. She is at the kitchen table grading papers, the phone rings \"with news about the crash,\" she knocks over a lamp, sits back down to finish entering grades, starts typing a reply to Arjun, and the screen goes dark. That is not the death in her Cause of Death field. The bio gives two incompatible accounts of how this woman died -- so a player asking \"how did you die?\" gets a different answer depending on which half the model reaches for. Nothing else in the character survives that.\n\nSmaller, but both real: the trait came back as \"*In control calm*\" with the asterisks included, so markdown leaked into the stored field value, and the phrase isn't quite English. And the refusal doesn't go underneath the sin, it restates it -- the same act again, at greater length, with the cadence the new rule was written to remove.",
+    "inherited_from": {
+      "run_id": "2026-09-12_a5e36b0f",
+      "slot": 2
+    }
+  }
 }

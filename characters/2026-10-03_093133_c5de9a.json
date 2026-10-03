@@ -154,5 +154,14 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval": {
+    "judge_notes": "this makes no sense: who once drew you a picture of a spaceship and called it “your future,” even though you’d forgotten how to explain stars to her.",
+    "judge_model": "human",
+    "rating": "bad",
+    "inherited_from": {
+      "run_id": "2026-08-23_33e2908b",
+      "slot": 1
+    }
+  }
 }

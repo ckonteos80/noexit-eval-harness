@@ -78,5 +78,22 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval": {
+    "judge_notes": "the reason for damnation is interesting but a bit confusing and I am not sure it makes sense. we need to specify clarity ",
+    "judge_model": "human",
+    "inherited_from": {
+      "run_id": "2026-09-27_a5f4d60b",
+      "slot": 1
+    }
+  },
+  "eval_ai": {
+    "rating": "neutral",
+    "judge_model": "claude-opus-5",
+    "judge_notes": "A first-rate sin with a death bolted onto it that belongs to nobody.\n\nThe damnation is excellent and it is the right kind of cruelty for this room: he coaches his own\ndaughter into lying to her mother about where the stimulants came from, and into telling Akari she\ndoes not want to live with her, then tells a court Akari is unstable. He uses the child as the\ninstrument against the mother. That is specific, checkable, and genuinely hard to look at.\n\nThe Self-told version is equally good and does exactly what the field specifies -- \"Akari's mental\nhealth made shared custody unsafe\" keeps every fact and moves only the motive. And it is checkable,\nbecause the life above establishes that Akari really was hospitalised for depression in 2019. A\nreader holding both versions can point at the fact being bent.\n\nThen he loses control on a wet on-ramp to Highway 101 and hits a concrete barrier. Chance had to\ncooperate twice -- the water, the moment -- and nothing about that death requires Akari, Naomi, the\ncustody case or the lying. Drop it into a stranger's life and nothing else changes. It is also the\nfirst vehicle death since the constraints came off, which is the outcome the version notes\npredicted before the run.\n\nTwo softer problems. The refusal, \"You need to be seen as the good parent,\" barely goes underneath\nthe act -- manipulating custody to look like the good parent is most of what the sin already says\n-- and its construction (\"You need to be seen as...\") is now the third appearance of that exact\nphrasing in recent generations. And the life has become a chronology: married 2001, child 2006,\nseparated 2018, divorced 2020, hospitalised 2019, custody awarded. Facts in date order rather than\nthe facts this life actually needs. The old prompt forbade working through a standard set of topics\nin a standard order; that line is gone, and this is what its absence looks like.\n\n\"In control\" is well demonstrated, and losing control of the car is a decent quiet irony. 131 words.",
+    "inherited_from": {
+      "run_id": "2026-09-27_a5f4d60b",
+      "slot": 1
+    }
+  }
 }

@@ -79,5 +79,23 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval": {
+    "rating": "neutral",
+    "judge_model": "human",
+    "judge_notes": "This can work on its own. ",
+    "inherited_from": {
+      "run_id": "2026-09-12_8f7eadc2",
+      "slot": 2
+    }
+  },
+  "eval_ai": {
+    "rating": "neutral",
+    "judge_model": "claude-sonnet-5",
+    "judge_notes": "The death is again a genuine decision and again well-timed: refusing antibiotics for bacterial pneumonia three weeks after Fleur's rejection letter, taking the pills out of the blister pack one by one and flushing them while Fleur waits in the car. \"Because you could not bear the thought of getting better just as she was deciding to stay\" is a real motive, and the prose adds that she stopped drinking water two days before the fever spiked — a second decision reinforcing the first rather than restating it. \"Precisely caring\" is well demonstrated: the blue ink, the proofreading backward, never missing a school play.\n\nThree problems, in ascending order.\n\nThe prose is **133 words against a 110 cap** — the first overrun since the cap was hardened, and it ends on \"you whispered, 'Don't cancel your plans,' before closing your eyes.\" That is a resonant closing line, which the prose rule specifically forbids. Klaus's paragraph ends on a fact and hers ends on a curtain line.\n\n**26 third-person pronouns**, the highest of any character in the run.\n\nAnd the character underneath is Klaus. Both use their own body as leverage against someone who wants to leave. Both refusals are the same sentence: \"You have never believed you deserved care unless it was earned by suffering\" / \"You have always believed your love was conditional on sacrifice, and that Fleur would only love you if you were suffering.\" Same claim, same construction, same position in the bio.",
+    "inherited_from": {
+      "run_id": "2026-09-12_8f7eadc2",
+      "slot": 2
+    }
+  }
 }

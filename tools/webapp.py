@@ -146,6 +146,7 @@ def library_payload():
                                    for c in chars
                                    if (c.get("origin") or {}).get("experiment")})
     facets["tags"] = sorted({t for c in chars for t in (c.get("tags") or [])})
+    facets["verdict"] = ["good", "neutral", "bad", "unscored"]
     return {"count": len(chars), "characters": chars, "facets": facets,
             "current_version": (current_version().name if current_version() else None)}
 
@@ -236,6 +237,33 @@ class Handler(BaseHTTPRequestHandler):
                 simulator.generate_character(state, 1)
                 simulator.generate_character(state, 2, anti_dup=anti_dup)
                 self._send_json(session_payload())
+
+            elif self.path == "/api/library/eval":
+                char_id = body.get("char_id")
+                try:
+                    rec = library.set_eval(
+                        char_id,
+                        field=body.get("field") or "eval",
+                        rating=body.get("rating"),
+                        notes=body.get("notes"),
+                        judge_model=body.get("judge_model") or "human",
+                    )
+                except FileNotFoundError:
+                    return self._send_json({"error": f"No character {char_id}."}, 404)
+                except ValueError as e:
+                    return self._send_json({"error": str(e)}, 400)
+                self._send_json({"char_id": char_id,
+                                 "eval": rec.get("eval"), "eval_ai": rec.get("eval_ai")})
+
+            elif self.path == "/api/library/annotate":
+                char_id = body.get("char_id")
+                try:
+                    rec = library.set_tags(char_id, tags=body.get("tags"),
+                                           notes=body.get("notes"))
+                except FileNotFoundError:
+                    return self._send_json({"error": f"No character {char_id}."}, 404)
+                self._send_json({"char_id": char_id, "tags": rec.get("tags"),
+                                 "notes": rec.get("notes")})
 
             elif self.path == "/api/library/generate":
                 # One character per request. The client loops and shows each as it

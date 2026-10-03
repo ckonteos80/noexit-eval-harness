@@ -79,5 +79,14 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval_ai": {
+    "rating": "bad",
+    "judge_model": "claude-sonnet-5",
+    "judge_notes": "Written in the wrong person. Six of eight fields are first-person -- \"I drove through a flooded underpass\", \"I used money to control Priya Desai\", \"My sister Priya Desai\" -- against a prompt whose second line says write in the second person, \"you,\" not \"she/he/they.\" Then the refusal switches back: \"You needed Priya Desai to need you.\" The character changes voice mid-bio. Carmen is second-person throughout, so this is not a prompt-wide failure, and it matters because the bio goes straight into the dialogue system prompt: a character narrating itself as \"I\" in some facts and \"you\" in others is incoherent from its first line in the room.\n\nThe death breaks the accident ban. He drives into a flooded underpass in a storm and the water rises fast enough to stall the car. The prompt names weather explicitly -- \"No falls, no fires, no machinery, no weather\" -- and the test is whether chance had to cooperate. Choosing to drive through is a decision; the water rising at that rate is not. That rule took deaths from five-in-six traffic accidents to zero when it landed, and this is the first breach since.\n\nWhat works is the sin. Money released only against reported progress and cut off on resistance, so that \"the one thing keeping her from failing was me,\" is a real and recognisable cruelty. $800 a month for two years, stopped six months ago after she called it a charity case, is exactly the kind of checkable fact the self-told version then bends. The prose is 95 words, all fact, and ends on one. \"Calculating kindness\" is earned and is the better of the two traits here.",
+    "inherited_from": {
+      "run_id": "2026-09-20_13372a1e",
+      "slot": 1
+    }
+  }
 }

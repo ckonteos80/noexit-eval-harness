@@ -79,5 +79,14 @@
     }
   ],
   "tags": [],
-  "notes": ""
+  "notes": "",
+  "eval_ai": {
+    "rating": "bad",
+    "judge_model": "claude-opus-5",
+    "judge_notes": "Everything here is excellent except the death, and the death is the field that matters most.\n\nThe sin is the best in months and the most genuinely Sartrean the project has generated: she forges the recommendation letter and in doing so takes her daughter's authorship of her own life. \"Replacing her voice with a lie\" names it exactly. What sits underneath it is worse and better written -- she was not afraid Valentina would fail, she was afraid Valentina was good enough to leave, and that succeeding without her would prove she had \"never been necessary, only present.\" That is a real line. The specificity is the strongest in the run: the red envelope under the mattress, the borrowed Sunday Wi-Fi, the fake university logo printed at an internet cafe in Suba, the envelope sealed with steam from a kettle. \"Desperate caretaker\" is demonstrated rather than asserted.\n\nAnd then she falls asleep at the wheel and hits a concrete barrier at 112 km/h. This is an accident in the plainest sense the prompt describes -- chance had to cooperate twice, once to close her eyes and once to put the barrier there. The forgery is the decision; the death is only what happened during the errand. Run the test the guide asks for: could this death be lifted into a stranger's life? Yes, anybody driving overnight can fall asleep. The forgery creates the journey but the journey does not create the death, and that gap is exactly the one the accident ban exists to close. Second consecutive run to breach it, and this time in the \"on the way to or from\" shape, which is no longer being cued by the prompt since that wording was removed.\n\n134 words against a 110-word cap, and the last third reads as a list of errands rather than facts that bear on anything.",
+    "inherited_from": {
+      "run_id": "2026-09-26_96fd8c5e",
+      "slot": 2
+    }
+  }
 }
