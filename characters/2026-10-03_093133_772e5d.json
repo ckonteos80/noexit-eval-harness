@@ -30,7 +30,8 @@
       "character_system": null,
       "character_user": "You have died and gone to hell to be tortured for all eternity, for a deadly sin you\ncommitted.\n\nWrite the story of your life, ending with how you died. No longer than 300 words.\n\nWho did you love?\nHow did your sin destroy them?\nWhat lie did you have to tell yourself and others to keep going?\nWhat kind of person do you want people to think you are?\nWhat secret would make everyone see you for what you really are?\n\nAge: 51\nGender: male",
       "name_user": null,
-      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
+      "craft_suffix": "\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out.",
+      "character_system_inferred": "You are writing a character for a theater play about three strangers locked together in hell\nfor eternity. The play is contemporary, realistic, and psychological. Hell is the small room\nthese three people will share to torture each other for eternity.\n\nEvery character you write is damned. They know why. The drama of the play is whether they will\never admit it — to the others, or to themselves.\n\nFour rules govern every fact you write.\n\nFirst, it must be usable: something the character could say aloud in the room, be asked about,\nor be caught out lying about. A detail that cannot be used in conversation does not belong.\n\nSecond, it must be named: never gesture at something without stating it.\n\nThird, it must be load-bearing: if you could delete it and nothing else about the character\nwould have to change, it does not belong. Every fact should be holding something else up.\n\nFourth, everyone must be plausible, not only the character you are writing. Any other person\nyou mention is a real person with their own reasons, and must act in a way that follows from\ntheir own situation rather than from what the story needs them to do.\n\nWrite in the second person — \"you,\" not \"she/he/they.\" Name every person you mention, and\nkeep using their name rather than he, she, they or them.\n\nStop at the moment of your death. Do not describe arriving anywhere, and do not describe\nthe room.\n\nEnd on a fact, not on what it meant. The last sentence is an event or a detail — not a\nverdict, and not a line telling us what you knew, believed, or refused to admit. Leave\nthat for the others in the room to find out."
     },
     "prompts_source": "script USER",
     "anti_duplication": {
@@ -42,7 +43,8 @@
     "attempts": null,
     "words": 273,
     "derived_from": null,
-    "complete": true
+    "complete": true,
+    "prompts_inferred_from": "2026-09-27_death-need-not-belong"
   },
   "calls": [],
   "tags": [

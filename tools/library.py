@@ -27,6 +27,7 @@ import os
 import re
 import secrets
 import shutil
+import subprocess
 from datetime import datetime
 from pathlib import Path
 
@@ -406,3 +407,109 @@ def backfill_all(runs=True, experiments=True) -> dict:
                 done["experiments"] += len(ids)
                 done["char_ids"] += ids
     return done
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# RECOVERING THE SYSTEM PROMPT FOR PAST EXPERIMENTS
+# ──────────────────────────────────────────────────────────────────────────────
+
+def _git(*args) -> str:
+    out = subprocess.run(["git", "-C", str(PROJECT_ROOT), *args],
+                         capture_output=True, text=True, encoding="utf-8")
+    return out.stdout.strip() if out.returncode == 0 else ""
+
+
+def _current_at(when: str) -> str | None:
+    """The version named by backups/CURRENT as of a commit timestamp."""
+    sha = _git("log", "-1", "--format=%H", f"--until={when}", "--", "backups/CURRENT")
+    if not sha:
+        return None
+    blob = _git("show", f"{sha}:backups/CURRENT")
+    try:
+        return json.loads(blob).get("version")
+    except Exception:
+        return None
+
+
+def _version_for_experiment(folder_name: str):
+    """
+    The game_state version an experiment actually ran under, from git history, or None.
+
+    Dates alone cannot answer this: five dates in backups/ carry more than one version,
+    and 2026-09-27 carries three, so picking the latest one dated <= the experiment is
+    arbitrary. backups/CURRENT is committed every time a version is taken, so its value
+    at the moment the experiment folder landed is the real answer.
+
+    Returns None rather than a guess when CURRENT changed between the day the experiment
+    is dated and the day it was committed -- the run could have been under either.
+    """
+    m = re.search(r"(\d{4}-\d{2}-\d{2})", folder_name)
+    if not m:
+        return None, []
+    added = _git("log", "--diff-filter=A", "--format=%cI", "-1", "--",
+                 f"experiments/{folder_name}")
+    if not added:
+        return None, []
+    at_commit = _current_at(added)
+    at_run_start = _current_at(f"{m.group(1)}T00:00:00")
+    cands = [v for v in dict.fromkeys([at_run_start, at_commit]) if v]
+    if len(cands) != 1:
+        return None, cands              # ambiguous: a snapshot happened in between
+    d = PROJECT_ROOT / "backups" / cands[0]
+    return (d if d.exists() else None), cands
+
+
+def _system_prompt_at(version_dir) -> str | None:
+    """characterSetupSystemPrompt as it stood in a snapshot."""
+    p = version_dir / "game_state" / "prompts.py"
+    if not p.exists():
+        return None
+    try:
+        tree = ast.parse(p.read_text(encoding="utf-8"))
+    except SyntaxError:
+        return None
+    for node in tree.body:
+        if isinstance(node, ast.Assign) and isinstance(node.value, ast.Constant):
+            for t in node.targets:
+                if isinstance(t, ast.Name) and t.id == "characterSetupSystemPrompt":
+                    return node.value.value
+    return None
+
+
+def enrich_inferred_system_prompts() -> int:
+    """
+    Fill `character_system_inferred` on experiment records.
+
+    An experiment's script builds SYSTEM as `prompts.characterSetupSystemPrompt + CRAFT`,
+    read from game_state/ on the day it ran -- so the folder never held it and the file
+    has changed many times since. It IS recoverable: pick the backups/ version that was
+    current on the experiment's date and read characterSetupSystemPrompt out of it.
+
+    That is an inference, not a record, so it goes in its own field. `character_system`
+    stays null, because a prompt that merely probably matches is worse than an absent
+    one when the whole point of provenance is knowing what was sent.
+    """
+    n = 0
+    for rec in list_characters(full=True):
+        p = rec.get("provenance") or {}
+        origin = p.get("origin") or {}
+        exp = origin.get("experiment")
+        if not exp:
+            continue
+        ver, cands = _version_for_experiment(exp)
+        sysmsg = _system_prompt_at(ver) if ver else None
+        craft = p["prompts"].get("craft_suffix") or ""
+        if sysmsg:
+            p["prompts"]["character_system_inferred"] = sysmsg.rstrip() + craft
+            p["prompts_inferred_from"] = ver.name
+            p.pop("prompts_inferred_candidates", None)
+        else:
+            # Cannot be attributed to one version -- record the candidates and leave the
+            # prompt null. Clearing matters: an earlier, weaker guess must not survive.
+            p["prompts"].pop("character_system_inferred", None)
+            p.pop("prompts_inferred_from", None)
+            p["prompts_inferred_candidates"] = cands
+        path_for(rec["char_id"]).write_text(
+            json.dumps(rec, indent=2, ensure_ascii=False), encoding="utf-8")
+        n += 1
+    return n

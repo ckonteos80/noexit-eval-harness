@@ -43,7 +43,11 @@
     "attempts": null,
     "words": 1085,
     "derived_from": null,
-    "complete": true
+    "complete": true,
+    "prompts_inferred_candidates": [
+      "2026-09-20_housekeeping-extract-field-and-deprecations",
+      "2026-09-27_death-need-not-belong"
+    ]
   },
   "calls": [],
   "tags": [
