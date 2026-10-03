@@ -223,64 +223,80 @@ def save_state_snapshot(state: game.GameState):
 # CHARACTER GENERATION
 # ──────────────────────────────────────────────────────────────────────────────
 
-def generate_character(state: game.GameState, char_no: int, anti_dup: bool = False) -> dict:
+def generate_character_core(state, *, gender, age=None, other=None, slot=1,
+                            anti_dup=False, settings=None) -> dict:
     """
-    Generate one character in a single call.
+    One character, generated and returned. Writes NOTHING to state or to disk.
 
-    Replaces the former four-call chain (name -> life -> sin -> stance): every field
-    now comes back in one response, ordered so that each is written knowing the ones
-    above it. Character 2 still runs after Character 1 and sees its finished bio.
-    Mirrors CharacterGenerator.GenerateCharacter.
+    Split out of generate_character so the library can generate without touching the
+    live session: the old function assigns into state.characters and calls
+    save_state_snapshot, so a batch of ten would have overwritten the snapshot that a
+    running session depends on, ten times.
+
+    `state` is still needed, but only as a logging vehicle -- log_call reads its
+    session_id and turn_count. Pass a throwaway session for library work.
+
+    Returns everything the caller needs to build either a game.Character or a library
+    record: the name, the bio, and the prompts verbatim.
     """
-    if char_no not in (1, 2):
-        raise ValueError(f"char_no must be 1 or 2, got {char_no}")
+    st = settings or {}
+    age = int(st.get("age") or age or random.randint(*config.AGE_RANGE))
+    name = _generate_name(state, slot, age, gender, settings=st)
 
-    gender = config.CHARACTER_GENDERS[char_no]
-    age = random.randint(*config.AGE_RANGE)
-
-    # Determine anti-duplication inputs (Char 2 sees Char 1's finished story).
-    # Gated on the bio rather than on an occupation field: there are no fields now.
-    other_char = state.characters.get(1) if char_no == 2 else None
-    if char_no == 2 and (other_char is None or not other_char.description):
-        raise RuntimeError("Cannot generate Character 2 before Character 1 is fully generated.")
-
-    # ── Name call, before the story call ──
-    name = _generate_name(state, char_no, age, gender)
-
-    summary = {"char_no": char_no, "gender": gender, "age": age, "name": name}
-
-    # ── Story call ──
-    #
-    # anti_dup defaults OFF. The block embeds the other character's whole bio, taking
-    # the user prompt from 99 words to roughly 680, and GLM-5.3 at high reasoning effort
-    # has never had to answer one -- every experiment generated characters
-    # independently. In practice that call ran past the router's ~120s ceiling and, with
-    # a 300s proxy timeout and retries inside call_proxy, blocked for minutes with no
-    # feedback. Distinctness is now got by choosing two unlike characters from the
-    # library rather than by this block.
     char_kwargs = dict(name=name, age=age, gender=gender)
-    if char_no == 2 and anti_dup:
-        char_kwargs["other_name"] = other_char.name
-        char_kwargs["other_bio"] = other_char.description
+    if anti_dup and other:
+        char_kwargs["other_name"], char_kwargs["other_bio"] = other
 
     sys_p, user_p = assembly.assemble_character_prompts(**char_kwargs)
     # A chained call is the slow one, so give it a shorter leash: it fails visibly
     # rather than holding the request open for several minutes.
     bio = _call_with_sanity_retry(
-        sys_p, user_p, char_no, state,
-        proxy_timeout=(PROXY_TIMEOUT_ANTI_DUP
-                       if (char_no == 2 and anti_dup) else None),
+        sys_p, user_p, slot, state,
+        proxy_timeout=PROXY_TIMEOUT_ANTI_DUP if (anti_dup and other) else None,
+        settings=st,
     )
+    return {
+        "name": name, "age": age, "gender": gender, "bio": bio,
+        "words": len(bio.split()),
+        "system_prompt": sys_p, "user_prompt": user_p,
+        "anti_dup": bool(anti_dup and other),
+    }
 
-    summary.update(words=len(bio.split()))
+
+def generate_character(state: game.GameState, char_no: int, anti_dup: bool = False,
+                       settings: Optional[dict] = None) -> dict:
+    """
+    Generate one character into a session, as the game does.
+
+    A thin wrapper over generate_character_core: this one owns the 1/2 slot rules, the
+    gender map, the character-2 precondition, and the writes to state and disk.
+    Mirrors CharacterGenerator.GenerateCharacter.
+    """
+    if char_no not in (1, 2):
+        raise ValueError(f"char_no must be 1 or 2, got {char_no}")
+
+    # settings is a plain dict of per-request overrides from the UI; every key is
+    # optional and absent means "use config". A dict rather than a dataclass because it
+    # crosses a JSON boundary either way.
+    st = settings or {}
+    gender = st.get("gender") or config.CHARACTER_GENDERS[char_no]
+
+    # Character 2 sees character 1's finished story. Gated on the bio rather than on an
+    # occupation field: there are no fields now.
+    other_char = state.characters.get(1) if char_no == 2 else None
+    if char_no == 2 and (other_char is None or not other_char.description):
+        raise RuntimeError("Cannot generate Character 2 before Character 1 is fully generated.")
+
+    made = generate_character_core(
+        state, gender=gender, slot=char_no, settings=st, anti_dup=anti_dup,
+        other=((other_char.name, other_char.description) if other_char else None),
+    )
 
     # The story is the bio. Nothing parses it into fields; the per-field columns on
     # Character stay empty from this version on.
     state.characters[char_no] = game.Character(
-        name=name,
-        description=bio,
-        gender=gender,
-        age=age,
+        name=made["name"], description=made["bio"],
+        gender=made["gender"], age=made["age"],
     )
 
     if 1 in state.characters and 2 in state.characters \
@@ -288,10 +304,12 @@ def generate_character(state: game.GameState, char_no: int, anti_dup: bool = Fal
         state.characters_generated = True
 
     save_state_snapshot(state)
-    return summary
+    return {"char_no": char_no, "gender": made["gender"], "age": made["age"],
+            "name": made["name"], "words": made["words"]}
 
 
-def _generate_name(state: game.GameState, char_no: int, age: int, gender: str) -> str:
+def _generate_name(state: game.GameState, char_no: int, age: int, gender: str,
+                   settings: Optional[dict] = None) -> str:
     """
     The name call. A story adopts a supplied name about half the time wherever the
     name sits in the prompt (experiments 18, 19), so the supplied value is what
@@ -305,18 +323,22 @@ def _generate_name(state: game.GameState, char_no: int, age: int, gender: str) -
     user = (p.characterNamePrompt
             .replace("{AGE}", str(age))
             .replace("{GENDER}", gender))
-    res = providers.call_proxy(
-        "", user, model=config.MODEL_NAME, temperature=config.TEMP_NAME, max_tokens=0,
-    )
+    st = settings or {}
+    model = st.get("name_model") or config.MODEL_NAME
+    temp = st.get("name_temperature")
+    temp = config.TEMP_NAME if temp is None else float(temp)
+    res = providers.call_proxy("", user, model=model, temperature=temp, max_tokens=0)
     name = assembly.strip_reasoning(res.content or "").strip().strip('."\u201c\u201d')
-    log_call(state, "name", char_no, config.MODEL_NAME, config.TEMP_NAME, 0,
-             "", user, name, meta=res)
+    # log_call's model/temperature are positional: pass the values actually used, or the
+    # transcript will disagree with CallResult.requested_model about what was called.
+    log_call(state, "name", char_no, model, temp, 0, "", user, name, meta=res)
     if not name:
         raise RuntimeError("Name call returned nothing.")
     return name
 
 
-def _call_with_sanity_retry(sys_p, user_p, char_no, state, proxy_timeout=None) -> str:
+def _call_with_sanity_retry(sys_p, user_p, char_no, state, proxy_timeout=None,
+                            settings=None) -> str:
     """
     Call the proxy for the story and return it whole, after strip_reasoning.
 
@@ -324,26 +346,29 @@ def _call_with_sanity_retry(sys_p, user_p, char_no, state, proxy_timeout=None) -
     used without parsing, so this is the only thing standing between a bad generation
     and the dialogue system prompt.
     """
+    st = settings or {}
+    model = st.get("generation_model") or config.MODEL_GENERATION
+    temp = st.get("generation_temperature")
+    temp = config.TEMP_GENERATION if temp is None else float(temp)
+    effort = st.get("reasoning_effort") or config.REASONING_EFFORT_GENERATION
+    max_tokens = config.MAX_TOKENS_GENERATION
+
     response, res, why = "", None, "not called"
     for attempt in range(config.PARSE_RETRY_ATTEMPTS):
         res = providers.call_proxy(
             sys_p, user_p,
-            model=config.MODEL_GENERATION,
-            temperature=config.TEMP_GENERATION,
-            max_tokens=config.MAX_TOKENS_GENERATION,
+            model=model, temperature=temp, max_tokens=max_tokens,
             proxy_timeout=proxy_timeout or config.PROXY_TIMEOUT_GENERATION,
-            reasoning_effort=config.REASONING_EFFORT_GENERATION,
+            reasoning_effort=effort,
         )
         response = assembly.strip_reasoning(res.content or "").strip()
         ok, why = assembly.generation_is_usable(response)
-        log_call(state, "character", char_no, config.MODEL_GENERATION,
-                 config.TEMP_GENERATION, config.MAX_TOKENS_GENERATION,
+        log_call(state, "character", char_no, model, temp, max_tokens,
                  sys_p, user_p, response,
                  notes=f"attempt {attempt + 1}: {why}", meta=res)
         if ok:
             return response
-    log_call(state, "character", char_no, config.MODEL_GENERATION,
-             config.TEMP_GENERATION, config.MAX_TOKENS_GENERATION, sys_p, user_p, response,
+    log_call(state, "character", char_no, model, temp, max_tokens, sys_p, user_p, response,
              notes=f"UNUSABLE after {config.PARSE_RETRY_ATTEMPTS} attempts: {why}", meta=res)
     return response
 

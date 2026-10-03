@@ -35,17 +35,61 @@
   }
 
   /* ── start screen ── */
-  #start-screen {
-    position: fixed; inset: 0; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 18px;
-  }
+  /* Scrollable, and top-aligned once panels are open: the screen is position:fixed
+     with body{overflow:hidden}, so an expanded panel would otherwise be clipped with
+     no scrollbar. */
+  #start-screen { position: fixed; inset: 0; display: flex; flex-direction: column;
+                  align-items: center; gap: 14px; overflow-y: auto;
+                  padding: 40px 20px 60px; }
   #start-screen.hidden { display: none; }
   #start-screen h1 {
     font-family: var(--serif); font-weight: 300; font-size: 30px;
     color: var(--text-hi); letter-spacing: .5px;
   }
   #start-screen p { color: var(--dim2); max-width: 420px; text-align: center; }
-  #start-btns { display: flex; gap: 10px; }
+  #start-btns { display: flex; flex-direction: column; gap: 10px;
+                width: 100%; max-width: 620px; }
+
+  /* ── home panels ── */
+  .panel { background: var(--surface); border: 1px solid var(--border);
+           border-top: 2px solid var(--border2); border-radius: 2px; }
+  .panel.open { border-top-color: var(--accent); }
+  .panel-head { display: flex; align-items: center; gap: 10px; cursor: pointer;
+                padding: 13px 16px; }
+  .panel-head .pt { font-family: var(--mono); font-size: 13px; color: var(--text);
+                    font-weight: 600; letter-spacing: .4px; }
+  .panel.open .panel-head .pt { color: var(--accent); }
+  .panel-head .pd { font-family: var(--mono); font-size: 11px; color: var(--dim2);
+                    margin-left: auto; text-align: right; }
+  .panel-body { display: none; padding: 0 16px 16px; }
+  .panel.open .panel-body { display: block; }
+  .panel-note { font-family: var(--mono); font-size: 11px; color: var(--dim2);
+                line-height: 1.6; margin: 0 0 12px; text-align: left; max-width: none; }
+
+  .fieldrow { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+  .field { display: flex; flex-direction: column; gap: 4px; }
+  .field label { font-family: var(--mono); font-size: 10px; color: var(--dim2);
+                 letter-spacing: .5px; text-transform: uppercase; }
+  .field input, .field select {
+    background: var(--surface2); color: var(--text); border: 1px solid var(--border2);
+    padding: 6px 9px; font-family: var(--mono); font-size: 12px; border-radius: 2px; }
+  .field input:focus, .field select:focus { outline: none; border-color: var(--accent); }
+  .field input[type=number] { width: 86px; }
+  .field.wide input, .field.wide select { min-width: 230px; }
+  .field .hint { font-family: var(--mono); font-size: 10px; color: var(--dim); }
+  .checkrow { display: flex; align-items: center; gap: 7px; margin-bottom: 10px;
+              font-family: var(--mono); font-size: 11px; color: var(--dim2); }
+  .panel-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+
+  /* ── progress + errors ── */
+  .progress { font-family: var(--mono); font-size: 11px; color: var(--dim2);
+              margin-top: 10px; min-height: 16px; text-align: left; }
+  .progress .step { color: var(--accent); }
+  .progress .done { color: var(--dim); }
+  .panel-error { font-family: var(--mono); font-size: 11px; color: var(--none-col);
+                 margin-top: 8px; text-align: left; white-space: pre-wrap; }
+  .ghost-btn:disabled { opacity: .45; cursor: default; border-color: var(--border2);
+                        color: var(--dim); }
   .primary-btn {
     font-family: var(--mono); font-size: 13px; letter-spacing: .5px;
     background: var(--accent); color: #16130c; border: none;
@@ -167,9 +211,57 @@
   <h1>No Exit</h1>
   <p>Generate two characters, hear the narrator show you in, then talk to them. Ending the session saves it to <code>runs/</code> for review in run_viewer.html.</p>
   <div id="start-btns">
-    <button class="primary-btn" id="new-session-btn">Start New Session</button>
-    <button class="ghost-btn" id="chars-only-btn">Generate Characters Only</button>
-    <button class="ghost-btn" id="library-btn">Character Library</button>
+
+    <div class="panel" id="panel-session">
+      <div class="panel-head" data-panel="session">
+        <span class="pt">Start New Session</span>
+        <span class="pd">generate a pair, or pick two</span>
+      </div>
+      <div class="panel-body">
+        <p class="panel-note">Generates two characters and the narrator, then opens the
+          chat. Or pick two you already have.</p>
+        <div id="session-settings"></div>
+        <div class="panel-actions">
+          <button class="primary-btn" id="new-session-btn">Generate a fresh pair</button>
+          <button class="ghost-btn" id="pick-chars-btn">Pick characters &rarr;</button>
+        </div>
+        <div class="progress" id="session-progress"></div>
+        <div class="panel-error" id="session-error"></div>
+      </div>
+    </div>
+
+    <div class="panel" id="panel-generate">
+      <div class="panel-head" data-panel="generate">
+        <span class="pt">Generate Characters</span>
+        <span class="pd">into the library</span>
+      </div>
+      <div class="panel-body">
+        <p class="panel-note">Generates characters one at a time into the library. Each is
+          saved as it lands, so stopping early keeps what you already have.</p>
+        <div id="generate-settings"></div>
+        <div class="panel-actions">
+          <button class="primary-btn" id="chars-only-btn">Generate</button>
+          <button class="ghost-btn" id="generate-stop-btn" disabled>Stop</button>
+        </div>
+        <div class="progress" id="generate-progress"></div>
+        <div class="panel-error" id="generate-error"></div>
+      </div>
+    </div>
+
+    <div class="panel" id="panel-library">
+      <div class="panel-head" data-panel="library">
+        <span class="pt">Character Library</span>
+        <span class="pd" id="library-count-hint"></span>
+      </div>
+      <div class="panel-body">
+        <p class="panel-note">Every character ever generated — by the app, by a saved run,
+          or by an experiment — with the settings and prompts that made it.</p>
+        <div class="panel-actions">
+          <button class="primary-btn" id="library-btn">Open library</button>
+        </div>
+      </div>
+    </div>
+
   </div>
   <div id="start-error"></div>
 </div>
@@ -237,6 +329,7 @@
 const $ = s => document.querySelector(s);
 
 let charNames = {};
+let sessionId = null;
 
 // GET when there is no body. Parsing happened before the res.ok check, so a 404 --
 // which the server returns as an HTML page -- surfaced as a JSON parse error rather
@@ -407,6 +500,193 @@ function toggleSelect(charId) {
   renderLibrary();
 }
 
+// ── Home panels, settings and progress ──────────────────────────────────────
+// The panels are static markup: every handler is bound once at load against ids that
+// exist in the HTML. Rendering them from JS would mean $('#id').onclick on a null,
+// which throws and takes the rest of the script with it -- including the resume logic.
+
+let SETTINGS = null;          // defaults from /api/settings
+let genStop = false;          // Stop pressed during a library batch
+
+function openPanel(name) {
+  ['session', 'generate', 'library'].forEach(p =>
+    $('#panel-' + p).classList.toggle('open', p === name));
+}
+
+function field(id, label, html, hint) {
+  return '<div class="field' + (hint ? ' wide' : '') + '"><label for="' + id + '">' +
+    label + '</label>' + html + (hint ? '<span class="hint">' + hint + '</span>' : '') + '</div>';
+}
+
+// One settings form, rendered into both panels. `prefix` keeps the ids unique.
+function settingsFormHTML(prefix, withCount) {
+  const g = SETTINGS.generation, n = SETTINGS.name;
+  const genders = ['random'].concat(SETTINGS.genders);
+  const opts = (arr, sel) => arr.map(x =>
+    '<option value="' + esc(x) + '"' + (x === sel ? ' selected' : '') + '>' + esc(x) + '</option>').join('');
+  return '' +
+    '<div class="fieldrow">' +
+      (withCount ? field(prefix + '-count', 'how many',
+        '<input type="number" id="' + prefix + '-count" min="1" max="20" value="4">') : '') +
+      field(prefix + '-gender', 'gender',
+        '<select id="' + prefix + '-gender">' +
+        (withCount ? '' : '<option value="pair">one of each</option>') +
+        opts(genders, null) + '</select>') +
+      field(prefix + '-effort', 'reasoning effort',
+        '<select id="' + prefix + '-effort">' + opts(SETTINGS.effort_levels, g.reasoning_effort) + '</select>') +
+      field(prefix + '-temp', 'temperature',
+        '<input type="number" id="' + prefix + '-temp" step="0.05" min="0" max="2" value="' + g.temperature + '">',
+        'range 0-2') +
+    '</div>' +
+    '<div class="fieldrow">' +
+      field(prefix + '-model', 'generation model',
+        '<input type="text" id="' + prefix + '-model" value="' + esc(g.model) + '">') +
+      field(prefix + '-name-model', 'name model',
+        '<input type="text" id="' + prefix + '-name-model" value="' + esc(n.model) + '">') +
+      field(prefix + '-name-temp', 'name temp',
+        '<input type="number" id="' + prefix + '-name-temp" step="0.05" min="0" max="2" value="' + n.temperature + '">') +
+    '</div>' +
+    '<div class="checkrow">' +
+      '<input type="checkbox" id="' + prefix + '-antidup">' +
+      '<label for="' + prefix + '-antidup">anti-duplication &mdash; character 2 written against ' +
+      'character 1&rsquo;s whole story. Off by default: it triples the prompt and is being retired.</label>' +
+    '</div>';
+}
+
+function readSettings(prefix) {
+  const num = id => { const el = $('#' + id); if (!el) return null;
+                      const v = parseFloat(el.value); return isNaN(v) ? null : v; };
+  const str = id => { const el = $('#' + id); return el && el.value.trim() ? el.value.trim() : null; };
+  return {
+    generation_model: str(prefix + '-model'),
+    generation_temperature: num(prefix + '-temp'),
+    reasoning_effort: str(prefix + '-effort'),
+    name_model: str(prefix + '-name-model'),
+    name_temperature: num(prefix + '-name-temp'),
+  };
+}
+
+function genderFor(prefix) {
+  const el = $('#' + prefix + '-gender');
+  const v = el ? el.value : 'pair';
+  if (v === 'pair') return null;              // server uses its own 1=male/2=female map
+  if (v === 'random') return SETTINGS.genders[Math.floor(Math.random() * SETTINGS.genders.length)];
+  return v;
+}
+
+// ── progress ────────────────────────────────────────────────────────────────
+// A finished 30-second generation looked identical to a hang, which cost more
+// confusion than the real bugs did. Every long action now names its step and counts.
+function progress(hostSel) {
+  const host = $(hostSel);
+  let done = [], current = null, t0 = 0, timer = null;
+  const paint = () => {
+    const secs = current ? ' ' + ((Date.now() - t0) / 1000).toFixed(1) + 's' : '';
+    host.innerHTML = done.map(d => '<span class="done">' + esc(d) + ' \u2713</span>').join(' \u00b7 ') +
+      (done.length && current ? ' \u00b7 ' : '') +
+      (current ? '<span class="step">' + esc(current) + secs + '</span>' : '');
+  };
+  return {
+    step(label) {
+      if (current) done.push(current);
+      current = label; t0 = Date.now();
+      clearInterval(timer); timer = setInterval(paint, 100); paint();
+    },
+    finish(msg) {
+      if (current) done.push(current);
+      current = null; clearInterval(timer);
+      host.innerHTML = done.map(d => '<span class="done">' + esc(d) + ' \u2713</span>').join(' \u00b7 ') +
+        (msg ? ' <span class="step">' + esc(msg) + '</span>' : '');
+    },
+    fail() { current = null; clearInterval(timer); paint(); },
+    clear() { done = []; current = null; clearInterval(timer); host.innerHTML = ''; },
+  };
+}
+
+// ── Start New Session: a fresh pair, one step at a time ─────────────────────
+async function startSession() {
+  const btn = $('#new-session-btn'), pick = $('#pick-chars-btn');
+  const prog = progress('#session-progress');
+  $('#session-error').textContent = '';
+  prog.clear();
+  btn.disabled = true; pick.disabled = true;
+  const settings = readSettings('session');
+  const antiDup = $('#session-antidup').checked;
+  try {
+    prog.step('session');
+    await api('/api/session/start', {});
+    for (const n of [1, 2]) {
+      prog.step('character ' + n);
+      await api('/api/session/character', {
+        char_no: n,
+        anti_dup: antiDup && n === 2,
+        settings: Object.assign({}, settings, { gender: genderFor('session') }),
+      });
+    }
+    prog.step('narrator');
+    const res = await api('/api/run_narrator', {});
+    prog.finish('done');
+
+    const data = await api('/api/state');
+    sessionId = data.session_id;
+    showScreen('app');
+    $('#session-label').textContent = data.session_id;
+    $('#transcript').innerHTML = '';
+    renderChars(data.characters);
+    addMsg('narrator', 'Narrator', res.narrator_line);
+    $('#msg-input').focus();
+  } catch (err) {
+    prog.fail();
+    $('#session-error').textContent = err.message;
+  } finally {
+    btn.disabled = false; pick.disabled = false;
+  }
+}
+
+// ── Generate Characters: one request per character, into the library ────────
+async function generateIntoLibrary() {
+  const btn = $('#chars-only-btn'), stop = $('#generate-stop-btn');
+  const prog = progress('#generate-progress');
+  $('#generate-error').textContent = '';
+  prog.clear();
+  const countEl = $('#generate-count');
+  const count = Math.max(1, Math.min(20, parseInt(countEl && countEl.value, 10) || 1));
+  const settings = readSettings('generate');
+  genStop = false;
+  btn.disabled = true; stop.disabled = false;
+  let made = 0;
+  try {
+    for (let i = 1; i <= count; i++) {
+      if (genStop) break;
+      prog.step('character ' + i + ' of ' + count);
+      try {
+        await api('/api/library/generate', {
+          anti_dup: false,
+          settings: Object.assign({}, settings, { gender: genderFor('generate') }),
+        });
+        made++;
+      } catch (err) {
+        $('#generate-error').textContent += 'character ' + i + ': ' + err.message + '\n';
+      }
+    }
+    prog.finish(made + ' saved' + (genStop ? ', stopped' : ''));
+    libAll = [];                               // force a reload next time the library opens
+    try {
+      const lib = await api('/api/library');
+      $('#library-count-hint').textContent = lib.count + ' characters';
+    } catch (e) { /* count is cosmetic */ }
+  } finally {
+    btn.disabled = false; stop.disabled = true; genStop = false;
+  }
+}
+
+async function loadSettings() {
+  if (SETTINGS) return;
+  SETTINGS = await api('/api/settings');
+  $('#session-settings').innerHTML = settingsFormHTML('session', false);
+  $('#generate-settings').innerHTML = settingsFormHTML('generate', true);
+}
+
 // Three top-level screens: start, chars-only (review a generated pair with no
 // narrator/dialogue yet), and app (the full chat session).
 function showScreen(name) {
@@ -414,25 +694,6 @@ function showScreen(name) {
   $('#chars-only-screen').classList.toggle('show', name === 'chars-only');
   $('#library-screen').classList.toggle('show', name === 'library');
   $('#app').classList.toggle('show', name === 'app');
-}
-
-async function startSession() {
-  const btn = $('#new-session-btn');
-  btn.disabled = true; btn.textContent = 'Generating characters...';
-  $('#start-error').textContent = '';
-  try {
-    const data = await api('/api/new', {});
-    showScreen('app');
-    $('#session-label').textContent = data.session_id;
-    $('#transcript').innerHTML = '';
-    renderChars(data.characters);
-    addMsg('narrator', 'Narrator', data.narrator_line);
-    $('#msg-input').focus();
-  } catch (err) {
-    $('#start-error').textContent = 'Failed to start session: ' + err.message;
-  } finally {
-    btn.disabled = false; btn.textContent = 'Start New Session';
-  }
 }
 
 async function generateCharsOnly(fromReviewScreen) {
@@ -457,7 +718,7 @@ async function continueToDialogue() {
   const btn = $('#continue-btn');
   btn.disabled = true; btn.textContent = 'Starting...';
   try {
-    const sid = $('#chars-only-session-label').textContent;
+    const sid = sessionId || $('#chars-only-session-label').textContent;
     const stateData = await fetch('/api/state').then(r => r.json());
     const res = await api('/api/run_narrator', {});
     showScreen('app');
@@ -514,8 +775,13 @@ async function endSession(save) {
   $('#start-error').textContent = '';
 }
 
+document.querySelectorAll('.panel-head').forEach(h => {
+  h.onclick = () => openPanel(h.dataset.panel);
+});
 $('#new-session-btn').onclick = startSession;
-$('#chars-only-btn').onclick = () => generateCharsOnly(false);
+$('#chars-only-btn').onclick = generateIntoLibrary;
+$('#generate-stop-btn').onclick = () => { genStop = true; };
+$('#pick-chars-btn').onclick = () => openLibrary();
 $('#library-btn').onclick = () => openLibrary();
 $('#lib-back-btn').onclick = () => showScreen('start');
 $('#lib-reset').onclick = () => {
@@ -558,6 +824,15 @@ $('#abandon-btn').onclick = () => endSession(false);
       });
     }
   } catch (err) { /* server not reachable yet on first paint -- ignore */ }
+
+  // Settings and the library count, so the panels are populated before first use.
+  try {
+    await loadSettings();
+    const lib = await api('/api/library');
+    $('#library-count-hint').textContent = lib.count + ' characters';
+  } catch (err) {
+    $('#start-error').textContent = 'Could not reach the server: ' + err.message;
+  }
 })();
 </script>
 </body>

@@ -12,6 +12,7 @@ Usage:
 """
 
 import json
+import random
 from urllib.parse import unquote
 import webbrowser
 from datetime import datetime, timezone
@@ -19,6 +20,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 import library
+from game_state import config
 import simulator
 import store
 from _paths import PROJECT_ROOT, UI
@@ -65,6 +67,35 @@ def _active_session_error(body):
         return None
     return (f"A session is active ({state.session_id}, {state.turn_count} turns). "
             "Save or abandon it first, or send force to discard it.")
+
+
+def settings_payload():
+    """
+    The generation defaults, so the UI never hardcodes a model string and always shows
+    what the game currently uses. Everything here is overridable per request; anything
+    the client omits falls back to these.
+    """
+    return {
+        "generation": {
+            "model": config.MODEL_GENERATION,
+            "temperature": config.TEMP_GENERATION,
+            "reasoning_effort": config.REASONING_EFFORT_GENERATION,
+            "max_tokens": config.MAX_TOKENS_GENERATION,
+            "proxy_timeout": config.PROXY_TIMEOUT_GENERATION,
+        },
+        "name": {"model": config.MODEL_NAME, "temperature": config.TEMP_NAME},
+        "dialogue": {"model": config.MODEL_DIALOGUE, "temperature": config.TEMP_DIALOGUE,
+                     "max_tokens": config.MAX_TOKENS_DIALOGUE},
+        "narrator": {"model": config.MODEL_NARRATOR, "temperature": config.TEMP_NARRATOR},
+        "genders": sorted(set(config.CHARACTER_GENDERS.values())),
+        "age_range": list(config.AGE_RANGE),
+        "effort_levels": ["low", "high", "max"],
+        "temperature_range": [0, 2],
+        # The proxy drops max_tokens (pydantic v2 discards undeclared fields), so the UI
+        # should say so rather than offer a control that silently does nothing.
+        "max_tokens_honoured": False,
+        "game_state_version": (current_version().name if current_version() else None),
+    }
 
 
 def library_payload():
@@ -131,6 +162,8 @@ class Handler(BaseHTTPRequestHandler):
             self.wfile.write(body)
         elif self.path == "/api/state":
             self._send_json(session_payload())
+        elif self.path == "/api/settings":
+            self._send_json(settings_payload())
         elif self.path == "/api/library":
             self._send_json(library_payload())
         elif self.path.startswith("/api/library/"):
@@ -170,6 +203,87 @@ class Handler(BaseHTTPRequestHandler):
                 simulator.generate_character(state, 1)
                 simulator.generate_character(state, 2, anti_dup=anti_dup)
                 self._send_json(session_payload())
+
+            elif self.path == "/api/library/generate":
+                # One character per request. The client loops and shows each as it
+                # lands: a batch of ten is minutes, and a single synchronous request
+                # would report nothing and lose everything to one transient 500.
+                #
+                # Generated against a throwaway session so a batch cannot touch the
+                # snapshot a live session depends on.
+                st = body.get("settings") or {}
+                scratch = simulator.new_session()
+                gender = st.get("gender") or random.choice(
+                    sorted(set(config.CHARACTER_GENDERS.values())))
+                made = simulator.generate_character_core(
+                    scratch, gender=gender, settings=st, anti_dup=False)
+                rec = library.new_record(
+                    character={"name": made["name"], "description": made["bio"],
+                               "gender": made["gender"], "age": made["age"],
+                               "info_shared": []},
+                    provenance={
+                        "source": "generated",
+                        "origin": None,
+                        "game_state_version": (current_version().name
+                                               if current_version() else None),
+                        "drift_at_generation": drifted_files() or [],
+                        "gen_session_id": scratch.session_id,
+                        "settings": {
+                            "generation_model": st.get("generation_model")
+                                                or config.MODEL_GENERATION,
+                            "generation_temperature": (st.get("generation_temperature")
+                                                       if st.get("generation_temperature") is not None
+                                                       else config.TEMP_GENERATION),
+                            "reasoning_effort": st.get("reasoning_effort")
+                                                or config.REASONING_EFFORT_GENERATION,
+                            "generation_max_tokens": config.MAX_TOKENS_GENERATION,
+                            "proxy_timeout": config.PROXY_TIMEOUT_GENERATION,
+                            "name_model": st.get("name_model") or config.MODEL_NAME,
+                            "name_temperature": (st.get("name_temperature")
+                                                 if st.get("name_temperature") is not None
+                                                 else config.TEMP_NAME),
+                            "age_range": list(config.AGE_RANGE),
+                            "provider": config.PROVIDER,
+                        },
+                        "prompts": {"character_system": made["system_prompt"],
+                                    "character_user": made["user_prompt"],
+                                    "name_user": None},
+                        "prompts_source": "recorded at generation",
+                        "anti_duplication": {"used": made["anti_dup"],
+                                             "other_char_id": None},
+                        "usable": True, "sanity": "ok", "attempts": None,
+                        "words": made["words"], "derived_from": None, "complete": True,
+                    },
+                    calls=[],
+                )
+                library.write_character(rec)
+                self._send_json({"char_id": rec["char_id"],
+                                 "character": rec["character"],
+                                 "words": made["words"]})
+
+            elif self.path == "/api/session/start":
+                # An empty session, so the client can drive generation one step at a
+                # time and report progress between steps. /api/new still does the whole
+                # thing in one call for anything that prefers that.
+                busy = _active_session_error(body)
+                if busy:
+                    self._send_json({"error": busy}, status=409)
+                    return
+                state = simulator.new_session()
+                self._send_json(session_payload())
+
+            elif self.path == "/api/session/character":
+                if state is None:
+                    return self._send_json({"error": "No active session."}, 400)
+                char_no = int(body.get("char_no") or 0)
+                if char_no not in (1, 2):
+                    return self._send_json({"error": "char_no must be 1 or 2."}, 400)
+                summary = simulator.generate_character(
+                    state, char_no,
+                    anti_dup=bool(body.get("anti_dup")),
+                    settings=body.get("settings") or {},
+                )
+                self._send_json({"summary": summary, **session_payload()})
 
             elif self.path == "/api/run_narrator":
                 if state is None:
