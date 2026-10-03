@@ -98,11 +98,11 @@
   #library-screen.show { display: flex; }
   #lib-filters {
     display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
-    padding: 10px 16px; border-bottom: 1px solid var(--line); flex-shrink: 0;
+    padding: 10px 16px; border-bottom: 1px solid var(--border2); flex-shrink: 0;
   }
   #lib-filters input, #lib-filters select {
-    background: var(--panel); color: var(--text); border: 1px solid var(--line);
-    border-radius: 6px; padding: 5px 8px; font: inherit; font-size: 13px;
+    background: var(--surface2); color: var(--text); border: 1px solid var(--border2);
+    padding: 6px 9px; font: inherit; font-size: 12px;
   }
   #lib-filters input { min-width: 220px; }
   #lib-grid {
@@ -117,7 +117,7 @@
     color: var(--bg); background: var(--accent); border-radius: 4px; padding: 2px 7px;
   }
   .prov { font-size: 11px; color: var(--dim); margin-top: 8px; line-height: 1.5;
-          border-top: 1px solid var(--line); padding-top: 7px; }
+          border-top: 1px solid var(--border); padding-top: 7px; }
   .prov code { font-size: 10.5px; }
   .charcard .bio {
     font-family: var(--serif); font-size: 13px; line-height: 1.6; color: var(--text);
@@ -238,14 +238,21 @@ const $ = s => document.querySelector(s);
 
 let charNames = {};
 
-async function api(path, body) {
-  const res = await fetch(path, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body || {}),
-  });
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+// GET when there is no body. Parsing happened before the res.ok check, so a 404 --
+// which the server returns as an HTML page -- surfaced as a JSON parse error rather
+// than as "HTTP 404", and left callers hanging on a rejected promise.
+async function api(path, body, method) {
+  const verb = method || (body === undefined ? 'GET' : 'POST');
+  const opts = { method: verb };
+  if (verb !== 'GET') {
+    opts.headers = { 'Content-Type': 'application/json' };
+    opts.body = JSON.stringify(body || {});
+  }
+  const res = await fetch(path, opts);
+  const text = await res.text();
+  let data = null;
+  try { data = text ? JSON.parse(text) : null; } catch (e) { /* not JSON: an error page */ }
+  if (!res.ok) throw new Error((data && data.error) || ('HTTP ' + res.status));
   return data;
 }
 
@@ -317,7 +324,14 @@ let libSelected = [];     // char_ids, in slot order; Phase 4 seats these
 async function openLibrary() {
   showScreen('library');
   $('#lib-grid').innerHTML = '<div class="char-placeholder">Loading…</div>';
-  const data = await api('/api/library');
+  let data;
+  try {
+    data = await api('/api/library');
+  } catch (err) {
+    $('#lib-grid').innerHTML =
+      '<div class="char-placeholder">Could not load the library: ' + esc(err.message) + '</div>';
+    return;
+  }
   libAll = data.characters || [];
   fillFacet('#lib-source', 'source', data.facets.source, 'any source');
   fillFacet('#lib-experiment', 'experiment', data.facets.experiment, 'any experiment');
@@ -407,7 +421,7 @@ async function startSession() {
   btn.disabled = true; btn.textContent = 'Generating characters...';
   $('#start-error').textContent = '';
   try {
-    const data = await api('/api/new');
+    const data = await api('/api/new', {});
     showScreen('app');
     $('#session-label').textContent = data.session_id;
     $('#transcript').innerHTML = '';
@@ -427,7 +441,7 @@ async function generateCharsOnly(fromReviewScreen) {
   btn.disabled = true; btn.textContent = fromReviewScreen ? 'Generating...' : 'Generating characters...';
   $('#start-error').textContent = '';
   try {
-    const data = await api('/api/chars_only');
+    const data = await api('/api/chars_only', {});
     showScreen('chars-only');
     $('#chars-only-session-label').textContent = data.session_id;
     renderCharCards('#chars-only-grid', data.characters);
@@ -445,7 +459,7 @@ async function continueToDialogue() {
   try {
     const sid = $('#chars-only-session-label').textContent;
     const stateData = await fetch('/api/state').then(r => r.json());
-    const res = await api('/api/run_narrator');
+    const res = await api('/api/run_narrator', {});
     showScreen('app');
     $('#session-label').textContent = sid;
     $('#transcript').innerHTML = '';
@@ -483,10 +497,10 @@ async function endSession(save) {
   if (!confirm(save ? 'Save this session and end it?' : 'Abandon this session without saving?')) return;
   try {
     if (save) {
-      const res = await api('/api/save');
+      const res = await api('/api/save', {});
       alert(`Saved run '${res.run_id}' (${res.calls} calls).\nOpen ui/run_viewer.html to review it.`);
     } else {
-      await api('/api/abandon');
+      await api('/api/abandon', {});
     }
   } catch (err) {
     // Stay on the current screen. A save can fail while the session is still

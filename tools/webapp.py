@@ -154,8 +154,9 @@ class Handler(BaseHTTPRequestHandler):
                     self._send_json({"error": busy}, status=409)
                     return
                 state = simulator.new_session()
+                anti_dup = bool(body.get("anti_dup"))
                 simulator.generate_character(state, 1)
-                simulator.generate_character(state, 2)
+                simulator.generate_character(state, 2, anti_dup=anti_dup)
                 narrator_line = simulator.run_narrator(state)
                 self._send_json({**session_payload(), "narrator_line": narrator_line})
 
@@ -165,8 +166,9 @@ class Handler(BaseHTTPRequestHandler):
                     self._send_json({"error": busy}, status=409)
                     return
                 state = simulator.new_session()
+                anti_dup = bool(body.get("anti_dup"))
                 simulator.generate_character(state, 1)
-                simulator.generate_character(state, 2)
+                simulator.generate_character(state, 2, anti_dup=anti_dup)
                 self._send_json(session_payload())
 
             elif self.path == "/api/run_narrator":

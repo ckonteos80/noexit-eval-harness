@@ -28,6 +28,13 @@ from game_state import config, providers, assembly, game
 # PATHS
 # ──────────────────────────────────────────────────────────────────────────────
 
+# A chained character-2 call carries the other character's whole bio and runs far longer
+# than a standalone one. Shorter than config.PROXY_TIMEOUT_GENERATION on purpose: past the
+# HF router's ~120s ceiling the call is lost anyway, so failing at 110s reports the problem
+# instead of holding the request open for minutes. Harness-side: Unity has no equivalent,
+# so this stays out of game_state/.
+PROXY_TIMEOUT_ANTI_DUP = 110
+
 OUTPUT_DIR = OUTPUTS
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -216,7 +223,7 @@ def save_state_snapshot(state: game.GameState):
 # CHARACTER GENERATION
 # ──────────────────────────────────────────────────────────────────────────────
 
-def generate_character(state: game.GameState, char_no: int) -> dict:
+def generate_character(state: game.GameState, char_no: int, anti_dup: bool = False) -> dict:
     """
     Generate one character in a single call.
 
@@ -243,13 +250,27 @@ def generate_character(state: game.GameState, char_no: int) -> dict:
     summary = {"char_no": char_no, "gender": gender, "age": age, "name": name}
 
     # ── Story call ──
+    #
+    # anti_dup defaults OFF. The block embeds the other character's whole bio, taking
+    # the user prompt from 99 words to roughly 680, and GLM-5.3 at high reasoning effort
+    # has never had to answer one -- every experiment generated characters
+    # independently. In practice that call ran past the router's ~120s ceiling and, with
+    # a 300s proxy timeout and retries inside call_proxy, blocked for minutes with no
+    # feedback. Distinctness is now got by choosing two unlike characters from the
+    # library rather than by this block.
     char_kwargs = dict(name=name, age=age, gender=gender)
-    if char_no == 2:
+    if char_no == 2 and anti_dup:
         char_kwargs["other_name"] = other_char.name
         char_kwargs["other_bio"] = other_char.description
 
     sys_p, user_p = assembly.assemble_character_prompts(**char_kwargs)
-    bio = _call_with_sanity_retry(sys_p, user_p, char_no, state)
+    # A chained call is the slow one, so give it a shorter leash: it fails visibly
+    # rather than holding the request open for several minutes.
+    bio = _call_with_sanity_retry(
+        sys_p, user_p, char_no, state,
+        proxy_timeout=(PROXY_TIMEOUT_ANTI_DUP
+                       if (char_no == 2 and anti_dup) else None),
+    )
 
     summary.update(words=len(bio.split()))
 
@@ -295,7 +316,7 @@ def _generate_name(state: game.GameState, char_no: int, age: int, gender: str) -
     return name
 
 
-def _call_with_sanity_retry(sys_p, user_p, char_no, state) -> str:
+def _call_with_sanity_retry(sys_p, user_p, char_no, state, proxy_timeout=None) -> str:
     """
     Call the proxy for the story and return it whole, after strip_reasoning.
 
@@ -310,7 +331,7 @@ def _call_with_sanity_retry(sys_p, user_p, char_no, state) -> str:
             model=config.MODEL_GENERATION,
             temperature=config.TEMP_GENERATION,
             max_tokens=config.MAX_TOKENS_GENERATION,
-            proxy_timeout=config.PROXY_TIMEOUT_GENERATION,
+            proxy_timeout=proxy_timeout or config.PROXY_TIMEOUT_GENERATION,
             reasoning_effort=config.REASONING_EFFORT_GENERATION,
         )
         response = assembly.strip_reasoning(res.content or "").strip()
